@@ -2,11 +2,24 @@
 
 박희철의 회사 제출용 PDF Portfolio를 보완하는 공개 Web Portfolio입니다.
 
+**Live:** https://cloud-infra-portfolio.vercel.app/
+
 ## 목적
 
 - PDF: 회사 지원 시 제출하는 핵심 요약본
 - Web: 프로젝트 Case Study
 - GitHub: 코드, PR, 테스트, Evidence 원본
+
+## Included
+
+- Home / Core Focus
+- Team Durian Case Study
+- Bluebell Case Study
+- OneReport Case Study
+- Labbit Case Study
+- Experience & Education
+- Qualifications & Contact
+- Responsive layout
 
 ## Stack
 
@@ -14,7 +27,7 @@
 - TypeScript
 - Vite
 - React Router
-- Static deployment
+- Vercel
 
 ## Run
 
@@ -28,6 +41,8 @@ npm run dev
 ```bash
 npm run build
 ```
+
+GitHub Actions에서 production build를 검증합니다.
 
 ## Structure
 
@@ -46,4 +61,4 @@ src/
 
 공개 Web에는 Email과 GitHub만 노출하며 전화번호는 표시하지 않습니다.
 
-> 공개 Web에는 전화번호가 포함된 회사 제출용 PDF를 직접 게시하지 않습니다.
+> 전화번호가 포함된 회사 제출용 PDF Portfolio는 공개 저장소나 공개 Web에 게시하지 않고 지원 과정에서 별도로 제공합니다.
