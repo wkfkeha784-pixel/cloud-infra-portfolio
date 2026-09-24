@@ -4,11 +4,11 @@
 
 **Live:** https://cloud-infra-portfolio.vercel.app/
 
-## 목적
+## 역할
 
-- PDF: 회사 지원 시 제출하는 핵심 요약본
-- Web: 프로젝트 Case Study
-- GitHub: 코드, PR, 테스트, Evidence 원본
+- **PDF**: 회사 지원 시 제출하는 핵심 요약본
+- **Web**: 프로젝트별 상세 Case Study
+- **GitHub**: 코드, PR, 테스트, Evidence 원본
 
 ## Included
 
@@ -20,6 +20,7 @@
 - Experience & Education
 - Qualifications & Contact
 - Responsive layout
+- Automated desktop/mobile browser QA
 
 ## Stack
 
@@ -27,6 +28,8 @@
 - TypeScript
 - Vite
 - React Router
+- Playwright
+- GitHub Actions
 - Vercel
 
 ## Run
@@ -42,7 +45,36 @@ npm run dev
 npm run build
 ```
 
-GitHub Actions에서 production build를 검증합니다.
+## Browser QA
+
+```bash
+npm run qa:ui
+```
+
+GitHub Actions에서 다음을 자동 검증합니다.
+
+- Home + 4개 Case Study 직접 접근
+- Reload 후 route 유지
+- Desktop / Mobile 렌더링
+- Horizontal overflow
+- 공개 Web의 전화번호 미노출
+- Project navigation
+- OneReport / Labbit Evidence link
+- Full-page screenshot artifact
+
+운영 흐름:
+
+```text
+Branch
+→ Pull Request
+→ Build CI
+→ Browser QA
+→ Screenshot Review
+→ Merge
+→ Vercel Production
+```
+
+Browser QA는 PR과 `main` push에서 실행됩니다.
 
 ## Structure
 
@@ -55,7 +87,18 @@ src/
 ├─ styles/
 ├─ App.tsx
 └─ main.tsx
+
+tests/
+└─ portfolio.spec.mjs
 ```
+
+## Claim boundary
+
+- 개인 기여와 Team / Project Result를 구분합니다.
+- 검증되지 않은 KPI를 만들지 않습니다.
+- OneReport는 Rule-based Analysis로 표현합니다.
+- Labbit은 Ongoing 상태를 유지합니다.
+- 접근이 불안정한 Repository 링크를 억지로 노출하지 않습니다.
 
 ## Public contact policy
 
