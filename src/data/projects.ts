@@ -161,7 +161,7 @@ export const projects: Project[] = [
     slug: 'bluebell',
     order: '02',
     name: 'Bluebell',
-    subtitle: 'AWS + On-Premise 하이브리드 3-Tier 인프라',
+    subtitle: 'AWS Web/WAS + Local DB 하이브리드 3-Tier 인프라',
     problem: '수작업 복구와 서버 재구성 시 설정 편차, 복구 완료 판단 기준 부족',
     role: 'Team Lead / Web–WAS / Integration Validation',
     summary:
@@ -170,7 +170,7 @@ export const projects: Project[] = [
     cardEvidence: ['[MY] Target Group Healthy + HTTP 200', '[PROJECT] Monitoring restored까지 Recovery Validation'],
     architecture: ['User', 'Public ALB', 'Web / Nginx', 'Internal WAS LB', 'WAS / Flask API', 'DB Proxy', 'MariaDB'],
     architectureNote:
-      '지원 계층: Bastion → Ansible / Swarm / Recovery · Prometheus → Exporters → Grafana',
+      '환경 경계: AWS Web/WAS/Bastion/Monitoring · Local(On-Premise) HAProxy/MariaDB · 운영 지원: Ansible/Swarm/Recovery',
     myContributions: [
       '프로젝트 Team Lead',
       'Web–WAS 구축',
