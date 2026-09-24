@@ -20,6 +20,12 @@ export default function ProjectDetail() {
 
   const currentIndex = projects.findIndex((item) => item.slug === project.slug)
   const nextProject = projects[(currentIndex + 1) % projects.length]
+  const projectSubtitle = project.slug === 'bluebell'
+    ? 'AWS Web/WAS + Local DB 하이브리드 3-Tier 인프라'
+    : project.subtitle
+  const architectureNote = project.slug === 'bluebell'
+    ? '환경 경계: AWS Web/WAS/Bastion/Monitoring · Local(On-Premise) HAProxy/MariaDB · 운영 지원: Ansible/Swarm/Recovery'
+    : project.architectureNote
 
   return (
     <>
@@ -31,7 +37,7 @@ export default function ProjectDetail() {
             {project.status && <span className="status-badge">{project.status}</span>}
           </div>
           <h1>{project.name}</h1>
-          <p className="project-detail-subtitle">{project.subtitle}</p>
+          <p className="project-detail-subtitle">{projectSubtitle}</p>
           <p className="project-detail-summary">{project.summary}</p>
           <div className="tags">
             {project.tags.map((tag) => <span key={tag}>{tag}</span>)}
@@ -62,7 +68,7 @@ export default function ProjectDetail() {
             <h2>Architecture / Flow</h2>
           </div>
           <Flow items={project.architecture} />
-          {project.architectureNote && <p className="flow-note">{project.architectureNote}</p>}
+          {architectureNote && <p className="flow-note">{architectureNote}</p>}
         </div>
       </section>
 
