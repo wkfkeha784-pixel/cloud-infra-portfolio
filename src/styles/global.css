@@ -746,6 +746,30 @@ img { max-width: 100%; }
   letter-spacing: 0.04em;
 }
 
+.evidence-snapshot-figure {
+  margin: 18px 0 0;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #f7fafb;
+}
+
+.evidence-snapshot-figure img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 7;
+  object-fit: contain;
+  background: #eef2f4;
+}
+
+.evidence-snapshot-figure figcaption {
+  padding: 9px 11px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 0.72rem;
+  line-height: 1.45;
+}
+
 .evidence-snapshot-card h3 {
   margin: 18px 0 10px;
   color: var(--navy);
