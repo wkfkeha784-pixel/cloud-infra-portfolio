@@ -110,14 +110,14 @@ export default function Home() {
           </div>
           <div className="timeline">
             <article>
+              <span>Education</span>
+              <h3>육군사관학교 전자공학과 졸업</h3>
+            </article>
+            <article>
               <span>2020.03–2025.09</span>
               <h3>대한민국 육군 · 정보통신 병과 장교</h3>
               <p>예비역 중위</p>
               <p>조직·인원 운영 · 절차 기반 임무 수행 · 현장 이슈 대응 · 보고·문서화</p>
-            </article>
-            <article>
-              <span>Education</span>
-              <h3>육군사관학교 전자공학과 졸업</h3>
             </article>
             <article>
               <span>2026.05.12–2026.12.03</span>

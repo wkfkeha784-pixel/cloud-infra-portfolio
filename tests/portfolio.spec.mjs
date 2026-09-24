@@ -147,6 +147,13 @@ test('home: four case-study cards and contact links are present', async ({ page 
 
   await expect(page.locator('#contact a[href="mailto:wkfkeha784@gmail.com"]')).toBeVisible()
   await expect(page.locator('#contact a[href="https://github.com/wkfkeha784-pixel"]')).toBeVisible()
+
+  const timelineTitles = await page.locator('#experience .timeline article h3').allTextContents()
+  expect(timelineTitles).toEqual([
+    '육군사관학교 전자공학과 졸업',
+    '대한민국 육군 · 정보통신 병과 장교',
+    'KT Cloud Infrastructure Bootcamp',
+  ])
 })
 
 test('evidence: public repository and PR links are wired correctly', async ({ page }) => {
