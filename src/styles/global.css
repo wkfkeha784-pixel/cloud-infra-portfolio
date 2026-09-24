@@ -198,36 +198,41 @@ img { max-width: 100%; }
 .hero-core {
   position: absolute;
   inset: 50% auto auto 50%;
+  z-index: 3;
   transform: translate(-50%, -50%);
-  width: 132px;
-  height: 132px;
+  width: 124px;
+  height: 124px;
   display: grid;
   place-items: center;
-  border-radius: 30px;
+  border-radius: 28px;
   background: var(--navy);
   color: white;
   text-align: center;
   font-weight: 800;
-  font-size: 1.45rem;
+  font-size: 1.35rem;
   line-height: 1.15;
   box-shadow: var(--shadow);
 }
 
 .signal {
   position: absolute;
-  padding: 10px 14px;
+  z-index: 2;
+  padding: 9px 12px;
   border: 1px solid rgba(15, 139, 141, 0.24);
   border-radius: 999px;
-  background: #fff;
+  background: rgba(255, 255, 255, 0.94);
   color: var(--teal);
   font-weight: 800;
-  font-size: 0.7rem;
-  letter-spacing: 0.12em;
+  font-size: 0.64rem;
+  letter-spacing: 0.1em;
+  box-shadow: 0 8px 24px rgba(16, 42, 67, 0.05);
 }
 
-.signal-a { top: 15%; left: 8%; }
-.signal-b { top: 22%; right: 2%; }
-.signal-c { bottom: 13%; left: 19%; }
+.signal-a { top: 10%; left: 8%; }
+.signal-b { top: 12%; right: 6%; }
+.signal-c { top: 46%; right: -8%; }
+.signal-d { bottom: 10%; right: 10%; }
+.signal-e { bottom: 12%; left: 7%; }
 
 .section { padding: 92px 0; }
 .section-muted { background: var(--surface-muted); border-block: 1px solid var(--line); }
@@ -777,6 +782,43 @@ img { max-width: 100%; }
   text-align: right;
   font-size: 1.2rem;
   font-weight: 700;
+}
+
+@media (min-width: 1080px) {
+  .flow {
+    max-width: none;
+    flex-direction: row;
+    align-items: stretch;
+    gap: 0;
+  }
+
+  .flow-part {
+    display: flex;
+    flex: 1 1 0;
+    min-width: 0;
+    align-items: center;
+  }
+
+  .flow-node {
+    flex: 1 1 auto;
+    min-width: 0;
+    min-height: 64px;
+    padding: 12px 10px;
+    display: grid;
+    place-items: center;
+    font-size: 0.82rem;
+    line-height: 1.35;
+  }
+
+  .flow-arrow {
+    flex: 0 0 26px;
+    padding: 0;
+    transform: rotate(-90deg);
+  }
+
+  .flow-note {
+    max-width: none;
+  }
 }
 
 @media (max-width: 960px) {
