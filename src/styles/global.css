@@ -184,55 +184,59 @@ img { max-width: 100%; }
 }
 
 .hero-visual {
-  position: relative;
-  aspect-ratio: 1;
-  max-width: 420px;
+  width: min(420px, 100%);
   margin-left: auto;
+  padding: 30px;
   border: 1px solid rgba(16, 42, 67, 0.12);
-  border-radius: 50%;
+  border-radius: 24px;
   background:
-    radial-gradient(circle at center, rgba(15, 139, 141, 0.15), transparent 44%),
-    repeating-radial-gradient(circle at center, transparent 0 54px, rgba(16, 42, 67, 0.06) 55px 56px);
+    linear-gradient(145deg, rgba(255, 255, 255, 0.96), rgba(238, 247, 247, 0.94)),
+    var(--surface);
+  box-shadow: 0 18px 46px rgba(16, 42, 67, 0.07);
 }
 
-.hero-core {
-  position: absolute;
-  inset: 50% auto auto 50%;
-  z-index: 3;
-  transform: translate(-50%, -50%);
-  width: 124px;
-  height: 124px;
-  display: grid;
-  place-items: center;
-  border-radius: 28px;
-  background: var(--navy);
-  color: white;
-  text-align: center;
-  font-weight: 800;
-  font-size: 1.35rem;
-  line-height: 1.15;
-  box-shadow: var(--shadow);
-}
-
-.signal {
-  position: absolute;
-  z-index: 2;
-  padding: 9px 12px;
-  border: 1px solid rgba(15, 139, 141, 0.24);
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.94);
+.hero-visual-label {
+  display: block;
+  margin-bottom: 18px;
   color: var(--teal);
+  font-size: 0.72rem;
   font-weight: 800;
-  font-size: 0.64rem;
-  letter-spacing: 0.1em;
-  box-shadow: 0 8px 24px rgba(16, 42, 67, 0.05);
+  letter-spacing: 0.14em;
 }
 
-.signal-a { top: 10%; left: 8%; }
-.signal-b { top: 12%; right: 6%; }
-.signal-c { top: 46%; right: -8%; }
-.signal-d { bottom: 10%; right: 10%; }
-.signal-e { bottom: 12%; left: 7%; }
+.ops-loop {
+  display: grid;
+  gap: 8px;
+}
+
+.ops-loop div {
+  min-height: 52px;
+  padding: 0 16px;
+  display: grid;
+  grid-template-columns: 42px 1fr;
+  align-items: center;
+  border: 1px solid rgba(16, 42, 67, 0.09);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.86);
+}
+
+.ops-loop strong {
+  color: #9aabb8;
+  font-size: 0.74rem;
+  letter-spacing: 0.08em;
+}
+
+.ops-loop span {
+  color: var(--navy);
+  font-size: 0.88rem;
+  font-weight: 800;
+  letter-spacing: 0.07em;
+}
+
+.ops-loop div:nth-child(3) {
+  border-color: rgba(15, 139, 141, 0.32);
+  background: var(--teal-soft);
+}
 
 .section { padding: 92px 0; }
 .section-muted { background: var(--surface-muted); border-block: 1px solid var(--line); }
