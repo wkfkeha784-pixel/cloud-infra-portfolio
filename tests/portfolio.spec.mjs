@@ -45,6 +45,21 @@ for (const [name, route, marker] of routes) {
   })
 }
 
+test('durian: validation evidence snapshots expose dated proof and scope', async ({ page }) => {
+  await page.goto('/projects/durian', { waitUntil: 'networkidle' })
+
+  const cards = page.locator('.evidence-snapshot-card')
+  await expect(cards).toHaveCount(3)
+
+  await expect(page.getByText('300 / 300 HTTP 200 · Concurrency 50')).toBeVisible()
+  await expect(page.getByText('POST_CUTOVER_E2E_SUCCESS')).toBeVisible()
+  await expect(page.getByText('Final Health PASS 43 / WARN 0 / FAIL 0')).toBeVisible()
+
+  await expect(cards.nth(0).getByText('MY', { exact: true })).toBeVisible()
+  await expect(cards.nth(1).getByText('MY', { exact: true })).toBeVisible()
+  await expect(cards.nth(2).getByText('PROJECT', { exact: true })).toBeVisible()
+})
+
 test('home: four case-study cards and contact links are present', async ({ page }) => {
   await page.goto('/', { waitUntil: 'networkidle' })
 

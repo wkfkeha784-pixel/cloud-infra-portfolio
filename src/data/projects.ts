@@ -3,6 +3,16 @@ export type Evidence = {
   href: string
 }
 
+export type EvidenceSnapshot = {
+  title: string
+  scope: 'MY' | 'PROJECT'
+  validatedAt: string
+  source: string
+  summary: string
+  facts: string[]
+  note?: string
+}
+
 export type Project = {
   slug: string
   order: string
@@ -28,6 +38,7 @@ export type Project = {
   learned?: string
   limitations?: string
   evidence: Evidence[]
+  evidenceSnapshots?: EvidenceSnapshot[]
   boundaryNotes?: string[]
 }
 
@@ -85,6 +96,56 @@ export const projects: Project[] = [
       'Consumer Scale-out',
       'Lag 감소',
       'Scale-in',
+    ],
+    evidenceSnapshots: [
+      {
+        title: '외부 HTTP 부하 → Redis / Kafka → KEDA 1→4→1',
+        scope: 'MY',
+        validatedAt: '2026-08-10',
+        source: '0810_05 외부 HTTP 부하 KEDA 최종 E2E',
+        summary:
+          'Kubernetes 외부 Ops VM에서 실제 수강신청 요청을 넣고 Kafka Lag 증가부터 Consumer 자동 확장·축소까지 운영 흐름을 확인했습니다.',
+        facts: [
+          '300 / 300 HTTP 200 · Concurrency 50',
+          'HPA External Metric 약 60 / 5 → Consumer 1 → 4',
+          'Worker-01 2개 · Worker-02 2개로 분산',
+          'Lag 해소 후 4 → 1 Scale-in · Kafka Broker Running',
+        ],
+        note:
+          'HTTP 200은 요청 수락 증거이며 300건 전체 DB Commit 완료로 확대 해석하지 않습니다. 573.68 req/s도 짧은 Demo 전송 처리량 Snapshot입니다.',
+      },
+      {
+        title: '공식 Kafka E2E · 최소권한 Cutover 검증',
+        scope: 'MY',
+        validatedAt: '2026-08-06',
+        source: '0806_01 공식 요청 경로 Kafka E2E 복구와 검증',
+        summary:
+          'Mainpage의 실제 요청 경로에서 NetworkPolicy → TLS Trust → SCRAM → Topic / Group ACL을 순서대로 복구하고 MariaDB 반영까지 재검증했습니다.',
+        facts: [
+          'Mainpage → Kong → Producer → Kafka → Consumer → MariaDB',
+          'HTTP 200 · Enrollment 2 → 3 · New Enrollment ID 44',
+          'Consumer Ready=true · Restart=0 · Error=false',
+          'POST_CUTOVER_E2E_SUCCESS',
+        ],
+        note:
+          '이 8/6 Snapshot의 공식 Producer 경로에는 Redis 호출이 없었습니다. Redis 포함 최종 흐름과 시점을 섞지 않습니다.',
+      },
+      {
+        title: 'Observability · Final Runtime Health Snapshot',
+        scope: 'PROJECT',
+        validatedAt: '2026-08-13',
+        source: 'Durian Final Snapshot / Current Status',
+        summary:
+          '최종 Runtime에서 KEDA 재현성, Prometheus/Grafana 관측 스택과 전체 Health Check가 함께 정상 상태인지 확인한 프로젝트 결과입니다.',
+        facts: [
+          'KEDA Manifest server-side dry-run PASS · kubectl diff RC=0',
+          'Prometheus · Grafana · Alertmanager · kube-state-metrics Running',
+          'QueuePilot Operations + Service Dashboard 운영',
+          'Final Health PASS 43 / WARN 0 / FAIL 0',
+        ],
+        note:
+          'Project-level 최종 결과입니다. 개인 기여는 Monitoring 인수·재구성과 KEDA 운영 범위로 구분합니다.',
+      },
     ],
     learned: '개별 기술보다 전체 운영 흐름이 연결되는지 검증하는 것이 중요했습니다.',
     limitations: '반복 시험 기반 성능 KPI와 SLI/SLO는 후속 과제로 남았습니다.',

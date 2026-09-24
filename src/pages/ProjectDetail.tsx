@@ -124,6 +124,38 @@ export default function ProjectDetail() {
         </section>
       )}
 
+      {project.evidenceSnapshots && project.evidenceSnapshots.length > 0 && (
+        <section className="section section-muted">
+          <div className="container">
+            <div className="section-heading compact">
+              <span className="eyebrow">VALIDATION EVIDENCE</span>
+              <h2>무엇을 실제로 확인했는가</h2>
+              <p>시점·Scope·검증값을 함께 남겨 개인 기여와 프로젝트 결과를 구분합니다.</p>
+            </div>
+            <div className="evidence-snapshot-grid">
+              {project.evidenceSnapshots.map((item) => (
+                <article className="evidence-snapshot-card" key={item.title}>
+                  <div className="evidence-snapshot-meta">
+                    <Badge tone={item.scope === 'MY' ? 'my' : 'project'}>{item.scope}</Badge>
+                    <span>VALIDATED · {item.validatedAt}</span>
+                  </div>
+                  <h3>{item.title}</h3>
+                  <p>{item.summary}</p>
+                  <ul>
+                    {item.facts.map((fact) => <li key={fact}>{fact}</li>)}
+                  </ul>
+                  <div className="evidence-source">
+                    <strong>Source</strong>
+                    <span>{item.source}</span>
+                  </div>
+                  {item.note && <p className="evidence-note">{item.note}</p>}
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
       {(project.learned || project.limitations) && (
         <section className="section section-muted">
           <div className="container lessons-grid">
