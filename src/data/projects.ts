@@ -14,6 +14,8 @@ export type EvidenceSnapshot = {
   image?: string
   imageAlt?: string
   imageCaption?: string
+  href?: string
+  linkLabel?: string
 }
 
 export type Project = {
@@ -293,12 +295,65 @@ export const projects: Project[] = [
       '제안 범위와 실제 구현 범위를 분리',
     ],
     validation: ['Health 200', 'Analysis', 'Routing', 'S3', 'Timeline', 'Admin', 'PASS'],
+    evidenceSnapshots: [
+      {
+        title: 'PR #9 · Core Domain / DB',
+        scope: 'MY',
+        validatedAt: '2026-08-20',
+        source: 'GitHub PR #9 · 핵심 도메인 및 DB 흐름 구현',
+        summary:
+          'Report / Incident와 기관 대응 모델을 구현하고 Category 기반 기관 배정, 상태 전이, Timeline 흐름을 DB·Migration과 함께 연결했습니다.',
+        facts: [
+          'Report / Incident · 기관 대응 DB Model',
+          'Category 기반 기관 자동 배정 · 상태 전이',
+          'Alembic Migration · Domain Test',
+          'PR 시점 Backend 전체 테스트 41 passed · OpenAPI 생성 PASS',
+        ],
+        href: 'https://github.com/ktcloud4-SL/hackathon/pull/9',
+        linkLabel: 'PR #9 원본 보기',
+        note:
+          '41 passed는 PR #9 검증 시점의 Snapshot입니다. 다른 PR의 테스트 수와 합산하지 않습니다.',
+      },
+      {
+        title: 'PR #14 · Timeline Contract',
+        scope: 'MY',
+        validatedAt: '2026-08-20',
+        source: 'GitHub PR #14 · Timeline 응답 형식 수정',
+        summary:
+          'Frontend가 기대하는 Timeline REST 계약에 맞춰 응답 형식을 { items, total }로 통일하고 SSE / Timeline item payload는 유지했습니다.',
+        facts: [
+          'Timeline REST → { items, total } Contract 정합',
+          'SSE / Timeline item payload는 변경하지 않음',
+          'API Contract 문서 최신화',
+          'PR 시점 Backend 전체 테스트 49 passed · OpenAPI 생성 PASS',
+        ],
+        href: 'https://github.com/ktcloud4-SL/hackathon/pull/14',
+        linkLabel: 'PR #14 원본 보기',
+        note:
+          '49 passed는 PR #14 시점의 독립 검증값이며 PR #9 / #27과 합산하지 않습니다.',
+      },
+      {
+        title: 'PR #27 · Rule-based Analysis',
+        scope: 'MY',
+        validatedAt: '2026-08-20',
+        source: 'GitHub PR #27 · 신고 내용 자동분석 및 기관 추천 기능',
+        summary:
+          '신고 설명을 규칙 기반으로 분석해 사고 유형·위험도를 추천하고 기존 Routing 로직으로 대응기관을 연결했습니다. 실패·미분류 시 수동 선택으로 돌아가도록 설계했습니다.',
+        facts: [
+          'POST /api/analyze-report Rule-based Analysis',
+          '기존 route_categories() 기반 대응기관 추천',
+          '분석 실패 / 미분류 → 수동 선택 fallback',
+          'PR 시점 Backend 65 passed · Frontend 분석 흐름 3 passed · production build PASS',
+        ],
+        href: 'https://github.com/ktcloud4-SL/hackathon/pull/27',
+        linkLabel: 'PR #27 원본 보기',
+        note:
+          'LLM / AI 분석이 아니라 Rule-based Analysis입니다. 테스트 수치는 이 PR의 검증 Snapshot으로만 사용합니다.',
+      },
+    ],
     learned: 'Domain·DB·API 상태가 실제 Incident 운영 흐름과 일치하도록 구현하고 검증했습니다.',
     evidence: [
       { label: 'Repository', href: 'https://github.com/ktcloud4-SL/hackathon' },
-      { label: 'PR #9 — Core Domain / DB', href: 'https://github.com/ktcloud4-SL/hackathon/pull/9' },
-      { label: 'PR #14 — Timeline Contract', href: 'https://github.com/ktcloud4-SL/hackathon/pull/14' },
-      { label: 'PR #27 — Rule-based Analysis', href: 'https://github.com/ktcloud4-SL/hackathon/pull/27' },
     ],
     boundaryNotes: [
       'Rule-based Analysis이며 LLM 기반 분석이 아닙니다.',

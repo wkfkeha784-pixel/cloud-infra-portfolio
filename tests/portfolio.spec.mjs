@@ -81,6 +81,29 @@ test('bluebell: recovery validation evidence exposes images, scope, and completi
   await expect(cards.nth(2).getByText('PROJECT', { exact: true })).toBeVisible()
 })
 
+test('onereport: PR evidence cards preserve validation snapshots and rule-based boundary', async ({ page }) => {
+  await page.goto('/projects/onereport', { waitUntil: 'networkidle' })
+
+  const cards = page.locator('.evidence-snapshot-card')
+  await expect(cards).toHaveCount(3)
+
+  await expect(cards.nth(0).getByText('PR 시점 Backend 전체 테스트 41 passed · OpenAPI 생성 PASS')).toBeVisible()
+  await expect(cards.nth(1).getByText('Timeline REST → { items, total } Contract 정합')).toBeVisible()
+  await expect(cards.nth(2).getByText('LLM / AI 분석이 아니라 Rule-based Analysis입니다.')).toBeVisible()
+
+  for (const href of [
+    'https://github.com/ktcloud4-SL/hackathon/pull/9',
+    'https://github.com/ktcloud4-SL/hackathon/pull/14',
+    'https://github.com/ktcloud4-SL/hackathon/pull/27',
+  ]) {
+    await expect(page.locator('.evidence-snapshot-card').locator(`a[href="${href}"]`)).toHaveCount(1)
+  }
+
+  await expect(cards.nth(0).getByText('MY', { exact: true })).toBeVisible()
+  await expect(cards.nth(1).getByText('MY', { exact: true })).toBeVisible()
+  await expect(cards.nth(2).getByText('MY', { exact: true })).toBeVisible()
+})
+
 test('home: four case-study cards and contact links are present', async ({ page }) => {
   await page.goto('/', { waitUntil: 'networkidle' })
 
@@ -102,13 +125,13 @@ test('home: four case-study cards and contact links are present', async ({ page 
 
 test('evidence: public repository and PR links are wired correctly', async ({ page }) => {
   await page.goto('/projects/onereport', { waitUntil: 'networkidle' })
+  await expect(page.locator('a[href="https://github.com/ktcloud4-SL/hackathon"]')).toHaveCount(1)
   for (const href of [
-    'https://github.com/ktcloud4-SL/hackathon',
     'https://github.com/ktcloud4-SL/hackathon/pull/9',
     'https://github.com/ktcloud4-SL/hackathon/pull/14',
     'https://github.com/ktcloud4-SL/hackathon/pull/27',
   ]) {
-    await expect(page.locator(`a[href="${href}"]`)).toHaveCount(1)
+    await expect(page.locator('.evidence-snapshot-card').locator(`a[href="${href}"]`)).toHaveCount(1)
   }
 
   await page.goto('/projects/labbit', { waitUntil: 'networkidle' })
