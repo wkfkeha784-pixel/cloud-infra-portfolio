@@ -60,6 +60,22 @@ test('durian: validation evidence snapshots expose dated proof and scope', async
   await expect(cards.nth(2).getByText('PROJECT', { exact: true })).toBeVisible()
 })
 
+test('bluebell: recovery validation evidence exposes images, scope, and completion criteria', async ({ page }) => {
+  await page.goto('/projects/bluebell', { waitUntil: 'networkidle' })
+
+  const cards = page.locator('.evidence-snapshot-card')
+  await expect(cards).toHaveCount(3)
+  await expect(cards.locator('img')).toHaveCount(3)
+
+  await expect(page.getByText('Web / WAS Target Group 2 healthy · 0 unhealthy')).toBeVisible()
+  await expect(page.getByText('Target Group healthy · / · /api/health · /api/server 200')).toBeVisible()
+  await expect(page.getByText('Grafana 관측 대상 갱신')).toBeVisible()
+
+  await expect(cards.nth(0).getByText('MY', { exact: true })).toBeVisible()
+  await expect(cards.nth(1).getByText('PROJECT', { exact: true })).toBeVisible()
+  await expect(cards.nth(2).getByText('PROJECT', { exact: true })).toBeVisible()
+})
+
 test('home: four case-study cards and contact links are present', async ({ page }) => {
   await page.goto('/', { waitUntil: 'networkidle' })
 
