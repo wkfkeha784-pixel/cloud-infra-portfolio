@@ -354,9 +354,6 @@ export const projects: Project[] = [
     learned: 'Domain·DB·API 상태가 실제 Incident 운영 흐름과 일치하도록 구현하고 검증했습니다.',
     evidence: [
       { label: 'Repository', href: 'https://github.com/ktcloud4-SL/hackathon' },
-      { label: 'PR #9 — Core Domain / DB', href: 'https://github.com/ktcloud4-SL/hackathon/pull/9' },
-      { label: 'PR #14 — Timeline Contract', href: 'https://github.com/ktcloud4-SL/hackathon/pull/14' },
-      { label: 'PR #27 — Rule-based Analysis', href: 'https://github.com/ktcloud4-SL/hackathon/pull/27' },
     ],
     boundaryNotes: [
       'Rule-based Analysis이며 LLM 기반 분석이 아닙니다.',
