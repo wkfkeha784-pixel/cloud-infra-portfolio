@@ -139,6 +139,12 @@ export default function ProjectDetail() {
                     <Badge tone={item.scope === 'MY' ? 'my' : 'project'}>{item.scope}</Badge>
                     <span>VALIDATED · {item.validatedAt}</span>
                   </div>
+                  {item.image && (
+                    <figure className="evidence-snapshot-figure">
+                      <img src={item.image} alt={item.imageAlt ?? item.title} loading="lazy" />
+                      {item.imageCaption && <figcaption>{item.imageCaption}</figcaption>}
+                    </figure>
+                  )}
                   <h3>{item.title}</h3>
                   <p>{item.summary}</p>
                   <ul>
