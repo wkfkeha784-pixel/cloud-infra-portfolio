@@ -110,7 +110,7 @@ export default function Home() {
           </div>
           <div className="timeline">
             <article>
-              <span>Education</span>
+              <span>2016.02–2020.03</span>
               <h3>육군사관학교 전자공학과 졸업</h3>
             </article>
             <article>
