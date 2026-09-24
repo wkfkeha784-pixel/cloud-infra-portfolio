@@ -71,10 +71,11 @@ Branch
 → Browser QA
 → Screenshot Review
 → Merge
+→ main Build / Browser QA
 → Vercel Production
 ```
 
-Browser QA는 PR과 `main` push에서 실행됩니다.
+Browser QA는 PR과 `main` push에서 실행됩니다. Merge 후에는 main 기준 Build / Browser QA와 Vercel Production 상태를 함께 확인한 뒤 배포 상태를 판단합니다.
 
 ## Structure
 
