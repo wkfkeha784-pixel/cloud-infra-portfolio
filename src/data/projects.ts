@@ -385,13 +385,70 @@ export const projects: Project[] = [
     ],
     projectResults: ['대표 17개 상태', 'Vitest 69/69 (기존 UI HEAD 기준)', '후속 CI / Security Check PASS'],
     validation: ['Contract', 'Auth / Permission', 'State / Error Safety', 'Test / CI'],
+    evidenceSnapshots: [
+      {
+        title: 'PR #23 · Session / Mutation Safety',
+        scope: 'MY',
+        validatedAt: '2026-09-22',
+        source: 'GitHub PR #23 · 세션·로그아웃·mutation 안전 UX 통합',
+        summary:
+          '보호 Route와 mutation에서 세션 만료·권한 변경·충돌을 구분해 처리하고, 동일 destructive action이 잘못 반복되지 않도록 상태 재동기화와 Guard를 연결했습니다.',
+        facts: [
+          'Mutation 401 → Login 복귀 · stale me 인증 Cache 폐기',
+          'Mutation 403 → 요청 시점 권한 변경 안내',
+          'Provision / Reset 409 → Class·LabExecution 재조회 + 동일 요청 즉시 재시도 차단',
+          '기존 OpenAPI 401 / 403 의미만 Consumer로 사용 · 새 Error Code 미정의',
+        ],
+        href: 'https://github.com/ktcloud4-SL/labbit-app/pull/23',
+        linkLabel: 'PR #23 원본 보기',
+        note:
+          'Server authorization이 최종 권한 경계이며 Frontend는 계약을 소비하고 잘못된 사용자 동작을 줄이는 역할에 집중했습니다.',
+      },
+      {
+        title: 'PR #25 / #26 · Mock–HTTP Boundary',
+        scope: 'MY',
+        validatedAt: '2026-09-22',
+        source: 'GitHub PR #25 · Mock·HTTP 선택 / PR #26 · production Mock fixture 정리',
+        summary:
+          'UI-only 개발 흐름은 Mock으로 유지하면서 실제 Backend 통합 시 기존 /api/v1 Contract를 그대로 소비하도록 개발·Production 경계를 분리했습니다.',
+        facts: [
+          '개발 기본값 Mock · VITE_LABBIT_API_MODE=http에서 HTTP Consumer 선택',
+          'Production Build는 설정과 무관하게 HTTP Consumer 사용',
+          'Vite /api/v1 Proxy · LABBIT_DEV_BACKEND_URL로 Local Backend 대상 분리',
+          'PR #25 Contracts #100 · Go #101 · Web #129 success · PR #26 DEV guard / lazy Mock 정리',
+        ],
+        href: 'https://github.com/ktcloud4-SL/labbit-app/pull/25',
+        linkLabel: 'PR #25 원본 보기',
+        note:
+          '새 HTTP Contract를 정의한 작업이 아니라 기존 Contract Consumer 경계와 개발환경 전환 방식을 정리한 작업입니다.',
+      },
+      {
+        title: 'PR #28 · Functional Prototype / UI Capture',
+        scope: 'MY',
+        validatedAt: '2026-09-23',
+        source: 'GitHub PR #28 · Functional Prototype UI polish 및 capture 자동화',
+        summary:
+          'Class·Workspace·LabSpec·Provision·Operation과 Reset/Cleanup 안전 UX를 팀 리뷰 가능한 Functional Prototype으로 정리하고 대표 상태를 자동 재현하는 Capture 흐름을 추가했습니다.',
+        facts: [
+          'Login부터 Reset 확인까지 대표 17개 화면 상태 정의',
+          'PR 기록의 기존 UI HEAD: typecheck · lint · build PASS · Vitest 69 / 69',
+          'PR 기록의 기존 UI HEAD: capture 17 / 17',
+          'CodeQL 후속 HEAD: Web · Go · Contracts · PR Security check PASS',
+        ],
+        href: 'https://github.com/ktcloud4-SL/labbit-app/pull/28',
+        linkLabel: 'PR #28 원본 보기',
+        note:
+          '69/69과 capture 17/17은 PR 본문에 기록된 당시 UI HEAD Snapshot입니다. 프로젝트 전체 완료나 merge commit 재측정 수치로 확대하지 않습니다.',
+      },
+    ],
     learned: 'Server authorization을 최종 권한 경계로 두고 Frontend에서는 계약을 소비하는 역할에 집중했습니다.',
     evidence: [
       { label: 'Repository', href: 'https://github.com/ktcloud4-SL/labbit-app' },
-      { label: 'PR #23 — Session / Mutation Safety', href: 'https://github.com/ktcloud4-SL/labbit-app/pull/23' },
-      { label: 'PR #28 — Functional Prototype', href: 'https://github.com/ktcloud4-SL/labbit-app/pull/28' },
     ],
-    boundaryNotes: ['프로젝트는 진행 중이며, 미병합 작업을 완료된 결과처럼 표현하지 않습니다.'],
+    boundaryNotes: [
+      '프로젝트는 Ongoing이며 PR merge를 프로젝트 전체 완료로 표현하지 않습니다.',
+      'PR #28의 69/69 · capture 17/17은 PR 기록 시점 Snapshot입니다.',
+    ],
   },
 ]
 
