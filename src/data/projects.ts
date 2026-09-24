@@ -11,6 +11,9 @@ export type EvidenceSnapshot = {
   summary: string
   facts: string[]
   note?: string
+  image?: string
+  imageAlt?: string
+  imageCaption?: string
 }
 
 export type Project = {
@@ -199,6 +202,65 @@ export const projects: Project[] = [
       'Swarm Join / Label',
       'Target Group',
       'Validation',
+    ],
+    evidenceSnapshots: [
+      {
+        title: 'Web–WAS 통합 검증 · Target Group Healthy',
+        scope: 'MY',
+        validatedAt: '2026-07-14',
+        source: 'Bluebell final presentation p.9',
+        summary:
+          'Web–WAS 구축 담당 범위에서 Public ALB부터 Internal WAS LB까지 요청 흐름과 서비스·Target Group 정상 상태를 통합 검증했습니다.',
+        facts: [
+          'Public ALB → Web → Internal WAS LB → WAS',
+          'bluebell-web_nginx 2/2 · bluebell-was_flask 2/2',
+          '/api/health · /api/server 응답 확인',
+          'Web / WAS Target Group 2 healthy · 0 unhealthy',
+        ],
+        image: '/evidence/bluebell/web-was-target-healthy.svg',
+        imageAlt: 'Bluebell Web 및 WAS Target Group이 각각 2 healthy, 0 unhealthy인 검증 화면',
+        imageCaption: 'Web / WAS Target Group · 2 healthy · 0 unhealthy',
+        note:
+          '개인 기여는 Web–WAS 구축과 AWS·통합 검증 범위입니다. Ansible·Swarm 자동화 전체를 개인 구현으로 표현하지 않습니다.',
+      },
+      {
+        title: 'ASG Replacement → Service / Target Group 정상화',
+        scope: 'PROJECT',
+        validatedAt: '2026-07-14',
+        source: 'Bluebell final presentation p.13',
+        summary:
+          '장애 감지 이후 Replacement 노드가 생성되고 Swarm 서비스와 Target Group으로 다시 편입되는 복구 흐름을 프로젝트 결과로 검증했습니다.',
+        facts: [
+          '신규 Web Node 생성 · Private IP 자동 할당',
+          'Dynamic Inventory web · swarm_workers · Ansible failed=0',
+          'Replacement task Running · Web / WAS 2/2',
+          'Target Group healthy · / · /api/health · /api/server 200',
+        ],
+        image: '/evidence/bluebell/replacement-target-healthy.svg',
+        imageAlt: 'Bluebell Replacement 인스턴스가 Target Group에서 healthy로 확인된 화면',
+        imageCaption: 'Replacement instance → Target Group healthy',
+        note:
+          'Recovery 자동화 자체는 팀 구현입니다. 개인 포인트는 각 담당 영역을 연결해 복구 완료 상태를 통합 검증한 부분입니다.',
+      },
+      {
+        title: 'Monitoring Restored · Replacement 관측 연속성',
+        scope: 'PROJECT',
+        validatedAt: '2026-07-14',
+        source: 'Bluebell final presentation p.13 / p.18',
+        summary:
+          '복구 완료를 서버 생성으로 끝내지 않고 Exporter 재편입과 Grafana 관측·Alerting까지 이어지는 운영 상태를 확인했습니다.',
+        facts: [
+          'node_exporter · cAdvisor 재편입',
+          'Grafana 관측 대상 갱신',
+          'Instance Down 감지 · Email / Contact Point 알림',
+          '신규 Web Node → Service → Target Group → Monitoring 연속성 검증',
+        ],
+        image: '/evidence/bluebell/monitoring-restored.svg',
+        imageAlt: 'Bluebell Replacement 노드가 Grafana Node Exporter 대시보드에 다시 관측되는 화면',
+        imageCaption: 'Replacement node · Grafana monitoring continuity',
+        note:
+          'Monitoring 구축·프로비저닝은 팀 담당 영역이며, 이 카드는 Project Result로 구분합니다.',
+      },
     ],
     learned:
       '복구 완료 여부를 서버 생성에 두지 않고, Service Running + Target Healthy + HTTP 200 + Monitoring Restored까지 확인했습니다.',
