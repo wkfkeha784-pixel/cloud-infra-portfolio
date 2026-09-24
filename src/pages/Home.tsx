@@ -59,7 +59,9 @@ export default function Home() {
           <div className="hero-visual" aria-hidden="true">
             <div className="signal signal-a">BUILD</div>
             <div className="signal signal-b">OBSERVE</div>
-            <div className="signal signal-c">RECOVER</div>
+            <div className="signal signal-c">TROUBLESHOOT</div>
+            <div className="signal signal-d">RECOVER</div>
+            <div className="signal signal-e">VERIFY</div>
             <div className="hero-core">Infra<br />Ops</div>
           </div>
         </div>
