@@ -125,13 +125,13 @@ test('home: four case-study cards and contact links are present', async ({ page 
 
 test('evidence: public repository and PR links are wired correctly', async ({ page }) => {
   await page.goto('/projects/onereport', { waitUntil: 'networkidle' })
+  await expect(page.locator('a[href="https://github.com/ktcloud4-SL/hackathon"]')).toHaveCount(1)
   for (const href of [
-    'https://github.com/ktcloud4-SL/hackathon',
     'https://github.com/ktcloud4-SL/hackathon/pull/9',
     'https://github.com/ktcloud4-SL/hackathon/pull/14',
     'https://github.com/ktcloud4-SL/hackathon/pull/27',
   ]) {
-    await expect(page.locator(`a[href="${href}"]`)).toHaveCount(1)
+    await expect(page.locator('.evidence-snapshot-card').locator(`a[href="${href}"]`)).toHaveCount(1)
   }
 
   await page.goto('/projects/labbit', { waitUntil: 'networkidle' })
