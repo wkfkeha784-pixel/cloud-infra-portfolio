@@ -816,6 +816,19 @@ img { max-width: 100%; }
   line-height: 1.5;
 }
 
+.evidence-snapshot-link {
+  display: inline-flex;
+  margin-top: 14px;
+  color: var(--teal);
+  font-size: 0.84rem;
+  font-weight: 800;
+}
+
+.evidence-snapshot-link:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
 .evidence-snapshot-card .evidence-note {
   margin-top: 14px;
   padding: 12px 14px;
