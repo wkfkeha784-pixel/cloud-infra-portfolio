@@ -141,7 +141,7 @@ export default function ProjectDetail() {
                   </div>
                   {item.image && (
                     <figure className="evidence-snapshot-figure">
-                      <img src={item.image} alt={item.imageAlt ?? item.title} loading="lazy" />
+                      <img src={item.image} alt={item.imageAlt ?? item.title} />
                       {item.imageCaption && <figcaption>{item.imageCaption}</figcaption>}
                     </figure>
                   )}
