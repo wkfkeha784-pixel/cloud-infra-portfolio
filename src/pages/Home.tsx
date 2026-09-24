@@ -57,10 +57,14 @@ export default function Home() {
           </div>
 
           <div className="hero-visual" aria-hidden="true">
-            <div className="signal signal-a">BUILD</div>
-            <div className="signal signal-b">OBSERVE</div>
-            <div className="signal signal-c">RECOVER</div>
-            <div className="hero-core">Infra<br />Ops</div>
+            <span className="hero-visual-label">OPERATIONS LOOP</span>
+            <div className="ops-loop">
+              <div><strong>01</strong><span>BUILD</span></div>
+              <div><strong>02</strong><span>OBSERVE</span></div>
+              <div><strong>03</strong><span>TROUBLESHOOT</span></div>
+              <div><strong>04</strong><span>RECOVER</span></div>
+              <div><strong>05</strong><span>VERIFY</span></div>
+            </div>
           </div>
         </div>
       </section>
