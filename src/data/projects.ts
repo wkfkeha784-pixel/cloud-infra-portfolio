@@ -58,7 +58,7 @@ export const projects: Project[] = [
     summary:
       'Redis Waiting Room과 Kafka 비동기 처리로 요청 흐름을 분리하고, Kafka Lag 기반 KEDA 운영과 Monitoring 재구성에 참여했습니다.',
     tags: ['OpenStack', 'Kubernetes', 'Kafka', 'Redis', 'KEDA', 'Prometheus', 'Grafana'],
-    cardEvidence: ['Kafka Lag 기반 Scale-out / Scale-in', 'Monitoring 인수·재구성 및 E2E 확인'],
+    cardEvidence: ['[MY] Kafka Lag 기반 Scale-out / Scale-in', '[MY] Monitoring 인수·재구성 및 E2E 확인'],
     architecture: [
       'User',
       'Octavia / Kong',
@@ -167,7 +167,7 @@ export const projects: Project[] = [
     summary:
       'Web–WAS 계층을 구축하고 각 담당 영역을 Web → WAS → DB E2E 요청 흐름으로 연결해 통합 검증했습니다.',
     tags: ['AWS', 'Ansible', 'Docker Swarm', 'Nginx', 'Prometheus', 'Grafana'],
-    cardEvidence: ['Target Group Healthy + HTTP 200', 'Monitoring restored까지 Recovery Validation'],
+    cardEvidence: ['[MY] Target Group Healthy + HTTP 200', '[PROJECT] Monitoring restored까지 Recovery Validation'],
     architecture: ['User', 'Public ALB', 'Web / Nginx', 'Internal WAS LB', 'WAS / Flask API', 'DB Proxy', 'MariaDB'],
     architectureNote:
       '지원 계층: Bastion → Ansible / Swarm / Recovery · Prometheus → Exporters → Grafana',
@@ -279,7 +279,7 @@ export const projects: Project[] = [
     summary:
       'Report와 Incident를 중심으로 기관 배정, 상태 전이, Timeline을 연결하고 규칙 기반 분석과 Smoke Test를 구현했습니다.',
     tags: ['FastAPI', 'PostgreSQL', 'AWS', 'S3', 'SSE'],
-    cardEvidence: ['PR #9 — Core Domain / DB', 'PR #27 — Rule-based Analysis'],
+    cardEvidence: ['[MY] PR #9 — Core Domain / DB', '[MY] PR #27 — Rule-based Analysis'],
     architecture: ['Report', 'Rule-based Analysis', 'Routing', 'Incident', 'Agency Status', 'Timeline'],
     architectureNote: '규칙 기반 분석 · 실제 공공기관 시스템 연계 없음',
     myContributions: [
@@ -372,7 +372,7 @@ export const projects: Project[] = [
     summary:
       '기존 OpenAPI Contract를 기준으로 상태·권한·오류 안전 처리를 구현하고 Functional Prototype과 테스트 흐름을 정리했습니다.',
     tags: ['React', 'TypeScript', 'OpenAPI', 'Vitest', 'CI'],
-    cardEvidence: ['PR #23 — Session / Mutation Safety', 'PR #28 — Functional Prototype'],
+    cardEvidence: ['[MY] PR #23 — Session / Mutation Safety', '[MY] PR #28 — Functional Prototype'],
     architecture: ['Contract', 'Auth / Permission', 'State / Error Safety', 'Test / CI'],
     architectureNote: 'Frontend는 계약에 없는 Endpoint·Token·Error Code를 임의 정의하지 않음',
     myContributions: [
