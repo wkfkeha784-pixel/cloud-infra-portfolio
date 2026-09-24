@@ -154,6 +154,11 @@ export default function ProjectDetail() {
                     <strong>Source</strong>
                     <span>{item.source}</span>
                   </div>
+                  {item.href && (
+                    <a className="evidence-snapshot-link" href={item.href} target="_blank" rel="noreferrer">
+                      {item.linkLabel ?? 'Evidence 원본 보기'} ↗
+                    </a>
+                  )}
                   {item.note && <p className="evidence-note">{item.note}</p>}
                 </article>
               ))}
