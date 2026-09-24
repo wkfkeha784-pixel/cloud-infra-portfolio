@@ -67,6 +67,8 @@ test('bluebell: recovery validation evidence exposes images, scope, and completi
   await expect(cards).toHaveCount(3)
   await expect(cards.locator('img')).toHaveCount(3)
 
+  await expect(page.getByText('AWS Web/WAS + Local DB 하이브리드 3-Tier 인프라', { exact: true })).toBeVisible()
+  await expect(page.getByText('환경 경계: AWS Web/WAS/Bastion/Monitoring · Local(On-Premise) HAProxy/MariaDB · 운영 지원: Ansible/Swarm/Recovery', { exact: true })).toBeVisible()
   await expect(page.getByText('Web / WAS Target Group 2 healthy · 0 unhealthy')).toBeVisible()
   await expect(page.getByText('Target Group healthy · / · /api/health · /api/server 200')).toBeVisible()
   await expect(cards.nth(2).getByText('Grafana 관측 대상 갱신', { exact: true })).toBeVisible()
@@ -154,6 +156,13 @@ test('home: four case-study cards and contact links are present', async ({ page 
     '대한민국 육군 · 정보통신 병과 장교',
     'KT Cloud Infrastructure Bootcamp',
   ])
+  const timelineDates = await page.locator('#experience .timeline article > span').allTextContents()
+  expect(timelineDates).toEqual([
+    '2016.02–2020.03',
+    '2020.03–2025.09',
+    '2026.05.12–2026.12.03',
+  ])
+  await expect(page.getByText('AWS Web/WAS + Local DB 하이브리드 3-Tier 인프라', { exact: true }).first()).toBeVisible()
 })
 
 test('evidence: public repository and PR links are wired correctly', async ({ page }) => {
