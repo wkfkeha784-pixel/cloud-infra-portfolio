@@ -60,8 +60,8 @@ test('home: four case-study cards and contact links are present', async ({ page 
     await expect(page.locator(`a[href="${href}"]`).first()).toBeVisible()
   }
 
-  await expect(page.locator('a[href="mailto:wkfkeha784@gmail.com"]').first()).toBeVisible()
-  await expect(page.locator('a[href="https://github.com/wkfkeha784-pixel"]').first()).toBeVisible()
+  await expect(page.locator('#contact a[href="mailto:wkfkeha784@gmail.com"]')).toBeVisible()
+  await expect(page.locator('#contact a[href="https://github.com/wkfkeha784-pixel"]')).toBeVisible()
 })
 
 test('evidence: public repository and PR links are wired correctly', async ({ page }) => {
