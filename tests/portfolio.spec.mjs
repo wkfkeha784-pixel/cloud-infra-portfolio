@@ -104,6 +104,32 @@ test('onereport: PR evidence cards preserve validation snapshots and rule-based 
   await expect(cards.nth(2).getByText('MY', { exact: true })).toBeVisible()
 })
 
+test('labbit: evidence cards keep ongoing state, contract boundary, and PR snapshots visible', async ({ page }) => {
+  await page.goto('/projects/labbit', { waitUntil: 'networkidle' })
+
+  await expect(page.getByText('ONGOING', { exact: true })).toBeVisible()
+
+  const cards = page.locator('.evidence-snapshot-card')
+  await expect(cards).toHaveCount(3)
+
+  await expect(cards.nth(0).getByText('Mutation 401 → Login 복귀 · stale me 인증 Cache 폐기')).toBeVisible()
+  await expect(cards.nth(1).getByText('Production Build는 설정과 무관하게 HTTP Consumer 사용')).toBeVisible()
+  await expect(cards.nth(2).getByText('PR 기록의 기존 UI HEAD: capture 17 / 17')).toBeVisible()
+  await expect(cards.nth(2).getByText(/프로젝트 전체 완료나 merge commit 재측정 수치로 확대하지 않습니다/)).toBeVisible()
+
+  for (const href of [
+    'https://github.com/ktcloud4-SL/labbit-app/pull/23',
+    'https://github.com/ktcloud4-SL/labbit-app/pull/25',
+    'https://github.com/ktcloud4-SL/labbit-app/pull/28',
+  ]) {
+    await expect(cards.locator(`a[href="${href}"]`)).toHaveCount(1)
+  }
+
+  await expect(cards.nth(0).getByText('MY', { exact: true })).toBeVisible()
+  await expect(cards.nth(1).getByText('MY', { exact: true })).toBeVisible()
+  await expect(cards.nth(2).getByText('MY', { exact: true })).toBeVisible()
+})
+
 test('home: four case-study cards and contact links are present', async ({ page }) => {
   await page.goto('/', { waitUntil: 'networkidle' })
 
@@ -135,11 +161,12 @@ test('evidence: public repository and PR links are wired correctly', async ({ pa
   }
 
   await page.goto('/projects/labbit', { waitUntil: 'networkidle' })
+  await expect(page.locator('a[href="https://github.com/ktcloud4-SL/labbit-app"]')).toHaveCount(1)
   for (const href of [
-    'https://github.com/ktcloud4-SL/labbit-app',
     'https://github.com/ktcloud4-SL/labbit-app/pull/23',
+    'https://github.com/ktcloud4-SL/labbit-app/pull/25',
     'https://github.com/ktcloud4-SL/labbit-app/pull/28',
   ]) {
-    await expect(page.locator(`a[href="${href}"]`)).toHaveCount(1)
+    await expect(page.locator('.evidence-snapshot-card').locator(`a[href="${href}"]`)).toHaveCount(1)
   }
 })
