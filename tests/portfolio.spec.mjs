@@ -186,3 +186,28 @@ test('evidence: public repository and PR links are wired correctly', async ({ pa
     await expect(page.locator('.evidence-snapshot-card').locator(`a[href="${href}"]`)).toHaveCount(1)
   }
 })
+
+
+test('navigation: project routes start at top while the home projects anchor remains usable', async ({ page }) => {
+  await page.goto('/', { waitUntil: 'networkidle' })
+
+  await page.locator('#projects').scrollIntoViewIfNeeded()
+  expect(await page.evaluate(() => window.scrollY)).toBeGreaterThan(0)
+
+  await page.getByRole('link', { name: /View Case Study/ }).first().click()
+  await expect(page).toHaveURL(/\/projects\/durian$/)
+  await expect.poll(() => page.evaluate(() => window.scrollY)).toBeLessThanOrEqual(2)
+
+  await page.locator('.next-project').scrollIntoViewIfNeeded()
+  expect(await page.evaluate(() => window.scrollY)).toBeGreaterThan(0)
+
+  await page.locator('.next-project a').click()
+  await expect(page).toHaveURL(/\/projects\/bluebell$/)
+  await expect.poll(() => page.evaluate(() => window.scrollY)).toBeLessThanOrEqual(2)
+
+  await page.getByRole('link', { name: /Selected Projects/ }).click()
+  await expect(page).toHaveURL(/\/#projects$/)
+  await expect.poll(async () =>
+    page.locator('#projects').evaluate((element) => Math.abs(element.getBoundingClientRect().top)),
+  ).toBeLessThanOrEqual(2)
+})
