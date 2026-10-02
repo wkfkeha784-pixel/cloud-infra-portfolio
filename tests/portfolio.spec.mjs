@@ -109,7 +109,7 @@ test('onereport: PR evidence cards preserve validation snapshots and rule-based 
 test('labbit: evidence cards keep ongoing state, contract boundary, and PR snapshots visible', async ({ page }) => {
   await page.goto('/projects/labbit', { waitUntil: 'networkidle' })
 
-  await expect(page.getByText('ONGOING', { exact: true })).toBeVisible()
+  await expect(page.getByText('IN PROGRESS · 2026-10-03', { exact: true })).toBeVisible()
 
   const cards = page.locator('.evidence-snapshot-card')
   await expect(cards).toHaveCount(3)
@@ -118,6 +118,9 @@ test('labbit: evidence cards keep ongoing state, contract boundary, and PR snaps
   await expect(cards.nth(1).getByText('Production Build는 설정과 무관하게 HTTP Consumer 사용')).toBeVisible()
   await expect(cards.nth(2).getByText('PR 기록의 기존 UI HEAD: capture 17 / 17')).toBeVisible()
   await expect(cards.nth(2).getByText(/프로젝트 전체 완료나 merge commit 재측정 수치로 확대하지 않습니다/)).toBeVisible()
+
+  await expect(page.getByText('[DRAFT] Terminal/File Consumer · VM E2E Pending', { exact: true })).toBeVisible()
+  await expect(page.getByText(/PR #62\/#68\/#70\/#71은 Open Draft/)).toBeVisible()
 
   for (const href of [
     'https://github.com/ktcloud4-SL/labbit-app/pull/23',
@@ -210,4 +213,23 @@ test('navigation: project routes start at top while the home projects anchor rem
   await expect.poll(async () =>
     page.locator('#projects').evaluate((element) => Math.abs(element.getBoundingClientRect().top)),
   ).toBeLessThanOrEqual(2)
+})
+
+
+test('v2.8 sync: home and project claim boundaries expose the refreshed evidence', async ({ page }) => {
+  await page.goto('/', { waitUntil: 'networkidle' })
+  await expect(page.getByText('IaC · Observability · Reproducibility', { exact: true })).toBeVisible()
+  await expect(page.getByText('Contract-driven Application Integration', { exact: true })).toBeVisible()
+
+  await page.goto('/projects/durian', { waitUntil: 'networkidle' })
+  await expect(page.getByText('[MY] Terraform worker-03 Drift Recovery', { exact: true })).toBeVisible()
+  await expect(page.getByText(/Terraform 범위는 worker-03 단일 Compute Instance/)).toBeVisible()
+
+  await page.goto('/projects/bluebell', { waitUntil: 'networkidle' })
+  await expect(page.getByText('[BOUNDARY] Recovery Design ≠ Final Trigger Test', { exact: true })).toBeVisible()
+  await expect(page.getByText(/EventBridge Rule 2개를 DISABLED/)).toBeVisible()
+
+  await page.goto('/projects/onereport', { waitUntil: 'networkidle' })
+  await expect(page.getByText(/PR #30 시점 실서버 \/api\/health는 502/)).toBeVisible()
+  await expect(page.getByText(/8\/21 운영 Domain Smoke에서 FINAL: PASS/)).toBeVisible()
 })
