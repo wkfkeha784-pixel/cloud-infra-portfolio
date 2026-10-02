@@ -226,7 +226,7 @@ test('v2.8 sync: home and project claim boundaries expose the refreshed evidence
   await expect(page.getByText(/Terraform 범위는 worker-03 단일 Compute Instance/)).toBeVisible()
 
   await page.goto('/projects/bluebell', { waitUntil: 'networkidle' })
-  await expect(page.getByText('[BOUNDARY] Recovery Design ≠ Final Trigger Test', { exact: true })).toBeVisible()
+  await expect(page.getByText(/Recovery Trigger는 EventBridge → SSM 구조로 설계했지만 최종 7\/13 E2E에서는 EventBridge Rule 2개를 DISABLED/)).toBeVisible()
   await expect(page.getByText(/EventBridge Rule 2개를 DISABLED/)).toBeVisible()
 
   await page.goto('/projects/onereport', { waitUntil: 'networkidle' })
