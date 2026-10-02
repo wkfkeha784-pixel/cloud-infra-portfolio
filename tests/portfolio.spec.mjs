@@ -83,7 +83,7 @@ test('bluebell: recovery validation evidence exposes images, scope, and completi
   await expect(cards.nth(2).getByText('PROJECT', { exact: true })).toBeVisible()
 })
 
-test('onereport: PR evidence cards preserve validation snapshots and rule-based boundary', async ({ page }) => {
+test('onereport: PR evidence cards preserve validation snapshots and hide private-source links', async ({ page }) => {
   await page.goto('/projects/onereport', { waitUntil: 'networkidle' })
 
   const cards = page.locator('.evidence-snapshot-card')
@@ -92,14 +92,8 @@ test('onereport: PR evidence cards preserve validation snapshots and rule-based 
   await expect(cards.nth(0).getByText('PR 시점 Backend 전체 테스트 41 passed · OpenAPI 생성 PASS')).toBeVisible()
   await expect(cards.nth(1).getByText('Timeline REST → { items, total } Contract 정합')).toBeVisible()
   await expect(cards.nth(2).getByText('LLM / AI 분석이 아니라 Rule-based Analysis입니다.')).toBeVisible()
-
-  for (const href of [
-    'https://github.com/ktcloud4-SL/hackathon/pull/9',
-    'https://github.com/ktcloud4-SL/hackathon/pull/14',
-    'https://github.com/ktcloud4-SL/hackathon/pull/27',
-  ]) {
-    await expect(page.locator('.evidence-snapshot-card').locator(`a[href="${href}"]`)).toHaveCount(1)
-  }
+  await expect(page.locator('a[href*="github.com/ktcloud4-SL/hackathon"]')).toHaveCount(0)
+  await expect(page.getByText(/OneReport 팀 저장소는 비공개/)).toBeVisible()
 
   await expect(cards.nth(0).getByText('MY', { exact: true })).toBeVisible()
   await expect(cards.nth(1).getByText('MY', { exact: true })).toBeVisible()
@@ -168,16 +162,9 @@ test('home: four case-study cards and contact links are present', async ({ page 
   await expect(page.getByText('AWS Web/WAS + Local DB 하이브리드 3-Tier 인프라', { exact: true }).first()).toBeVisible()
 })
 
-test('evidence: public repository and PR links are wired correctly', async ({ page }) => {
+test('evidence: only publicly accessible repository and PR links are exposed', async ({ page }) => {
   await page.goto('/projects/onereport', { waitUntil: 'networkidle' })
-  await expect(page.locator('a[href="https://github.com/ktcloud4-SL/hackathon"]')).toHaveCount(1)
-  for (const href of [
-    'https://github.com/ktcloud4-SL/hackathon/pull/9',
-    'https://github.com/ktcloud4-SL/hackathon/pull/14',
-    'https://github.com/ktcloud4-SL/hackathon/pull/27',
-  ]) {
-    await expect(page.locator('.evidence-snapshot-card').locator(`a[href="${href}"]`)).toHaveCount(1)
-  }
+  await expect(page.locator('a[href*="github.com/ktcloud4-SL/hackathon"]')).toHaveCount(0)
 
   await page.goto('/projects/labbit', { waitUntil: 'networkidle' })
   await expect(page.locator('a[href="https://github.com/ktcloud4-SL/labbit-app"]')).toHaveCount(1)
@@ -216,7 +203,7 @@ test('navigation: project routes start at top while the home projects anchor rem
 })
 
 
-test('v2.8 sync: home and project claim boundaries expose the refreshed evidence', async ({ page }) => {
+test('v2.10 sync: home and project claim boundaries expose the refreshed evidence', async ({ page }) => {
   await page.goto('/', { waitUntil: 'networkidle' })
   await expect(page.getByText('IaC · Observability · Reproducibility', { exact: true })).toBeVisible()
   await expect(page.getByText('Contract-driven Application Integration', { exact: true })).toBeVisible()
