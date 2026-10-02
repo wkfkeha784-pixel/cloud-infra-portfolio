@@ -3,27 +3,27 @@ import { projects } from '../data/projects'
 
 const coreFocus = [
   {
-    title: 'Infrastructure Integration',
+    title: 'Infrastructure Integration & Recovery',
     project: 'Bluebell',
-    body: 'AWS Web–WAS 구축 · 계층 간 요청 흐름 통합 검증',
+    body: 'AWS 3-Tier 통합 · ASG Replacement 이후 서비스 정상화 검증',
     href: '/projects/bluebell',
   },
   {
     title: 'Kubernetes Operations',
     project: 'Durian',
-    body: 'Redis–Kafka 연동 · Kafka Lag 기반 KEDA 운영',
+    body: '외부 HTTP 부하 · Kafka Lag 기반 KEDA Consumer 1→4→1 검증',
     href: '/projects/durian',
   },
   {
-    title: 'Observability & Recovery',
+    title: 'IaC · Observability · Reproducibility',
     project: 'Durian / Bluebell',
-    body: 'Monitoring 재구성 · 서비스/LB/관측 정상화 검증',
+    body: 'Terraform Drift 복구 · Git/Manifest/Monitoring과 Runtime 정합',
     href: '/projects/durian',
   },
   {
-    title: 'Contract-driven Collaboration',
+    title: 'Contract-driven Application Integration',
     project: 'OneReport / Labbit',
-    body: 'Backend Contract · Frontend 상태·권한·오류 처리',
+    body: 'Backend Domain/API · Frontend HTTP/WS Contract Consumer',
     href: '/projects/labbit',
   },
 ]
@@ -42,8 +42,8 @@ export default function Home() {
               장애 이후 정상화까지 검증합니다.
             </p>
             <p className="hero-support">
-              AWS·OpenStack 기반 프로젝트에서 Infrastructure Integration, Kubernetes Operations,
-              Observability, Recovery Validation 경험을 쌓고 있습니다.
+              AWS·OpenStack·Kubernetes 환경에서 서비스 경로를 구성하고, 부하·장애·Drift·권한/오류 상황을
+              실제 Evidence로 확인해 정상 상태로 수렴시키는 프로젝트 경험을 쌓고 있습니다.
             </p>
             <div className="hero-actions">
               <a className="button" href="#projects">View Projects</a>
