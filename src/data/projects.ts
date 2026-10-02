@@ -182,7 +182,7 @@ export const projects: Project[] = [
     ],
     projectResults: [
       'Automation · Ansible / Docker Swarm',
-      'Recovery · EventBridge / SSM / ASG',
+      'Recovery Design · EventBridge / SSM / ASG',
       'Monitoring · Prometheus / Grafana',
       'DB · Cluster / Backup',
     ],
@@ -315,8 +315,6 @@ export const projects: Project[] = [
           'Alembic Migration · Domain Test',
           'PR 시점 Backend 전체 테스트 41 passed · OpenAPI 생성 PASS',
         ],
-        href: 'https://github.com/ktcloud4-SL/hackathon/pull/9',
-        linkLabel: 'PR #9 원본 보기',
         note:
           '41 passed는 PR #9 검증 시점의 Snapshot입니다. 다른 PR의 테스트 수와 합산하지 않습니다.',
       },
@@ -333,8 +331,6 @@ export const projects: Project[] = [
           'API Contract 문서 최신화',
           'PR 시점 Backend 전체 테스트 49 passed · OpenAPI 생성 PASS',
         ],
-        href: 'https://github.com/ktcloud4-SL/hackathon/pull/14',
-        linkLabel: 'PR #14 원본 보기',
         note:
           '49 passed는 PR #14 시점의 독립 검증값이며 PR #9 / #27과 합산하지 않습니다.',
       },
@@ -351,21 +347,18 @@ export const projects: Project[] = [
           '분석 실패 / 미분류 → 수동 선택 fallback',
           'PR 시점 Backend 65 passed · Frontend 분석 흐름 3 passed · production build PASS',
         ],
-        href: 'https://github.com/ktcloud4-SL/hackathon/pull/27',
-        linkLabel: 'PR #27 원본 보기',
         note:
           'LLM / AI 분석이 아니라 Rule-based Analysis입니다. 테스트 수치는 이 PR의 검증 Snapshot으로만 사용합니다.',
       },
     ],
     learned: 'Domain·DB·API 상태가 실제 Incident 운영 흐름과 일치하도록 구현하고 검증했습니다.',
-    evidence: [
-      { label: 'Repository', href: 'https://github.com/ktcloud4-SL/hackathon' },
-    ],
+    evidence: [],
     boundaryNotes: [
       'Rule-based Analysis이며 LLM 기반 분석이 아닙니다.',
       '실제 112·119 등 공공기관 시스템 연계는 구현 범위가 아닙니다.',
       'PR #30 시점 실서버 /api/health는 502였고, 배포 정상화 후 8/21 운영 Domain Smoke에서 FINAL: PASS를 확인했습니다.',
       'PR별 테스트 수치는 해당 시점 Snapshot이며 합산하지 않습니다.',
+      'OneReport 팀 저장소는 비공개이므로 공개 Web에서는 직접 Repository/PR 링크를 노출하지 않고 검증 Snapshot만 요약합니다.',
     ],
   },
   {
