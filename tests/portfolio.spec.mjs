@@ -119,7 +119,7 @@ test('labbit: evidence cards keep ongoing state, contract boundary, and PR snaps
   await expect(cards.nth(2).getByText('PR 기록의 기존 UI HEAD: capture 17 / 17')).toBeVisible()
   await expect(cards.nth(2).getByText(/프로젝트 전체 완료나 merge commit 재측정 수치로 확대하지 않습니다/)).toBeVisible()
 
-  await expect(page.getByText('[DRAFT] Terminal/File Consumer · VM E2E Pending', { exact: true })).toBeVisible()
+  await expect(page.getByText('PR #62/#68/#70/#71 Open Draft · VM E2E Pending', { exact: true })).toBeVisible()
   await expect(page.getByText(/PR #62\/#68\/#70\/#71은 Open Draft/)).toBeVisible()
 
   for (const href of [
@@ -222,7 +222,7 @@ test('v2.8 sync: home and project claim boundaries expose the refreshed evidence
   await expect(page.getByText('Contract-driven Application Integration', { exact: true })).toBeVisible()
 
   await page.goto('/projects/durian', { waitUntil: 'networkidle' })
-  await expect(page.getByText('[MY] Terraform worker-03 Drift Recovery', { exact: true })).toBeVisible()
+  await expect(page.getByText('Terraform worker-03 Drift Recovery', { exact: true })).toBeVisible()
   await expect(page.getByText(/Terraform 범위는 worker-03 단일 Compute Instance/)).toBeVisible()
 
   await page.goto('/projects/bluebell', { waitUntil: 'networkidle' })
