@@ -121,15 +121,9 @@ export default function ProjectDetail() {
             <Flow items={project.validation} />
             {project.slug === 'onereport' && (
               <p className="flow-note">
-                발표 전 검증 Snapshot · README 기준 · PR #30 당시 Health 502 이후 후속 PASS ·{' '}
-                <a
-                  className="text-link"
-                  href="https://github.com/ktcloud4-SL/hackathon/blob/4f40aefacc3e54b1f5c8cc8a480fa665004ae84f/README.md"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  README 고정본 ↗
-                </a>
+                발표 전 검증 Snapshot · PR #30 당시 Health 502 이후 배포 정상화 · 8/21 운영 Smoke FINAL: PASS
+                <br />
+                팀 Source Repository는 private이므로 공개 Web에서는 직접 링크를 노출하지 않습니다.
               </p>
             )}
           </div>
