@@ -42,8 +42,8 @@ export default function Home() {
               장애 이후 정상화까지 검증합니다.
             </p>
             <p className="hero-support">
-              AWS·OpenStack·Kubernetes 환경에서 서비스 경로를 구성하고, 부하·장애·Drift·권한/오류 상황을
-              실제 Evidence로 확인해 정상 상태로 수렴시키는 프로젝트 경험을 쌓고 있습니다.
+              AWS·OpenStack·Kubernetes 기반 프로젝트에서 서비스 요청 경로를 구성하고, 부하·장애·설정 변경 이후
+              로그·메트릭과 검증 결과로 정상화 여부를 확인해 왔습니다.
             </p>
             <div className="hero-actions">
               <a className="button" href="#projects">View Projects</a>
@@ -137,7 +137,6 @@ export default function Home() {
           <div className="qualification-list">
             <div><strong>컴퓨터활용능력 2급</strong></div>
             <div><strong>G-TELP Level 2 · 84점</strong></div>
-            <div><span className="status-badge">IN PROGRESS</span><strong>AWS SAA-C03 준비 중</strong></div>
           </div>
         </div>
       </section>
