@@ -176,7 +176,7 @@ export const projects: Project[] = [
       '프로젝트 Team Lead',
       'Web–WAS Traffic Flow 통합',
       'Public ALB / Internal WAS LB / Target Group 검증',
-      'ASG Web Replacement E2E · Dynamic Inventory 검증',
+      'ASG Replacement 이후 Web–WAS 서비스·Target Group 정상화 확인',
       'Cleanup / Baseline Recovery',
       '일정·문서·발표 및 통합 상태 관리',
     ],
