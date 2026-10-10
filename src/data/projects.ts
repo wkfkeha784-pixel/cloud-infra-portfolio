@@ -28,7 +28,14 @@ export type Project = {
   role: string
   summary: string
   tags: string[]
-  cardEvidence: string[]
+  home: {
+    group: 'featured' | 'additional'
+    headline: string
+    role: string
+    results: { scope: 'MY' | 'PROJECT'; text: string }[]
+    note: string
+    linkLabel: string
+  }
   architecture: string[]
   architectureNote?: string
   myContributions: string[]
@@ -57,8 +64,18 @@ export const projects: Project[] = [
     role: 'Kubernetes · Redis/Kafka/KEDA Operations / Monitoring / Terraform',
     summary:
       'Waiting Room으로 진입을 제어하고 Kafka 비동기 처리와 KEDA Autoscaling을 연결했습니다. Kubernetes Runtime과 Redis·Kafka/KEDA 운영, Monitoring·복구·Terraform 정합성 검증을 담당했습니다.',
-    tags: ['OpenStack', 'Kubernetes', 'Kafka', 'Redis', 'KEDA', 'Prometheus', 'Grafana'],
-    cardEvidence: ['[MY] 외부 HTTP 300/300 → Consumer 1→4→1', '[MY] Terraform worker-03 Drift Recovery'],
+    tags: ['OpenStack', 'Kubernetes', 'Kafka', 'Redis', 'KEDA', 'Terraform', 'Prometheus', 'Grafana'],
+    home: {
+      group: 'featured',
+      headline: '외부 요청 부하에 따른 Consumer 확장·축소와 Worker 복구 검증',
+      role: 'Kubernetes·Redis/Kafka/KEDA 운영 / 모니터링 인수 / Terraform 복구',
+      results: [
+        { scope: 'MY', text: '외부 HTTP 요청 300/300 수락 · Consumer 1→4→1 확장·축소' },
+        { scope: 'MY', text: 'worker-03 삭제 후 Terraform 재생성·클러스터 재가입' },
+      ],
+      note: 'HTTP 200은 비동기 요청 수락 기준',
+      linkLabel: '운영 문제와 검증 과정 보기',
+    },
     architecture: [
       'User',
       'Kong Ingress',
@@ -168,7 +185,17 @@ export const projects: Project[] = [
     summary:
       'Web–WAS 계층을 구축하고 각 담당 영역을 Web → WAS → DB E2E 요청 흐름으로 연결해 통합 검증했습니다.',
     tags: ['AWS', 'Ansible', 'Docker Swarm', 'Nginx', 'Prometheus', 'Grafana'],
-    cardEvidence: ['[MY] ASG Replacement 통합 검증', '[MY] 서비스·LB·Monitoring 정상화 확인'],
+    home: {
+      group: 'featured',
+      headline: 'AWS Web–WAS 구축과 Replacement 이후 서비스 정상화 검증',
+      role: '팀장 / Web–WAS 구축 / AWS·복구 통합 검증',
+      results: [
+        { scope: 'MY', text: 'Replacement 이후 서비스·Target Group·HTTP 응답 정상화 확인' },
+        { scope: 'MY', text: '관측 대상 재편입 및 Cleanup 후 Baseline 검증' },
+      ],
+      note: '복구 자동화는 팀 구현 · 최종 복구 시험은 EventBridge 비활성 상태에서 통제 실행',
+      linkLabel: '구축과 복구 검증 과정 보기',
+    },
     architecture: ['User', 'Public ALB', 'Web / Nginx', 'Internal WAS LB', 'WAS / Flask API', 'DB Proxy', 'MariaDB'],
     architectureNote:
       '환경 경계: AWS Web/WAS/Bastion/Monitoring · Local(On-Premise) HAProxy/MariaDB · 운영 지원: Ansible/Swarm/Recovery',
@@ -285,7 +312,17 @@ export const projects: Project[] = [
     summary:
       'Report와 Incident를 중심으로 기관 배정, 상태 전이, Timeline을 연결하고 규칙 기반 분석과 Smoke Test를 구현했습니다.',
     tags: ['FastAPI', 'PostgreSQL', 'AWS', 'S3', 'SSE'],
-    cardEvidence: ['[MY] PR #9/#14/#27/#30 — Backend Evidence', '[PROJECT] Final 운영 Smoke · FINAL: PASS'],
+    home: {
+      group: 'additional',
+      headline: '신고·기관 배정·상태 흐름을 연결하는 Backend 구현',
+      role: 'Backend / Domain·DB·Routing·Contract·규칙 기반 분석',
+      results: [
+        { scope: 'MY', text: '핵심 Backend PR #9/#14/#27/#30 · 도메인·계약·분석·Smoke Test' },
+        { scope: 'PROJECT', text: '팀 AWS PoC 운영 Smoke · FINAL: PASS' },
+      ],
+      note: '규칙 기반 분석 · 실제 공공기관 연계 없음',
+      linkLabel: 'Backend 구현과 운영 검증 보기',
+    },
     architecture: ['Report', 'Rule-based Analysis', 'Routing', 'Incident', 'Agency Status', 'Timeline'],
     architectureNote: '규칙 기반 분석 · 실제 공공기관 시스템 연계 없음',
     myContributions: [
@@ -372,7 +409,17 @@ export const projects: Project[] = [
     summary:
       'Workspace Terminal·File을 구현해 main에 통합하고, 세션 종료·재연결과 파일 충돌·편집 내용 보호를 자동 검증했습니다. Auth/Class는 실제 Backend와 Browser Flow를 검증했습니다.',
     tags: ['React', 'TypeScript', 'TanStack Query', 'OpenAPI', 'WebSocket', 'Vitest', 'CI'],
-    cardEvidence: ['[MY] Auth/Class 실제 Backend Browser Flow', '[MY] Terminal·File 구현 · PR #62 main 병합'],
+    home: {
+      group: 'additional',
+      headline: 'Browser Workspace의 Terminal·File 구현과 main 통합',
+      role: 'Frontend / Design / HTTP·WebSocket Contract Consumer',
+      results: [
+        { scope: 'MY', text: 'PR #62 main 병합 · 세션·파일 충돌·편집 보호 코드/CI 검증' },
+        { scope: 'MY', text: 'Auth/Class 실제 Backend Browser Flow 검증' },
+      ],
+      note: '실제 OpenStack VM PTY/SFTP E2E는 후속 통합 검증',
+      linkLabel: 'Workspace 구현과 통합 과정 보기',
+    },
     architecture: ['Team SSOT', 'React SPA', 'HTTP / WS Consumer', 'Auth / Permission / Error UX', 'Regression Test', 'Browser Acceptance'],
     architectureNote: 'Frontend는 계약에 없는 Endpoint·Token·Error Code를 임의 정의하지 않음',
     myContributions: [

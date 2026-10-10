@@ -12,7 +12,7 @@
 
 ## Included
 
-- Home / Core Focus
+- Home / Featured & Additional Projects
 - Team Durian Case Study
 - Bluebell Case Study
 - OneReport Case Study

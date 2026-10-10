@@ -136,7 +136,7 @@ test('labbit: evidence cards keep ongoing state, contract boundary, and PR snaps
 test('home: four case-study cards and contact links are present', async ({ page }) => {
   await page.goto('/', { waitUntil: 'networkidle' })
 
-  const caseStudyLinks = page.getByRole('link', { name: /View Case Study/ })
+  const caseStudyLinks = page.locator('.project-card .project-case-link')
   await expect(caseStudyLinks).toHaveCount(4)
 
   for (const href of [
@@ -188,7 +188,7 @@ test('navigation: project routes start at top while the home projects anchor rem
   await page.locator('#projects').scrollIntoViewIfNeeded()
   expect(await page.evaluate(() => window.scrollY)).toBeGreaterThan(0)
 
-  await page.getByRole('link', { name: /View Case Study/ }).first().click()
+  await page.locator('.featured-project-list .project-case-link').first().click()
   await expect(page).toHaveURL(/\/projects\/durian$/)
   await expect.poll(() => page.evaluate(() => window.scrollY)).toBeLessThanOrEqual(2)
 
@@ -201,16 +201,43 @@ test('navigation: project routes start at top while the home projects anchor rem
 
   await page.getByRole('link', { name: /Selected Projects/ }).click()
   await expect(page).toHaveURL(/\/#projects$/)
-  await expect.poll(async () =>
-    page.locator('#projects').evaluate((element) => Math.abs(element.getBoundingClientRect().top)),
-  ).toBeLessThanOrEqual(2)
+  await expect.poll(() => page.evaluate(() => {
+    const section = document.querySelector('#projects').getBoundingClientRect()
+    const header = document.querySelector('.site-header').getBoundingClientRect()
+    return section.top >= header.bottom && section.top <= header.bottom + 32
+  })).toBe(true)
+})
+
+test('home: introduction leads to both featured cases and the projects section', async ({ page }) => {
+  await page.goto('/', { waitUntil: 'networkidle' })
+  const featured = page.getByRole('navigation', { name: '먼저 볼 프로젝트' })
+
+  await featured.getByRole('link', { name: /Team Durian/ }).click()
+  await expect(page).toHaveURL(/\/projects\/durian$/)
+  await expect(page.locator('h1')).toContainText('Team Durian')
+
+  await page.goto('/', { waitUntil: 'networkidle' })
+  await featured.getByRole('link', { name: /Bluebell/ }).click()
+  await expect(page).toHaveURL(/\/projects\/bluebell$/)
+  await expect(page.locator('h1')).toContainText('Bluebell')
+
+  await page.goto('/', { waitUntil: 'networkidle' })
+  await page.getByRole('link', { name: '프로젝트 보기', exact: true }).click()
+  await expect(page).toHaveURL(/\/#projects$/)
+  await expect.poll(() => page.evaluate(() => {
+    const section = document.querySelector('#projects').getBoundingClientRect()
+    const header = document.querySelector('.site-header').getBoundingClientRect()
+    return section.top >= header.bottom && section.top <= header.bottom + 32
+  })).toBe(true)
 })
 
 
 test('v2.10 sync: home and project claim boundaries expose the refreshed evidence', async ({ page }) => {
   await page.goto('/', { waitUntil: 'networkidle' })
-  await expect(page.getByText('IaC · Observability · Reproducibility', { exact: true })).toBeVisible()
-  await expect(page.getByText('Contract-driven Application Integration', { exact: true })).toBeVisible()
+  const projects = page.getByRole('region', { name: '운영과 복구를 검증한 대표 프로젝트' })
+  await expect(projects.getByText(/모니터링 인수/)).toBeVisible()
+  await expect(projects.getByText('Terraform', { exact: true })).toBeVisible()
+  await expect(page.getByRole('region', { name: '서비스 구현과 팀 시스템 통합 경험' }).getByText(/HTTP·WebSocket Contract Consumer/)).toBeVisible()
 
   await page.goto('/projects/durian', { waitUntil: 'networkidle' })
   await expect(page.getByText('Terraform worker-03 Drift Recovery', { exact: true })).toBeVisible()
@@ -223,4 +250,32 @@ test('v2.10 sync: home and project claim boundaries expose the refreshed evidenc
   await page.goto('/projects/onereport', { waitUntil: 'networkidle' })
   await expect(page.getByText(/PR #30 시점 실서버 \/api\/health는 502/)).toBeVisible()
   await expect(page.getByText(/8\/21 운영 Domain Smoke에서 FINAL: PASS/)).toBeVisible()
+})
+
+
+test('home: project summaries keep result scope visible and open the matching case', async ({ page }) => {
+  await page.goto('/', { waitUntil: 'networkidle' })
+  const featured = page.getByRole('region', { name: '운영과 복구를 검증한 대표 프로젝트' })
+  const additional = page.getByRole('region', { name: '서비스 구현과 팀 시스템 통합 경험' })
+  await expect(featured.getByRole('article')).toHaveCount(2)
+  await expect(additional.getByRole('article')).toHaveCount(2)
+
+  const durian = featured.getByRole('article').filter({ hasText: 'Team Durian' })
+  await expect(durian.getByText(/HTTP 200은 비동기 요청 수락 기준/)).toBeVisible()
+  const bluebell = featured.getByRole('article').filter({ hasText: 'Bluebell' })
+  await expect(bluebell.getByText(/복구 자동화는 팀 구현/)).toBeVisible()
+  const onereport = additional.getByRole('article').filter({ hasText: 'OneReport' })
+  await expect(onereport.getByText('PROJECT', { exact: true })).toBeVisible()
+  await expect(onereport.getByText(/규칙 기반 분석 · 실제 공공기관 연계 없음/)).toBeVisible()
+  const labbit = additional.getByRole('article').filter({ hasText: 'Labbit' })
+  await expect(labbit.getByText(/IN PROGRESS/)).toBeVisible()
+  await expect(labbit.getByText(/실제 OpenStack VM PTY\/SFTP E2E는 후속/)).toBeVisible()
+
+  for (const [slug, name] of [['durian', 'Team Durian'], ['bluebell', 'Bluebell'], ['onereport', 'OneReport'], ['labbit', 'Labbit']]) {
+    const card = page.getByRole('article').filter({ hasText: name })
+    await card.getByRole('link').click()
+    await expect(page).toHaveURL(new RegExp('/projects/' + slug + '$'))
+    await expect(page.locator('h1')).toContainText(name)
+    await page.goto('/', { waitUntil: 'networkidle' })
+  }
 })
