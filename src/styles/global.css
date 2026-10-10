@@ -177,6 +177,13 @@ img { max-width: 100%; }
   line-height: 1.8;
 }
 
+.hero-lead,
+.hero-support,
+.hero-project-description {
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+
 .hero-actions {
   margin-top: 32px;
   display: flex;
@@ -1041,6 +1048,8 @@ img { max-width: 100%; }
   .project-card { gap: 28px; }
   .project-card-featured { padding: 24px; }
   .project-card-compact { padding: 28px 0; }
+
+  .project-results li { grid-template-columns: 48px minmax(0, 1fr); gap: 10px; }
 
 
   .contact-card { padding: 30px 24px; gap: 28px; }

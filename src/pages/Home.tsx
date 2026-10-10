@@ -15,7 +15,7 @@ export default function Home() {
             <h1>박희철</h1>
             <p className="hero-lead">
               구축에서 끝내지 않고, 운영 상태를 관측하고
-              <br />
+              <br />{' '}
               장애 이후 정상화까지 검증합니다.
             </p>
             <p className="hero-support">
@@ -151,7 +151,7 @@ export default function Home() {
           <div className="contact-links">
             <a href="mailto:wkfkeha784@gmail.com"><span>Email</span><strong>wkfkeha784@gmail.com</strong></a>
             <a href="https://github.com/wkfkeha784-pixel" target="_blank" rel="noreferrer">
-              <span>GitHub</span><strong>github.com/wkfkeha784-pixel ↗</strong>
+              <span>GitHub</span><strong>wkfkeha784-pixel ↗</strong>
             </a>
             <span className="contact-note">회사 제출용 PDF Portfolio는 지원 과정에서 제공합니다.</span>
           </div>
