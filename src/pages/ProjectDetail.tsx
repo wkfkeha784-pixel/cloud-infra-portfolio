@@ -4,6 +4,7 @@ import Flow from '../components/Flow'
 import EvidenceSnapshotCard from '../components/EvidenceSnapshotCard'
 import DurianDetail from './DurianDetail'
 import BluebellDetail from './BluebellDetail'
+import OneReportDetail from './OneReportDetail'
 import { projectBySlug, projects } from '../data/projects'
 
 export default function ProjectDetail() {
@@ -40,6 +41,10 @@ export default function ProjectDetail() {
 
   if (project.slug === 'bluebell') {
     return <><BluebellDetail project={project} />{nextProjectLink}</>
+  }
+
+  if (project.slug === 'onereport') {
+    return <><OneReportDetail project={project} />{nextProjectLink}</>
   }
 
   return (
