@@ -32,8 +32,7 @@ for (const [name, route, marker] of routes) {
     ).toBeLessThanOrEqual(overflow.innerWidth + 2)
 
     const bodyText = await page.locator('body').innerText()
-    expect(bodyText).not.toContain('010-3247-0587')
-    expect(bodyText).not.toContain('01032470587')
+    expect(bodyText).not.toMatch(/\b01[016789][-\s]?\d{3,4}[-\s]?\d{4}\b/)
 
     await page.screenshot({
       path: `artifacts/screenshots/${testInfo.project.name}-${name}.png`,
