@@ -1,11 +1,11 @@
 # 웹 포트폴리오 구성 개선 설계 및 진행 기록
 
 작성일: 2026-10-10 (Asia/Seoul)
-진행 상태: 1~6단계 완료 / 7단계 통합 사용 검토 진행 중
+진행 상태: 1~7단계 완료·공개 반영 / 다음 8단계 Bluebell 상세 구성
 대상: 박희철의 신입·주니어 Cloud Infrastructure / DevOps / Platform 지원용 웹
 저장소: wkfkeha784-pixel/cloud-infra-portfolio
-작업 브랜치: feat/durian-reading-structure-20261010 (Draft PR #20)
-현재 작업 기준 main: bf07918d0683ac21f34aafff412c4fb06b35b0f1 (홈 1~4단계 PR #19 병합)
+완료 브랜치: feat/durian-reading-structure-20261010 (PR #20 병합 완료)
+현재 작업 기준 main: b997943824547225ba3f1b1e8e3ed7339ab7789e (Durian 5~7단계 PR #20 병합; 이 후속 기록은 문서만 변경)
 최초 설계 기준 main: 58380868e18b3734d5bb6d15d20fffa780575bb1 (PR #18 반영)
 
 ## 1. 사용자 요청과 이번 작업 범위
@@ -236,7 +236,7 @@ PC에서는 보조 목차를 본문 옆에 두고, 모바일에서는 상단의 
 | 4 | 완료 | 홈 하단과 모바일 마감 | 홈 전체 읽기 순서와 메뉴·연락처 동작 확인 |
 | 5 | 완료 | Durian 상단·목차·구조 | 제목·목차만으로 사례 내용을 구분 가능 |
 | 6 | 완료 | Durian 네 사례와 운영 마감 | 각 조치·결과·증거가 같은 구역에서 연결됨 |
-| 7 | 예정 | 홈·Durian 통합 사용 검토 | Desktop/Tablet/Mobile, navigation, overflow, focus·details 검증 |
+| 7 | 완료 | 홈·Durian 통합 사용 검토·공개 반영 | Desktop/Tablet/Mobile, navigation, overflow, focus·details 및 배포 검증 완료 |
 | 8 | 예정 | Bluebell → OneReport → Labbit | 공통 구성과 프로젝트 고유 강점이 함께 유지됨 |
 
 검토 화면: 1440px PC / 768px Tablet / 390px Mobile, 필요 시 기존 320px 최소 너비도 확인.
@@ -354,8 +354,11 @@ PR/main CI 통과는 내용 읽기 품질의 대체물이 아니다. 화면 검�
 - 발견·수정: hash 이동 시 화면만 이동하고 키보드 focus는 목차에 남는 문제. route/hash 목적지로 focus를 옮기고 tabindex=-1로 Tab 순서에 추가하지 않았다. 다음 Tab은 해당 사례 출처 summary로 이어진다. 페이지 전환 시 제목 focus와 상단 이동, 뒤로가기 hash 복귀도 같은 방식으로 처리하며 stale animation frame은 cleanup한다.
 - 검증 추가: 1440 / 768 / 390 / 320px에서 대표 진입, keyboard Enter, 목차 이후 Tab/접기, 실제 focus outline, 뒤로가기, 목록 복귀, 다음 프로젝트, 다른 상세에서 Mobile 메뉴로 목록 복귀, overflow / pageerror를 이어서 확인하는 journey 검사 4개. 기존 38개 검사는 유지했다.
 - 변경: src/App.tsx / 목적지 focus 스타일 / tests/reading-journey-responsive.spec.mjs / 이 기록. 로컬 build / lint / diff PASS.
-- 진행 중: PR CI / Browser QA / 실제 화면 확인. 통과 후 PR #20 완성 단위를 main에 반영하고 배포 commit·domain·bundle 및 main QA를 검증한다.
-- 다음 시작점: 위 최종 검사 결과 확인부터. 공개 반영 전까지 Draft 유지. 다른 상세 구성 변경은 8단계 Bluebell부터 별도 작업으로 진행한다.
+- 최종 검증: fbdd5caae2f97cd5925058002bc2577e03297774 기준 Web Portfolio CI #68 PASS / Portfolio Browser QA #62 **42개 PASS**. 네 너비의 통합 journey와 기존 38개 회귀 검사 포함. 앞선 QA #61도 42개 PASS였지만 캡처에서 smooth scroll 도중 촬영을 확인하여 뒤로가기 제목의 위치를 고정 헤더 아래부터 100px 이내로 검사하도록 보강했다. 최종 320 / 390 / 1440px 캡처에서 목적지 제목 도착 확인; 768px 위치 검사도 PASS.
+- 공개 반영: PR #20을 squash 병합. main b997943824547225ba3f1b1e8e3ed7339ab7789e 기준 Web Portfolio CI #69 PASS / Portfolio Browser QA #63 **42개 PASS**. Vercel production dpl_Au96pAm6jEcdXh3469pujYqqQghH가 READY이며 같은 commit과 공개 alias cloud-infra-portfolio.vercel.app를 확인했다.
+- 실제 제공 코드: 공개 홈 /projects/durian /projects/bluebell 모두 HTTP 200. index-DhgYxpLa.js와 index-Dg_ptq9w.css가 검증한 로컬 build와 byte 단위 일치. JS SHA-256 f193cd724dd11726cd34bb41700542887cc9f16cc858038be73608d66b8ebf7b / CSS 97989ac94512d20265baa7dbdad818e01e6ae358cf5729a66aa02e38011c1482.
+- 검증 범위: 실제 Chromium 화면·키보드·history 흐름은 GitHub Actions에서 빌드된 화면으로 확인했고, 공개 배포는 commit / READY / HTTP / bundle 일치로 확인했다. 공개 domain에 대한 원격 브라우저 조작을 추가 수행했다고 기록하지 않는다. 이 후속 commit은 진행 문서만 갱신하며 검증된 앱 코드는 동일하다.
+- 다음 시작점: **8단계 Bluebell 상세 구성부터**. 최신 main에서 별도 브랜치를 시작한다. 현재 Bluebell의 canonical 데이터·근거·개인/팀 범위 보존표를 먼저 확인하고, 상단 성과 → 담당 역할 → Web–WAS 구축 → 장애·복구와 Terraform → 검증 근거 순으로 읽기 구조를 정리한다. Durian 구성의 공통 원칙을 적용하되 Bluebell의 AWS·복구 통합 검증 강점을 유지한다. 한 작업에서 세 프로젝트를 모두 개편하지 않는다. Bluebell 마감 뒤 OneReport, 그 다음 Labbit으로 이어간다.
 
-새 채팅에서는 AGENTS.md → README.md → 이 문서 → 최신 작업 브랜치 및 관련 파일 순서로 읽고 완료한 단계를 반복하지 않는다. 현재 다음 시작점은 Step 7 기록의 **통합 흐름 검사 결과 확인·완성 단위 배포**다. PR #20의 feat/durian-reading-structure-20261010에서 이어가며 완료된 구현을 다시 시작하지 않는다. 실행 시 최신 main/브랜치 상태와 실제 문서 내용을 확인한다.
+새 채팅에서는 AGENTS.md → README.md → 이 문서 → 최신 main 및 관련 파일 순서로 읽고 완료한 단계를 반복하지 않는다. 현재 다음 시작점은 Step 7 기록의 **8단계 Bluebell 상세 구성**이다. PR #20과 1~7단계는 공개 반영까지 완료했으므로 다시 구현하거나 같은 QA를 반복하지 않는다. 실행 시 최신 main/브랜치 상태와 실제 문서 내용을 확인하고 새 작업 브랜치에서 이어간다.
 후속 작업이 끝나면 해당 단계 상태, 변경 파일·commit/PR, 검증 결과와 남은 리스크, 바로 다음 시작점을 이 문서에 갱신한다.
