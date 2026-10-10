@@ -1,10 +1,11 @@
 # 웹 포트폴리오 구성 개선 설계 및 진행 기록
 
 작성일: 2026-10-10 (Asia/Seoul)
-진행 상태: 1~7단계 완료·공개 반영 / 다음 8단계 Bluebell 상세 구성
+진행 상태: 1~7단계 완료·공개 반영 / 8단계 Bluebell 상세 구성 진행 중
 대상: 박희철의 신입·주니어 Cloud Infrastructure / DevOps / Platform 지원용 웹
 저장소: wkfkeha784-pixel/cloud-infra-portfolio
 완료 브랜치: feat/durian-reading-structure-20261010 (PR #20 병합 완료)
+현재 작업 브랜치: feat/bluebell-reading-structure-20261010
 현재 작업 기준 main: b997943824547225ba3f1b1e8e3ed7339ab7789e (Durian 5~7단계 PR #20 병합; 이 후속 기록은 문서만 변경)
 최초 설계 기준 main: 58380868e18b3734d5bb6d15d20fffa780575bb1 (PR #18 반영)
 
@@ -360,5 +361,31 @@ PR/main CI 통과는 내용 읽기 품질의 대체물이 아니다. 화면 검�
 - 검증 범위: 실제 Chromium 화면·키보드·history 흐름은 GitHub Actions에서 빌드된 화면으로 확인했고, 공개 배포는 commit / READY / HTTP / bundle 일치로 확인했다. 공개 domain에 대한 원격 브라우저 조작을 추가 수행했다고 기록하지 않는다. 이 후속 commit은 진행 문서만 갱신하며 검증된 앱 코드는 동일하다.
 - 다음 시작점: **8단계 Bluebell 상세 구성부터**. 최신 main에서 별도 브랜치를 시작한다. 현재 Bluebell의 canonical 데이터·근거·개인/팀 범위 보존표를 먼저 확인하고, 상단 성과 → 담당 역할 → Web–WAS 구축 → 장애·복구와 Terraform → 검증 근거 순으로 읽기 구조를 정리한다. Durian 구성의 공통 원칙을 적용하되 Bluebell의 AWS·복구 통합 검증 강점을 유지한다. 한 작업에서 세 프로젝트를 모두 개편하지 않는다. Bluebell 마감 뒤 OneReport, 그 다음 Labbit으로 이어간다.
 
-새 채팅에서는 AGENTS.md → README.md → 이 문서 → 최신 main 및 관련 파일 순서로 읽고 완료한 단계를 반복하지 않는다. 현재 다음 시작점은 Step 7 기록의 **8단계 Bluebell 상세 구성**이다. PR #20과 1~7단계는 공개 반영까지 완료했으므로 다시 구현하거나 같은 QA를 반복하지 않는다. 실행 시 최신 main/브랜치 상태와 실제 문서 내용을 확인하고 새 작업 브랜치에서 이어간다.
+### 2026-10-10 / Step 8 — Bluebell
+
+- 기준: main 8144de9eb093544a8dc1870d18b330f2eec3a920의 ProjectDetail / projects / styles / 진행 문서를 직접 읽고 로컬 blob 일치 확인. 별도 브랜치에서 Bluebell만 변경한다.
+- 자료: Bluebell 최종 발표자료 p.7 역할, p.9 Web/WAS, p.13 Replacement, p.18 Alerting, p.20 개선 방향. p.7 / p.13 원본 화면도 확인. 발표의 EventBridge Enabled 설명을 최종 시험으로 일반화하지 않고 최신 canonical boundary의 최종 7/13 Rule 2개 DISABLED·통제 실행 조건을 유지한다. 각 Snapshot의 2026-07-14는 발표 근거 시점으로 표시한다.
+- 구조: 상단 성과 → 여섯 목차 → 프로젝트·역할 → AWS/Local 요청 구조 → Web–WAS → Replacement → 관측·알림 → 복구 기준·후속 과제. PC 옆 목차 / Tablet·Mobile 상단 목차. 각 사례에서 문제·수행·결과·조건·이미지를 연결하고 출처의 세부 설명만 native details로 접는다.
+- 범위: 개인 Team Lead / Web–WAS 구축 / AWS·복구 통합 검증. 팀 Ansible·Swarm / EventBridge·SSM·ASG / Monitoring / DB 구현 구분. Terraform은 발표의 개선 방향이므로 Bluebell 구현 성과에 추가하지 않는다.
+
+| 기존 항목 | 새 위치·보존 방식 |
+|---|---|
+| 이름·subtitle·summary | 상단 성과 제목과 소개 |
+| problem·role·myContributions | 프로젝트·담당 역할, 개인 범위 |
+| architecture·architectureNote | 번호를 유지한 AWS 1~5 → Local DB 6~7 경로 및 환경 경계 |
+| projectResults·팀 구현 경계 | 담당 역할 다음 팀 구현 목록 |
+| Web/WAS Snapshot·이미지·scope·date | Web–WAS 사례의 결과·원본 화면·발표 근거·출처 |
+| Replacement Snapshot·이미지·scope·date | 복구 사례의 결과·원본 화면·발표 근거·출처 |
+| 최종 Trigger 시험 조건 | 복구 설계 바로 아래 항상 노출 |
+| validation 전체 9개 | 노드 교체 → 운영 편입 → 서비스·관측 확인 → Cleanup/Baseline |
+| Recovery Validation 네 결과 | 복구·관측 사례의 결과, Snapshot에 있는 동일 검증값으로 연결 |
+| Monitoring Snapshot·이미지·scope·date | 관측 사례의 결과·원본 화면·발표 근거·출처 |
+| learned·Node Created ≠ Recovery Complete | 복구 완료 기준 |
+| 원본 자료·후속 과제 | 마감 구역; 확인되지 않은 RTO/RPO 수치는 만들지 않음 |
+
+- 변경: BluebellDetail.tsx / bluebellReading.ts / bluebell.css / ProjectDetail의 Bluebell 분기 / main의 CSS import / bluebell-responsive.spec.mjs / 이 기록. src/data/projects.ts와 기존 다른 상세 파일은 그대로 유지한다.
+- 검증: 로컬 build / lint PASS. React 검토: 렌더 중 정의한 컴포넌트·추가 effect/state·외부 의존성 없음, key·semantic heading·aria label·native details·focus 목적지 확인. 기존 42개 QA에 네 너비의 Bluebell 통합 읽기·키보드·hash reload/history·원본 이미지·목록/다음 프로젝트 검사 4개 추가. CI 및 캡처 검토 진행 후 완성 단위를 반영한다.
+- 다음 시작점: 이 브랜치의 CI / Browser QA 결과와 1440 / 768 / 390 / 320px 캡처부터 확인. Bluebell 공개 마감 뒤 OneReport, 이후 Labbit 순으로 작업한다.
+
+새 채팅에서는 AGENTS.md → README.md → 이 문서 → 최신 main 및 관련 파일 순서로 읽고 완료한 단계를 반복하지 않는다. 현재 다음 시작점은 Step 8 — Bluebell의 **최종 QA·캡처 검토**이다. PR #20과 1~7단계는 공개 반영까지 완료했으므로 다시 구현하거나 같은 QA를 반복하지 않는다. 실행 시 최신 main/브랜치 상태와 실제 문서 내용을 확인하고 현재 작업 브랜치에서 이어간다.
 후속 작업이 끝나면 해당 단계 상태, 변경 파일·commit/PR, 검증 결과와 남은 리스크, 바로 다음 시작점을 이 문서에 갱신한다.
