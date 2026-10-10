@@ -163,7 +163,7 @@ export const projects: Project[] = [
         facts: [
           'KEDA Manifest server-side dry-run PASS · kubectl diff RC=0',
           'Prometheus · Grafana · Alertmanager · kube-state-metrics Running',
-          'QueuePilot Operations + Service Dashboard 운영',
+          '운영·서비스 대시보드 운영',
           'Final Health PASS 43 / WARN 0 / FAIL 0',
         ],
         note:
@@ -523,3 +523,31 @@ export const projects: Project[] = [
 ]
 
 export const projectBySlug = Object.fromEntries(projects.map((project) => [project.slug, project]))
+
+
+export const durianReading = {
+  headline: '외부 부하에 따른 Consumer 확장·축소와 Kubernetes 운영 복구를 검증했습니다.',
+  highlights: [
+    { result: 'Consumer 1→4→1', context: '외부 부하에 따른 확장 · Lag 해소 후 축소' },
+    { result: 'HTTP 300/300 수락', context: '동시 요청 50 · 2026-08-10 · 비동기 요청 수락' },
+    { result: 'worker-03 재생성·재가입', context: 'Terraform · 단일 Compute Instance 복구' },
+  ],
+  sections: [
+    { id: 'overview', number: '01', title: '프로젝트와 담당 역할', label: '프로젝트·담당 역할' },
+    { id: 'architecture', number: '02', title: '요청 처리 구조', label: '요청 처리 구조' },
+    { id: 'load-scaling', number: '03', title: '외부 부하와 자동 확장·축소', label: '부하와 자동 확장' },
+    { id: 'request-recovery', number: '04', title: 'Kafka 요청 경로 복구', label: 'Kafka 경로 복구' },
+    { id: 'scheduling', number: '05', title: 'Consumer Pending 대응', label: 'Pending 대응' },
+    { id: 'worker-recovery', number: '06', title: 'Terraform Worker 복구', label: 'Terraform 복구' },
+    { id: 'evidence', number: '07', title: '운영 상태와 원본 자료', label: '운영 상태·자료' },
+  ],
+  workerRecovery: {
+    source: 'Portfolio Master v2.11 · p.6 Drift Recovery Evidence',
+    facts: [
+      { label: '복구 대상', value: 'worker-03 실제 VM 삭제 · Terraform State에는 존재' },
+      { label: '복구 과정', value: '1 add / 0 change / 0 destroy → apply → kubeadm join' },
+      { label: '최종 상태', value: 'Ready,SchedulingDisabled' },
+    ],
+    note: 'worker-03 단일 Compute Instance 복구 PoC · 재가입 시점에는 SchedulingDisabled 상태',
+  },
+} as const

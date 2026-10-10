@@ -22,7 +22,7 @@ export default defineConfig({
     },
     {
       name: 'mobile',
-      testIgnore: '**/home-responsive.spec.mjs',
+      testIgnore: '**/*-responsive.spec.mjs',
       use: {
         ...devices['Pixel 7'],
       },

@@ -1,6 +1,8 @@
 import { Link, useParams } from 'react-router-dom'
 import Badge from '../components/Badge'
 import Flow from '../components/Flow'
+import EvidenceSnapshotCard from '../components/EvidenceSnapshotCard'
+import DurianDetail from './DurianDetail'
 import { projectBySlug, projects } from '../data/projects'
 
 export default function ProjectDetail() {
@@ -20,6 +22,21 @@ export default function ProjectDetail() {
 
   const currentIndex = projects.findIndex((item) => item.slug === project.slug)
   const nextProject = projects[(currentIndex + 1) % projects.length]
+  const nextProjectLink = (
+      <section className="next-project">
+        <div className="container next-project-inner">
+          <span>Next Project</span>
+          <Link to={`/projects/${nextProject.slug}`}>
+            {nextProject.name} — {nextProject.subtitle} →
+          </Link>
+        </div>
+      </section>
+  )
+
+  if (project.slug === 'durian') {
+    return <><DurianDetail project={project} />{nextProjectLink}</>
+  }
+
   return (
     <>
       <section className="project-hero">
@@ -140,33 +157,7 @@ export default function ProjectDetail() {
             </div>
             <div className="evidence-snapshot-grid">
               {project.evidenceSnapshots.map((item) => (
-                <article className="evidence-snapshot-card" key={item.title}>
-                  <div className="evidence-snapshot-meta">
-                    <Badge tone={item.scope === 'MY' ? 'my' : 'project'}>{item.scope}</Badge>
-                    <span>VALIDATED · {item.validatedAt}</span>
-                  </div>
-                  {item.image && (
-                    <figure className="evidence-snapshot-figure">
-                      <img src={item.image} alt={item.imageAlt ?? item.title} />
-                      {item.imageCaption && <figcaption>{item.imageCaption}</figcaption>}
-                    </figure>
-                  )}
-                  <h3>{item.title}</h3>
-                  <p>{item.summary}</p>
-                  <ul>
-                    {item.facts.map((fact) => <li key={fact}>{fact}</li>)}
-                  </ul>
-                  <div className="evidence-source">
-                    <strong>Source</strong>
-                    <span>{item.source}</span>
-                  </div>
-                  {item.href && (
-                    <a className="evidence-snapshot-link" href={item.href} target="_blank" rel="noreferrer">
-                      {item.linkLabel ?? 'Evidence 원본 보기'} ↗
-                    </a>
-                  )}
-                  {item.note && <p className="evidence-note">{item.note}</p>}
-                </article>
+                <EvidenceSnapshotCard item={item} key={item.title} />
               ))}
             </div>
           </div>
@@ -219,14 +210,7 @@ export default function ProjectDetail() {
         </section>
       )}
 
-      <section className="next-project">
-        <div className="container next-project-inner">
-          <span>Next Project</span>
-          <Link to={`/projects/${nextProject.slug}`}>
-            {nextProject.name} — {nextProject.subtitle} →
-          </Link>
-        </div>
-      </section>
+      {nextProjectLink}
     </>
   )
 }
