@@ -60,7 +60,8 @@ for (const width of [1440, 768, 390, 320]) {
       await page.keyboard.press('Space')
       await expect(details).not.toHaveAttribute('open')
       await expect(section.locator('.durian-case-result')).toBeVisible()
-      await section.screenshot({ path: `artifacts/screenshots/durian-${width}-${id}.png` })
+      // Isolate tall case captures from the fixed header; navigation above uses the real header.
+      await section.screenshot({ path: `artifacts/screenshots/durian-${width}-${id}.png`, style: '.site-header { visibility: hidden; }' })
     }
     await page.locator('#architecture').screenshot({ path: `artifacts/screenshots/durian-${width}-architecture.png` })
   })

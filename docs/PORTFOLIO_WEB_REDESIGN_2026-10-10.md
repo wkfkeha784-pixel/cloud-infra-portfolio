@@ -340,6 +340,8 @@ PR/main CI 통과는 내용 읽기 품질의 대체물이 아니다. 화면 검�
 - 변경: DurianDetail.tsx / projects.ts의 Durian presentation 문구 / Durian 범위 CSS / 기존 Durian QA 검사 확장 / 이 진행 기록.
 - 로컬 검증: build / lint / git diff --check PASS. React 점검: 모듈 범위 컴포넌트, native details/summary, ordered list, time·heading 구조와 기존 focus 스타일, 새로운 라이브러리·스크롤 state 없음.
 - 진행 중: CI 브라우저 검사 및 1440 / 768 / 390 / 320px 캡처 검토. 새 서버나 브라우저를 설치하지 않고 기존 CI QA를 사용한다.
+- 중간 QA: 5ce0e084fab3fd96bbb651e451a523dae56dddae 기준 CI #64 PASS. Browser QA #58은 36 PASS / 2 FAIL. 실패는 같은 기존 문장 selector가 PC·Mobile에서 바뀐 Worker 조건 문구를 찾지 못한 것으로, 단일 Compute Instance 범위와 SchedulingDisabled 상태를 해당 복구 구역에서 확인하도록 유지·보강했다. 네 너비 목차·hash reload·접기 keyboard/overflow 검사는 모두 PASS.
+- 화면 점검: 사례별 본문·조치·결과의 경계, 조건과 팀/개인 Scope의 소속 관계 확인. 320px의 POST_CUTOVER_E2E_SUCCESS 마지막 글자 줄바꿈은 작은 code 표시로 다듬었다. summary 포커스 스타일을 명시했다. 사례 전용 캡처에서는 고정 헤더를 임시 제외해 긴 요소 캡처 중의 헤더 중첩만 피한다. 실제 navigation/전체 화면 검사에서는 헤더를 유지한다.
 - 다음: 위 브라우저 검토부터 이어가고 완료 결과를 기록한다. 이후 **7단계 홈·Durian 통합 사용 검토**. PR #20은 Draft 유지, Durian 완성 단위 검토 전 main/production 반영하지 않는다.
 
 새 채팅에서는 AGENTS.md → README.md → 이 문서 → 최신 작업 브랜치 및 관련 파일 순서로 읽고 완료한 단계를 반복하지 않는다. 현재 다음 시작점은 Step 6 기록의 **브라우저·캡처 검토**다. PR #20의 feat/durian-reading-structure-20261010에서 이어가며 완료된 구현을 다시 시작하지 않는다. 실행 시 최신 main/브랜치 상태와 실제 문서 내용을 확인한다.

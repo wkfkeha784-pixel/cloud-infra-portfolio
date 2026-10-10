@@ -1138,10 +1138,12 @@ img { max-width: 100%; }
 .durian-case-result ul { margin: 0; padding-left: 18px; color: var(--navy); line-height: 1.85; }
 .durian-case-result li { padding-left: 4px; word-break: keep-all; overflow-wrap: anywhere; }
 .durian-case-result li + li { margin-top: 8px; }
+.durian-case-result code { font-size: 0.85rem; }
 .durian-case-condition { margin: 18px 0 0; padding-top: 14px; border-top: 1px solid #c5dddd; color: #43566a; font-size: 0.86rem; line-height: 1.8; word-break: keep-all; overflow-wrap: anywhere; }
 .durian-case-source { margin-top: 20px; border-block: 1px solid var(--line); font-size: 0.85rem; line-height: 1.8; }
 .durian-case-source summary { padding: 12px 4px; color: var(--teal); cursor: pointer; font-weight: 700; min-height: 44px; }
 .durian-case-source summary:hover { background: #f1f5f7; }
+.durian-case-source summary:focus-visible { outline: 3px solid rgba(15, 139, 141, 0.35); outline-offset: 4px; }
 .durian-case-source > div { padding: 0 4px 18px; color: var(--muted); overflow-wrap: anywhere; }
 .durian-case-source p { margin: 0; word-break: keep-all; overflow-wrap: anywhere; }
 .durian-case-source p + p { margin-top: 12px; }

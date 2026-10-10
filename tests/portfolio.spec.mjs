@@ -246,7 +246,9 @@ test('v2.10 sync: home and project claim boundaries expose the refreshed evidenc
 
   await page.goto('/projects/durian', { waitUntil: 'networkidle' })
   await expect(page.getByText('Terraform worker-03 Drift Recovery', { exact: true })).toBeVisible()
-  await expect(page.getByText(/Terraform 범위는 worker-03 단일 Compute Instance/)).toBeVisible()
+  const recovery = page.locator('#worker-recovery')
+  await expect(recovery.getByText(/worker-03 단일 Compute Instance 복구 PoC/)).toBeVisible()
+  await expect(recovery.getByText('Ready,SchedulingDisabled', { exact: true })).toBeVisible()
 
   await page.goto('/projects/bluebell', { waitUntil: 'networkidle' })
   await expect(page.getByText(/Recovery Trigger는 EventBridge → SSM 구조로 설계했지만 최종 7\/13 E2E에서는 EventBridge Rule 2개를 DISABLED/)).toBeVisible()

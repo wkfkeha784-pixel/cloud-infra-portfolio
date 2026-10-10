@@ -37,7 +37,7 @@ function CaseResult({ facts, condition }: { facts: string[]; condition?: string 
   return (
     <div className="durian-case-result">
       <h4>확인한 결과</h4>
-      <ul>{facts.map((fact) => <li key={fact}>{fact}</li>)}</ul>
+      <ul>{facts.map((fact) => <li key={fact}>{/^[A-Z]+(?:_[A-Z0-9]+)+$/.test(fact) ? <code>{fact}</code> : fact}</li>)}</ul>
       {condition && <p className="durian-case-condition">{condition}</p>}
     </div>
   )
@@ -131,7 +131,7 @@ export default function DurianDetail({ project }: { project: Project }) {
               <div><dt>확장 신호</dt><dd>Kafka Lag → KEDA/HPA → Consumer Scaling</dd></div>
               <div><dt>관측</dt><dd>Prometheus → Grafana</dd></div>
             </dl>
-            <CaseSource source="팀 구현 결과" summary="팀 구현 범위 보기">
+            <CaseSource source="Durian 최종 발표자료 · 서비스 아키텍처·결과 요약" summary="팀 구현 범위 보기">
               <ul>{project.projectResults?.map((item) => <li key={item}>{item}</li>)}</ul>
             </CaseSource>
           </CaseSection>
