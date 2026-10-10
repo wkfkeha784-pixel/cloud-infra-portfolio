@@ -242,7 +242,7 @@ test('v2.10 sync: home and project claim boundaries expose the refreshed evidenc
   const projects = page.getByRole('region', { name: '운영과 복구를 검증한 대표 프로젝트' })
   await expect(projects.getByText(/모니터링 인수/)).toBeVisible()
   await expect(projects.getByText('Terraform', { exact: true })).toBeVisible()
-  await expect(page.getByRole('region', { name: '서비스 구현과 팀 시스템 통합 경험' }).getByText(/HTTP·WebSocket Contract Consumer/)).toBeVisible()
+  await expect(page.getByRole('region', { name: '서비스 구현과 팀 시스템 통합 경험' }).getByText(/HTTP·WebSocket API 연동/)).toBeVisible()
 
   await page.goto('/projects/durian', { waitUntil: 'networkidle' })
   await expect(page.getByText('Terraform worker-03 Drift Recovery', { exact: true })).toBeVisible()

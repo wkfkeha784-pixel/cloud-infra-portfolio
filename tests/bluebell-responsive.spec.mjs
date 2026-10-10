@@ -15,7 +15,7 @@ for (const width of [1440, 768, 390, 320]) {
     await page.keyboard.press('Enter')
     await expect(page).toHaveURL(/\/projects\/bluebell$/)
     await expect(page.locator('main h1')).toBeFocused()
-    await expect(page.getByRole('heading', { level: 1 })).toContainText('AWS Web–WAS를 구축하고 Replacement 이후 서비스 정상화')
+    await expect(page.getByRole('heading', { level: 1 })).toContainText('AWS Web–WAS를 구축하고 인스턴스 교체 후 서비스 정상화')
     await page.evaluate(() => document.fonts.ready)
 
     const toc = page.getByRole('navigation', { name: 'Bluebell 사례 목차' })

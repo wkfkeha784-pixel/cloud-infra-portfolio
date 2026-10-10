@@ -61,9 +61,9 @@ export const projects: Project[] = [
     name: 'Team Durian',
     subtitle: '수강신청 폭주 대응을 위한 대기열 오토스케일링 플랫폼',
     problem: '갑작스러운 수강신청 요청이 애플리케이션과 DB로 한꺼번에 전달되는 상황',
-    role: 'Kubernetes · Redis/Kafka/KEDA Operations / Monitoring / Terraform',
+    role: 'Kubernetes·Redis/Kafka/KEDA 운영 / 모니터링 인수·재구성 / Terraform 복구 검증',
     summary:
-      'Waiting Room으로 진입을 제어하고 Kafka 비동기 처리와 KEDA Autoscaling을 연결했습니다. Kubernetes Runtime과 Redis·Kafka/KEDA 운영, Monitoring·복구·Terraform 정합성 검증을 담당했습니다.',
+      '대기열로 진입을 제어하고 Kafka 비동기 처리와 KEDA 자동 확장을 연결한 프로젝트입니다. Kubernetes·Redis·Kafka·KEDA 운영, 모니터링 인수·재구성과 복구 검증을 담당했습니다.',
     tags: ['OpenStack', 'Kubernetes', 'Kafka', 'Redis', 'KEDA', 'Terraform', 'Prometheus', 'Grafana'],
     home: {
       group: 'featured',
@@ -181,17 +181,17 @@ export const projects: Project[] = [
     name: 'Bluebell',
     subtitle: 'AWS Web/WAS + Local DB 하이브리드 3-Tier 인프라',
     problem: '수작업 복구와 서버 재구성 시 설정 편차, 복구 완료 판단 기준 부족',
-    role: 'Team Lead / Web–WAS / Integration Validation',
+    role: '팀장 / Web–WAS 구축 / AWS·복구 통합 검증',
     summary:
       'Web–WAS 계층을 구축하고 각 담당 영역을 Web → WAS → DB E2E 요청 흐름으로 연결해 통합 검증했습니다.',
     tags: ['AWS', 'Ansible', 'Docker Swarm', 'Nginx', 'Prometheus', 'Grafana'],
     home: {
       group: 'featured',
-      headline: 'AWS Web–WAS 구축과 Replacement 이후 서비스 정상화 검증',
+      headline: 'AWS Web–WAS 구축과 인스턴스 교체 후 서비스 정상화 검증',
       role: '팀장 / Web–WAS 구축 / AWS·복구 통합 검증',
       results: [
-        { scope: 'MY', text: 'Replacement 이후 서비스·Target Group·HTTP 응답 정상화 확인' },
-        { scope: 'MY', text: '관측 대상 재편입 및 Cleanup 후 Baseline 검증' },
+        { scope: 'MY', text: '인스턴스 교체 후 서비스·Target Group·HTTP 응답 정상화 확인' },
+        { scope: 'MY', text: '관측 대상 재편입 및 시험 정리 후 기본 운영 상태 검증' },
       ],
       note: '복구 자동화는 팀 구현 · 최종 복구 시험은 EventBridge 비활성 상태에서 통제 실행',
       linkLabel: '구축과 복구 검증 과정 보기',
@@ -308,14 +308,14 @@ export const projects: Project[] = [
     name: 'OneReport',
     subtitle: '복합사고 다기관 공동대응 운영 플랫폼',
     problem: '기관별 배정·상태·이력이 분리되면 전체 대응 상황을 파악하기 어려운 문제',
-    role: 'Backend — Domain / DB / Routing / Contract / Rule Classification',
+    role: 'Backend / 도메인·DB·기관 배정·API 계약·규칙 기반 분석',
     summary:
       'Report와 Incident를 중심으로 기관 배정, 상태 전이, Timeline을 연결하고 규칙 기반 분석과 Smoke Test를 구현했습니다.',
     tags: ['FastAPI', 'PostgreSQL', 'AWS', 'S3', 'SSE'],
     home: {
       group: 'additional',
       headline: '신고·기관 배정·상태 흐름을 연결하는 Backend 구현',
-      role: 'Backend / Domain·DB·Routing·Contract·규칙 기반 분석',
+      role: 'Backend / 도메인·DB·기관 배정·API 계약·규칙 기반 분석',
       results: [
         { scope: 'MY', text: '핵심 Backend PR #9/#14/#27/#30 · 도메인·계약·분석·Smoke Test' },
         { scope: 'PROJECT', text: '팀 AWS PoC 운영 Smoke · FINAL: PASS' },
@@ -403,19 +403,19 @@ export const projects: Project[] = [
     order: '04',
     name: 'Labbit',
     status: 'IN PROGRESS · 2026-10-10',
-    subtitle: 'OpenStack 기반 Virtual Lab Platform',
-    problem: 'Multi-VM 실습환경의 복잡한 상태·권한·오류를 Browser Workspace에서 안전하게 표현해야 하는 문제',
-    role: 'Frontend / Design / Contract Consumer',
+    subtitle: 'OpenStack 기반 가상 실습 플랫폼',
+    problem: '여러 VM을 사용하는 실습환경의 상태·권한·오류를 브라우저 화면에서 안전하게 표현해야 하는 문제',
+    role: 'Frontend / 디자인 / HTTP·WebSocket API 연동',
     summary:
-      'Workspace Terminal·File을 구현해 main에 통합하고, 세션 종료·재연결과 파일 충돌·편집 내용 보호를 자동 검증했습니다. Auth/Class는 실제 Backend와 Browser Flow를 검증했습니다.',
+      '실습 화면의 터미널·파일 기능을 구현해 main에 통합하고, 세션 종료·재연결과 파일 충돌·편집 내용 보호를 자동 검증했습니다. 인증·수업 화면은 실제 백엔드와 연결해 브라우저 동작을 검증했습니다.',
     tags: ['React', 'TypeScript', 'TanStack Query', 'OpenAPI', 'WebSocket', 'Vitest', 'CI'],
     home: {
       group: 'additional',
-      headline: 'Browser Workspace의 Terminal·File 구현과 main 통합',
-      role: 'Frontend / Design / HTTP·WebSocket Contract Consumer',
+      headline: '브라우저 실습 화면의 터미널·파일 구현과 main 통합',
+      role: 'Frontend / 디자인 / HTTP·WebSocket API 연동',
       results: [
         { scope: 'MY', text: 'PR #62 main 병합 · 세션·파일 충돌·편집 보호 코드/CI 검증' },
-        { scope: 'MY', text: 'Auth/Class 실제 Backend Browser Flow 검증' },
+        { scope: 'MY', text: '인증·수업 화면의 실제 백엔드 연동과 브라우저 동작 검증' },
       ],
       note: '실제 OpenStack VM PTY/SFTP E2E는 후속 통합 검증',
       linkLabel: 'Workspace 구현과 통합 과정 보기',

@@ -1,12 +1,12 @@
 // Reading metadata only; PR snapshots and canonical project data stay intact.
 export const onereportReading = {
-  headline: '신고·기관 배정·상태·Timeline을 하나의 Backend 흐름으로 구현했습니다.',
+  headline: '신고·기관 배정·처리 이력을 하나의 백엔드 흐름으로 구현했습니다.',
   sections: [
     { id: 'overview', number: '01', label: '프로젝트·담당 역할', title: '프로젝트와 담당 역할' },
     { id: 'flow', number: '02', label: '신고부터 대응 이력까지', title: '신고부터 기관 대응과 처리 이력까지' },
     { id: 'domain', number: '03', label: 'Domain·DB·기관 배정', title: '도메인과 DB로 대응 흐름 연결' },
     { id: 'contract', number: '04', label: 'Timeline REST·SSE', title: 'Timeline 응답 계약 정합성' },
-    { id: 'analysis', number: '05', label: '규칙 기반 분석·fallback', title: '규칙 기반 분석과 수동 선택 복귀' },
+    { id: 'analysis', number: '05', label: '규칙 분석·수동 선택', title: '규칙 기반 분석과 수동 선택 복귀' },
     { id: 'smoke', number: '06', label: 'AWS PoC·운영 검증', title: '팀 AWS PoC와 운영 Smoke 검증' },
     { id: 'boundary', number: '07', label: '구현·제안 범위', title: '실제 구현과 제안의 범위' },
   ],
