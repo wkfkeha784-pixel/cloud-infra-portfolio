@@ -1112,16 +1112,42 @@ img { max-width: 100%; }
 .durian-subheading h3, .durian-minor-heading, .durian-validation h3, .durian-closing h3 { margin: 0; color: var(--navy); font-size: 1rem; line-height: 1.7; word-break: keep-all; }
 .durian-contributions { grid-template-columns: repeat(2, minmax(0, 1fr)); margin: 20px 0 28px; }
 .durian-content .tags { margin-top: 24px; }
-.durian-minor-heading { margin-top: 28px; }
-.durian-validation { margin-bottom: 28px; }
-.durian-validation h3 { margin-bottom: 20px; }
-.durian-content .flow-node { font-size: 0.82rem; line-height: 1.5; overflow-wrap: anywhere; }
-.durian-content .evidence-snapshot-card h3 { word-break: keep-all; overflow-wrap: anywhere; }
-.durian-facts { margin: 0; border-bottom: 1px solid var(--line); }
-.durian-facts > div { display: grid; grid-template-columns: 120px minmax(0, 1fr); gap: 24px; padding: 20px 0; border-top: 1px solid var(--line); line-height: 1.8; }
-.durian-facts dt { color: var(--teal); font-size: 0.84rem; font-weight: 700; }
-.durian-facts dd { margin: 0; color: #3f5064; word-break: keep-all; overflow-wrap: anywhere; }
-.durian-condition { color: var(--muted); font-size: 0.85rem; line-height: 1.8; word-break: keep-all; }
+.durian-architecture { margin: 0; }
+.durian-architecture-stage { padding: 20px 0; border-top: 1px solid var(--line); }
+.durian-architecture-stage h4 { margin: 0 0 14px; color: var(--teal); font-size: 0.84rem; }
+.durian-architecture-stage ol { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin: 0; padding: 0; list-style: none; }
+.durian-architecture-stage li { display: flex; align-items: baseline; gap: 8px; padding: 14px 12px; background: #f1f5f7; color: var(--navy); font-size: 0.84rem; line-height: 1.7; overflow-wrap: anywhere; }
+.durian-architecture-stage li span { flex-shrink: 0; color: var(--teal); font-size: 0.72rem; }
+.durian-architecture figcaption { margin: 0; color: var(--muted); font-size: 0.84rem; line-height: 1.8; word-break: keep-all; overflow-wrap: anywhere; }
+.durian-signals { margin: 24px 0; padding: 16px 0; border-block: 1px solid var(--line); }
+.durian-signals > div { display: grid; grid-template-columns: 80px minmax(0, 1fr); gap: 16px; padding: 6px 0; font-size: 0.88rem; line-height: 1.8; }
+.durian-signals dt { color: var(--teal); font-weight: 700; }
+.durian-signals dd { margin: 0; color: var(--navy); overflow-wrap: anywhere; }
+.durian-case { margin: 0; }
+.durian-case-lead { margin-bottom: 28px; }
+.durian-case-meta { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 14px; }
+.durian-case-meta > span { color: var(--muted); font-size: 0.8rem; line-height: 1.8; }
+.durian-case-lead h3 { margin: 0; color: var(--navy); font-size: 1.22rem; line-height: 1.7; letter-spacing: -0.02em; word-break: keep-all; overflow-wrap: anywhere; }
+.durian-case-copy { margin: 22px 0; }
+.durian-case-copy h4, .durian-case-result h4 { margin: 0 0 8px; color: var(--teal); font-size: 0.84rem; line-height: 1.8; }
+.durian-case-copy p { margin: 0; color: #3f5064; line-height: 1.85; word-break: keep-all; overflow-wrap: anywhere; }
+.durian-case-steps { margin: 16px 0 0; padding-left: 22px; color: var(--navy); font-size: 0.9rem; line-height: 1.8; }
+.durian-case-steps li + li { margin-top: 6px; }
+.durian-case-steps li::marker { color: var(--teal); font-weight: 700; }
+.durian-case-result { margin-top: 28px; padding: 22px 24px; border-left: 3px solid var(--teal); background: var(--teal-soft); }
+.durian-case-result ul { margin: 0; padding-left: 18px; color: var(--navy); line-height: 1.85; }
+.durian-case-result li { padding-left: 4px; word-break: keep-all; overflow-wrap: anywhere; }
+.durian-case-result li + li { margin-top: 8px; }
+.durian-case-condition { margin: 18px 0 0; padding-top: 14px; border-top: 1px solid #c5dddd; color: #43566a; font-size: 0.86rem; line-height: 1.8; word-break: keep-all; overflow-wrap: anywhere; }
+.durian-case-source { margin-top: 20px; border-block: 1px solid var(--line); font-size: 0.85rem; line-height: 1.8; }
+.durian-case-source summary { padding: 12px 4px; color: var(--teal); cursor: pointer; font-weight: 700; min-height: 44px; }
+.durian-case-source summary:hover { background: #f1f5f7; }
+.durian-case-source > div { padding: 0 4px 18px; color: var(--muted); overflow-wrap: anywhere; }
+.durian-case-source p { margin: 0; word-break: keep-all; overflow-wrap: anywhere; }
+.durian-case-source p + p { margin-top: 12px; }
+.durian-case-source .durian-source-name { color: var(--navy); }
+.durian-case-source ul { margin: 12px 0 0; padding-left: 20px; }
+.durian-lesson { margin: 20px 0 0; color: #43566a; font-size: 0.92rem; line-height: 1.85; word-break: keep-all; overflow-wrap: anywhere; }
 .durian-closing { margin-top: 32px; }
 .durian-closing > div + div { margin-top: 24px; padding-top: 24px; border-top: 1px solid var(--line); }
 .durian-closing p { margin: 10px 0 0; color: var(--muted); line-height: 1.8; word-break: keep-all; overflow-wrap: anywhere; }
@@ -1144,7 +1170,11 @@ img { max-width: 100%; }
   .durian-section { padding: 36px 0; }
   .durian-section-heading { gap: 10px; margin-bottom: 24px; }
   .durian-contributions { grid-template-columns: 1fr; }
-  .durian-role, .durian-facts > div { grid-template-columns: 1fr; gap: 6px; }
+  .durian-role { grid-template-columns: 1fr; gap: 6px; }
+  .durian-architecture-stage ol { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+  .durian-architecture-stage li { padding: 12px 10px; }
+  .durian-signals > div { grid-template-columns: 1fr; gap: 2px; }
+  .durian-case-result { padding: 18px 16px; }
 }
 
 @media (prefers-reduced-motion: reduce) {

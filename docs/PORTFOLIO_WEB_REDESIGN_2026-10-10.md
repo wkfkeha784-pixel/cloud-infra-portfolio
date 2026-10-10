@@ -1,7 +1,7 @@
 # 웹 포트폴리오 구성 개선 설계 및 진행 기록
 
 작성일: 2026-10-10 (Asia/Seoul)
-진행 상태: 1~5단계 완료 / 다음은 6단계 Durian 사례와 운영 마감
+진행 상태: 1~5단계 완료 / 6단계 구현 완료·브라우저 검토 진행 중
 대상: 박희철의 신입·주니어 Cloud Infrastructure / DevOps / Platform 지원용 웹
 저장소: wkfkeha784-pixel/cloud-infra-portfolio
 작업 브랜치: feat/durian-reading-structure-20261010 (Draft PR #20)
@@ -330,5 +330,17 @@ PR/main CI 통과는 내용 읽기 품질의 대체물이 아니다. 화면 검�
 - 남은 작업: 긴 요청 경로의 좁은 노드·모바일 세로 길이, 사례 안의 설명 우선순위, 반복 조건 정리는 6단계 대상. 이번 검토는 구조·이동의 완료이며 Durian 전체의 최종 완성이 아니다.
 - 다음: **6단계 Durian 네 사례와 운영 마감만 진행**. 외부 부하 / Kafka 복구 / Pending / Worker 복구 각각의 문제 → 조치 → 결과 → 근거가 한 구역에서 읽히도록 정리한다. 요청 경로는 요청 제어와 비동기 처리 단위로 묶고 최신 구조와 8/6 경로를 분리한다. 중복 조건은 해당 사례 근처에 모으며 성과를 축소하지 않는다. 7단계 홈·Durian 통합 검토까지 이 브랜치·PR을 유지하고 이후 완성 단위로 반영한다.
 
-새 채팅에서는 AGENTS.md → README.md → 이 문서 → 최신 작업 브랜치 및 관련 파일 순서로 읽고 완료한 단계를 반복하지 않는다. 현재 다음 시작점은 Step 5 기록의 **6단계**다. PR #20의 feat/durian-reading-structure-20261010에서 이어가며 5단계 구현이나 홈 작업을 다시 시작하지 않는다. 실행 시 최신 main/브랜치 상태와 실제 문서 내용을 확인한다.
+### 2026-10-10 / Step 6
+
+- 구현: 외부 부하 / Kafka 복구 / Pending / Worker 복구를 사례 본문으로 구성. 문제·조치 다음에 실제 결과와 해당 조건을 배치. MY/PROJECT와 확인된 날짜는 사례의 시작 부분에 표시했다.
+- 구조: 요청 제어 1~4 → 비동기 처리 5~8의 두 단계로 긴 요청 경로를 묶었다. 모바일은 단계 안에서 두 열로 읽고, 확장 신호·관측 경로는 별도로 표시한다. 8/6 Redis 미호출 경로는 Kafka 복구 사례에 유지했다.
+- 근거: 핵심 결과와 요청 수락/DB Commit 구분, Worker SchedulingDisabled 상태는 항상 보인다. 긴 측정 기록과 출처만 native details로 제공한다. 부하 시험의 약 573.68 req/s·0.523초는 기존 Master p.5의 Demo Script Snapshot으로 보존했다.
+- 운영: 개인 Monitoring 인수·재구성 / Runtime 정합성과 PROJECT 최종 Health 43 PASS를 분리. 반복 조건은 각 사례로 모으고 P95·SLI/SLO는 후속 과제로 한 번 표시했다.
+- 보존: PR #20 head b4f10c7c2c8e14a8f7eebb73fa1605b9b9797400과 로컬 수정 대상 파일의 blob SHA 일치 확인 후 작업. 네 canonical 프로젝트 객체의 전체 비교 PASS. 기존 facts·scope·date·source·기타 프로젝트는 변경하지 않았다.
+- 변경: DurianDetail.tsx / projects.ts의 Durian presentation 문구 / Durian 범위 CSS / 기존 Durian QA 검사 확장 / 이 진행 기록.
+- 로컬 검증: build / lint / git diff --check PASS. React 점검: 모듈 범위 컴포넌트, native details/summary, ordered list, time·heading 구조와 기존 focus 스타일, 새로운 라이브러리·스크롤 state 없음.
+- 진행 중: CI 브라우저 검사 및 1440 / 768 / 390 / 320px 캡처 검토. 새 서버나 브라우저를 설치하지 않고 기존 CI QA를 사용한다.
+- 다음: 위 브라우저 검토부터 이어가고 완료 결과를 기록한다. 이후 **7단계 홈·Durian 통합 사용 검토**. PR #20은 Draft 유지, Durian 완성 단위 검토 전 main/production 반영하지 않는다.
+
+새 채팅에서는 AGENTS.md → README.md → 이 문서 → 최신 작업 브랜치 및 관련 파일 순서로 읽고 완료한 단계를 반복하지 않는다. 현재 다음 시작점은 Step 6 기록의 **브라우저·캡처 검토**다. PR #20의 feat/durian-reading-structure-20261010에서 이어가며 완료된 구현을 다시 시작하지 않는다. 실행 시 최신 main/브랜치 상태와 실제 문서 내용을 확인한다.
 후속 작업이 끝나면 해당 단계 상태, 변경 파일·commit/PR, 검증 결과와 남은 리스크, 바로 다음 시작점을 이 문서에 갱신한다.

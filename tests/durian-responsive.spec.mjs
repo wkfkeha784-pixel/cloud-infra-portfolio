@@ -44,5 +44,24 @@ for (const width of [1440, 768, 390, 320]) {
     await expect(page.getByRole('region', { name: 'Terraform Worker 복구' }).getByText('Ready,SchedulingDisabled', { exact: true })).toBeVisible()
     await expect(page.getByRole('region', { name: 'Kafka 요청 경로 복구' }).getByText(/이 8\/6 Snapshot의 공식 Producer 경로에는 Redis 호출이 없었습니다/)).toBeVisible()
     expect(await page.locator('body').innerText()).not.toContain('QueuePilot')
+
+    // Essential proof stays visible while only the longer records are collapsed.
+    for (const id of ['load-scaling', 'request-recovery', 'scheduling', 'worker-recovery', 'evidence']) {
+      const section = page.locator(`#${id}`)
+      const details = section.locator('details')
+      const summary = details.locator('summary')
+      await expect(details).not.toHaveAttribute('open')
+      await expect(section.locator('.durian-case-result')).toBeVisible()
+      await summary.focus()
+      await page.keyboard.press('Enter')
+      await expect(details).toHaveAttribute('open', '')
+      await expect(details.locator('.durian-source-name')).toBeVisible()
+      expect(await page.evaluate(() => document.documentElement.scrollWidth - innerWidth)).toBeLessThanOrEqual(2)
+      await page.keyboard.press('Space')
+      await expect(details).not.toHaveAttribute('open')
+      await expect(section.locator('.durian-case-result')).toBeVisible()
+      await section.screenshot({ path: `artifacts/screenshots/durian-${width}-${id}.png` })
+    }
+    await page.locator('#architecture').screenshot({ path: `artifacts/screenshots/durian-${width}-architecture.png` })
   })
 }
