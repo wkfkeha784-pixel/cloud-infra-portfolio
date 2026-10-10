@@ -73,7 +73,7 @@ export const projects: Project[] = [
         { scope: 'MY', text: '외부 HTTP 요청 300/300 수락 · Consumer 1→4→1 확장·축소' },
         { scope: 'MY', text: 'worker-03 삭제 후 Terraform 재생성·클러스터 재가입' },
       ],
-      note: 'HTTP 200은 비동기 요청 수락 기준 · Worker 재가입 후 Ready,SchedulingDisabled 상태 확인',
+      note: 'HTTP 200은 비동기 요청 수락 기준',
       linkLabel: '운영 문제와 검증 과정 보기',
     },
     architecture: [

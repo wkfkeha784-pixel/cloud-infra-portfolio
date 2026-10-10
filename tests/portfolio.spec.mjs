@@ -136,7 +136,7 @@ test('labbit: evidence cards keep ongoing state, contract boundary, and PR snaps
 test('home: four case-study cards and contact links are present', async ({ page }) => {
   await page.goto('/', { waitUntil: 'networkidle' })
 
-  const caseStudyLinks = page.getByRole('link', { name: /View Case Study/ })
+  const caseStudyLinks = page.locator('.project-card .project-case-link')
   await expect(caseStudyLinks).toHaveCount(4)
 
   for (const href of [

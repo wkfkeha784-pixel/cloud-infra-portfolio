@@ -275,6 +275,12 @@ img { max-width: 100%; }
   color: var(--muted);
 }
 
+#projects .section-heading h2,
+.additional-projects .section-heading h2 {
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+
 .featured-project-list { display: grid; gap: 28px; }
 
 .project-card {
