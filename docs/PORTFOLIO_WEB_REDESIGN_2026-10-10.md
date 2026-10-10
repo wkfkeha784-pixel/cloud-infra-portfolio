@@ -1,7 +1,7 @@
 # 웹 포트폴리오 구성 개선 설계 및 진행 기록
 
 작성일: 2026-10-10 (Asia/Seoul)
-진행 상태: 1~6단계 완료 / 다음은 7단계 홈·Durian 통합 사용 검토
+진행 상태: 1~6단계 완료 / 7단계 통합 사용 검토 진행 중
 대상: 박희철의 신입·주니어 Cloud Infrastructure / DevOps / Platform 지원용 웹
 저장소: wkfkeha784-pixel/cloud-infra-portfolio
 작업 브랜치: feat/durian-reading-structure-20261010 (Draft PR #20)
@@ -347,5 +347,15 @@ PR/main CI 통과는 내용 읽기 품질의 대체물이 아니다. 화면 검�
 - 저장: PR #20에서 구현·QA·화면 마감 완료. 이 후속 문서 커밋은 진행 기록만 변경하며 검증된 코드는 동일하다. main/공개 홈페이지는 홈 1~4단계 완성본 유지.
 - 다음: **7단계 홈·Durian 통합 사용 검토**. 대표 프로젝트 진입 → 목차 → 사례 → 출처 확인 → 프로젝트 목록/다음 프로젝트 이동의 읽기·탐색 흐름, Mobile 메뉴, focus/접기 및 필수 조건 노출을 종합 검토한다. 이미 끝난 5~6단계 구현과 같은 QA를 이유 없이 반복하지 않는다. 완성 단위 검토 후 PR/main 반영 판단. 다른 세 프로젝트 개편은 8단계.
 
-새 채팅에서는 AGENTS.md → README.md → 이 문서 → 최신 작업 브랜치 및 관련 파일 순서로 읽고 완료한 단계를 반복하지 않는다. 현재 다음 시작점은 Step 6 기록의 **7단계 홈·Durian 통합 사용 검토**다. PR #20의 feat/durian-reading-structure-20261010에서 이어가며 완료된 구현을 다시 시작하지 않는다. 실행 시 최신 main/브랜치 상태와 실제 문서 내용을 확인한다.
+### 2026-10-10 / Step 7
+
+- 대상: 홈 대표 진입 → Durian → 목차 → 사례·출처 → 프로젝트 목록 / 다음 프로젝트로 이어지는 전체 읽기·탐색 흐름. 기존 5~6단계 내용과 디자인은 유지했다.
+- 기준 확인: PR #20 head 5bb9e4a9c1361618a0b240db788cb5b67d6a15b3의 CI #66 / Browser QA #60 PASS와 Vercel Preview 성공 확인. 공개 production은 bf07918d0683ac21f34aafff412c4fb06b35b0f1 홈 완성본임을 Vercel metadata로 확인했다.
+- 발견·수정: hash 이동 시 화면만 이동하고 키보드 focus는 목차에 남는 문제. route/hash 목적지로 focus를 옮기고 tabindex=-1로 Tab 순서에 추가하지 않았다. 다음 Tab은 해당 사례 출처 summary로 이어진다. 페이지 전환 시 제목 focus와 상단 이동, 뒤로가기 hash 복귀도 같은 방식으로 처리하며 stale animation frame은 cleanup한다.
+- 검증 추가: 1440 / 768 / 390 / 320px에서 대표 진입, keyboard Enter, 목차 이후 Tab/접기, 실제 focus outline, 뒤로가기, 목록 복귀, 다음 프로젝트, 다른 상세에서 Mobile 메뉴로 목록 복귀, overflow / pageerror를 이어서 확인하는 journey 검사 4개. 기존 38개 검사는 유지했다.
+- 변경: src/App.tsx / 목적지 focus 스타일 / tests/reading-journey-responsive.spec.mjs / 이 기록. 로컬 build / lint / diff PASS.
+- 진행 중: PR CI / Browser QA / 실제 화면 확인. 통과 후 PR #20 완성 단위를 main에 반영하고 배포 commit·domain·bundle 및 main QA를 검증한다.
+- 다음 시작점: 위 최종 검사 결과 확인부터. 공개 반영 전까지 Draft 유지. 다른 상세 구성 변경은 8단계 Bluebell부터 별도 작업으로 진행한다.
+
+새 채팅에서는 AGENTS.md → README.md → 이 문서 → 최신 작업 브랜치 및 관련 파일 순서로 읽고 완료한 단계를 반복하지 않는다. 현재 다음 시작점은 Step 7 기록의 **통합 흐름 검사 결과 확인·완성 단위 배포**다. PR #20의 feat/durian-reading-structure-20261010에서 이어가며 완료된 구현을 다시 시작하지 않는다. 실행 시 최신 main/브랜치 상태와 실제 문서 내용을 확인한다.
 후속 작업이 끝나면 해당 단계 상태, 변경 파일·commit/PR, 검증 결과와 남은 리스크, 바로 다음 시작점을 이 문서에 갱신한다.

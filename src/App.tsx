@@ -9,17 +9,20 @@ function RouteScrollBehavior() {
   const { pathname, hash } = useLocation()
 
   useEffect(() => {
-    if (hash) {
-      const target = document.getElementById(decodeURIComponent(hash.slice(1)))
-      if (target) {
-        requestAnimationFrame(() => target.scrollIntoView({ block: 'start' }))
-      }
-      return
-    }
+    const target = hash
+      ? document.getElementById(decodeURIComponent(hash.slice(1)))
+      : document.querySelector<HTMLElement>('main h1')
+    if (!target) return
 
-    if (pathname.startsWith('/projects/')) {
-      window.scrollTo({ top: 0, left: 0, behavior: 'auto' })
-    }
+    const frame = requestAnimationFrame(() => {
+      if (hash) target.scrollIntoView({ block: 'start' })
+      else window.scrollTo({ top: 0, left: 0, behavior: 'auto' })
+
+      // Keep keyboard reading at the destination without adding a tab stop.
+      if (!target.hasAttribute('tabindex')) target.tabIndex = -1
+      target.focus({ preventScroll: true })
+    })
+    return () => cancelAnimationFrame(frame)
   }, [pathname, hash])
 
   return null
