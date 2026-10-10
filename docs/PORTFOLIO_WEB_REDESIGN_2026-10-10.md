@@ -1,12 +1,12 @@
 # 웹 포트폴리오 구성 개선 설계 및 진행 기록
 
 작성일: 2026-10-10 (Asia/Seoul)
-진행 상태: 1~7단계 완료·공개 반영 / 8단계 Bluebell 상세 구성 진행 중
+진행 상태: 1~7단계 및 8단계 Bluebell 완료·공개 반영 / 다음 OneReport 상세 구성
 대상: 박희철의 신입·주니어 Cloud Infrastructure / DevOps / Platform 지원용 웹
 저장소: wkfkeha784-pixel/cloud-infra-portfolio
 완료 브랜치: feat/durian-reading-structure-20261010 (PR #20 병합 완료)
-현재 작업 브랜치: feat/bluebell-reading-structure-20261010
-현재 작업 기준 main: b997943824547225ba3f1b1e8e3ed7339ab7789e (Durian 5~7단계 PR #20 병합; 이 후속 기록은 문서만 변경)
+완료 브랜치: feat/bluebell-reading-structure-20261010 (PR #21 병합 완료)
+현재 작업 기준 main: e6fa300cf1c97139292a7e59e79bc29ccd9fe8ed (Bluebell PR #21 병합; 이 후속 기록은 문서만 변경)
 최초 설계 기준 main: 58380868e18b3734d5bb6d15d20fffa780575bb1 (PR #18 반영)
 
 ## 1. 사용자 요청과 이번 작업 범위
@@ -238,7 +238,7 @@ PC에서는 보조 목차를 본문 옆에 두고, 모바일에서는 상단의 
 | 5 | 완료 | Durian 상단·목차·구조 | 제목·목차만으로 사례 내용을 구분 가능 |
 | 6 | 완료 | Durian 네 사례와 운영 마감 | 각 조치·결과·증거가 같은 구역에서 연결됨 |
 | 7 | 완료 | 홈·Durian 통합 사용 검토·공개 반영 | Desktop/Tablet/Mobile, navigation, overflow, focus·details 및 배포 검증 완료 |
-| 8 | 예정 | Bluebell → OneReport → Labbit | 공통 구성과 프로젝트 고유 강점이 함께 유지됨 |
+| 8 | 진행 중 | Bluebell → OneReport → Labbit | Bluebell 완료·공개 반영. 다음 OneReport, 이후 Labbit |
 
 검토 화면: 1440px PC / 768px Tablet / 390px Mobile, 필요 시 기존 320px 최소 너비도 확인.
 실제 제목·역할·결과 찾기와 경로 이동을 브라우저에서 확인한다. 작은 수정마다 전체 QA를 반복하지 않고, 변경된 부분을 확인한 후 단계 마감 시 build/lint 및 필요한 Browser QA 수행.
@@ -384,8 +384,12 @@ PR/main CI 통과는 내용 읽기 품질의 대체물이 아니다. 화면 검�
 | 원본 자료·후속 과제 | 마감 구역; 확인되지 않은 RTO/RPO 수치는 만들지 않음 |
 
 - 변경: BluebellDetail.tsx / bluebellReading.ts / bluebell.css / ProjectDetail의 Bluebell 분기 / main의 CSS import / bluebell-responsive.spec.mjs / 이 기록. src/data/projects.ts와 기존 다른 상세 파일은 그대로 유지한다.
-- 검증: 로컬 build / lint PASS. React 검토: 렌더 중 정의한 컴포넌트·추가 effect/state·외부 의존성 없음, key·semantic heading·aria label·native details·focus 목적지 확인. 기존 42개 QA에 네 너비의 Bluebell 통합 읽기·키보드·hash reload/history·원본 이미지·목록/다음 프로젝트 검사 4개 추가. CI 및 캡처 검토 진행 후 완성 단위를 반영한다.
-- 다음 시작점: 이 브랜치의 CI / Browser QA 결과와 1440 / 768 / 390 / 320px 캡처부터 확인. Bluebell 공개 마감 뒤 OneReport, 이후 Labbit 순으로 작업한다.
+- 최종 코드 검증: 570a5854813d7063b32ee05f2a27d5d21582a2b6 기준 로컬 build / lint / whitespace PASS. Web Portfolio CI #72 PASS / Portfolio Browser QA #66 **46개 PASS**. 기존 42개와 네 너비의 Bluebell 통합 읽기·키보드·hash reload/history·원본 이미지·목록/다음 프로젝트 검사 4개 포함. React 검토: 렌더 중 정의한 컴포넌트·추가 effect/state·외부 의존성 없음, key·semantic heading·aria label·native details·focus 목적지 확인.
+- 화면 검토: 1440 / 768 / 390 / 320px 목차·복구 제목·결과·조건 배치 및 PC 전체 흐름 확인. 앞선 QA #65도 46개 PASS였지만 고정 이미지 비율로 생긴 큰 여백과 과도한 확대를 발견해 원래 비율과 640px / Replacement 480px 확대 상한을 적용하고 최종 재검증했다. 원본 이미지 3개·caption·alt는 그대로 유지한다. PC 전체 페이지 높이는 7256px → 6717px로 줄었으며 세부 수치·상태는 읽기 가능한 본문에도 항상 표시한다. 원본 근거 이미지의 해상도를 새로 생성했다고 표현하지 않는다.
+- 공개 반영: PR #21 squash 병합. main e6fa300cf1c97139292a7e59e79bc29ccd9fe8ed 기준 Web Portfolio CI #73 PASS / Portfolio Browser QA #67 **46개 PASS**. Vercel production dpl_6oox6uv34yMTbvtd4qgoJ474u8Ev READY·동일 commit·공개 alias cloud-infra-portfolio.vercel.app 확인. Bluebell 구현·화면 마감·통합 검사·공개 반영까지 완료했다.
+- 실제 제공 코드: 공개 홈 /projects/bluebell /projects/durian /projects/onereport 모두 HTTP 200. index-I1HIz42v.js와 index-Ckz3R00E.css가 검증한 로컬 build와 byte 단위 일치. JS SHA-256 290cc37c1631f70bbb368878f855eb311d265422aa7041711b09846c803dc9a1 / CSS bfc05fa34dff4025b3aca6ff19c7e80ed62e429396d22342cebc27ce85f2f826.
+- 검증 범위: Chromium 화면·키보드·history는 GitHub Actions의 실제 빌드 화면에서 검증했고, 공개 배포는 commit / READY / HTTP / bundle 일치로 검증했다. 원격 공개 domain 브라우저를 추가 조작했다고 기록하지 않는다. 이 후속 commit은 진행 문서만 갱신하며 검증된 앱 코드는 동일하다.
+- 다음 시작점: **8단계 OneReport 상세 구성**. 최신 main과 ProjectDetail / OneReport canonical 데이터·검증 Snapshot을 읽고 보존표부터 확인한다. 실제 구현 성과·개인/팀 역할·PoC와 제안 범위·검증 시점을 유지하며 문제 → 수행 → 결과 → 근거를 연결한다. 별도 브랜치에서 OneReport 하나만 구현·검토·마감한 뒤 Labbit으로 진행한다. 완료한 Bluebell·홈·Durian을 다시 개편하지 않는다.
 
-새 채팅에서는 AGENTS.md → README.md → 이 문서 → 최신 main 및 관련 파일 순서로 읽고 완료한 단계를 반복하지 않는다. 현재 다음 시작점은 Step 8 — Bluebell의 **최종 QA·캡처 검토**이다. PR #20과 1~7단계는 공개 반영까지 완료했으므로 다시 구현하거나 같은 QA를 반복하지 않는다. 실행 시 최신 main/브랜치 상태와 실제 문서 내용을 확인하고 현재 작업 브랜치에서 이어간다.
+새 채팅에서는 AGENTS.md → README.md → 이 문서 → 최신 main 및 관련 파일 순서로 읽고 완료한 단계를 반복하지 않는다. 다음 시작점은 Step 8 — Bluebell 기록의 **OneReport 상세 구성**이다. PR #20의 1~7단계와 PR #21의 Bluebell 구현은 공개 반영했으므로 다시 시작하지 않는다. 실행 시 최신 main/브랜치 상태와 실제 문서 내용을 확인하고 새 작업 브랜치에서 이어간다.
 후속 작업이 끝나면 해당 단계 상태, 변경 파일·commit/PR, 검증 결과와 남은 리스크, 바로 다음 시작점을 이 문서에 갱신한다.
