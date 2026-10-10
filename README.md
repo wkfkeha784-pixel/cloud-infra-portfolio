@@ -61,7 +61,7 @@ GitHub Actions에서 다음을 자동 검증합니다.
 - Project navigation
 - OneReport private-source link 비노출 / Labbit public Evidence link
 - Full-page screenshot artifact
-- Master v2.10과 Web의 핵심 Claim / Boundary 동기화
+- Master와 Web의 핵심 Claim / Boundary 동기화
 
 운영 흐름:
 
@@ -102,7 +102,8 @@ tests/
 - Bluebell의 Recovery Trigger Design과 Final Controlled E2E를 분리합니다.
 - OneReport는 Rule-based Analysis로 표현하며 PR #30의 502와 후속 Final PASS 시점을 구분합니다.
 - OneReport 팀 저장소는 private이므로 공개 Web에서 Repository/PR 링크를 제거하고 Evidence Snapshot만 제공합니다.
-- Labbit은 IN PROGRESS 상태를 유지하고 Draft PR과 actual VM E2E를 분리합니다.
+- Labbit은 Terminal·File PR #62 main 병합과 코드/CI 검증 성과를 명시하고, 실제 VM E2E는 후속 통합 검증으로 구분합니다.
+- 확인된 개인 성과와 해결한 문제를 먼저 설명하고, 필요한 검증 범위는 짧게 명시합니다. 근거가 있는 성과를 불필요하게 축소하지 않습니다.
 - 접근이 불안정한 Repository 링크를 억지로 노출하지 않습니다.
 
 ## Public contact policy
