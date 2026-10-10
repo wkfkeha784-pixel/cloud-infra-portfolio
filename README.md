@@ -8,7 +8,7 @@ AWS·Kubernetes 프로젝트에서 맡은 일과 운영·복구 검증 결과를
 
 | 프로젝트 | 담당한 일과 검증 범위 |
 |---|---|
-| [**Team Durian**](https://cloud-infra-portfolio.vercel.app/projects/durian) | Kubernetes·Redis·Kafka·KEDA 운영, HTTP 요청 수락과 확장·축소, Terraform 인프라 복구 |
+| [**Team Durian**](https://cloud-infra-portfolio.vercel.app/projects/durian) | Kubernetes·Redis·Kafka·KEDA 운영, HTTP 요청 수락과 확장·축소, Terraform worker-03 재생성·재가입 |
 | [**Bluebell**](https://cloud-infra-portfolio.vercel.app/projects/bluebell) | 팀장, AWS Web–WAS 구축과 인스턴스 교체 후 서비스 정상화 검증 |
 | [**OneReport**](https://cloud-infra-portfolio.vercel.app/projects/onereport) | Backend 도메인·DB·라우팅·API 계약과 규칙 기반 분석 |
 | [**Labbit**](https://cloud-infra-portfolio.vercel.app/projects/labbit) | Frontend·디자인, HTTP·WebSocket 연동, Terminal·파일 기능의 코드·CI 검증 |

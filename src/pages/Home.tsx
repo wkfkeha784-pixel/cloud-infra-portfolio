@@ -11,7 +11,7 @@ export default function Home() {
       <section className="hero">
         <div className="container hero-grid">
           <div>
-            <span className="eyebrow">CLOUD INFRASTRUCTURE ENGINEER</span>
+            <span className="eyebrow">신입 클라우드 인프라 엔지니어</span>
             <h1>박희철</h1>
             <p className="hero-lead">
               구축에서 끝내지 않고, 운영 상태를 관측하고
@@ -19,7 +19,7 @@ export default function Home() {
               장애 이후 정상화까지 검증합니다.
             </p>
             <p className="hero-support">
-              AWS·OpenStack·Kubernetes 환경에서 서비스 연결, 부하에 따른 확장,
+              KT Cloud 교육·팀 프로젝트에서 AWS·OpenStack·Kubernetes의 서비스 연결과 확장,
               장애·설정 변경 이후 복구 상태를 검증했습니다.
             </p>
             <div className="hero-actions">
@@ -42,8 +42,8 @@ export default function Home() {
                   <span className="hero-project-number" aria-hidden="true">01</span>
                   <span className="hero-project-copy">
                     <span className="hero-project-name">Team Durian</span>
-                    <strong>부하에 따른 확장과 Worker 복구</strong>
-                    <span className="hero-project-description">Consumer 1→4→1 · Terraform 복구 검증</span>
+                    <strong>부하에 따른 확장과 Worker 재가입</strong>
+                    <span className="hero-project-description">Consumer 1→4→1 · worker-03 재생성·재가입</span>
                   </span>
                   <span className="hero-project-arrow" aria-hidden="true">↗</span>
                 </Link>
@@ -106,6 +106,7 @@ export default function Home() {
               <div className="timeline-content">
                 <span className="timeline-category">학력</span>
                 <h3>육군사관학교 전자공학과 졸업</h3>
+                <p>전자공학·군사학 전공 · 공학사·군사학사 취득</p>
               </div>
             </article>
             <article>
@@ -114,7 +115,7 @@ export default function Home() {
                 <span className="timeline-category">군 경력</span>
                 <h3>대한민국 육군 · 정보통신 병과 장교</h3>
                 <p>예비역 중위</p>
-                <p>조직·인원 운영 · 절차 기반 임무 수행 · 현장 이슈 대응 · 보고·문서화</p>
+                <p>통신작전·운용계획, 장비 점검·정비 일정 관리, 위험성평가·재난 대비 업무</p>
               </div>
             </article>
             <article>
