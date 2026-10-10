@@ -2,32 +2,8 @@ import { Link } from 'react-router-dom'
 import ProjectCard from '../components/ProjectCard'
 import { projects } from '../data/projects'
 
-const coreFocus = [
-  {
-    title: 'Infrastructure Integration & Recovery',
-    project: 'Bluebell',
-    body: 'AWS 3-Tier 통합 · ASG Replacement 이후 서비스 정상화 검증',
-    href: '/projects/bluebell',
-  },
-  {
-    title: 'Kubernetes Operations',
-    project: 'Durian',
-    body: '외부 HTTP 부하 · Kafka Lag 기반 KEDA Consumer 1→4→1 검증',
-    href: '/projects/durian',
-  },
-  {
-    title: 'IaC · Observability · Reproducibility',
-    project: 'Durian / Bluebell',
-    body: 'Terraform Drift 복구 · Git/Manifest/Monitoring과 Runtime 정합',
-    href: '/projects/durian',
-  },
-  {
-    title: 'Contract-driven Application Integration',
-    project: 'OneReport / Labbit',
-    body: 'Backend Domain/API · Frontend HTTP/WS Contract Consumer',
-    href: '/projects/labbit',
-  },
-]
+const featuredProjects = projects.filter((project) => project.home.group === 'featured')
+const additionalProjects = projects.filter((project) => project.home.group === 'additional')
 
 export default function Home() {
   return (
@@ -88,33 +64,30 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="section">
+      <section className="section section-muted" id="projects" aria-labelledby="projects-title">
         <div className="container">
           <div className="section-heading">
-            <span className="eyebrow">CORE FOCUS</span>
-            <h2>운영 흐름을 연결하고 검증하는 역량</h2>
+            <span className="eyebrow">SELECTED PROJECTS</span>
+            <h2 id="projects-title">운영과 복구를 검증한 대표 프로젝트</h2>
+            <p>담당 역할과 확인한 결과를 중심으로 정리했습니다.</p>
           </div>
-          <div className="focus-grid">
-            {coreFocus.map((item) => (
-              <a className="focus-card" href={item.href} key={item.title}>
-                <span>{item.project}</span>
-                <h3>{item.title}</h3>
-                <p>{item.body}</p>
-              </a>
+          <div className="featured-project-list">
+            {featuredProjects.map((project) => (
+              <ProjectCard project={project} key={project.slug} />
             ))}
           </div>
         </div>
       </section>
 
-      <section className="section section-muted" id="projects">
+      <section className="section additional-projects" aria-labelledby="additional-projects-title">
         <div className="container">
-          <div className="section-heading">
-            <span className="eyebrow">SELECTED PROJECTS</span>
-            <h2>문제 → 역할 → 검증 근거로 보는 프로젝트</h2>
-            <p>PDF에서 요약한 내용을 Case Study 형태로 확장했습니다.</p>
+          <div className="section-heading compact">
+            <span className="eyebrow">MORE PROJECTS</span>
+            <h2 id="additional-projects-title">서비스 구현과 팀 시스템 통합 경험</h2>
+            <p>Backend 구현부터 Frontend 계약 연동까지, 담당한 구현과 통합 경험입니다.</p>
           </div>
-          <div className="project-grid">
-            {projects.map((project) => (
+          <div className="additional-project-list">
+            {additionalProjects.map((project) => (
               <ProjectCard project={project} key={project.slug} />
             ))}
           </div>
