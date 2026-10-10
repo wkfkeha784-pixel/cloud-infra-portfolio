@@ -94,55 +94,64 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="section" id="experience">
-        <div className="container split-section">
+      <section className="section" id="experience" aria-labelledby="experience-title">
+        <div className="container home-info-grid">
           <div>
             <span className="eyebrow">EXPERIENCE & EDUCATION</span>
-            <h2>운영 책임 경험을 기술 프로젝트 역량으로 확장했습니다</h2>
+            <h2 id="experience-title">경력과 학력</h2>
           </div>
           <div className="timeline">
             <article>
               <span>2016.02–2020.03</span>
-              <h3>육군사관학교 전자공학과 졸업</h3>
+              <div className="timeline-content">
+                <span className="timeline-category">학력</span>
+                <h3>육군사관학교 전자공학과 졸업</h3>
+              </div>
             </article>
             <article>
               <span>2020.03–2025.09</span>
-              <h3>대한민국 육군 · 정보통신 병과 장교</h3>
-              <p>예비역 중위</p>
-              <p>조직·인원 운영 · 절차 기반 임무 수행 · 현장 이슈 대응 · 보고·문서화</p>
+              <div className="timeline-content">
+                <span className="timeline-category">군 경력</span>
+                <h3>대한민국 육군 · 정보통신 병과 장교</h3>
+                <p>예비역 중위</p>
+                <p>조직·인원 운영 · 절차 기반 임무 수행 · 현장 이슈 대응 · 보고·문서화</p>
+              </div>
             </article>
             <article>
               <span>2026.05.12–2026.12.03</span>
-              <h3>KT Cloud Infrastructure Bootcamp</h3>
-              <p>진행 중 · AWS / OpenStack / Kubernetes</p>
+              <div className="timeline-content">
+                <span className="timeline-category">교육</span>
+                <h3>KT Cloud Infrastructure Bootcamp</h3>
+                <p>진행 중 · AWS / OpenStack / Kubernetes</p>
+              </div>
             </article>
           </div>
         </div>
       </section>
 
-      <section className="section section-muted">
-        <div className="container qualification-grid">
+      <section className="section section-muted" aria-labelledby="qualifications-title">
+        <div className="container home-info-grid">
           <div>
             <span className="eyebrow">QUALIFICATIONS</span>
-            <h2>Qualifications</h2>
+            <h2 id="qualifications-title">보유 자격</h2>
           </div>
-          <div className="qualification-list">
-            <div><strong>컴퓨터활용능력 2급</strong></div>
-            <div><strong>G-TELP Level 2 · 84점</strong></div>
-          </div>
+          <ul className="qualification-list">
+            <li><span>자격증</span><strong>컴퓨터활용능력 2급</strong></li>
+            <li><span>어학</span><strong>G-TELP Level 2 · 84점</strong></li>
+          </ul>
         </div>
       </section>
 
-      <section className="section contact-section" id="contact">
+      <section className="section contact-section" id="contact" aria-labelledby="contact-title">
         <div className="container contact-card">
           <div>
             <span className="eyebrow">CONTACT</span>
-            <h2>프로젝트와 경험을 더 자세히 확인할 수 있습니다.</h2>
+            <h2 id="contact-title">연락처</h2>
           </div>
           <div className="contact-links">
-            <a href="mailto:wkfkeha784@gmail.com">wkfkeha784@gmail.com</a>
+            <a href="mailto:wkfkeha784@gmail.com"><span>Email</span><strong>wkfkeha784@gmail.com</strong></a>
             <a href="https://github.com/wkfkeha784-pixel" target="_blank" rel="noreferrer">
-              github.com/wkfkeha784-pixel ↗
+              <span>GitHub</span><strong>github.com/wkfkeha784-pixel ↗</strong>
             </a>
             <span className="contact-note">회사 제출용 PDF Portfolio는 지원 과정에서 제공합니다.</span>
           </div>
