@@ -44,7 +44,11 @@ for (const width of [1440, 768, 390, 320]) {
     await page.goBack()
     await expect(page).toHaveURL(/#load-scaling$/)
     await expect(load).toBeFocused()
-    await expect.poll(() => load.locator('h2').evaluate((element) => element.getBoundingClientRect().top >= document.querySelector('.site-header').getBoundingClientRect().bottom)).toBe(true)
+    await expect.poll(() => load.locator('h2').evaluate((element) => {
+      const top = element.getBoundingClientRect().top
+      const headerBottom = document.querySelector('.site-header').getBoundingClientRect().bottom
+      return top >= headerBottom && top <= headerBottom + 100
+    })).toBe(true)
     await page.screenshot({ path: `artifacts/screenshots/journey-${width}-case.png` })
 
     await page.getByRole('link', { name: /Selected Projects/ }).focus()
