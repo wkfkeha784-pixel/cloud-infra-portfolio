@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import ProjectCard from '../components/ProjectCard'
 import { projects } from '../data/projects'
 
@@ -42,11 +43,11 @@ export default function Home() {
               장애 이후 정상화까지 검증합니다.
             </p>
             <p className="hero-support">
-              AWS·OpenStack·Kubernetes 기반 프로젝트에서 서비스 요청 경로를 구성하고, 부하·장애·설정 변경 이후
-              로그·메트릭과 검증 결과로 정상화 여부를 확인해 왔습니다.
+              AWS·OpenStack·Kubernetes 환경에서 서비스 연결, 부하에 따른 확장,
+              장애·설정 변경 이후 복구 상태를 검증했습니다.
             </p>
             <div className="hero-actions">
-              <a className="button" href="#projects">View Projects</a>
+              <a className="button" href="#projects">프로젝트 보기</a>
               <a className="button button-secondary" href="mailto:wkfkeha784@gmail.com">
                 Email
               </a>
@@ -56,16 +57,34 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="hero-visual" aria-hidden="true">
-            <span className="hero-visual-label">OPERATIONS LOOP</span>
-            <div className="ops-loop">
-              <div><strong>01</strong><span>BUILD</span></div>
-              <div><strong>02</strong><span>OBSERVE</span></div>
-              <div><strong>03</strong><span>TROUBLESHOOT</span></div>
-              <div><strong>04</strong><span>RECOVER</span></div>
-              <div><strong>05</strong><span>VERIFY</span></div>
-            </div>
-          </div>
+          <nav className="hero-projects" aria-labelledby="hero-projects-title">
+            <h2 id="hero-projects-title">먼저 볼 프로젝트</h2>
+            <p className="hero-projects-intro">관심 있는 운영 경험부터 살펴보세요.</p>
+            <ol className="hero-project-list">
+              <li>
+                <Link to="/projects/durian" className="hero-project-link">
+                  <span className="hero-project-number" aria-hidden="true">01</span>
+                  <span className="hero-project-copy">
+                    <span className="hero-project-name">Team Durian</span>
+                    <strong>부하에 따른 확장과 Worker 복구</strong>
+                    <span className="hero-project-description">Consumer 1→4→1 · Terraform 복구 검증</span>
+                  </span>
+                  <span className="hero-project-arrow" aria-hidden="true">↗</span>
+                </Link>
+              </li>
+              <li>
+                <Link to="/projects/bluebell" className="hero-project-link">
+                  <span className="hero-project-number" aria-hidden="true">02</span>
+                  <span className="hero-project-copy">
+                    <span className="hero-project-name">Bluebell</span>
+                    <strong>서비스 연결과 장애 이후 정상화</strong>
+                    <span className="hero-project-description">Web–WAS 구축 · Replacement 통합 검증</span>
+                  </span>
+                  <span className="hero-project-arrow" aria-hidden="true">↗</span>
+                </Link>
+              </li>
+            </ol>
+          </nav>
         </div>
       </section>
 
