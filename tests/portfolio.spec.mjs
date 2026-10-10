@@ -201,9 +201,34 @@ test('navigation: project routes start at top while the home projects anchor rem
 
   await page.getByRole('link', { name: /Selected Projects/ }).click()
   await expect(page).toHaveURL(/\/#projects$/)
-  await expect.poll(async () =>
-    page.locator('#projects').evaluate((element) => Math.abs(element.getBoundingClientRect().top)),
-  ).toBeLessThanOrEqual(2)
+  await expect.poll(() => page.evaluate(() => {
+    const section = document.querySelector('#projects').getBoundingClientRect()
+    const header = document.querySelector('.site-header').getBoundingClientRect()
+    return section.top >= header.bottom && section.top <= header.bottom + 32
+  })).toBe(true)
+})
+
+test('home: introduction leads to both featured cases and the projects section', async ({ page }) => {
+  await page.goto('/', { waitUntil: 'networkidle' })
+  const featured = page.getByRole('navigation', { name: '먼저 볼 프로젝트' })
+
+  await featured.getByRole('link', { name: /Team Durian/ }).click()
+  await expect(page).toHaveURL(/\/projects\/durian$/)
+  await expect(page.locator('h1')).toContainText('Team Durian')
+
+  await page.goto('/', { waitUntil: 'networkidle' })
+  await featured.getByRole('link', { name: /Bluebell/ }).click()
+  await expect(page).toHaveURL(/\/projects\/bluebell$/)
+  await expect(page.locator('h1')).toContainText('Bluebell')
+
+  await page.goto('/', { waitUntil: 'networkidle' })
+  await page.getByRole('link', { name: '프로젝트 보기', exact: true }).click()
+  await expect(page).toHaveURL(/\/#projects$/)
+  await expect.poll(() => page.evaluate(() => {
+    const section = document.querySelector('#projects').getBoundingClientRect()
+    const header = document.querySelector('.site-header').getBoundingClientRect()
+    return section.top >= header.bottom && section.top <= header.bottom + 32
+  })).toBe(true)
 })
 
 
