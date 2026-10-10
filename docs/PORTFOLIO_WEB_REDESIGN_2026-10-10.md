@@ -1,11 +1,12 @@
 # 웹 포트폴리오 구성 개선 설계 및 진행 기록
 
 작성일: 2026-10-10 (Asia/Seoul)
-진행 상태: 1~4단계 완료 / 다음은 5단계 Durian 상단·목차·구조
+진행 상태: 1~6단계 완료 / 7단계 통합 사용 검토 진행 중
 대상: 박희철의 신입·주니어 Cloud Infrastructure / DevOps / Platform 지원용 웹
 저장소: wkfkeha784-pixel/cloud-infra-portfolio
-작업 브랜치: feat/web-reading-structure-20261010
-설계 기준 main: 58380868e18b3734d5bb6d15d20fffa780575bb1 (PR #18 반영)
+작업 브랜치: feat/durian-reading-structure-20261010 (Draft PR #20)
+현재 작업 기준 main: bf07918d0683ac21f34aafff412c4fb06b35b0f1 (홈 1~4단계 PR #19 병합)
+최초 설계 기준 main: 58380868e18b3734d5bb6d15d20fffa780575bb1 (PR #18 반영)
 
 ## 1. 사용자 요청과 이번 작업 범위
 
@@ -180,7 +181,7 @@ PC에서는 보조 목차를 본문 옆에 두고, 모바일에서는 상단의 
 - 최종 상태: Ready,SchedulingDisabled. 재가입을 곧바로 workload scheduling 가능 상태로 확대하지 않는다.
 - 범위: worker-03 단일 Compute Instance 복구 PoC.
 - 기존 myContributions의 수행 주장 보존. 상세 plan·명령·이미지는 실제 기록 확인 후 연결한다. 스크린샷이나 로그를 만들어 증거처럼 제시하지 않는다.
-- 이 사례 전용 Snapshot이 현재 projects.ts에는 없으므로 구현 시 기존 Master 및 확보된 원본 근거를 확인한다. 날짜를 추정하지 않는다.
+- 5단계에서 Master v2.11 p.6 Drift Recovery Evidence의 실제 화면을 확인해 복구 대상·과정·최종 상태와 출처를 표시했다. 전용 로그·이미지와 시험 날짜는 새로 추가하지 않았으며 날짜를 추정하지 않는다.
 
 ### 5.6 운영 상태와 원본 자료
 
@@ -233,8 +234,8 @@ PC에서는 보조 목차를 본문 옆에 두고, 모바일에서는 상단의 
 | 2 | 완료 | 홈 소개와 대표 프로젝트 진입 | 직무·강점·프로젝트 이동이 분명함 |
 | 3 | 완료 | 홈 대표·추가 프로젝트 | 역할·성과·조건의 위치가 일정하고 중복 설명 정리 |
 | 4 | 완료 | 홈 하단과 모바일 마감 | 홈 전체 읽기 순서와 메뉴·연락처 동작 확인 |
-| 5 | 예정 | Durian 상단·목차·구조 | 제목·목차만으로 사례 내용을 구분 가능 |
-| 6 | 예정 | Durian 네 사례와 운영 마감 | 각 조치·결과·증거가 같은 구역에서 연결됨 |
+| 5 | 완료 | Durian 상단·목차·구조 | 제목·목차만으로 사례 내용을 구분 가능 |
+| 6 | 완료 | Durian 네 사례와 운영 마감 | 각 조치·결과·증거가 같은 구역에서 연결됨 |
 | 7 | 예정 | 홈·Durian 통합 사용 검토 | Desktop/Tablet/Mobile, navigation, overflow, focus·details 검증 |
 | 8 | 예정 | Bluebell → OneReport → Labbit | 공통 구성과 프로젝트 고유 강점이 함께 유지됨 |
 
@@ -315,5 +316,46 @@ PR/main CI 통과는 내용 읽기 품질의 대체물이 아니다. 화면 검�
 - 반영 단위: **홈 1~4단계 완성본은 PR #19로 main에 반영**. Durian 상세 재구성은 다음 작업 브랜치에서 5단계부터 분리한다.
 - 다음: **5단계 Durian 상단·목차·구조만 구현**. 성과 제목·역할 요약·7개 목차를 배치하고 기존 상세 내용의 구역 이동과 보존 대응을 확인한다. 네 사례의 문제·조치·결과·증거를 함께 재구성하는 작업은 6단계에서 진행한다.
 
-새 채팅에서는 AGENTS.md → README.md → 이 문서 → 최신 작업 브랜치 및 관련 파일 순서로 읽고 완료한 단계를 반복하지 않는다. 현재 다음 시작점은 Step 4 기록의 **5단계**다. 최신 main에 PR #19가 병합되었는지 확인한 후 새로운 작업 브랜치에서 시작한다. 실행 시 최신 main/브랜치 상태와 실제 문서 내용을 확인한다.
+### 2026-10-10 / Step 5
+
+- 구현: Durian 전용 상세에 프로젝트명 → 성과 제목 → 프로젝트 설명 → 개인 핵심 결과 세 항목을 배치. Consumer 1→4→1 / HTTP 300/300 수락 / worker-03 재생성·재가입의 의미와 조건을 함께 표시했다.
+- 구역: overview / architecture / load-scaling / request-recovery / scheduling / worker-recovery / evidence의 일곱 번호·제목·고유 앵커로 기존 내용을 이동. PC는 본문 옆 고정 목차, Tablet·Mobile은 본문 앞 링크 목차. 구역 사이 선과 간격으로 소속 관계를 구분했다.
+- 보존: 기존 프로젝트 네 객체를 원본과 비교해 운영 대시보드 공개 명칭 한 필드 외 동일함을 확인. 날짜·수치·MY/PROJECT·출처·기술·교훈·조건·자료 링크를 유지했다. 세 Snapshot은 해당 사례 안에 배치하고 기존 카드 마크업을 공통 컴포넌트로 추출했다. 다른 상세의 구성은 유지했다.
+- 근거 확인: Durian 원본의 개인 담당과 팀 Terraform 범위를 확인하고 Master v2.11 p.6의 worker-03 Drift Recovery를 직접 확인. 실제 VM 삭제 / State에는 존재 → 1 add, 0 change, 0 destroy → apply → kubeadm join → Ready,SchedulingDisabled를 해당 구역에 표시. 팀 최종 Health 43 PASS와 분리했으며 날짜·로그·이미지를 만들어 넣지 않았다.
+- 변경 파일: ProjectDetail.tsx / 새 DurianDetail.tsx / 새 EvidenceSnapshotCard.tsx / projects.ts / global.css / playwright.config.mjs / 새 tests/durian-responsive.spec.mjs. Durian presentation metadata는 기존 데이터 파일에서 관리하고 CSS는 Durian 범위에 한정했다.
+- 검증: 최초 구현 a8001bf535747574510cb1df9ca6cca3e29445d6 기준 Web Portfolio CI #61 PASS / Portfolio Browser QA #55 총 38개 PASS. 최종 화면 수정 1398e98b34296ef675ef5d20193dade6fd5a9914 기준 로컬 build / lint / git diff --check PASS, Web Portfolio CI #62 PASS / Portfolio Browser QA #56 총 38개 PASS. 후속 문서 커밋은 검증 기록만 갱신한다.
+- 검사 범위: 기존 34개 검사를 유지하고 1440 / 768 / 390 / 320px에서 일곱 목차 클릭, 고유 ID, 고정 헤더 아래 제목 노출, keyboard Enter, hash reload, 가로 overflow 4개 추가. MY Worker 최종 상태와 8/6 Redis 경로 조건·공개 명칭 유지도 확인했다.
+- 화면 검토: 네 너비에서 상단 결과·목차·본문 순서와 구역 경계를 확인. 사례·마지막 자료 영역의 실제 줄바꿈도 검토. PC·Tablet에서 돌아가기 링크와 분류 문구가 같은 줄에 붙어 있던 것을 별도 줄로 수정했다.
+- 저장: Draft PR #20 — https://github.com/wkfkeha784-pixel/cloud-infra-portfolio/pull/20. branch Preview는 로그인 보호가 있어 동일 코드의 CI 화면·동작 검사로 검토했다. main과 공개 홈페이지는 홈 1~4단계 완성본을 유지한다.
+- 남은 작업: 긴 요청 경로의 좁은 노드·모바일 세로 길이, 사례 안의 설명 우선순위, 반복 조건 정리는 6단계 대상. 이번 검토는 구조·이동의 완료이며 Durian 전체의 최종 완성이 아니다.
+- 다음: **6단계 Durian 네 사례와 운영 마감만 진행**. 외부 부하 / Kafka 복구 / Pending / Worker 복구 각각의 문제 → 조치 → 결과 → 근거가 한 구역에서 읽히도록 정리한다. 요청 경로는 요청 제어와 비동기 처리 단위로 묶고 최신 구조와 8/6 경로를 분리한다. 중복 조건은 해당 사례 근처에 모으며 성과를 축소하지 않는다. 7단계 홈·Durian 통합 검토까지 이 브랜치·PR을 유지하고 이후 완성 단위로 반영한다.
+
+### 2026-10-10 / Step 6
+
+- 구현: 외부 부하 / Kafka 복구 / Pending / Worker 복구를 사례 본문으로 구성. 문제·조치 다음에 실제 결과와 해당 조건을 배치. MY/PROJECT와 확인된 날짜는 사례의 시작 부분에 표시했다.
+- 구조: 요청 제어 1~4 → 비동기 처리 5~8의 두 단계로 긴 요청 경로를 묶었다. 모바일은 단계 안에서 두 열로 읽고, 확장 신호·관측 경로는 별도로 표시한다. 8/6 Redis 미호출 경로는 Kafka 복구 사례에 유지했다.
+- 근거: 핵심 결과와 요청 수락/DB Commit 구분, Worker SchedulingDisabled 상태는 항상 보인다. 긴 측정 기록과 출처만 native details로 제공한다. 부하 시험의 약 573.68 req/s·0.523초는 기존 Master p.5의 Demo Script Snapshot으로 보존했다.
+- 운영: 개인 Monitoring 인수·재구성 / Runtime 정합성과 PROJECT 최종 Health 43 PASS를 분리. 반복 조건은 각 사례로 모으고 P95·SLI/SLO는 후속 과제로 한 번 표시했다.
+- 보존: PR #20 head b4f10c7c2c8e14a8f7eebb73fa1605b9b9797400과 로컬 수정 대상 파일의 blob SHA 일치 확인 후 작업. 네 canonical 프로젝트 객체의 전체 비교 PASS. 기존 facts·scope·date·source·기타 프로젝트는 변경하지 않았다.
+- 변경: DurianDetail.tsx / projects.ts의 Durian presentation 문구 / Durian 범위 CSS / 기존 Durian QA 검사 확장 / 이 진행 기록.
+- 로컬 검증: build / lint / git diff --check PASS. React 점검: 모듈 범위 컴포넌트, native details/summary, ordered list, time·heading 구조와 기존 focus 스타일, 새로운 라이브러리·스크롤 state 없음.
+- 검토 경로: 기존 CI QA의 실제 브라우저 동작 및 1440 / 768 / 390 / 320px 캡처. 로그인 보호된 Preview 대신 동일 코드의 CI 결과를 검토했다.
+- 중간 QA: 5ce0e084fab3fd96bbb651e451a523dae56dddae 기준 CI #64 PASS. Browser QA #58은 36 PASS / 2 FAIL. 실패는 같은 기존 문장 selector가 PC·Mobile에서 바뀐 Worker 조건 문구를 찾지 못한 것으로, 단일 Compute Instance 범위와 SchedulingDisabled 상태를 해당 복구 구역에서 확인하도록 유지·보강했다. 네 너비 목차·hash reload·접기 keyboard/overflow 검사는 모두 PASS.
+- 화면 점검: 사례별 본문·조치·결과의 경계, 조건과 팀/개인 Scope의 소속 관계 확인. 320px의 POST_CUTOVER_E2E_SUCCESS 마지막 글자 줄바꿈은 작은 code 표시로 다듬었다. summary 포커스 스타일을 명시했다. 사례 전용 캡처에서는 고정 헤더를 임시 제외해 긴 요소 캡처 중의 헤더 중첩만 피한다. 실제 navigation/전체 화면 검사에서는 헤더를 유지한다.
+- 최종 검증: 코드 46aa84f04610ea41cb98ab5f78cbdf60177f27a3 기준 로컬 build / lint / diff PASS, Web Portfolio CI #65 PASS, Portfolio Browser QA #59 **38개 PASS**. 목차·앵커·reload·공개 연락처·기존 상세 회귀를 유지하고, 결과 상시 노출 및 details의 Enter/Space 열기·닫기와 펼친 상태 overflow 검사를 포함했다.
+- 최종 화면: 네 너비의 사례 캡처에서 본문·결과·조건·출처 구분 확인. 320px 성공 코드의 단독 글자 줄바꿈 해소 확인. PC·Tablet 요청 구조와 Mobile 요청/처리 두 열 순서, Worker 상태 및 개인 Monitoring/팀 Health 구분 검토. 검토용 화면: Park_Heecheol_Web_Step6_Durian_2026-10-10.png.
+- 저장: PR #20에서 구현·QA·화면 마감 완료. 이 후속 문서 커밋은 진행 기록만 변경하며 검증된 코드는 동일하다. main/공개 홈페이지는 홈 1~4단계 완성본 유지.
+- 다음: **7단계 홈·Durian 통합 사용 검토**. 대표 프로젝트 진입 → 목차 → 사례 → 출처 확인 → 프로젝트 목록/다음 프로젝트 이동의 읽기·탐색 흐름, Mobile 메뉴, focus/접기 및 필수 조건 노출을 종합 검토한다. 이미 끝난 5~6단계 구현과 같은 QA를 이유 없이 반복하지 않는다. 완성 단위 검토 후 PR/main 반영 판단. 다른 세 프로젝트 개편은 8단계.
+
+### 2026-10-10 / Step 7
+
+- 대상: 홈 대표 진입 → Durian → 목차 → 사례·출처 → 프로젝트 목록 / 다음 프로젝트로 이어지는 전체 읽기·탐색 흐름. 기존 5~6단계 내용과 디자인은 유지했다.
+- 기준 확인: PR #20 head 5bb9e4a9c1361618a0b240db788cb5b67d6a15b3의 CI #66 / Browser QA #60 PASS와 Vercel Preview 성공 확인. 공개 production은 bf07918d0683ac21f34aafff412c4fb06b35b0f1 홈 완성본임을 Vercel metadata로 확인했다.
+- 발견·수정: hash 이동 시 화면만 이동하고 키보드 focus는 목차에 남는 문제. route/hash 목적지로 focus를 옮기고 tabindex=-1로 Tab 순서에 추가하지 않았다. 다음 Tab은 해당 사례 출처 summary로 이어진다. 페이지 전환 시 제목 focus와 상단 이동, 뒤로가기 hash 복귀도 같은 방식으로 처리하며 stale animation frame은 cleanup한다.
+- 검증 추가: 1440 / 768 / 390 / 320px에서 대표 진입, keyboard Enter, 목차 이후 Tab/접기, 실제 focus outline, 뒤로가기, 목록 복귀, 다음 프로젝트, 다른 상세에서 Mobile 메뉴로 목록 복귀, overflow / pageerror를 이어서 확인하는 journey 검사 4개. 기존 38개 검사는 유지했다.
+- 변경: src/App.tsx / 목적지 focus 스타일 / tests/reading-journey-responsive.spec.mjs / 이 기록. 로컬 build / lint / diff PASS.
+- 진행 중: PR CI / Browser QA / 실제 화면 확인. 통과 후 PR #20 완성 단위를 main에 반영하고 배포 commit·domain·bundle 및 main QA를 검증한다.
+- 다음 시작점: 위 최종 검사 결과 확인부터. 공개 반영 전까지 Draft 유지. 다른 상세 구성 변경은 8단계 Bluebell부터 별도 작업으로 진행한다.
+
+새 채팅에서는 AGENTS.md → README.md → 이 문서 → 최신 작업 브랜치 및 관련 파일 순서로 읽고 완료한 단계를 반복하지 않는다. 현재 다음 시작점은 Step 7 기록의 **통합 흐름 검사 결과 확인·완성 단위 배포**다. PR #20의 feat/durian-reading-structure-20261010에서 이어가며 완료된 구현을 다시 시작하지 않는다. 실행 시 최신 main/브랜치 상태와 실제 문서 내용을 확인한다.
 후속 작업이 끝나면 해당 단계 상태, 변경 파일·commit/PR, 검증 결과와 남은 리스크, 바로 다음 시작점을 이 문서에 갱신한다.

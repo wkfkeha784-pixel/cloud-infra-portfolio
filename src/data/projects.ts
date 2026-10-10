@@ -163,7 +163,7 @@ export const projects: Project[] = [
         facts: [
           'KEDA Manifest server-side dry-run PASS · kubectl diff RC=0',
           'Prometheus · Grafana · Alertmanager · kube-state-metrics Running',
-          'QueuePilot Operations + Service Dashboard 운영',
+          '운영·서비스 대시보드 운영',
           'Final Health PASS 43 / WARN 0 / FAIL 0',
         ],
         note:
@@ -523,3 +523,59 @@ export const projects: Project[] = [
 ]
 
 export const projectBySlug = Object.fromEntries(projects.map((project) => [project.slug, project]))
+
+
+export const durianReading = {
+  headline: '외부 부하에 따른 Consumer 확장·축소와 Kubernetes 운영 복구를 검증했습니다.',
+  highlights: [
+    { result: 'Consumer 1→4→1', context: '외부 부하에 따른 확장 · Lag 해소 후 축소' },
+    { result: 'HTTP 300/300 수락', context: '동시 요청 50 · 2026-08-10 · 비동기 요청 수락' },
+    { result: 'worker-03 재생성·재가입', context: 'Terraform · 단일 Compute Instance 복구' },
+  ],
+  sections: [
+    { id: 'overview', number: '01', title: '프로젝트와 담당 역할', label: '프로젝트·담당 역할' },
+    { id: 'architecture', number: '02', title: '요청 처리 구조', label: '요청 처리 구조' },
+    { id: 'load-scaling', number: '03', title: '외부 부하와 자동 확장·축소', label: '부하와 자동 확장' },
+    { id: 'request-recovery', number: '04', title: 'Kafka 요청 경로 복구', label: 'Kafka 경로 복구' },
+    { id: 'scheduling', number: '05', title: 'Consumer Pending 대응', label: 'Pending 대응' },
+    { id: 'worker-recovery', number: '06', title: 'Terraform Worker 복구', label: 'Terraform 복구' },
+    { id: 'evidence', number: '07', title: '운영 상태와 원본 자료', label: '운영 상태·자료' },
+  ],
+  workerRecovery: {
+    source: 'Portfolio Master v2.11 · p.6 Drift Recovery Evidence',
+    facts: [
+      { label: '복구 대상', value: 'worker-03 실제 VM 삭제 · Terraform State에는 존재' },
+      { label: '복구 과정', value: '1 add / 0 change / 0 destroy → apply → kubeadm join' },
+      { label: '최종 상태', value: 'Ready,SchedulingDisabled' },
+    ],
+    note: 'worker-03 단일 Compute Instance 복구 PoC · 재가입 시점에는 SchedulingDisabled 상태',
+  },
+  cases: {
+    load: {
+      title: '클러스터 밖의 요청으로 Consumer 1→4→1을 확인했습니다.',
+      problem: 'Pod 상태만으로는 외부 수강신청 요청이 Kafka에 쌓이고 Consumer 확장으로 이어지는지 판단하기 어려웠습니다.',
+      condition: 'HTTP 200은 비동기 요청 수락 기준입니다. DB 300건 전체 Commit 완료를 측정한 시험은 아닙니다.',
+      measurement: '약 573.68 req/s · 0.523초는 짧은 Demo Script의 전송 처리량 Snapshot입니다. 지속 처리량이나 P95를 측정한 값은 아닙니다.',
+    },
+    request: {
+      title: '접근·인증 설정을 복구하고 실제 DB 반영까지 재검증했습니다.',
+      problem: '공식 요청 경로를 복구하기 위해 네트워크 접근부터 Kafka 인증·권한까지 순서대로 확인해야 했습니다.',
+      action: 'NetworkPolicy → TLS Trust → SCRAM → Topic / Group ACL 순으로 복구하고, 최소권한 Cutover 후 Mainpage의 실제 요청으로 MariaDB 반영을 확인했습니다.',
+      condition: '이 8/6 Snapshot의 공식 Producer 경로에는 Redis 호출이 없었습니다.',
+    },
+    scheduling: {
+      title: '확장된 Consumer가 실행되지 않는 원인과 배치를 조정했습니다.',
+      labels: { Symptom: '증상', Cause: '원인', Action: '팀 조치', Result: '기록된 결과' } as Record<string, string>,
+      source: 'Durian 최종 발표자료 · 트러블슈팅',
+      condition: '배치 조정은 팀 대응 사례입니다. 8/10 외부 부하 시험에서 확인한 Worker 2+2 분산은 별도 시험 결과입니다.',
+    },
+    worker: {
+      title: '삭제된 worker-03을 재생성하고 클러스터에 재가입시켰습니다.',
+      lesson: 'VM 재생성과 클러스터 재가입을 확인한 뒤, 최종 Node 상태까지 구분해 복구 결과를 기록했습니다.',
+    },
+    operations: {
+      personal: 'Monitoring을 인수·재구성하고 Runtime ↔ Git/Manifest 정합성을 검증했습니다.',
+      followup: '반복 시험을 통해 P95와 SLI/SLO를 검증하는 작업은 후속 과제입니다.',
+    },
+  },
+} as const

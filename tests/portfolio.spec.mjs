@@ -48,16 +48,21 @@ for (const [name, route, marker] of routes) {
 test('durian: validation evidence snapshots expose dated proof and scope', async ({ page }) => {
   await page.goto('/projects/durian', { waitUntil: 'networkidle' })
 
-  const cards = page.locator('.evidence-snapshot-card')
-  await expect(cards).toHaveCount(3)
+  const cases = page.locator('#load-scaling .durian-case, #request-recovery .durian-case, #evidence .durian-case')
+  await expect(cases).toHaveCount(3)
 
   await expect(page.getByText('300 / 300 HTTP 200 · Concurrency 50')).toBeVisible()
   await expect(page.getByText('POST_CUTOVER_E2E_SUCCESS')).toBeVisible()
   await expect(page.getByText('Final Health PASS 43 / WARN 0 / FAIL 0')).toBeVisible()
 
-  await expect(cards.nth(0).getByText('MY', { exact: true })).toBeVisible()
-  await expect(cards.nth(1).getByText('MY', { exact: true })).toBeVisible()
-  await expect(cards.nth(2).getByText('PROJECT', { exact: true })).toBeVisible()
+  await expect(cases.nth(0).getByText('MY', { exact: true })).toBeVisible()
+  await expect(cases.nth(1).getByText('MY', { exact: true })).toBeVisible()
+  await expect(cases.nth(2).getByText('PROJECT', { exact: true })).toBeVisible()
+  for (const item of await cases.all()) {
+    await expect(item.locator('time')).toHaveCount(1)
+    await item.locator('summary').click()
+    await expect(item.locator('.durian-source-name')).toBeVisible()
+  }
 })
 
 test('bluebell: recovery validation evidence exposes images, scope, and completion criteria', async ({ page }) => {
@@ -241,7 +246,9 @@ test('v2.10 sync: home and project claim boundaries expose the refreshed evidenc
 
   await page.goto('/projects/durian', { waitUntil: 'networkidle' })
   await expect(page.getByText('Terraform worker-03 Drift Recovery', { exact: true })).toBeVisible()
-  await expect(page.getByText(/Terraform 범위는 worker-03 단일 Compute Instance/)).toBeVisible()
+  const recovery = page.locator('#worker-recovery')
+  await expect(recovery.getByText(/worker-03 단일 Compute Instance 복구 PoC/)).toBeVisible()
+  await expect(recovery.getByText('Ready,SchedulingDisabled', { exact: true })).toBeVisible()
 
   await page.goto('/projects/bluebell', { waitUntil: 'networkidle' })
   await expect(page.getByText(/Recovery Trigger는 EventBridge → SSM 구조로 설계했지만 최종 7\/13 E2E에서는 EventBridge Rule 2개를 DISABLED/)).toBeVisible()
