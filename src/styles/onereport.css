@@ -1,0 +1,20 @@
+.onereport-detail .bluebell-architecture-stage ol { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.onereport-source-name { color: var(--navy); }
+.onereport-smoke-condition { margin: 24px 0; padding: 20px; border-left: 3px solid var(--navy); background: #eef2f6; }
+.onereport-smoke-condition p { margin: 12px 0 0; color: #43566a; font-size: 0.9rem; line-height: 1.85; word-break: keep-all; overflow-wrap: anywhere; }
+.onereport-scope-table { margin: 24px 0 32px; }
+.onereport-scope-table table { width: 100%; table-layout: fixed; border-collapse: collapse; color: var(--navy); font-size: 0.9rem; line-height: 1.8; }
+.onereport-scope-table caption { margin-bottom: 12px; text-align: left; font-size: 0.85rem; font-weight: 700; color: var(--teal); }
+.onereport-scope-table th, .onereport-scope-table td { padding: 16px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; word-break: keep-all; overflow-wrap: anywhere; }
+.onereport-scope-table thead th { background: #eef2f6; }
+.onereport-scope-table tr > :first-child { width: 16%; padding-left: 0; }
+.onereport-scope-table thead tr > :first-child { padding-left: 12px; }
+.onereport-scope-table tbody td:last-child { color: var(--muted); }
+
+@media (max-width: 760px) {
+  .onereport-detail .bluebell-architecture-stage ol { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .onereport-smoke-condition { padding: 18px 16px; }
+  .onereport-scope-table table { font-size: 0.8rem; }
+  .onereport-scope-table th, .onereport-scope-table td { padding: 12px 8px; }
+  .onereport-scope-table tr > :first-child { width: 20%; }
+}

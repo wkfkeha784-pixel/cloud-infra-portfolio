@@ -1,11 +1,12 @@
 # 웹 포트폴리오 구성 개선 설계 및 진행 기록
 
 작성일: 2026-10-10 (Asia/Seoul)
-진행 상태: 1~7단계 및 8단계 Bluebell 완료·공개 반영 / 다음 OneReport 상세 구성
+진행 상태: 1~7단계 및 8단계 Bluebell 완료·공개 반영 / OneReport 상세 구성 진행 중
 대상: 박희철의 신입·주니어 Cloud Infrastructure / DevOps / Platform 지원용 웹
 저장소: wkfkeha784-pixel/cloud-infra-portfolio
 완료 브랜치: feat/durian-reading-structure-20261010 (PR #20 병합 완료)
 완료 브랜치: feat/bluebell-reading-structure-20261010 (PR #21 병합 완료)
+현재 작업 브랜치: feat/onereport-reading-structure-20261010
 현재 작업 기준 main: e6fa300cf1c97139292a7e59e79bc29ccd9fe8ed (Bluebell PR #21 병합; 이 후속 기록은 문서만 변경)
 최초 설계 기준 main: 58380868e18b3734d5bb6d15d20fffa780575bb1 (PR #18 반영)
 
@@ -391,5 +392,31 @@ PR/main CI 통과는 내용 읽기 품질의 대체물이 아니다. 화면 검�
 - 검증 범위: Chromium 화면·키보드·history는 GitHub Actions의 실제 빌드 화면에서 검증했고, 공개 배포는 commit / READY / HTTP / bundle 일치로 검증했다. 원격 공개 domain 브라우저를 추가 조작했다고 기록하지 않는다. 이 후속 commit은 진행 문서만 갱신하며 검증된 앱 코드는 동일하다.
 - 다음 시작점: **8단계 OneReport 상세 구성**. 최신 main과 ProjectDetail / OneReport canonical 데이터·검증 Snapshot을 읽고 보존표부터 확인한다. 실제 구현 성과·개인/팀 역할·PoC와 제안 범위·검증 시점을 유지하며 문제 → 수행 → 결과 → 근거를 연결한다. 별도 브랜치에서 OneReport 하나만 구현·검토·마감한 뒤 Labbit으로 진행한다. 완료한 Bluebell·홈·Durian을 다시 개편하지 않는다.
 
-새 채팅에서는 AGENTS.md → README.md → 이 문서 → 최신 main 및 관련 파일 순서로 읽고 완료한 단계를 반복하지 않는다. 다음 시작점은 Step 8 — Bluebell 기록의 **OneReport 상세 구성**이다. PR #20의 1~7단계와 PR #21의 Bluebell 구현은 공개 반영했으므로 다시 시작하지 않는다. 실행 시 최신 main/브랜치 상태와 실제 문서 내용을 확인하고 새 작업 브랜치에서 이어간다.
+### 2026-10-10 / Step 8 — OneReport
+
+- 기준: main 3aef76155fa7fad9dbd0f84786c5bec5f8e423ab의 ProjectDetail / canonical projects / 진행 문서를 직접 읽고 로컬 blob 일치 확인. OneReport만 별도 브랜치에서 변경한다.
+- 자료: 공개 canonical의 PR #9 / #14 / #27 Snapshot과 PR #30 → 8/21 운영 Smoke 시점 구분. 2026-08-21 사업 제안서의 Backend 역할 p.2를 화면으로 확인하고 AI·기관 연계·KT G-Cloud 확장 계획은 제안 범위로 읽었다. 비공개 팀 저장소를 조회하거나 수정하지 않는다.
+- 구조: 상단 성과 → 일곱 목차 → 담당 역할 → Incident 운영 흐름 → Domain/DB → Timeline 계약 → 규칙 기반 분석/fallback → AWS PoC/Smoke → 구현·제안 비교. 기존 읽기 layout·typography를 그대로 재사용하며 OneReport 전용 scope table과 운영 조건 스타일만 추가한다. Bluebell·Durian 파일과 공통 CSS는 수정하지 않는다.
+
+| 기존 항목 | 새 위치·보존 방식 |
+|---|---|
+| 이름·소개·problem·role·기술 | 상단 및 프로젝트·담당 역할 |
+| 개인 기여 6개 | 담당 범위 목록 |
+| Report → Timeline 6개 흐름 | 신고/분석/배정 → 사건/기관 상태/이력 두 묶음 |
+| PR #9 Domain/DB·41 passed | Domain 사례의 구현·결과·개별 검증 조건·출처 |
+| PR #14 REST { items, total }·SSE 유지·49 passed | Timeline 사례의 수정·결과·독립 Snapshot·출처 |
+| PR #27 규칙 분석·수동 선택·BE 65/FE 3 | 분석 사례의 구현·fallback·결과·비LLM 조건·출처 |
+| PR #30 Smoke Test 개인 기여 | 팀 PoC 검증 구역의 개인 수행 설명 |
+| PR #30 Health 502 → 8/21 Final PASS | 검증 시점과 결과를 항상 보여주는 운영 조건 |
+| 팀 AWS PoC 실제 구조 | Smoke 구역의 Route53/EC2/Nginx/FastAPI/RDS/S3 설명 |
+| validation 전체 8개 | 진입·분석 → 데이터·저장 → 대응·운영 → FINAL: PASS |
+| PoC와 사업 제안 분리 | 분석·기관 대응·운영 기반 비교표 |
+| 실제 공공기관 연계 없음·private source | 흐름·분석 조건 및 마지막 범위·공개 근거 구역 |
+| 배운 점 | 구현·제안 범위 마감 |
+
+- 변경: OneReportDetail / onereportReading / onereport.css / ProjectDetail OneReport 분기 / onereport-responsive 검사 / 이 기록. src/data/projects.ts는 전체 byte 비교 동일. PR별 검증 수치·scope·날짜·조건은 기존 데이터를 그대로 렌더한다.
+- 검증 진행: build / lint PASS. 기존 46개 QA + 네 너비의 OneReport 읽기·조건 상시 노출·source 접기·keyboard focus·hash reload/history·공공기관/제안 구분·private link 미노출·목록/다음 이동 4개. 최종 QA와 캡처 확인 뒤 main·production 마감한다.
+- 다음 시작점: 현재 브랜치의 최종 QA·1440 / 768 / 390 / 320px 캡처부터 확인. OneReport 완성 단위 공개 반영 후 Labbit 상세로 진행한다.
+
+새 채팅에서는 AGENTS.md → README.md → 이 문서 → 최신 main 및 관련 파일 순서로 읽고 완료한 단계를 반복하지 않는다. 현재 다음 시작점은 Step 8 — OneReport의 **최종 QA·캡처 검토**다. PR #20의 1~7단계와 PR #21의 Bluebell 구현은 공개 반영했으므로 다시 시작하지 않는다. 최신 main/브랜치 상태와 실제 문서 내용을 확인하고 현재 작업 브랜치에서 이어간다.
 후속 작업이 끝나면 해당 단계 상태, 변경 파일·commit/PR, 검증 결과와 남은 리스크, 바로 다음 시작점을 이 문서에 갱신한다.
