@@ -94,6 +94,7 @@ PR 검증과 캡처 검토 후 병합합니다. 이후 main 검증 결과와 Ver
 | [`tests/`](tests/) · [`.github/workflows/`](.github/workflows/) | 브라우저 회귀 검증·CI |
 | [웹 구성 개선 기록](docs/PORTFOLIO_WEB_REDESIGN_2026-10-10.md) | 2026-10-10 웹 개선 단계와 검증 결과 |
 | [GitHub 소개 화면 정리 기록](docs/GITHUB_PRESENTATION_2026-10-10.md) | Profile·README 개선 범위와 확인 사항 |
+| [공개 첫인상 점검](docs/PUBLIC_FIRST_IMPRESSION_REVIEW_2026-10-10.md) | 방문 경로 점검·탭/공유 카드 보완·계정 설정 안내 |
 
 ## 성과와 검증 범위
 
