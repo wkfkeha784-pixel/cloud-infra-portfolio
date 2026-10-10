@@ -43,7 +43,29 @@
 - 로컬 `npm run build`: 통과.
 - 기존 브라우저 테스트의 변경 문구 기대값 2곳을 수정했습니다. 수치·역할·미완료 범위와 동작 검사는 유지했습니다.
 - 전화번호 검사는 특정 개인 번호 없이 일반 패턴으로 확인합니다. 현재 소스 제거와 과거 Git 이력 삭제는 별개이며, 이번 작업은 과거 커밋을 재작성하지 않습니다.
-- PR 브라우저 검사·새 화면 캡처·main 검사·배포 반영 결과는 완료 후 아래에 추가합니다.
+- 네 프로젝트의 기술 태그·아키텍처·개인 기여 목록·팀 결과·검증 자료·후속 조건 등 13개 데이터 필드를 수정 전후에 비교했고, 변경이 없었습니다. 제목·요약·역할 설명을 다듬은 것과 근거 변경을 구분했습니다.
+
+### 반영과 실행 결과
+
+| 항목 | 결과 |
+|---|---|
+| 수정 PR | [#24](https://github.com/wkfkeha784-pixel/cloud-infra-portfolio/pull/24) 병합 |
+| PR 검증 코드 | `10d52dff5f1215320c9108ad978aa5a2a35b78ca` |
+| PR Build CI | [38092472449](https://github.com/wkfkeha784-pixel/cloud-infra-portfolio/actions/runs/38092472449) PASS |
+| PR Browser QA | [38092472425](https://github.com/wkfkeha784-pixel/cloud-infra-portfolio/actions/runs/38092472425) **54개 PASS (2.9m)** |
+| 새 캡처 | PR artifact `11684188665`의 320·390·768·1440px 캡처. 데스크톱·모바일 첫 화면, 새 제목, 목차와 하단 연락처를 이미지로 확인 |
+| 병합된 앱 코드 | `90b777dd70078d8b587b6dae564291707a62c791` |
+| main Build CI | [38092820935](https://github.com/wkfkeha784-pixel/cloud-infra-portfolio/actions/runs/38092820935) PASS |
+| main Browser QA | [38092820945](https://github.com/wkfkeha784-pixel/cloud-infra-portfolio/actions/runs/38092820945) PASS · 로그에서 54개 통과 확인 |
+| 공개 배포 | `dpl_9PFiFSFNLEJMpaqGxXwAVHNxqgvn` READY · 위 main 앱 commit과 일치 |
+| 배포 파일 | `index-Bt83tUcq.js`·`index-C9a1cxDU.css`가 로컬 검증 빌드와 바이트 일치 |
+| 공개 경로 | 홈·네 상세·favicon SVG/ICO·공유 PNG·Bluebell 근거 SVG 3개 HTTP 200 |
+| 소개·근거 링크 | 주요 공개 URL 16개 HTTP 200, 포트폴리오 README·문서 상대 링크 18개 정상 |
+| 현재 소스 연락처 | 추적 중인 텍스트 파일에서 실제 휴대전화 번호 패턴이 남아 있지 않음을 확인 |
+
+브라우저 동작은 GitHub Actions의 빌드·Preview 환경에서 검증했습니다. 공개 도메인은 배포 commit·상태·HTTP·빌드 파일 일치로 확인했으며, 새 실기기 탐색이나 공유 플랫폼 캐시 검증으로 확대하지 않습니다. 검사한 앱 코드 이후 이 결과를 추가한 커밋은 관리 문서만 변경합니다.
+
+보조 문서의 외부 링크 19개를 추가 확인했고, 17개는 HTTP 200이었습니다. 프로필 저장소의 `DOCUMENTATION_VISUALIZATION_GUIDE.md`와 `docs/GITHUB_PROFILE_POLISH_2026-10-10.md`는 GitHub 문서 보기에서 503을 반복 반환했습니다. GitHub API와 tree에서는 두 원본의 존재를 확인했으며, main/commit URL 모두 서버 오류여서 주소 오류로 단정하거나 파일을 삭제하지 않았습니다. 주요 채용 진입 경로의 오류와 구분해 기록합니다.
 
 ## 다음 갱신 기준
 
