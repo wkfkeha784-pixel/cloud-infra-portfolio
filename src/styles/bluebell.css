@@ -64,6 +64,8 @@
 .bluebell-validation strong { color: var(--teal); }
 .bluebell-validation span { color: var(--navy); overflow-wrap: anywhere; }
 .bluebell-evidence-figure { margin-top: 24px; border-radius: 0; }
+.bluebell-evidence-figure img { aspect-ratio: auto; max-width: 640px; margin-inline: auto; }
+.bluebell-evidence-figure img[src$="replacement-target-healthy.svg"] { max-width: 480px; }
 .bluebell-case-source { margin-top: 20px; border-block: 1px solid var(--line); font-size: 0.85rem; line-height: 1.8; }
 .bluebell-case-source summary { padding: 12px 4px; color: var(--teal); cursor: pointer; font-weight: 700; min-height: 44px; }
 .bluebell-case-source summary:hover { background: #f1f5f7; }
