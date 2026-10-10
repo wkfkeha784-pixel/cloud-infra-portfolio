@@ -103,20 +103,24 @@ test('onereport: PR evidence cards preserve validation snapshots and hide privat
 test('labbit: evidence cards keep ongoing state, contract boundary, and PR snapshots visible', async ({ page }) => {
   await page.goto('/projects/labbit', { waitUntil: 'networkidle' })
 
-  await expect(page.getByText('IN PROGRESS · 2026-10-03', { exact: true })).toBeVisible()
+  await expect(page.getByText('IN PROGRESS · 2026-10-10', { exact: true })).toBeVisible()
 
   const cards = page.locator('.evidence-snapshot-card')
-  await expect(cards).toHaveCount(3)
+  await expect(cards).toHaveCount(4)
 
-  await expect(cards.nth(0).getByText('Mutation 401 → Login 복귀 · stale me 인증 Cache 폐기')).toBeVisible()
-  await expect(cards.nth(1).getByText('Production Build는 설정과 무관하게 HTTP Consumer 사용')).toBeVisible()
-  await expect(cards.nth(2).getByText('PR 기록의 기존 UI HEAD: capture 17 / 17')).toBeVisible()
-  await expect(cards.nth(2).getByText(/프로젝트 전체 완료나 merge commit 재측정 수치로 확대하지 않습니다/)).toBeVisible()
+  await expect(cards.nth(1).getByText('Mutation 401 → Login 복귀 · stale me 인증 Cache 폐기')).toBeVisible()
+  await expect(cards.nth(2).getByText('Production Build는 설정과 무관하게 HTTP Consumer 사용')).toBeVisible()
+  await expect(cards.nth(3).getByText('PR 기록의 기존 UI HEAD: capture 17 / 17')).toBeVisible()
+  await expect(cards.nth(3).getByText(/프로젝트 전체 완료나 merge commit 재측정 수치로 확대하지 않습니다/)).toBeVisible()
 
-  await expect(page.getByText('PR #62/#68/#70/#71 Open Draft · VM E2E Pending', { exact: true })).toBeVisible()
-  await expect(page.getByText(/PR #62\/#68\/#70\/#71은 Open Draft/)).toBeVisible()
+  await expect(page.getByText('PR #62 main 병합 · Terminal·File 코드/CI 검증 완료', { exact: true })).toBeVisible()
+  await expect(page.getByText(/Terminal·File은 PR #62로 main에 통합했습니다/)).toBeVisible()
+
+  await expect(cards.nth(0).getByText('MY', { exact: true })).toBeVisible()
+  await expect(cards.nth(0).getByText(/실제 OpenStack VM PTY\/SFTP E2E는 후속 통합 검증/)).toBeVisible()
 
   for (const href of [
+    'https://github.com/ktcloud4-SL/labbit-app/pull/62',
     'https://github.com/ktcloud4-SL/labbit-app/pull/23',
     'https://github.com/ktcloud4-SL/labbit-app/pull/25',
     'https://github.com/ktcloud4-SL/labbit-app/pull/28',
@@ -124,9 +128,9 @@ test('labbit: evidence cards keep ongoing state, contract boundary, and PR snaps
     await expect(cards.locator(`a[href="${href}"]`)).toHaveCount(1)
   }
 
-  await expect(cards.nth(0).getByText('MY', { exact: true })).toBeVisible()
   await expect(cards.nth(1).getByText('MY', { exact: true })).toBeVisible()
   await expect(cards.nth(2).getByText('MY', { exact: true })).toBeVisible()
+  await expect(cards.nth(3).getByText('MY', { exact: true })).toBeVisible()
 })
 
 test('home: four case-study cards and contact links are present', async ({ page }) => {

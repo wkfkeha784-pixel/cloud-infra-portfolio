@@ -168,7 +168,7 @@ export const projects: Project[] = [
     summary:
       'Web–WAS 계층을 구축하고 각 담당 영역을 Web → WAS → DB E2E 요청 흐름으로 연결해 통합 검증했습니다.',
     tags: ['AWS', 'Ansible', 'Docker Swarm', 'Nginx', 'Prometheus', 'Grafana'],
-    cardEvidence: ['[MY] ASG Replacement 통합 검증', '[BOUNDARY] Recovery Design ≠ Final Trigger Test'],
+    cardEvidence: ['[MY] ASG Replacement 통합 검증', '[MY] 서비스·LB·Monitoring 정상화 확인'],
     architecture: ['User', 'Public ALB', 'Web / Nginx', 'Internal WAS LB', 'WAS / Flask API', 'DB Proxy', 'MariaDB'],
     architectureNote:
       '환경 경계: AWS Web/WAS/Bastion/Monitoring · Local(On-Premise) HAProxy/MariaDB · 운영 지원: Ansible/Swarm/Recovery',
@@ -234,7 +234,7 @@ export const projects: Project[] = [
         validatedAt: '2026-07-14',
         source: 'Bluebell final presentation p.13',
         summary:
-          '장애 감지 이후 Replacement 노드가 생성되고 Swarm 서비스와 Target Group으로 다시 편입되는 복구 흐름을 프로젝트 결과로 검증했습니다.',
+          '복구 경로를 통제 실행해 Replacement 노드 생성부터 Swarm 서비스·Target Group 재편입까지 검증했습니다.',
         facts: [
           '신규 Web Node 생성 · Private IP 자동 할당',
           'Dynamic Inventory web · swarm_workers · Ansible failed=0',
@@ -365,14 +365,14 @@ export const projects: Project[] = [
     slug: 'labbit',
     order: '04',
     name: 'Labbit',
-    status: 'IN PROGRESS · 2026-10-03',
+    status: 'IN PROGRESS · 2026-10-10',
     subtitle: 'OpenStack 기반 Virtual Lab Platform',
     problem: 'Multi-VM 실습환경의 복잡한 상태·권한·오류를 Browser Workspace에서 안전하게 표현해야 하는 문제',
     role: 'Frontend / Design / Contract Consumer',
     summary:
-      'React SPA가 기존 HTTP/WS 계약을 안전하게 소비하도록 Auth·권한·오류 UX를 구현하고, 실제 Backend Auth/Class Browser Flow를 검증했습니다.',
+      'Workspace Terminal·File을 구현해 main에 통합하고, 세션 종료·재연결과 파일 충돌·편집 내용 보호를 자동 검증했습니다. Auth/Class는 실제 Backend와 Browser Flow를 검증했습니다.',
     tags: ['React', 'TypeScript', 'TanStack Query', 'OpenAPI', 'WebSocket', 'Vitest', 'CI'],
-    cardEvidence: ['[MY] Auth/Class 실제 Backend Browser Flow', '[DRAFT] Terminal/File Consumer · VM E2E Pending'],
+    cardEvidence: ['[MY] Auth/Class 실제 Backend Browser Flow', '[MY] Terminal·File 구현 · PR #62 main 병합'],
     architecture: ['Team SSOT', 'React SPA', 'HTTP / WS Consumer', 'Auth / Permission / Error UX', 'Regression Test', 'Browser Acceptance'],
     architectureNote: 'Frontend는 계약에 없는 Endpoint·Token·Error Code를 임의 정의하지 않음',
     myContributions: [
@@ -382,11 +382,31 @@ export const projects: Project[] = [
       'Mock / HTTP boundary',
       'Class / Workspace / LabSpec UI',
       '실제 Auth/Class HTTP Browser Acceptance',
-      'Terminal/File Consumer Draft · 오류/동시성 UX',
+      'Terminal·File HTTP/WSS Consumer 구현·통합',
+      '세션 종료·재연결 처리 및 파일 충돌·편집 내용 보호',
     ],
-    projectResults: ['PR #59 merged · Vitest 109', 'Auth/Class actual Backend Browser 검증', 'PR #62/#68/#70/#71 Open Draft · VM E2E Pending'],
+    projectResults: ['PR #59 merged · Vitest 109', 'Auth/Class actual Backend Browser 검증', 'PR #62 main 병합 · Terminal·File 코드/CI 검증 완료'],
     validation: ['Contract / Unit / CI', 'Actual Backend Browser', 'Actual OpenStack VM E2E · Pending'],
     evidenceSnapshots: [
+      {
+        title: 'PR #62 · Terminal·File 구현 및 main 통합',
+        scope: 'MY',
+        validatedAt: '2026-10-07',
+        source: 'GitHub PR #62 · main merged · 최종 PR HEAD 011de5d',
+        summary:
+          'Workspace에서 Terminal 입력·출력과 파일 탐색·편집·저장을 구현했습니다. 세션 종료 뒤 잘못된 재연결과 동시 수정 덮어쓰기를 차단하고, 편집 중 내용이 유실되지 않도록 보호했습니다.',
+        facts: [
+          'Terminal target/session HTTP → WSS → xterm Binary PTY I/O · resize',
+          '세션 종료·오류별 reconnect 정책 · 이전 연결의 지연 출력 차단',
+          'File Tree/Read/Save · ETag/If-Match · 412 충돌 보호',
+          '미저장 이동 guard · 저장 중 편집 잠금 · 저장 결과 불명확 시 자동 재저장 차단',
+          '2026-10-07 main 병합 · 최종 PR HEAD Web/Contracts/Go/CodeQL 검사 PASS',
+        ],
+        href: 'https://github.com/ktcloud4-SL/labbit-app/pull/62',
+        linkLabel: 'PR #62 구현·검증 보기',
+        note:
+          '코드·CI 검증 완료. 실제 OpenStack VM PTY/SFTP E2E는 후속 통합 검증 범위입니다.',
+      },
       {
         title: 'PR #23 · Session / Mutation Safety',
         scope: 'MY',
@@ -447,9 +467,9 @@ export const projects: Project[] = [
       { label: 'Repository', href: 'https://github.com/ktcloud4-SL/labbit-app' },
     ],
     boundaryNotes: [
-      '프로젝트는 IN PROGRESS이며 Snapshot은 2026-10-03 기준입니다.',
+      '프로젝트는 IN PROGRESS이며 구현·병합 상태는 2026-10-10 기준입니다.',
       'Auth/Class는 실제 Backend Browser 단계까지 검증했습니다.',
-      'PR #62/#68/#70/#71은 Open Draft이며 Terminal/File actual OpenStack VM PTY/SFTP E2E는 아직 완료하지 않았습니다.',
+      'Terminal·File은 PR #62로 main에 통합했습니다. 실제 OpenStack VM PTY/SFTP E2E는 후속 통합 검증 범위입니다.',
       'Preview/Live/AWS Browser Flow도 완료 성과로 표현하지 않습니다.',
     ],
   },
