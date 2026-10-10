@@ -5,6 +5,7 @@ import EvidenceSnapshotCard from '../components/EvidenceSnapshotCard'
 import DurianDetail from './DurianDetail'
 import BluebellDetail from './BluebellDetail'
 import OneReportDetail from './OneReportDetail'
+import LabbitDetail from './LabbitDetail'
 import { projectBySlug, projects } from '../data/projects'
 
 export default function ProjectDetail() {
@@ -45,6 +46,10 @@ export default function ProjectDetail() {
 
   if (project.slug === 'onereport') {
     return <><OneReportDetail project={project} />{nextProjectLink}</>
+  }
+
+  if (project.slug === 'labbit') {
+    return <><LabbitDetail project={project} />{nextProjectLink}</>
   }
 
   return (
