@@ -1,20 +1,20 @@
 // Reading metadata; canonical snapshots, dates and claim boundaries stay intact.
 export const labbitReading = {
-  headline: 'Browser Workspace의 Terminal·File을 구현하고 main에 통합했습니다.',
+  headline: '브라우저 실습 화면의 터미널·파일 기능을 구현하고 main에 통합했습니다.',
   sections: [
     { id: 'overview', number: '01', label: '프로젝트·담당 역할', title: '프로젝트와 담당 역할' },
-    { id: 'flow', number: '02', label: '계약 소비·검증 흐름', title: '팀 계약에서 Browser 검증까지' },
-    { id: 'workspace', number: '03', label: 'Terminal·File 통합', title: 'Terminal·File 구현과 main 통합' },
-    { id: 'session', number: '04', label: '세션·권한·Mutation', title: '세션·권한 변경과 안전한 사용자 동작' },
+    { id: 'flow', number: '02', label: 'API 연동·검증 흐름', title: '팀 API 계약에 맞춘 연동과 브라우저 검증' },
+    { id: 'workspace', number: '03', label: '터미널·파일 통합', title: '터미널·파일 구현과 main 통합' },
+    { id: 'session', number: '04', label: '세션·권한·변경 요청', title: '세션·권한 변경과 안전한 사용자 동작' },
     { id: 'http', number: '05', label: 'Mock·HTTP 경계', title: '개발 Mock과 Production HTTP의 경계' },
-    { id: 'prototype', number: '06', label: 'Prototype·Capture', title: '팀이 검토할 수 있는 Prototype과 Capture' },
+    { id: 'prototype', number: '06', label: '시제품·화면 캡처', title: '팀 검토를 위한 시제품과 화면 캡처' },
     { id: 'validation', number: '07', label: '단계별 검증 범위', title: '확인한 단계와 남은 통합 검증' },
     { id: 'evidence', number: '08', label: '원본 자료·배운 점', title: '원본 자료와 구현에서 배운 점' },
   ],
   highlights: [
-    { result: 'PR #62 main 병합', context: 'Terminal·File Consumer · 2026-10-07' },
+    { result: 'PR #62 main 병합', context: '터미널·파일 API 연동 · 2026-10-07' },
     { result: '세션·파일 안전 처리', context: '종료·재연결·충돌·편집 보호 코드/CI 검증' },
-    { result: 'Auth/Class Browser 검증', context: '실제 Backend 흐름 · VM PTY/SFTP E2E는 후속' },
+    { result: '인증·수업 화면 연동 검증', context: '실제 Backend 흐름 · VM PTY/SFTP E2E는 후속' },
   ],
   cases: [
     {

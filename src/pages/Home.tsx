@@ -54,7 +54,7 @@ export default function Home() {
                   <span className="hero-project-copy">
                     <span className="hero-project-name">Bluebell</span>
                     <strong>서비스 연결과 장애 이후 정상화</strong>
-                    <span className="hero-project-description">Web–WAS 구축 · Replacement 통합 검증</span>
+                    <span className="hero-project-description">Web–WAS 구축 · 인스턴스 교체 후 복구 검증</span>
                   </span>
                   <span className="hero-project-arrow" aria-hidden="true">↗</span>
                 </Link>

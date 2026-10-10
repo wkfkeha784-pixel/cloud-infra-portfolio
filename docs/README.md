@@ -12,6 +12,7 @@
 
 | 기록 | 내용 |
 |---|---|
+| [포트폴리오·공개 GitHub 최종 검토](FINAL_PUBLIC_REVIEW_2026-10-11.md) | 채용 담당자 진입 동선, 역할·근거 대조, 소개 문구와 최종 검증 |
 | [공개 화면 점검과 설정 완료](PUBLIC_FIRST_IMPRESSION_REVIEW_2026-10-10.md) | 최신 공개 설정, 포크 삭제 근거, README 문구 정리, 검증 범위 |
 | [GitHub 소개 화면 정리](GITHUB_PRESENTATION_2026-10-10.md) | 첫 README 개선과 실행 안내 검토 |
 | [웹 구성 개선](PORTFOLIO_WEB_REDESIGN_2026-10-10.md) | 홈·네 상세의 구성, PR별 변경·화면·검증·배포 기록 |

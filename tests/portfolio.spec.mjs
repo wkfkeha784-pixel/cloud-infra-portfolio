@@ -32,8 +32,7 @@ for (const [name, route, marker] of routes) {
     ).toBeLessThanOrEqual(overflow.innerWidth + 2)
 
     const bodyText = await page.locator('body').innerText()
-    expect(bodyText).not.toContain('010-3247-0587')
-    expect(bodyText).not.toContain('01032470587')
+    expect(bodyText).not.toMatch(/\b01[016789][-\s]?\d{3,4}[-\s]?\d{4}\b/)
 
     await page.screenshot({
       path: `artifacts/screenshots/${testInfo.project.name}-${name}.png`,
@@ -242,7 +241,7 @@ test('v2.10 sync: home and project claim boundaries expose the refreshed evidenc
   const projects = page.getByRole('region', { name: '운영과 복구를 검증한 대표 프로젝트' })
   await expect(projects.getByText(/모니터링 인수/)).toBeVisible()
   await expect(projects.getByText('Terraform', { exact: true })).toBeVisible()
-  await expect(page.getByRole('region', { name: '서비스 구현과 팀 시스템 통합 경험' }).getByText(/HTTP·WebSocket Contract Consumer/)).toBeVisible()
+  await expect(page.getByRole('region', { name: '서비스 구현과 팀 시스템 통합 경험' }).getByText(/HTTP·WebSocket API 연동/)).toBeVisible()
 
   await page.goto('/projects/durian', { waitUntil: 'networkidle' })
   await expect(page.getByText('Terraform worker-03 Drift Recovery', { exact: true })).toBeVisible()

@@ -6,7 +6,7 @@ export default function Footer() {
           <strong>박희철</strong>
           <p>Cloud Infrastructure Engineer</p>
         </div>
-        <p className="footer-message">Build → Observe → Troubleshoot → Recover → Verify</p>
+        <p className="footer-message">프로젝트별 담당 역할과 운영·복구 검증 기록</p>
       </div>
     </footer>
   )
