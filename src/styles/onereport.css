@@ -1,4 +1,4 @@
-.onereport-detail .bluebell-architecture-stage ol { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.onereport-detail .bluebell-architecture .bluebell-architecture-stage ol { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 .onereport-source-name { color: var(--navy); }
 .onereport-smoke-condition { margin: 24px 0; padding: 20px; border-left: 3px solid var(--navy); background: #eef2f6; }
 .onereport-smoke-condition p { margin: 12px 0 0; color: #43566a; font-size: 0.9rem; line-height: 1.85; word-break: keep-all; overflow-wrap: anywhere; }
@@ -12,7 +12,7 @@
 .onereport-scope-table tbody td:last-child { color: var(--muted); }
 
 @media (max-width: 760px) {
-  .onereport-detail .bluebell-architecture-stage ol { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .onereport-detail .bluebell-architecture .bluebell-architecture-stage ol { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .onereport-smoke-condition { padding: 18px 16px; }
   .onereport-scope-table table { font-size: 0.8rem; }
   .onereport-scope-table th, .onereport-scope-table td { padding: 12px 8px; }

@@ -69,7 +69,11 @@ for (const width of [1440, 768, 390, 320]) {
     await expect(page.locator('table')).toContainText('제안·확장 구상')
     await expect(page.locator('#boundary')).toContainText('실제 112·119 등 공공기관 시스템 연계는 구현 범위가 아닙니다.')
     await expect(page.locator('a[href*="github.com/ktcloud4-SL/hackathon"]')).toHaveCount(0)
-    await expect.poll(() => page.locator('#boundary h2').evaluate(element => element.getBoundingClientRect().top >= document.querySelector('.site-header').getBoundingClientRect().bottom)).toBe(true)
+    await expect.poll(() => page.locator('#boundary h2').evaluate(element => {
+      const top = element.getBoundingClientRect().top
+      const headerBottom = document.querySelector('.site-header').getBoundingClientRect().bottom
+      return top >= headerBottom && top <= headerBottom + 100
+    })).toBe(true)
     await page.screenshot({ path: `artifacts/screenshots/onereport-${width}-boundary.png` })
     await page.goBack()
     await expect(page).toHaveURL(/#smoke$/)
