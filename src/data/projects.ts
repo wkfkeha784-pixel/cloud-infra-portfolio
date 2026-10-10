@@ -67,13 +67,13 @@ export const projects: Project[] = [
     tags: ['OpenStack', 'Kubernetes', 'Kafka', 'Redis', 'KEDA', 'Terraform', 'Prometheus', 'Grafana'],
     home: {
       group: 'featured',
-      headline: '외부 요청 부하에 따른 Consumer 확장·축소와 Worker 복구 검증',
-      role: 'Kubernetes·Redis/Kafka/KEDA 운영 / 모니터링 인수 / Terraform 복구',
+      headline: '외부 부하에 따른 Consumer 확장·축소와 worker-03 재가입 검증',
+      role: 'Kubernetes·Redis/Kafka/KEDA 운영 / 모니터링 인수 / worker-03 복구 검증',
       results: [
         { scope: 'MY', text: '외부 HTTP 요청 300/300 수락 · Consumer 1→4→1 확장·축소' },
         { scope: 'MY', text: 'worker-03 삭제 후 Terraform 재생성·클러스터 재가입' },
       ],
-      note: 'HTTP 200은 비동기 요청 수락 기준',
+      note: 'HTTP 200은 비동기 요청 수락 기준 · Terraform 복구는 worker-03 단일 노드 재생성·재가입',
       linkLabel: '운영 문제와 검증 과정 보기',
     },
     architecture: [
