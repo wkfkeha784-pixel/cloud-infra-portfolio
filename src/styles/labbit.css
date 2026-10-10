@@ -1,0 +1,22 @@
+.labbit-detail .project-hero-meta { flex-wrap: wrap; gap: 10px 16px; }
+.labbit-detail .bluebell-architecture .bluebell-architecture-stage ol { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.bluebell-case-source .labbit-source-name { color: var(--navy); }
+.labbit-result-group { margin-top: 18px; }
+.labbit-result-group h5 { margin: 0 0 8px; color: var(--navy); font-size: 0.9rem; line-height: 1.8; }
+.labbit-merge-result { margin: 20px 0 0; color: var(--navy); line-height: 1.85; word-break: keep-all; }
+.labbit-original-link { display: inline-flex; align-items: center; min-height: 44px; margin-top: 12px; }
+.labbit-gates { margin: 0; padding: 0; list-style: none; }
+.labbit-gates li { margin-top: 20px; padding: 22px 24px; border-left: 3px solid var(--teal); background: var(--teal-soft); }
+.labbit-gates li:last-child { border-left-color: var(--navy); background: #eef2f6; }
+.labbit-gate-state { color: var(--teal); font-size: 0.8rem; font-weight: 700; }
+.labbit-gates li:last-child .labbit-gate-state { color: var(--navy); }
+.labbit-gates h3 { margin: 8px 0 16px; color: var(--navy); font-size: 1.15rem; line-height: 1.7; }
+.labbit-gates p { margin: 10px 0 0; color: #43566a; line-height: 1.85; word-break: keep-all; overflow-wrap: anywhere; }
+.labbit-gates .labbit-gate-label { font-size: 0.82rem; color: var(--muted); }
+.labbit-gates .labbit-gate-note { margin-top: 18px; padding-top: 14px; border-top: 1px solid #c5dddd; font-size: 0.86rem; }
+.labbit-detail .evidence-links { margin-top: 16px; }
+
+@media (max-width: 760px) {
+  .labbit-detail .bluebell-architecture .bluebell-architecture-stage ol { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .labbit-gates li { padding: 18px 16px; }
+}
