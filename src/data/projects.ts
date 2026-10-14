@@ -318,7 +318,7 @@ export const projects: Project[] = [
       role: 'Backend / 도메인·DB·기관 배정·API 계약·규칙 기반 분석',
       results: [
         { scope: 'MY', text: '핵심 Backend PR #9/#14/#27/#30 · 도메인·계약·분석·Smoke Test' },
-        { scope: 'PROJECT', text: '팀 AWS PoC 운영 Smoke · FINAL: PASS' },
+        { scope: 'PROJECT', text: '팀 AWS PoC 배포 후 Smoke · FINAL: PASS' },
       ],
       note: '규칙 기반 분석 · 실제 공공기관 연계 없음',
       linkLabel: 'Backend 구현과 운영 검증 보기',
@@ -393,7 +393,7 @@ export const projects: Project[] = [
     boundaryNotes: [
       'Rule-based Analysis이며 LLM 기반 분석이 아닙니다.',
       '실제 112·119 등 공공기관 시스템 연계는 구현 범위가 아닙니다.',
-      'PR #30 시점 실서버 /api/health는 502였고, 배포 정상화 후 8/21 운영 Domain Smoke에서 FINAL: PASS를 확인했습니다.',
+      'PR #30 시점 실서버 /api/health는 502였고, 배포 정상화 후 8/21 AWS PoC 환경 Domain Smoke에서 FINAL: PASS를 확인했습니다.',
       'PR별 테스트 수치는 해당 시점 Snapshot이며 합산하지 않습니다.',
       'OneReport 팀 저장소는 비공개이므로 공개 Web에서는 직접 Repository/PR 링크를 노출하지 않고 검증 Snapshot만 요약합니다.',
     ],
