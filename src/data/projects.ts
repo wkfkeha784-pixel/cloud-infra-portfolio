@@ -321,7 +321,7 @@ export const projects: Project[] = [
         { scope: 'PROJECT', text: '팀 AWS PoC 배포 후 Smoke · FINAL: PASS' },
       ],
       note: '규칙 기반 분석 · 실제 공공기관 연계 없음',
-      linkLabel: 'Backend 구현과 운영 검증 보기',
+      linkLabel: 'Backend 구현과 AWS PoC 검증 보기',
     },
     architecture: ['Report', 'Rule-based Analysis', 'Routing', 'Incident', 'Agency Status', 'Timeline'],
     architectureNote: '규칙 기반 분석 · 실제 공공기관 시스템 연계 없음',

@@ -18,6 +18,8 @@
 
 | 기록 | 내용 |
 |---|---|
+| [웹·PDF v0.5 독립 감사](TWO_TRACK_V05_FINAL_AUDIT_2026-10-14.md) | 10쪽 PDF/PPTX 재검토, OneReport QA 수정, 로컬 62개 통과와 보호된 Preview 제한 구분 |
+| [웹·PDF v0.5 인계](TWO_TRACK_V05_REVIEW_HANDOFF_2026-10-14.md) | v0.5 산출물 체크섬, p4 강조 조정, AWS PoC 표현 정밀화 |
 | [웹·PDF 2트랙 독립 감사](TWO_TRACK_REDESIGN_AUDIT_2026-10-14.md) | PDF v0.4 검토본, 근거 바로가기·범위 표기, 로컬 브라우저 검증과 PR 검사 구분 |
 | [웹·PDF 2트랙 설계](TWO_TRACK_WEB_PDF_REDESIGN_2026-10-14.md) | 10쪽 요약 자료와 웹 상세의 역할 분리, 버전 이력·보존 기준 |
 | [공통 PDF 증빙 표현 정밀화 (2026-10-14)](PORTFOLIO_COMMON_PDF_ACCURACY_POLISH_2026-10-14.md) | p5 단발성 Demo 측정·p10 AWS PoC Smoke 명확화, 원본 Master PPTX 미동기화 경계, 시각 비교 및 링크 검증 |
