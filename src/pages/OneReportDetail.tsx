@@ -1,3 +1,4 @@
+import EvidenceGuide from '../components/EvidenceGuide'
 import type { ReactNode } from 'react'
 import { Link } from 'react-router-dom'
 import Badge from '../components/Badge'
@@ -51,6 +52,7 @@ export default function OneReportDetail({ project }: { project: Project }) {
           <div className="bluebell-highlights" aria-label="OneReport 핵심 성과">{onereportReading.highlights.map((item) => (
             <div key={item.result}><Badge tone={item.scope === 'MY' ? 'my' : 'project'}>{item.scope}</Badge><strong>{item.result}</strong><span>{item.context}</span></div>
           ))}</div>
+          <EvidenceGuide slug={project.slug} />
         </div>
       </section>
 

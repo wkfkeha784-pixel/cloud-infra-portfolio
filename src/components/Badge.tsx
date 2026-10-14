@@ -5,7 +5,7 @@ export default function Badge({
   tone = 'my',
 }: {
   children: ReactNode
-  tone?: 'my' | 'project'
+  tone?: 'my' | 'project' | 'open'
 }) {
   return <span className={`scope-badge scope-${tone}`}>{children}</span>
 }

@@ -1,3 +1,4 @@
+import EvidenceGuide from '../components/EvidenceGuide'
 import type { ReactNode } from 'react'
 import { Link } from 'react-router-dom'
 import Badge from '../components/Badge'
@@ -77,6 +78,7 @@ export default function DurianDetail({ project }: { project: Project }) {
               </div>
             ))}
           </div>
+          <EvidenceGuide slug={project.slug} />
         </div>
       </section>
 
