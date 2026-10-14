@@ -89,18 +89,18 @@ export default function OneReportDetail({ project }: { project: Project }) {
 
           <ReadingSection section={smoke}>
             <article className="bluebell-case onereport-smoke">
-              <div className="bluebell-case-meta"><Badge tone="project">PROJECT</Badge><span>팀 AWS PoC · 운영 검증 <time dateTime="2026-08-21">2026-08-21</time></span></div>
-              <h3>배포 정상화 이후 실제 운영 흐름을 Smoke로 확인했습니다.</h3>
+              <div className="bluebell-case-meta"><Badge tone="project">PROJECT</Badge><span>팀 AWS PoC · 배포 검증 <time dateTime="2026-08-21">2026-08-21</time></span></div>
+              <h3>AWS PoC 배포 정상화 이후 신고·기관 대응 흐름을 Smoke로 확인했습니다.</h3>
               <div className="bluebell-case-copy"><h4>개인 기여</h4><p>PR #30에서 Demo Smoke Test를 작성·확장해 신고부터 기관 상태·Timeline까지 확인하는 검증 흐름을 연결했습니다.</p></div>
               <div className="onereport-smoke-condition"><h4>검증 시점과 결과</h4><p>{project.boundaryNotes?.[2]}</p></div>
               <div className="bluebell-case-copy"><h4>팀이 구현한 AWS PoC</h4><p>{project.projectResults?.[0]}</p></div>
               {project.validation && <div className="bluebell-validation">
-                <h4>운영 Smoke 확인 순서</h4>
+                <h4>AWS PoC Smoke 확인 순서</h4>
                 <ol>{[{ label: '진입·분석', start: 0, end: 3 }, { label: '데이터·저장', start: 3, end: 5 }, { label: '대응·운영', start: 5, end: 7 }, { label: '최종 결과', start: 7, end: 8 }].map((group) => (
                   <li key={group.label}><strong>{group.label}</strong><span>{project.validation?.slice(group.start, group.end).join(' → ')}</span></li>
                 ))}</ol>
               </div>}
-              <details className="bluebell-case-source"><summary>운영 검증 기록·출처</summary><div><p>PR #30 · Demo Smoke Test / 2026-08-21 운영 Domain Smoke 최종 검증 기록</p></div></details>
+              <details className="bluebell-case-source"><summary>AWS PoC 검증 기록·출처</summary><div><p>PR #30 · Demo Smoke Test / 2026-08-21 AWS PoC 환경의 Domain Smoke 최종 검증 기록</p></div></details>
             </article>
           </ReadingSection>
 
