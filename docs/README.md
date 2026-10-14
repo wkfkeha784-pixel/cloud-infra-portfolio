@@ -18,6 +18,7 @@
 
 | 기록 | 내용 |
 |---|---|
+| [공통 PDF 증빙 표현 정밀화 (2026-10-14)](PORTFOLIO_COMMON_PDF_ACCURACY_POLISH_2026-10-14.md) | p5 단발성 Demo 측정·p10 AWS PoC Smoke 명확화, 원본 Master PPTX 미동기화 경계, 시각 비교 및 링크 검증 |
 | [포트폴리오·공개 GitHub 최종 검토](FINAL_PUBLIC_REVIEW_2026-10-11.md) | 채용 담당자 진입 동선, 역할·근거 대조, 소개 문구와 최종 검증 |
 | [공개 화면 점검과 설정 완료](PUBLIC_FIRST_IMPRESSION_REVIEW_2026-10-10.md) | 최신 공개 설정, 포크 삭제 근거, README 문구 정리, 검증 범위 |
 | [GitHub 소개 화면 정리](GITHUB_PRESENTATION_2026-10-10.md) | 첫 README 개선과 실행 안내 검토 |
