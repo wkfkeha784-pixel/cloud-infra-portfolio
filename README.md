@@ -17,7 +17,7 @@ AWS·Kubernetes 프로젝트에서 맡은 일과 운영·복구 검증 결과를
 
 - **Durian:** HTTP 300/300은 비동기 요청 수락 결과입니다. DB 저장 300건 완료를 의미하지 않습니다.
 - **Bluebell:** 최종 E2E는 EventBridge 규칙 2개를 비활성화한 통제 실행입니다. 자동 실행 설계와 구분합니다.
-- **OneReport:** 규칙 기반 분석을 구현했습니다. PR #30 당시 health 502와 배포 정상화 후 8/21 운영 Smoke Test PASS는 서로 다른 시점의 결과입니다.
+- **OneReport:** 규칙 기반 분석을 구현했습니다. PR #30 당시 health 502와 배포 정상화 후 8/21 AWS PoC 환경의 Smoke Test PASS는 서로 다른 시점의 결과입니다.
 - **Labbit:** PR #62의 병합·코드·CI 검증을 완료했습니다. 실제 OpenStack VM의 PTY/SFTP 연동은 후속 검증 범위입니다.
 
 팀 프로젝트의 공개 코드·PR은 각 상세 페이지에서 연결합니다. 비공개 저장소는 공개 가능한 검증 자료로 소개합니다.

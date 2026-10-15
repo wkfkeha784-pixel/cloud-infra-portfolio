@@ -32,8 +32,9 @@ export default function App() {
   return (
     <>
       <RouteScrollBehavior />
+      <a className="skip-link" href="#main-content">본문으로 건너뛰기</a>
       <Header />
-      <main>
+      <main id="main-content" tabIndex={-1}>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/projects/:slug" element={<ProjectDetail />} />

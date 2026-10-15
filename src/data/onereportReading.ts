@@ -7,13 +7,13 @@ export const onereportReading = {
     { id: 'domain', number: '03', label: 'Domain·DB·기관 배정', title: '도메인과 DB로 대응 흐름 연결' },
     { id: 'contract', number: '04', label: 'Timeline REST·SSE', title: 'Timeline 응답 계약 정합성' },
     { id: 'analysis', number: '05', label: '규칙 분석·수동 선택', title: '규칙 기반 분석과 수동 선택 복귀' },
-    { id: 'smoke', number: '06', label: 'AWS PoC·운영 검증', title: '팀 AWS PoC와 운영 Smoke 검증' },
+    { id: 'smoke', number: '06', label: 'AWS PoC·배포 검증', title: '팀 AWS PoC 배포 후 Smoke 검증' },
     { id: 'boundary', number: '07', label: '구현·제안 범위', title: '실제 구현과 제안의 범위' },
   ],
   highlights: [
     { scope: 'MY', result: 'Report → Incident', context: '기관 배정·상태 전이·DB Model 연결' },
     { scope: 'MY', result: 'Timeline REST·SSE', context: '응답 계약 정합·분석 실패 시 수동 선택' },
-    { scope: 'PROJECT', result: '운영 Smoke FINAL: PASS', context: '팀 AWS PoC · 배포 정상화 후 2026-08-21' },
+    { scope: 'PROJECT', result: 'AWS PoC Smoke FINAL: PASS', context: '팀 AWS PoC · 배포 정상화 후 2026-08-21' },
   ],
   cases: {
     domain: {
@@ -31,7 +31,7 @@ export const onereportReading = {
   },
   scopeRows: [
     { label: '분석', implemented: '규칙 기반 사고 유형·위험도 추천과 기관 Routing', proposed: 'AI를 활용한 사건 파악·검토' },
-    { label: '기관 대응', implemented: '기관 배정·상태·Timeline의 PoC 운영 흐름', proposed: '112·119 및 민간 협력체의 실제 시스템 연계' },
+    { label: '기관 대응', implemented: 'AWS PoC 기관 배정·상태·Timeline 흐름', proposed: '112·119 및 민간 협력체의 실제 시스템 연계' },
     { label: '운영 기반', implemented: 'Route53 · EC2/Nginx · FastAPI · RDS PostgreSQL · S3', proposed: 'KT G-Cloud · Managed KS · GitOps / Blue-Green 등 확장 운영' },
   ],
 } as const

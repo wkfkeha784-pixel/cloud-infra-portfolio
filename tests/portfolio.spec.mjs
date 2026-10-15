@@ -255,7 +255,7 @@ test('v2.10 sync: home and project claim boundaries expose the refreshed evidenc
 
   await page.goto('/projects/onereport', { waitUntil: 'networkidle' })
   await expect(page.getByText(/PR #30 시점 실서버 \/api\/health는 502/)).toBeVisible()
-  await expect(page.getByText(/8\/21 운영 Domain Smoke에서 FINAL: PASS/)).toBeVisible()
+  await expect(page.getByText(/8\/21 AWS PoC 환경 Domain Smoke에서 FINAL: PASS/)).toBeVisible()
 })
 
 

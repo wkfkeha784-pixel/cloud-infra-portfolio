@@ -1192,3 +1192,129 @@ img { max-width: 100%; }
     transition: none !important;
   }
 }
+
+
+/* Two-track portfolio readability pilot | 2026-10-14
+ * WEB: retain detailed project evidence; visually separate the role, result,
+ * and validation boundary without hiding content or changing project facts.
+ * This branch is a review candidate; public production remains unchanged.
+ */
+.hero-projects {
+  padding: 25px 27px;
+  border: 1px solid #dce7e9;
+  border-radius: 18px;
+  background: #ffffff;
+  box-shadow: 0 16px 38px rgba(13, 41, 58, 0.055);
+}
+.hero-projects h2 {
+  font-size: 1.12rem;
+  letter-spacing: -0.035em;
+}
+.hero-project-list li + li {
+  border-top: 1px solid #e2e9ed;
+}
+.hero-project-link {
+  border-radius: 10px;
+  padding: 18px 10px;
+  transition: background-color 170ms ease, transform 170ms ease;
+}
+.hero-project-link:hover,
+.hero-project-link:focus-visible {
+  background: #f3f8f9;
+}
+.hero-project-link:focus-visible {
+  outline: 3px solid #117d85;
+  outline-offset: 2px;
+}
+.hero-project-number {
+  color: #087f8c;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+
+.project-card-featured {
+  border-left: 5px solid #0b7e89;
+  background: linear-gradient(118deg, #ffffff 0%, #f9fcfc 100%);
+  box-shadow: 0 8px 30px rgba(13, 41, 58, 0.035);
+}
+.project-card .project-details {
+  gap: 18px;
+}
+.project-card .project-role {
+  padding: 14px 17px;
+  border-radius: 9px;
+  background: #eef7f7;
+}
+.project-card .project-role dt {
+  color: #16626b;
+  letter-spacing: 0.015em;
+}
+.project-card .project-role dd {
+  font-weight: 650;
+  line-height: 1.65;
+}
+.project-card .project-results h4 {
+  color: #24485a;
+  font-size: 0.87rem;
+}
+.project-card .project-results li {
+  align-items: start;
+  line-height: 1.65;
+}
+.project-card .project-result-scope {
+  align-self: start;
+  justify-self: start;
+  display: inline-flex;
+  padding: 4px 7px;
+  border-radius: 4px;
+  background: #e5f4f2;
+  color: #126772;
+  font-size: 0.63rem;
+  font-weight: 800;
+}
+.project-card .project-result-scope[aria-label="팀·프로젝트 결과"] {
+  background: #eaf0f7;
+  color: #3d6685;
+}
+.project-card .project-note {
+  padding: 12px 15px;
+  border-top: 0;
+  border-left: 3px solid #9bb5bc;
+  border-radius: 0 7px 7px 0;
+  background: #f2f5f7;
+  color: #435c6b;
+  font-size: 0.84rem;
+  line-height: 1.65;
+}
+.project-card .project-note > span {
+  margin-bottom: 5px;
+  color: #35566a;
+}
+.project-card .project-case-link {
+  padding-block: 6px;
+  font-size: 0.97rem;
+}
+
+@media (max-width: 960px) {
+  .hero-projects {
+    padding: 23px;
+  }
+}
+@media (max-width: 760px) {
+  .hero-projects {
+    border-radius: 13px;
+    padding: 20px 16px;
+  }
+  .hero-project-link {
+    padding: 16px 8px;
+  }
+  .project-card-featured {
+    border-left-width: 4px;
+  }
+  .project-card .project-role {
+    padding: 13px 14px;
+  }
+  .project-card .project-note {
+    padding: 11px 13px;
+  }
+}

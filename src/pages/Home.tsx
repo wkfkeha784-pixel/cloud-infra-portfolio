@@ -1,3 +1,4 @@
+import { EvidenceLegend } from '../components/EvidenceGuide'
 import { Link } from 'react-router-dom'
 import ProjectCard from '../components/ProjectCard'
 import { projects } from '../data/projects'
@@ -71,6 +72,7 @@ export default function Home() {
             <h2 id="projects-title">운영과 복구를 검증한 대표 프로젝트</h2>
             <p>담당 역할과 확인한 결과를 중심으로 정리했습니다.</p>
           </div>
+          <EvidenceLegend />
           <div className="featured-project-list">
             {featuredProjects.map((project) => (
               <ProjectCard project={project} key={project.slug} />

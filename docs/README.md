@@ -2,9 +2,9 @@
 
 [포트폴리오](https://cloud-infra-portfolio.vercel.app/)에는 프로젝트별 역할과 검증 결과를, [저장소 README](../README.md)에는 실행 방법과 소스 구성을 정리했습니다. 이 폴더에는 변경 이유와 확인 결과를 남깁니다.
 
-## 현재 상태 · 2026-10-11
+## 현재 상태 · 2026-10-14
 
-홈과 네 프로젝트 상세의 구성 개선, GitHub 소개 정리, 아이콘·공유 이미지와 계정 설정 정리를 마쳤습니다. 현재 진행 중인 화면 개편 단계는 없습니다.
+홈과 네 프로젝트 상세의 구성 개선, GitHub 소개 정리, 아이콘·공유 이미지와 계정 설정 정리를 마쳤습니다. 웹·PDF 2트랙 리디자인을 Draft PR #26에서 검토 중이며, 운영 main은 보존합니다.
 
 최종 검토에서 소개 문구와 공개 테스트 파일의 연락처를 정리했습니다. 현재 소스 제거와 과거 Git 이력 정리의 차이, 실행 결과와 접속 제한은 아래 최종 검토 기록에 남겼습니다.
 
@@ -18,6 +18,10 @@
 
 | 기록 | 내용 |
 |---|---|
+| [웹·PDF v0.5 독립 감사](TWO_TRACK_V05_FINAL_AUDIT_2026-10-14.md) | 10쪽 PDF/PPTX 재검토, OneReport QA 수정, 로컬 62개 통과와 보호된 Preview 제한 구분 |
+| [웹·PDF v0.5 인계](TWO_TRACK_V05_REVIEW_HANDOFF_2026-10-14.md) | v0.5 산출물 체크섬, p4 강조 조정, AWS PoC 표현 정밀화 |
+| [웹·PDF 2트랙 독립 감사](TWO_TRACK_REDESIGN_AUDIT_2026-10-14.md) | PDF v0.4 검토본, 근거 바로가기·범위 표기, 로컬 브라우저 검증과 PR 검사 구분 |
+| [웹·PDF 2트랙 설계](TWO_TRACK_WEB_PDF_REDESIGN_2026-10-14.md) | 10쪽 요약 자료와 웹 상세의 역할 분리, 버전 이력·보존 기준 |
 | [공통 PDF 증빙 표현 정밀화 (2026-10-14)](PORTFOLIO_COMMON_PDF_ACCURACY_POLISH_2026-10-14.md) | p5 단발성 Demo 측정·p10 AWS PoC Smoke 명확화, 원본 Master PPTX 미동기화 경계, 시각 비교 및 링크 검증 |
 | [포트폴리오·공개 GitHub 최종 검토](FINAL_PUBLIC_REVIEW_2026-10-11.md) | 채용 담당자 진입 동선, 역할·근거 대조, 소개 문구와 최종 검증 |
 | [공개 화면 점검과 설정 완료](PUBLIC_FIRST_IMPRESSION_REVIEW_2026-10-10.md) | 최신 공개 설정, 포크 삭제 근거, README 문구 정리, 검증 범위 |
