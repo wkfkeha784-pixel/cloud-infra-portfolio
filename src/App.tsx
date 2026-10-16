@@ -25,6 +25,42 @@ function RouteScrollBehavior() {
     return () => cancelAnimationFrame(frame)
   }, [pathname, hash])
 
+  // React Router does not re-run the [pathname, hash] effect when a user
+  // activates the exact same anchor. Handle that reactivation separately,
+  // without creating a duplicate history entry.
+  useEffect(() => {
+    const handleSameHashClick = (event: MouseEvent) => {
+      if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return
+      const link = event.target instanceof Element ? event.target.closest<HTMLAnchorElement>('a[href]') : null
+      if (!link) return
+
+      const destination = new URL(link.href, window.location.href)
+      if (
+        !destination.hash ||
+        destination.origin !== window.location.origin ||
+        destination.pathname !== window.location.pathname ||
+        destination.search !== window.location.search ||
+        destination.hash !== window.location.hash
+      ) return
+
+      const target = document.getElementById(decodeURIComponent(destination.hash.slice(1)))
+      if (!target) return
+
+      // Stop Link from pushing the same URL again; restore reading position
+      // for both pointer clicks and keyboard Enter.
+      event.preventDefault()
+      event.stopPropagation()
+      requestAnimationFrame(() => {
+        target.scrollIntoView({ block: 'start' })
+        if (!target.hasAttribute('tabindex')) target.tabIndex = -1
+        target.focus({ preventScroll: true })
+      })
+    }
+
+    document.addEventListener('click', handleSameHashClick, true)
+    return () => document.removeEventListener('click', handleSameHashClick, true)
+  }, [])
+
   return null
 }
 
