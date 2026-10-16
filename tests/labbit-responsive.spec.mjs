@@ -96,11 +96,20 @@ for (const width of [1440, 768, 390, 320]) {
     await sameHashLink.press('Enter')
     await expect(page).toHaveURL(/#validation$/)
     await expect(validation).toBeFocused()
-    await expect.poll(() => validation.locator('h2').evaluate(element => {
+    const validationAligned = () => validation.locator('h2').evaluate(element => {
       const top = element.getBoundingClientRect().top
       const headerBottom = document.querySelector('.site-header').getBoundingClientRect().bottom
       return top >= headerBottom && top <= headerBottom + 100
-    })).toBe(true)
+    })
+    await expect.poll(validationAligned).toBe(true)
+
+    // The original G28 failure was a repeated pointer click.
+    await page.evaluate(() => window.scrollTo({ top: 0, behavior: 'instant' }))
+    await expect.poll(() => page.evaluate(() => window.scrollY)).toBeLessThan(500)
+    await sameHashLink.click()
+    await expect(page).toHaveURL(/#validation$/)
+    await expect(validation).toBeFocused()
+    await expect.poll(validationAligned).toBe(true)
     await page.goBack()
     await expect(page).toHaveURL(/#workspace$/)
     await expect(workspace).toBeFocused()
