@@ -15,6 +15,20 @@ for (const width of [1440, 768, 390, 320]) {
     await expect(page.getByRole('region', { name: '경력과 학력' })).toBeVisible()
     await expect(page.getByRole('region', { name: '보유 자격' })).toBeVisible()
     await expect(page.getByRole('region', { name: '연락처' })).toBeVisible()
+    // Scope badges must remain single-line even on a 320px phone.
+    const projectScopes = page.locator('.project-card .project-result-scope')
+    expect(await projectScopes.count()).toBeGreaterThan(0)
+    for (const badge of await projectScopes.all()) {
+      await expect(badge).toHaveCSS('white-space', 'nowrap')
+      const metrics = await badge.evaluate((element) => {
+        const rect = element.getBoundingClientRect()
+        const css = getComputedStyle(element)
+        return { height: rect.height, lineHeight: parseFloat(css.lineHeight), width: rect.width }
+      })
+      expect(metrics.height).toBeLessThanOrEqual(metrics.lineHeight + 9)
+      expect(metrics.width).toBeGreaterThanOrEqual(30)
+    }
+    expect(await page.evaluate(() => document.documentElement.scrollWidth - innerWidth)).toBeLessThanOrEqual(2)
     await page.screenshot({ path: `artifacts/screenshots/home-${width}.png`, fullPage: true })
 
     const menu = page.locator('.menu-button')
