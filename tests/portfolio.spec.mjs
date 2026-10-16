@@ -47,6 +47,17 @@ for (const [name, route, marker] of routes) {
 test('durian: validation evidence snapshots expose dated proof and scope', async ({ page }) => {
   await page.goto('/projects/durian', { waitUntil: 'networkidle' })
 
+  // G28: the three top-line figures belong to team trials, not MY alone.
+  const hero = page.locator('.durian-hero')
+  const teamHighlights = hero.locator('[aria-label="팀 시험·실행의 핵심 결과"]')
+  await expect(hero.locator('.durian-subheading').first()).toContainText('PROJECT')
+  await expect(teamHighlights).toContainText('Consumer 1→4→1')
+  await expect(teamHighlights).toContainText('HTTP 300/300 수락')
+  await expect(teamHighlights).toContainText('worker-03 재생성·재가입')
+  await expect(hero.locator('.durian-subheading').last()).toContainText('MY')
+  await expect(hero.locator('.durian-subheading').last()).toContainText('Terraform Drift 분석·복구 결과 검증에 참여')
+  await expect(hero.locator('[aria-label="개인 기여·검증의 핵심 결과"]')).toHaveCount(0)
+
   const cases = page.locator('#load-scaling .durian-case, #request-recovery .durian-case, #evidence .durian-case')
   await expect(cases).toHaveCount(3)
 
