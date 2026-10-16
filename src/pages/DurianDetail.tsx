@@ -185,13 +185,14 @@ export default function DurianDetail({ project }: { project: Project }) {
           </CaseSection>
 
           <CaseSection section={workerRecovery}>
-            <article className="durian-case" aria-label="Terraform Worker 개인 복구 사례">
-              <CaseLead title={durianReading.cases.worker.title} scope="MY" />
+            <article className="durian-case" aria-label="Terraform Worker 팀 복구 기록과 개인 검증 범위">
+              <CaseLead title={durianReading.cases.worker.title} scope="PROJECT" />
               {durianReading.workerRecovery.facts.slice(0, 2).map((fact) => (
                 <CaseCopy key={fact.label} label={fact.label}><p>{fact.value}</p></CaseCopy>
               ))}
               <CaseResult facts={[durianReading.workerRecovery.facts[2].value]} condition={durianReading.workerRecovery.note} />
               <p className="durian-lesson">{durianReading.cases.worker.lesson}</p>
+              <p className="durian-lesson"><Badge>MY</Badge> Terraform 구성·Drift 분석과 복구 결과 검증에 기여했습니다. 위 명령 전체를 혼자 실행했다고 주장하지 않습니다.</p>
               <CaseSource source={durianReading.workerRecovery.source} />
             </article>
           </CaseSection>
