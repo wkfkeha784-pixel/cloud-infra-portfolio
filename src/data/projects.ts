@@ -601,7 +601,7 @@ export const durianReading = {
   },
   cases: {
     load: {
-      title: '클러스터 밖의 요청으로 Consumer 1→4→1을 확인했습니다.',
+      title: '8/10 팀 시험에서 외부 요청 수락과 Consumer 1→4→1이 기록됐습니다.',
       problem: 'Pod 상태만으로는 외부 수강신청 요청이 Kafka에 쌓이고 Consumer 확장으로 이어지는지 판단하기 어려웠습니다.',
       condition: 'HTTP 200은 비동기 요청 수락 기준입니다. DB 300건 전체 Commit 완료를 측정한 시험은 아닙니다.',
       measurement: '약 573.68 req/s · 0.523초는 짧은 Demo Script의 전송 처리량 Snapshot입니다. 지속 처리량이나 P95를 측정한 값은 아닙니다.',
@@ -619,8 +619,8 @@ export const durianReading = {
       condition: '배치 조정은 팀 대응 사례입니다. 8/10 외부 부하 시험에서 확인한 Worker 2+2 분산은 별도 시험 결과입니다.',
     },
     worker: {
-      title: '삭제된 worker-03을 재생성하고 클러스터에 재가입시켰습니다.',
-      lesson: 'VM 재생성과 클러스터 재가입을 확인한 뒤, 최종 Node 상태까지 구분해 복구 결과를 기록했습니다.',
+      title: '팀의 worker-03 단일 VM 재생성·재가입 결과를 검증했습니다.',
+      lesson: '8/13 팀 실행 로그는 VM 재생성과 K8s 재가입을, 영상은 Node NotReady→Ready 상태 변화를 보여줍니다. 최종 Ready,SchedulingDisabled이며 전체 애플리케이션 복구는 별도입니다.',
     },
     operations: {
       personal: 'Monitoring을 인수·재구성하고 Runtime ↔ Git/Manifest 정합성을 검증했습니다.',
