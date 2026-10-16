@@ -54,7 +54,7 @@ test('durian: validation evidence snapshots expose dated proof and scope', async
   await expect(page.getByText('POST_CUTOVER_E2E_SUCCESS')).toBeVisible()
   await expect(page.getByText('Final Health PASS 43 / WARN 0 / FAIL 0')).toBeVisible()
 
-  await expect(cases.nth(0).getByText('MY', { exact: true })).toBeVisible()
+  await expect(cases.nth(0).getByText('PROJECT', { exact: true })).toBeVisible()
   await expect(cases.nth(1).getByText('MY', { exact: true })).toBeVisible()
   await expect(cases.nth(2).getByText('PROJECT', { exact: true })).toBeVisible()
   for (const item of await cases.all()) {
@@ -107,7 +107,7 @@ test('onereport: PR evidence cards preserve validation snapshots and hide privat
 test('labbit: evidence cards keep ongoing state, contract boundary, and PR snapshots visible', async ({ page }) => {
   await page.goto('/projects/labbit', { waitUntil: 'networkidle' })
 
-  await expect(page.getByText('IN PROGRESS · 2026-10-10', { exact: true })).toBeVisible()
+  await expect(page.getByText('IN PROGRESS · 2026-10-16', { exact: true })).toBeVisible()
 
   const cards = page.locator('.evidence-snapshot-card')
   await expect(cards).toHaveCount(4)
@@ -117,7 +117,7 @@ test('labbit: evidence cards keep ongoing state, contract boundary, and PR snaps
   await expect(cards.nth(3).getByText('PR 기록의 기존 UI HEAD: capture 17 / 17')).toBeVisible()
   await expect(cards.nth(3).getByText(/프로젝트 전체 완료나 merge commit 재측정 수치로 확대하지 않습니다/)).toBeVisible()
 
-  await expect(page.getByText('PR #62 main 병합 · Terminal·File 코드/CI 검증 완료', { exact: true })).toBeVisible()
+  await expect(page.getByText(/개인 FE PR #62·#93·#98·#97 main 병합/)).toBeVisible()
   await expect(page.getByText(/Terminal·File은 PR #62로 main에 통합했습니다/)).toBeVisible()
 
   await expect(cards.nth(0).getByText('MY', { exact: true })).toBeVisible()
@@ -135,6 +135,8 @@ test('labbit: evidence cards keep ongoing state, contract boundary, and PR snaps
   await expect(cards.nth(1).getByText('MY', { exact: true })).toBeVisible()
   await expect(cards.nth(2).getByText('MY', { exact: true })).toBeVisible()
   await expect(cards.nth(3).getByText('MY', { exact: true })).toBeVisible()
+  await expect(page.getByRole('list', { name: '개인 Frontend 후속 PR 세 건' }).getByRole('link')).toHaveCount(3)
+  await expect(page.locator('#validation')).toContainText('PR HEAD Checks 각 8/8 success')
 })
 
 test('home: four case-study cards and contact links are present', async ({ page }) => {
@@ -244,7 +246,7 @@ test('v2.10 sync: home and project claim boundaries expose the refreshed evidenc
   await expect(page.getByRole('region', { name: '서비스 구현과 팀 시스템 통합 경험' }).getByText(/HTTP·WebSocket API 연동/)).toBeVisible()
 
   await page.goto('/projects/durian', { waitUntil: 'networkidle' })
-  await expect(page.getByText('Terraform worker-03 Drift Recovery', { exact: true })).toBeVisible()
+  await expect(page.getByText('Terraform worker-03 Drift 분석·복구 검증 참여', { exact: true })).toBeVisible()
   const recovery = page.locator('#worker-recovery')
   await expect(recovery.getByText(/worker-03 단일 Compute Instance 복구 PoC/)).toBeVisible()
   await expect(recovery.getByText('Ready,SchedulingDisabled', { exact: true })).toBeVisible()
@@ -267,7 +269,7 @@ test('home: project summaries keep result scope visible and open the matching ca
   await expect(additional.getByRole('article')).toHaveCount(2)
 
   const durian = featured.getByRole('article').filter({ hasText: 'Team Durian' })
-  await expect(durian.getByText(/HTTP 200은 비동기 요청 수락 기준/)).toBeVisible()
+  await expect(durian.getByText(/300건은 비동기 HTTP 요청 수락 기준/)).toBeVisible()
   const bluebell = featured.getByRole('article').filter({ hasText: 'Bluebell' })
   await expect(bluebell.getByText(/복구 자동화는 팀 구현/)).toBeVisible()
   const onereport = additional.getByRole('article').filter({ hasText: 'OneReport' })
