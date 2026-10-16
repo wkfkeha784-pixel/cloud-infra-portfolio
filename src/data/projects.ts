@@ -70,10 +70,11 @@ export const projects: Project[] = [
       headline: '외부 부하에 따른 Consumer 확장·축소와 worker-03 재가입 검증',
       role: 'Kubernetes·Redis/Kafka/KEDA 운영 / 모니터링 인수 / worker-03 복구 검증',
       results: [
-        { scope: 'MY', text: '외부 HTTP 요청 300/300 수락 · Consumer 1→4→1 확장·축소' },
-        { scope: 'MY', text: 'worker-03 삭제 후 Terraform 재생성·클러스터 재가입' },
+        { scope: 'MY', text: 'Kafka/KEDA 설정·모니터링 운영과 worker-03 복구 검증 참여' },
+        { scope: 'PROJECT', text: '8/10 외부 Ops VM HTTP 300/300 수락 · Consumer 1→4→1 (당시 팀 시험 기록)' },
+        { scope: 'PROJECT', text: '8/13 worker-03 단일 VM 재생성·재가입 (팀 실행 기록)' },
       ],
-      note: 'HTTP 200은 비동기 요청 수락 기준 · Terraform 복구는 worker-03 단일 노드 재생성·재가입',
+      note: '300건은 비동기 HTTP 요청 수락 기준(전체 DB Commit 아님) · 최종 Node는 Ready,SchedulingDisabled',
       linkLabel: '운영 문제와 검증 과정 보기',
     },
     architecture: [
@@ -92,7 +93,7 @@ export const projects: Project[] = [
       'Redis–Kafka–Consumer E2E 재검증',
       'Kafka Lag 기반 KEDA 운영',
       'Monitoring 인수·재구성',
-      'Terraform worker-03 Drift Recovery',
+      'Terraform worker-03 Drift 분석·복구 검증 참여',
       'Runtime ↔ Git/Manifest 정합성 검증',
     ],
     projectResults: [
@@ -122,12 +123,12 @@ export const projects: Project[] = [
     ],
     evidenceSnapshots: [
       {
-        title: '외부 HTTP 부하 → Redis / Kafka → KEDA 1→4→1',
-        scope: 'MY',
+        title: '8/10 팀 시험 · 외부 HTTP 부하 → Redis / Kafka → KEDA 1→4→1',
+        scope: 'PROJECT',
         validatedAt: '2026-08-10',
         source: '0810_05 외부 HTTP 부하 KEDA 최종 E2E',
         summary:
-          'Kubernetes 외부 Ops VM에서 실제 수강신청 요청을 넣고 Kafka Lag 증가부터 Consumer 자동 확장·축소까지 운영 흐름을 확인했습니다.',
+          '당시 팀 시험에서 Kubernetes 외부 Ops VM의 요청 수락과 Kafka Lag·Consumer 확장·축소 경로를 기록했습니다. 개인 기여는 KEDA 구성·관측·진단과 구분합니다.',
         facts: [
           '300 / 300 HTTP 200 · Concurrency 50',
           'HPA External Metric 약 60 / 5 → Consumer 1 → 4',
@@ -173,7 +174,11 @@ export const projects: Project[] = [
     learned: '개별 기술보다 전체 운영 흐름이 연결되는지 검증하는 것이 중요했습니다.',
     limitations: 'HTTP 300/300은 비동기 요청 수락 Evidence이며 DB 300건 Commit을 의미하지 않습니다. Terraform 범위는 worker-03 단일 Compute Instance이고 반복 시험 기반 P95/SLI/SLO는 후속 과제입니다.',
     evidence: [],
-    boundaryNotes: ['Project Troubleshooting은 팀·프로젝트 결과로 구분합니다.'],
+    boundaryNotes: [
+      '8/10 외부 HTTP 300/300 및 KEDA 1→4→1은 팀 당시 실행 기록입니다. 개인 Kafka/KEDA 코드·모니터링·운영 기여와 구분합니다.',
+      '8/13 worker-03 실제 VM 재생성·재가입은 단일 인스턴스 팀 시험이며, 노드 Ready는 애플리케이션 전체 복구를 보증하지 않습니다.',
+      'Project Troubleshooting은 팀·프로젝트 결과로 구분합니다.',
+    ],
   },
   {
     slug: 'bluebell',
@@ -402,7 +407,7 @@ export const projects: Project[] = [
     slug: 'labbit',
     order: '04',
     name: 'Labbit',
-    status: 'IN PROGRESS · 2026-10-10',
+    status: 'IN PROGRESS · 2026-10-16',
     subtitle: 'OpenStack 기반 가상 실습 플랫폼',
     problem: '여러 VM을 사용하는 실습환경의 상태·권한·오류를 브라우저 화면에서 안전하게 표현해야 하는 문제',
     role: 'Frontend / 디자인 / HTTP·WebSocket API 연동',
@@ -414,10 +419,11 @@ export const projects: Project[] = [
       headline: '브라우저 실습 화면의 터미널·파일 구현과 main 통합',
       role: 'Frontend / 디자인 / HTTP·WebSocket API 연동',
       results: [
-        { scope: 'MY', text: 'PR #62 main 병합 · 세션·파일 충돌·편집 보호 코드/CI 검증' },
-        { scope: 'MY', text: '인증·수업 화면의 실제 백엔드 연동과 브라우저 동작 검증' },
+        { scope: 'MY', text: 'PR #62 Terminal·File 소비자 UI main 병합 · 세션/파일 안전 처리' },
+        { scope: 'MY', text: 'PR #93·#98·#97 LabSpec 권한·빈 상태·Mapping UI 병합 · 각 HEAD Checks 8/8' },
+        { scope: 'PROJECT', text: 'Connector #103 인메모리 루프백 하네스 병합(실 VM 종단 E2E 아님)' },
       ],
-      note: '실제 OpenStack VM PTY/SFTP E2E는 후속 통합 검증',
+      note: '개인 FE 병합·CI와 팀 Connector 루프백은 별개 · 실 OpenStack VM PTY/SFTP 전체 E2E는 미검증',
       linkLabel: 'Workspace 구현과 통합 과정 보기',
     },
     architecture: ['Team SSOT', 'React SPA', 'HTTP / WS Consumer', 'Auth / Permission / Error UX', 'Regression Test', 'Browser Acceptance'],
@@ -431,8 +437,15 @@ export const projects: Project[] = [
       '실제 Auth/Class HTTP Browser Acceptance',
       'Terminal·File HTTP/WSS Consumer 구현·통합',
       '세션 종료·재연결 처리 및 파일 충돌·편집 내용 보호',
+      'PR #93 LabSpec owner-only 목록·403/404 오류 UX',
+      'PR #98 빈 LabSpec Provision 차단·소유권 필터',
+      'PR #97 Mapping 후보 API 조회·선택 UI',
     ],
-    projectResults: ['PR #59 merged · Vitest 109', 'Auth/Class actual Backend Browser 검증', 'PR #62 main 병합 · Terminal·File 코드/CI 검증 완료'],
+    projectResults: [
+      'PR #59 merged · Vitest 109',
+      'Auth/Class actual Backend Browser 검증',
+      '개인 FE PR #62·#93·#98·#97 main 병합 · #93/#98/#97 PR HEAD Checks 각 8/8 success',
+    ],
     validation: ['Contract / Unit / CI', 'Actual Backend Browser', 'Actual OpenStack VM E2E · Pending'],
     evidenceSnapshots: [
       {
@@ -508,16 +521,52 @@ export const projects: Project[] = [
         note:
           '69/69과 capture 17/17은 PR 본문에 기록된 당시 UI HEAD Snapshot입니다. 프로젝트 전체 완료나 merge commit 재측정 수치로 확대하지 않습니다.',
       },
+      {
+        title: 'PR #93 · LabSpec Owner-only / 403·404 안전 UX',
+        scope: 'MY',
+        validatedAt: '2026-10-14',
+        source: 'GitHub PR #93 · main 병합 · PR HEAD Checks 8/8 success',
+        summary: 'LabSpec 목록에서 본인 소유 항목만 제공하고, 타 사용자 상세 403/404에 맞춰 안전한 화면·오류 처리를 구현했습니다.',
+        facts: ['Owner-only LabSpec 목록', '403/404 오류·접근 UX 분리', 'PR HEAD Checks 8/8 success'],
+        href: 'https://github.com/ktcloud4-SL/labbit-app/pull/93',
+        linkLabel: 'PR #93 원본',
+        note: '코드 병합/CI 근거이며 실 VM E2E 완료 증거가 아닙니다.',
+      },
+      {
+        title: 'PR #98 · 빈 LabSpec Provision 실행 차단',
+        scope: 'MY',
+        validatedAt: '2026-10-14',
+        source: 'GitHub PR #98 · main 병합 · PR HEAD Checks 8/8 success',
+        summary: '현재 강사 소유 LabSpec이 비어 있을 때 안내하고 잘못된 Provision 실행을 차단했습니다.',
+        facts: ['Empty State 표시', 'Provision 실행 차단', 'PR HEAD Checks 8/8 success'],
+        href: 'https://github.com/ktcloud4-SL/labbit-app/pull/98',
+        linkLabel: 'PR #98 원본',
+        note: '코드/PR 시점 검증이며 실제 프로비저닝 성공 증거가 아닙니다.',
+      },
+      {
+        title: 'PR #97 · Mapping 후보 API·선택 UI',
+        scope: 'MY',
+        validatedAt: '2026-10-15',
+        source: 'GitHub PR #97 · main 병합 · PR HEAD Checks 8/8 success',
+        summary: 'LabSpec Mapping 후보 조회와 Provider/Image/Size 선택, 오류·재시도 UI를 기존 계약에 맞춰 연동했습니다.',
+        facts: ['GET /api/v1/lab-specs/mapping-options', 'Provider/Image/Size 선택 UI', 'PR HEAD Checks 8/8 success'],
+        href: 'https://github.com/ktcloud4-SL/labbit-app/pull/97',
+        linkLabel: 'PR #97 원본',
+        note: '팀 Connector #103은 인메모리 루프백으로, 실제 OpenStack VM E2E와 별개입니다.',
+      },
     ],
     learned: 'Server authorization을 최종 권한 경계로 두고 Frontend에서는 계약을 소비하는 역할에 집중했습니다.',
     evidence: [
       { label: 'Repository', href: 'https://github.com/ktcloud4-SL/labbit-app' },
+      { label: 'PR #93 · owner-only / 오류 UX', href: 'https://github.com/ktcloud4-SL/labbit-app/pull/93' },
+      { label: 'PR #98 · 빈 LabSpec 차단', href: 'https://github.com/ktcloud4-SL/labbit-app/pull/98' },
+      { label: 'PR #97 · Mapping UI', href: 'https://github.com/ktcloud4-SL/labbit-app/pull/97' },
     ],
     boundaryNotes: [
-      '프로젝트는 IN PROGRESS이며 구현·병합 상태는 2026-10-10 기준입니다.',
-      'Auth/Class는 실제 Backend Browser 단계까지 검증했습니다.',
+      '프로젝트는 IN PROGRESS이며 표시된 개인 PR 병합·검사 시점은 2026-10-16 기준입니다.',
+      'Auth/Class는 당시 실제 Backend Browser 단계까지 검증했습니다.',
       'Terminal·File은 PR #62로 main에 통합했습니다. 실제 OpenStack VM PTY/SFTP E2E는 후속 통합 검증 범위입니다.',
-      'Preview/Live/AWS Browser Flow도 완료 성과로 표현하지 않습니다.',
+      '팀 Connector PR #95/#101/#103은 개인 FE 구현이 아니며 #103은 인메모리 루프백입니다. 실제 VM 전체 E2E 및 Preview/Live/AWS 전 구간은 완료로 주장하지 않습니다.',
     ],
   },
 ]
@@ -552,7 +601,7 @@ export const durianReading = {
   },
   cases: {
     load: {
-      title: '클러스터 밖의 요청으로 Consumer 1→4→1을 확인했습니다.',
+      title: '8/10 팀 시험에서 외부 요청 수락과 Consumer 1→4→1이 기록됐습니다.',
       problem: 'Pod 상태만으로는 외부 수강신청 요청이 Kafka에 쌓이고 Consumer 확장으로 이어지는지 판단하기 어려웠습니다.',
       condition: 'HTTP 200은 비동기 요청 수락 기준입니다. DB 300건 전체 Commit 완료를 측정한 시험은 아닙니다.',
       measurement: '약 573.68 req/s · 0.523초는 짧은 Demo Script의 전송 처리량 Snapshot입니다. 지속 처리량이나 P95를 측정한 값은 아닙니다.',
@@ -570,8 +619,8 @@ export const durianReading = {
       condition: '배치 조정은 팀 대응 사례입니다. 8/10 외부 부하 시험에서 확인한 Worker 2+2 분산은 별도 시험 결과입니다.',
     },
     worker: {
-      title: '삭제된 worker-03을 재생성하고 클러스터에 재가입시켰습니다.',
-      lesson: 'VM 재생성과 클러스터 재가입을 확인한 뒤, 최종 Node 상태까지 구분해 복구 결과를 기록했습니다.',
+      title: '팀의 worker-03 단일 VM 재생성·재가입 결과를 검증했습니다.',
+      lesson: '8/13 팀 실행 로그는 VM 재생성과 K8s 재가입을, 영상은 Node NotReady→Ready 상태 변화를 보여줍니다. 최종 Ready,SchedulingDisabled이며 전체 애플리케이션 복구는 별도입니다.',
     },
     operations: {
       personal: 'Monitoring을 인수·재구성하고 Runtime ↔ Git/Manifest 정합성을 검증했습니다.',

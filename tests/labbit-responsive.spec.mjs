@@ -16,12 +16,13 @@ for (const width of [1440, 768, 390, 320]) {
     await expect(page).toHaveURL(/\/projects\/labbit$/)
     await expect(page.locator('main h1')).toBeFocused()
     await page.evaluate(() => document.fonts.ready)
-    await expect(page.getByText('IN PROGRESS · 2026-10-10', { exact: true })).toBeVisible()
+    await expect(page.getByText('IN PROGRESS · 2026-10-16', { exact: true })).toBeVisible()
 
     const toc = page.getByRole('navigation', { name: 'Labbit 사례 목차' })
     await expect(toc.getByRole('link')).toHaveCount(8)
     await expect(page.locator('.labbit-case')).toHaveCount(4)
     await expect(page.locator('.labbit-case .scope-badge')).toHaveText(['MY', 'MY', 'MY', 'MY'])
+    await expect(page.getByRole('list', { name: '개인 Frontend 후속 PR 세 건' }).getByRole('link')).toHaveCount(3)
     await expect(page.locator('#flow li')).toHaveCount(6)
     await expect(page.locator('#flow')).toContainText('Frontend는 계약에 없는 Endpoint·Token·Error Code를 임의 정의하지 않음')
     await expect(page.locator('#workspace .bluebell-case-result')).toContainText('ETag/If-Match · 412 충돌 보호')
@@ -74,9 +75,9 @@ for (const width of [1440, 768, 390, 320]) {
     await expect(stages).toHaveCount(3)
     await expect(stages.locator('.labbit-gate-state')).toHaveText(['검증 완료', '검증 완료', 'OPEN 후속 통합 검증'])
     await expect(stages.nth(0)).toContainText('PR #59 merged · Vitest 109')
-    await expect(stages.nth(1)).toContainText('Auth/Class는 실제 Backend Browser 단계까지 검증했습니다.')
+    await expect(stages.nth(1)).toContainText('Auth/Class는 당시 실제 Backend Browser 단계까지 검증했습니다.')
     await expect(stages.nth(2)).toContainText('Actual OpenStack VM E2E · Pending')
-    await expect(stages.nth(2)).toContainText('Preview/Live/AWS Browser Flow도 완료 성과로 표현하지 않습니다.')
+    await expect(stages.nth(2)).toContainText('실제 VM 전체 E2E 및 Preview/Live/AWS 전 구간은 완료로 주장하지 않습니다.')
     await expect.poll(() => validation.locator('h2').evaluate(element => {
       const top = element.getBoundingClientRect().top
       const headerBottom = document.querySelector('.site-header').getBoundingClientRect().bottom
@@ -84,6 +85,31 @@ for (const width of [1440, 768, 390, 320]) {
     })).toBe(true)
     await page.screenshot({ path: `artifacts/screenshots/labbit-${width}-validation.png` })
     expect(await page.evaluate(() => document.documentElement.scrollWidth - innerWidth)).toBeLessThanOrEqual(2)
+
+    // G28: after scrolling away, reactivating the very same hash must
+    // return the reader to the destination without adding a history entry.
+    await page.evaluate(() => window.scrollTo({ top: 0, behavior: 'instant' }))
+    await expect.poll(() => page.evaluate(() => window.scrollY)).toBeLessThan(500)
+    const sameHashLink = toc.locator('a[href$="#validation"]')
+    await sameHashLink.focus()
+    await expect(sameHashLink).toBeFocused()
+    await sameHashLink.press('Enter')
+    await expect(page).toHaveURL(/#validation$/)
+    await expect(validation).toBeFocused()
+    const validationAligned = () => validation.locator('h2').evaluate(element => {
+      const top = element.getBoundingClientRect().top
+      const headerBottom = document.querySelector('.site-header').getBoundingClientRect().bottom
+      return top >= headerBottom && top <= headerBottom + 100
+    })
+    await expect.poll(validationAligned).toBe(true)
+
+    // The original G28 failure was a repeated pointer click.
+    await page.evaluate(() => window.scrollTo({ top: 0, behavior: 'instant' }))
+    await expect.poll(() => page.evaluate(() => window.scrollY)).toBeLessThan(500)
+    await sameHashLink.click()
+    await expect(page).toHaveURL(/#validation$/)
+    await expect(validation).toBeFocused()
+    await expect.poll(validationAligned).toBe(true)
     await page.goBack()
     await expect(page).toHaveURL(/#workspace$/)
     await expect(workspace).toBeFocused()
@@ -100,8 +126,12 @@ for (const width of [1440, 768, 390, 320]) {
     await expect(page).toHaveURL(/\/#projects$/)
     await expect(page.locator('#projects')).toBeFocused()
     await page.locator('.additional-project-list .project-case-link').nth(1).click()
-    await page.locator('.next-project a').focus()
-    await page.keyboard.press('Enter')
+    await expect(page).toHaveURL(/\/projects\/labbit$/)
+    const nextProjectLink = page.locator('.next-project a')
+    await expect(nextProjectLink).toHaveAttribute('href', '/projects/durian')
+    await nextProjectLink.focus()
+    await expect(nextProjectLink).toBeFocused()
+    await nextProjectLink.press('Enter')
     await expect(page).toHaveURL(/\/projects\/durian$/)
     await expect(page.locator('main h1')).toBeFocused()
     expect(errors).toEqual([])

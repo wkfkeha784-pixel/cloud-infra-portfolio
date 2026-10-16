@@ -91,6 +91,17 @@ export default function LabbitDetail({ project }: { project: Project }) {
 
           <ReadingSection section={validation}>
             <p className="bluebell-intro">{project.boundaryNotes?.[0]}</p>
+            <div className="bluebell-subheading"><Badge>MY</Badge><h3>10월 14~15일 개인 Frontend 후속 병합</h3></div>
+            <ul className="check-list" aria-label="개인 Frontend 후속 PR 세 건">
+              {project.evidenceSnapshots?.slice(4).map((item) => (
+                <li key={item.href}>
+                  <strong>{item.title}</strong> · {item.summary}{' '}
+                  {item.href && <a href={item.href} target="_blank" rel="noreferrer">{item.linkLabel ?? 'PR 원본'} ↗</a>}
+                  <span> · {item.source}</span>
+                </li>
+              ))}
+            </ul>
+            <p className="bluebell-case-condition">#93·#98·#97은 PR HEAD Checks 각 8/8 success이며, 이것이 실제 OpenStack VM 전체 E2E 성공을 의미하지는 않습니다.</p>
             <div className="bluebell-subheading"><Badge tone="project">PROJECT</Badge><h3>팀 통합 기준의 확인 기록</h3></div>
             <ol className="labbit-gates">
               <li><span className="labbit-gate-state">검증 완료</span><h3>코드·계약·CI</h3><p className="labbit-gate-label">{project.validation?.[0]}</p><p>{project.projectResults?.[0]}</p><p>{project.projectResults?.[2]}</p><p className="labbit-gate-note">PR별 검증 시점의 기록이며 테스트 수치를 합산하지 않습니다.</p></li>
