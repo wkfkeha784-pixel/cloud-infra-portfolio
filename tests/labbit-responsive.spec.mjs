@@ -75,7 +75,7 @@ for (const width of [1440, 768, 390, 320]) {
     await expect(stages).toHaveCount(3)
     await expect(stages.locator('.labbit-gate-state')).toHaveText(['검증 완료', '검증 완료', 'OPEN 후속 통합 검증'])
     await expect(stages.nth(0)).toContainText('PR #59 merged · Vitest 109')
-    await expect(stages.nth(1)).toContainText('Auth/Class는 실제 Backend Browser 단계까지 검증했습니다.')
+    await expect(stages.nth(1)).toContainText('Auth/Class는 당시 실제 Backend Browser 단계까지 검증했습니다.')
     await expect(stages.nth(2)).toContainText('Actual OpenStack VM E2E · Pending')
     await expect(stages.nth(2)).toContainText('Preview/Live/AWS Browser Flow도 완료 성과로 표현하지 않습니다.')
     await expect.poll(() => validation.locator('h2').evaluate(element => {
