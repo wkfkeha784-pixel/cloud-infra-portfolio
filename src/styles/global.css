@@ -1054,7 +1054,7 @@ img { max-width: 100%; }
   .project-card-featured { padding: 24px; }
   .project-card-compact { padding: 28px 0; }
 
-  .project-results li { grid-template-columns: 48px minmax(0, 1fr); gap: 10px; }
+  .project-results li { grid-template-columns: max-content minmax(0, 1fr); gap: 10px; }
 
 
   .contact-card { padding: 30px 24px; gap: 28px; }
@@ -1271,6 +1271,7 @@ img { max-width: 100%; }
   color: #126772;
   font-size: 0.63rem;
   font-weight: 800;
+  white-space: nowrap;
 }
 .project-card .project-result-scope[aria-label="팀·프로젝트 결과"] {
   background: #eaf0f7;
