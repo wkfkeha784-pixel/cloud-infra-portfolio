@@ -69,8 +69,8 @@ export default function DurianDetail({ project }: { project: Project }) {
           </h1>
           <p className="durian-subtitle">{project.subtitle}</p>
           <p className="project-detail-summary">{project.summary}</p>
-          <div className="durian-subheading"><Badge>MY</Badge><h2 className="durian-results-title">확인한 핵심 결과</h2></div>
-          <div className="durian-highlights" aria-label="개인 기여·검증의 핵심 결과">
+          <div className="durian-subheading"><Badge tone="project">PROJECT</Badge><h2 className="durian-results-title">팀 시험·실행에서 확인한 핵심 결과</h2></div>
+          <div className="durian-highlights" aria-label="팀 시험·실행의 핵심 결과">
             {durianReading.highlights.map((item) => (
               <div key={item.result}>
                 <strong>{item.result}</strong>
@@ -78,6 +78,7 @@ export default function DurianDetail({ project }: { project: Project }) {
               </div>
             ))}
           </div>
+          <p className="durian-subheading"><Badge>MY</Badge><span>Kafka/KEDA 설정·관측, 모니터링 인수 및 Terraform Drift 분석·복구 결과 검증에 참여했습니다.</span></p>
           <EvidenceGuide slug={project.slug} />
         </div>
       </section>
