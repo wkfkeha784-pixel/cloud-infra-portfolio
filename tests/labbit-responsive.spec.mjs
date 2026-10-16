@@ -85,6 +85,22 @@ for (const width of [1440, 768, 390, 320]) {
     })).toBe(true)
     await page.screenshot({ path: `artifacts/screenshots/labbit-${width}-validation.png` })
     expect(await page.evaluate(() => document.documentElement.scrollWidth - innerWidth)).toBeLessThanOrEqual(2)
+
+    // G28: after scrolling away, reactivating the very same hash must
+    // return the reader to the destination without adding a history entry.
+    await page.evaluate(() => window.scrollTo({ top: 0, behavior: 'instant' }))
+    await expect.poll(() => page.evaluate(() => window.scrollY)).toBeLessThan(500)
+    const sameHashLink = toc.locator('a[href$="#validation"]')
+    await sameHashLink.focus()
+    await expect(sameHashLink).toBeFocused()
+    await sameHashLink.press('Enter')
+    await expect(page).toHaveURL(/#validation$/)
+    await expect(validation).toBeFocused()
+    await expect.poll(() => validation.locator('h2').evaluate(element => {
+      const top = element.getBoundingClientRect().top
+      const headerBottom = document.querySelector('.site-header').getBoundingClientRect().bottom
+      return top >= headerBottom && top <= headerBottom + 100
+    })).toBe(true)
     await page.goBack()
     await expect(page).toHaveURL(/#workspace$/)
     await expect(workspace).toBeFocused()
