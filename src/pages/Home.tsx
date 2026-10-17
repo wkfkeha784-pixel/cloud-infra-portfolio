@@ -15,9 +15,9 @@ export default function Home() {
             <span className="eyebrow">신입 클라우드 인프라 엔지니어</span>
             <h1>박희철</h1>
             <p className="hero-lead">
-              구축에서 끝내지 않고, 운영 상태를 관측하고
+              AWS Web–WAS를 구축하고,
               <br />{' '}
-              장애 이후 정상화까지 검증합니다.
+              통신 장애를 분석하고 복구 상태를 확인했습니다.
             </p>
             <p className="hero-support">
               KT Cloud 교육·팀 프로젝트에서 AWS·OpenStack·Kubernetes의 서비스 연결과 확장,

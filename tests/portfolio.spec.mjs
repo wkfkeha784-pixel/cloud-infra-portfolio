@@ -129,10 +129,10 @@ test('labbit: evidence cards keep ongoing state, contract boundary, and PR snaps
   await expect(cards.nth(3).getByText(/프로젝트 전체 완료나 merge commit 재측정 수치로 확대하지 않습니다/)).toBeVisible()
 
   await expect(page.getByText(/개인 FE PR #62·#93·#98·#97 main 병합/)).toBeVisible()
-  await expect(page.getByText(/Terminal·File은 PR #62로 main에 통합했습니다/)).toBeVisible()
+  await expect(page.getByText('실제 OpenStack VM의 PTY/SFTP는 후속 통합 검증 대상입니다.')).toBeVisible()
 
   await expect(cards.nth(0).getByText('MY', { exact: true })).toBeVisible()
-  await expect(cards.nth(0).getByText(/실제 OpenStack VM PTY\/SFTP E2E는 후속 통합 검증/)).toBeVisible()
+  await expect(cards.nth(0).getByText('검증 범위: Frontend 코드·API 계약·PR 검사.')).toBeVisible()
 
   for (const href of [
     'https://github.com/ktcloud4-SL/labbit-app/pull/62',
@@ -280,7 +280,7 @@ test('home: project summaries keep result scope visible and open the matching ca
   await expect(additional.getByRole('article')).toHaveCount(2)
 
   const durian = featured.getByRole('article').filter({ hasText: 'Team Durian' })
-  await expect(durian.getByText(/300건은 비동기 HTTP 요청 수락 기준/)).toBeVisible()
+  await expect(durian.getByText(/8\/10 팀 시험 · 비동기 HTTP 요청 수락/)).toBeVisible()
   const bluebell = featured.getByRole('article').filter({ hasText: 'Bluebell' })
   await expect(bluebell.getByText(/복구 자동화는 팀 구현/)).toBeVisible()
   const onereport = additional.getByRole('article').filter({ hasText: 'OneReport' })
@@ -288,7 +288,7 @@ test('home: project summaries keep result scope visible and open the matching ca
   await expect(onereport.getByText(/규칙 기반 분석 · 실제 공공기관 연계 없음/)).toBeVisible()
   const labbit = additional.getByRole('article').filter({ hasText: 'Labbit' })
   await expect(labbit.getByText(/IN PROGRESS/)).toBeVisible()
-  await expect(labbit.getByText(/실 OpenStack VM PTY\/SFTP 전체 E2E는 미검증/)).toBeVisible()
+  await expect(labbit.getByText('Frontend 코드·API 계약·PR 검사 · 2026-10-16 기준', { exact: true })).toBeVisible()
 
   for (const [slug, name] of [['durian', 'Team Durian'], ['bluebell', 'Bluebell'], ['onereport', 'OneReport'], ['labbit', 'Labbit']]) {
     const card = page.getByRole('article').filter({ hasText: name })

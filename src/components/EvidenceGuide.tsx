@@ -27,9 +27,8 @@ const evidenceLinks: Record<string, { id: string; label: string }[]> = {
 export function EvidenceLegend() {
   return (
     <ul className="evidence-legend" aria-label="기여와 검증 범위 표기">
-      <li><Badge>MY</Badge><span>개인 수행·검증</span></li>
-      <li><Badge tone="project">PROJECT</Badge><span>팀 구현·결과</span></li>
-      <li><Badge tone="open">OPEN</Badge><span>제안·후속 검증</span></li>
+      <li><Badge>MY</Badge><span>담당 업무</span></li>
+      <li><Badge tone="project">PROJECT</Badge><span>팀 성과·시험 결과</span></li>
     </ul>
   )
 }

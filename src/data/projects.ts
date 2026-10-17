@@ -84,7 +84,7 @@ export const projects: Project[] = [
         { scope: 'PROJECT', text: '8/10 외부 Ops VM HTTP 300/300 수락 · Consumer 1→4→1 (당시 팀 시험 기록)' },
         { scope: 'PROJECT', text: '8/13 worker-03 단일 VM 재생성·재가입 (팀 실행 기록)' },
       ],
-      note: '300건은 비동기 HTTP 요청 수락 기준(전체 DB Commit 아님) · 최종 Node는 Ready,SchedulingDisabled',
+      note: '8/10 팀 시험 · 비동기 HTTP 요청 수락 / 8/13 단일 VM 복구 · Ready,SchedulingDisabled',
       linkLabel: '운영 문제와 검증 과정 보기',
     },
     architecture: [
@@ -146,7 +146,7 @@ export const projects: Project[] = [
           'Lag 해소 후 4 → 1 Scale-in · Kafka Broker Running',
         ],
         note:
-          'HTTP 200은 요청 수락 증거이며 300건 전체 DB Commit 완료로 확대 해석하지 않습니다. 573.68 req/s도 짧은 Demo 전송 처리량 Snapshot입니다.',
+          'HTTP 200은 비동기 요청 수락 기준입니다. 573.68 req/s는 짧은 Demo Script에서 측정한 전송 처리량입니다.',
       },
       {
         title: '공식 Kafka E2E · 최소권한 Cutover 검증',
@@ -162,7 +162,7 @@ export const projects: Project[] = [
           'POST_CUTOVER_E2E_SUCCESS',
         ],
         note:
-          '이 8/6 Snapshot의 공식 Producer 경로에는 Redis 호출이 없었습니다. Redis 포함 최종 흐름과 시점을 섞지 않습니다.',
+          '8/6 공식 Producer 경로는 Kafka로 직접 발행했습니다. Redis를 포함한 최종 요청 흐름은 8/10 기록에 정리했습니다.',
       },
       {
         title: 'Observability · Final Runtime Health Snapshot',
@@ -178,7 +178,7 @@ export const projects: Project[] = [
           'Final Health PASS 43 / WARN 0 / FAIL 0',
         ],
         note:
-          'Project-level 최종 결과입니다. 개인 기여는 Monitoring 인수·재구성과 KEDA 운영 범위로 구분합니다.',
+          '팀 최종 실행 기록입니다. 개인 담당은 Monitoring 인수·재구성과 KEDA 운영입니다.',
       },
     ],
     learned: '개별 기술보다 전체 운영 흐름이 연결되는지 검증하는 것이 중요했습니다.',
@@ -444,9 +444,8 @@ export const projects: Project[] = [
       results: [
         { scope: 'MY', text: 'PR #62 Terminal·File 소비자 UI main 병합 · 세션/파일 안전 처리' },
         { scope: 'MY', text: 'PR #93·#98·#97 LabSpec 권한·빈 상태·Mapping UI 병합 · 각 HEAD Checks 8/8' },
-        { scope: 'PROJECT', text: 'Connector #103 인메모리 루프백 하네스 병합(실 VM 종단 E2E 아님)' },
       ],
-      note: '개인 FE 병합·CI와 팀 Connector 루프백은 별개 · 실 OpenStack VM PTY/SFTP 전체 E2E는 미검증',
+      note: 'Frontend 코드·API 계약·PR 검사 · 2026-10-16 기준',
       linkLabel: 'Workspace 구현과 통합 과정 보기',
     },
     architecture: ['Team SSOT', 'React SPA', 'HTTP / WS Consumer', 'Auth / Permission / Error UX', 'Regression Test', 'Browser Acceptance'],
@@ -488,7 +487,7 @@ export const projects: Project[] = [
         href: 'https://github.com/ktcloud4-SL/labbit-app/pull/62',
         linkLabel: 'PR #62 구현·검증 보기',
         note:
-          '코드·CI 검증 완료. 실제 OpenStack VM PTY/SFTP E2E는 후속 통합 검증 범위입니다.',
+          '검증 범위: Frontend 코드·API 계약·PR 검사.',
       },
       {
         title: 'PR #23 · Session / Mutation Safety',
@@ -553,7 +552,7 @@ export const projects: Project[] = [
         facts: ['Owner-only LabSpec 목록', '403/404 오류·접근 UX 분리', 'PR HEAD Checks 8/8 success'],
         href: 'https://github.com/ktcloud4-SL/labbit-app/pull/93',
         linkLabel: 'PR #93 원본',
-        note: '코드 병합/CI 근거이며 실 VM E2E 완료 증거가 아닙니다.',
+        note: 'LabSpec 소유자 필터와 403/404 화면 처리를 코드·PR 검사로 확인했습니다.',
       },
       {
         title: 'PR #98 · 빈 LabSpec Provision 실행 차단',
@@ -564,7 +563,7 @@ export const projects: Project[] = [
         facts: ['Empty State 표시', 'Provision 실행 차단', 'PR HEAD Checks 8/8 success'],
         href: 'https://github.com/ktcloud4-SL/labbit-app/pull/98',
         linkLabel: 'PR #98 원본',
-        note: '코드/PR 시점 검증이며 실제 프로비저닝 성공 증거가 아닙니다.',
+        note: '빈 목록 안내와 실행 차단을 코드·PR 검사로 확인했습니다.',
       },
       {
         title: 'PR #97 · Mapping 후보 API·선택 UI',
@@ -575,7 +574,7 @@ export const projects: Project[] = [
         facts: ['GET /api/v1/lab-specs/mapping-options', 'Provider/Image/Size 선택 UI', 'PR HEAD Checks 8/8 success'],
         href: 'https://github.com/ktcloud4-SL/labbit-app/pull/97',
         linkLabel: 'PR #97 원본',
-        note: '팀 Connector #103은 인메모리 루프백으로, 실제 OpenStack VM E2E와 별개입니다.',
+        note: 'Mapping 후보 조회·선택 UI를 API 계약과 PR 검사로 확인했습니다.',
       },
     ],
     learned: 'Server authorization을 최종 권한 경계로 두고 Frontend에서는 계약을 소비하는 역할에 집중했습니다.',
@@ -588,8 +587,8 @@ export const projects: Project[] = [
     boundaryNotes: [
       '프로젝트는 IN PROGRESS이며 표시된 개인 PR 병합·검사 시점은 2026-10-16 기준입니다.',
       'Auth/Class는 당시 실제 Backend Browser 단계까지 검증했습니다.',
-      'Terminal·File은 PR #62로 main에 통합했습니다. 실제 OpenStack VM PTY/SFTP E2E는 후속 통합 검증 범위입니다.',
-      '팀 Connector PR #95/#101/#103은 개인 FE 구현이 아니며 #103은 인메모리 루프백입니다. 실제 VM 전체 E2E 및 Preview/Live/AWS 전 구간은 완료로 주장하지 않습니다.',
+      '실제 OpenStack VM의 PTY/SFTP는 후속 통합 검증 대상입니다.',
+      'Browser → SaaS → Connector → 실제 OpenStack VM 경로',
     ],
   },
 ]
