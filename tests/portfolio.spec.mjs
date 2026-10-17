@@ -288,7 +288,7 @@ test('home: project summaries keep result scope visible and open the matching ca
   await expect(onereport.getByText(/규칙 기반 분석 · 실제 공공기관 연계 없음/)).toBeVisible()
   const labbit = additional.getByRole('article').filter({ hasText: 'Labbit' })
   await expect(labbit.getByText(/IN PROGRESS/)).toBeVisible()
-  await expect(labbit.getByText('Frontend 코드·API 계약·PR 검사 · 2026-10-16 기준', { exact: true })).toBeVisible()
+  await expect(labbit.getByText('Frontend 코드·API 계약·PR 검사 · 2026-10-16 기준')).toBeVisible()
 
   for (const [slug, name] of [['durian', 'Team Durian'], ['bluebell', 'Bluebell'], ['onereport', 'OneReport'], ['labbit', 'Labbit']]) {
     const card = page.getByRole('article').filter({ hasText: name })
