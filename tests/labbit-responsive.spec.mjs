@@ -58,7 +58,7 @@ for (const width of [1440, 768, 390, 320]) {
     await page.keyboard.press('Space')
     await expect(workspace.locator('details')).not.toHaveAttribute('open')
     await expect(workspace.locator('.bluebell-case-result')).toBeVisible()
-    await expect(workspace.locator('.bluebell-case-condition')).toContainText('실제 OpenStack VM PTY/SFTP E2E는 후속 통합 검증')
+    await expect(workspace.locator('.bluebell-case-condition')).toContainText('검증 범위: Frontend 코드·API 계약·PR 검사.')
     await page.keyboard.press('Tab')
     const original = workspace.getByRole('link', { name: 'PR #62 구현·검증 보기 ↗' })
     await expect(original).toBeFocused()
@@ -73,11 +73,11 @@ for (const width of [1440, 768, 390, 320]) {
     await expect(validation).toBeFocused()
     const stages = validation.locator('.labbit-gates > li')
     await expect(stages).toHaveCount(3)
-    await expect(stages.locator('.labbit-gate-state')).toHaveText(['검증 완료', '검증 완료', 'OPEN 후속 통합 검증'])
+    await expect(stages.locator('.labbit-gate-state')).toHaveText(['검증 완료', '검증 완료', '후속 통합 검증'])
     await expect(stages.nth(0)).toContainText('PR #59 merged · Vitest 109')
     await expect(stages.nth(1)).toContainText('Auth/Class는 당시 실제 Backend Browser 단계까지 검증했습니다.')
     await expect(stages.nth(2)).toContainText('Actual OpenStack VM E2E · Pending')
-    await expect(stages.nth(2)).toContainText('실제 VM 전체 E2E 및 Preview/Live/AWS 전 구간은 완료로 주장하지 않습니다.')
+    await expect(stages.nth(2)).toContainText('실제 OpenStack VM의 PTY/SFTP는 후속 통합 검증 대상입니다.')
     await expect.poll(() => validation.locator('h2').evaluate(element => {
       const top = element.getBoundingClientRect().top
       const headerBottom = document.querySelector('.site-header').getBoundingClientRect().bottom

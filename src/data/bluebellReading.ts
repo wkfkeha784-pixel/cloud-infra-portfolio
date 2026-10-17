@@ -18,7 +18,7 @@ export const bluebellReading = {
     web: {
       title: 'Web과 WAS를 연결하고 서비스·Target Group·API 응답을 확인했습니다.',
       problem: '계층별 서버가 실행 중이어도 외부 요청이 Web과 WAS를 거쳐 정상 응답하는지는 별도로 확인해야 했습니다.',
-      action: 'Web–WAS 계층을 구축하고 Public ALB → Web Nginx → Internal WAS LB → Flask API의 연결을 검증했습니다. 서비스 replica와 Target Group 상태를 API 응답과 함께 확인했습니다.',
+      action: '7/2 회의에서 팀은 WAS 대상 분산과 Web→WAS 요청 경로를 명확히 하려고 Internal LB 도입을 결정했습니다. 저는 Web–WAS 계층 구축과 연결·검증을 맡아 서비스 replica와 Target Group 상태를 API 응답과 함께 확인했습니다.',
     },
     recovery: {
       title: '새 노드 생성부터 서비스 재편입과 HTTP 응답까지 복구 상태를 확인했습니다.',

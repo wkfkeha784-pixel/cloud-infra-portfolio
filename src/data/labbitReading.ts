@@ -14,7 +14,7 @@ export const labbitReading = {
   highlights: [
     { result: 'PR #62 main 병합', context: '터미널·파일 API 연동 · 2026-10-07' },
     { result: 'LabSpec 권한·선택 UI 병합', context: '#93·#98·#97 main 병합 · 각 PR HEAD Checks 8/8' },
-    { result: '인증·수업 화면 연동 검증', context: '실제 Backend 흐름 · VM PTY/SFTP E2E는 후속' },
+    { result: '인증·수업 화면 연동 검증', context: '실제 Backend의 인증·수업 화면 확인' },
   ],
   cases: [
     {
