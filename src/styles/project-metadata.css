@@ -1,0 +1,33 @@
+.project-metadata {
+  display: grid;
+  gap: 12px;
+  margin: 0 0 28px;
+  padding: 18px 0;
+  border-block: 1px solid var(--line);
+  line-height: 1.8;
+}
+
+.project-metadata > div {
+  display: grid;
+  grid-template-columns: 100px minmax(0, 1fr);
+  gap: 20px;
+}
+
+.project-metadata dt {
+  color: var(--teal);
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.project-metadata dd {
+  min-width: 0;
+  margin: 0;
+  color: var(--navy);
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 560px) {
+  .project-metadata { gap: 16px; }
+  .project-metadata > div { grid-template-columns: 1fr; gap: 4px; }
+}

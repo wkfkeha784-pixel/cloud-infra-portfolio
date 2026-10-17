@@ -2,6 +2,7 @@ import EvidenceGuide from '../components/EvidenceGuide'
 import type { ReactNode } from 'react'
 import { Link } from 'react-router-dom'
 import Badge from '../components/Badge'
+import ProjectMetadata from '../components/ProjectMetadata'
 import { durianReading, type EvidenceSnapshot, type Project } from '../data/projects'
 
 type ReadingSection = typeof durianReading.sections[number]
@@ -102,10 +103,7 @@ export default function DurianDetail({ project }: { project: Project }) {
         <div className="durian-content">
           <CaseSection section={overview}>
             <p className="durian-intro">{project.problem}</p>
-            <dl className="durian-role">
-              <dt>담당 역할</dt>
-              <dd>{project.home.role}</dd>
-            </dl>
+            <ProjectMetadata project={project} />
             <div className="durian-subheading"><Badge>MY</Badge><h3>개인 담당 범위</h3></div>
             <ul className="check-list durian-contributions">
               {project.myContributions.map((item) => <li key={item}>{item}</li>)}
