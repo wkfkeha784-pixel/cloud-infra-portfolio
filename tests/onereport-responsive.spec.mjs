@@ -74,6 +74,7 @@ for (const width of [1440, 768, 390, 320]) {
     await expect(page.locator('table')).toContainText('제안·확장 구상')
     await expect(page.locator('#boundary')).toContainText('기관 대응 화면은 PoC 데이터로 동작합니다.')
     await expect(page.locator('a[href*="github.com/ktcloud4-SL/hackathon"]')).toHaveCount(0)
+    await toc.locator('a[href$="#boundary"]').click()
     await expect.poll(() => page.locator('#boundary h2').evaluate(element => {
       const top = element.getBoundingClientRect().top
       const headerBottom = document.querySelector('.site-header').getBoundingClientRect().bottom
