@@ -136,9 +136,9 @@ export const projects: Project[] = [
         title: '8/10 팀 시험 · 외부 HTTP 부하 → Redis / Kafka → KEDA 1→4→1',
         scope: 'PROJECT',
         validatedAt: '2026-08-10',
-        source: '0810_05 외부 HTTP 부하 KEDA 최종 E2E',
+        source: '0807_04 KEDA Kafka Lag 설계(선택 이유) · 0810_05 외부 HTTP 부하 KEDA 최종 E2E(팀 시험)',
         summary:
-          '당시 팀 시험에서 Kubernetes 외부 Ops VM의 요청 수락과 Kafka Lag·Consumer 확장·축소 경로를 기록했습니다. 개인 기여는 KEDA 구성·관측·진단과 구분합니다.',
+          'Consumer의 미처리 메시지량을 확장 기준으로 보기 위해 Kafka Lag를 사용했습니다. 8/10 팀 시험에서는 Kubernetes 외부 Ops VM의 요청 수락과 Consumer 확장·축소 경로를 기록했습니다. 개인 기여는 KEDA 구성·관측·진단입니다.',
         facts: [
           '300 / 300 HTTP 200 · Concurrency 50',
           'HPA External Metric 약 60 / 5 → Consumer 1 → 4',
@@ -259,7 +259,7 @@ export const projects: Project[] = [
         title: 'Web–WAS 통합 검증 · Target Group Healthy',
         scope: 'MY',
         validatedAt: '2026-07-14',
-        source: 'Bluebell final presentation p.9',
+        source: '2026-07-02 팀 회의록 §5-3(도입 결정) · 역할분담 §4.2(개인 담당) · Bluebell final presentation p.9(구현·검증)',
         summary:
           'Web–WAS 구축 담당 범위에서 Public ALB부터 Internal WAS LB까지 요청 흐름과 서비스·Target Group 정상 상태를 통합 검증했습니다.',
         facts: [
@@ -631,7 +631,7 @@ export const durianReading = {
     },
     request: {
       title: '접근·인증 설정을 복구하고 실제 DB 반영까지 재검증했습니다.',
-      problem: '공식 요청 경로를 복구하기 위해 네트워크 접근부터 Kafka 인증·권한까지 순서대로 확인해야 했습니다.',
+      problem: '초기 Kafka 연결 시간초과를 해소하자 TLS 신뢰 오류(PKIX)가 드러났습니다. 한 설정의 수정만으로 끝나지 않아 통신·신뢰·인증·권한을 나누어 점검했습니다.',
       action: 'NetworkPolicy → TLS Trust → SCRAM → Topic / Group ACL 순으로 복구하고, 최소권한 Cutover 후 Mainpage의 실제 요청으로 MariaDB 반영을 확인했습니다.',
       condition: '이 8/6 Snapshot의 공식 Producer 경로에는 Redis 호출이 없었습니다.',
     },
