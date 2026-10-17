@@ -2,6 +2,7 @@ import EvidenceGuide from '../components/EvidenceGuide'
 import type { ReactNode } from 'react'
 import { Link } from 'react-router-dom'
 import Badge from '../components/Badge'
+import ProjectMetadata from '../components/ProjectMetadata'
 import { labbitReading } from '../data/labbitReading'
 import type { EvidenceSnapshot, Project } from '../data/projects'
 import '../styles/labbit.css'
@@ -68,7 +69,7 @@ export default function LabbitDetail({ project }: { project: Project }) {
         <div className="bluebell-content">
           <ReadingSection section={overview}>
             <p className="bluebell-intro">{project.problem}</p>
-            <dl className="bluebell-role"><dt>담당 역할</dt><dd>{project.role}</dd></dl>
+            <ProjectMetadata project={project} />
             <div className="bluebell-subheading"><Badge>MY</Badge><h3>개인 담당 범위</h3></div>
             <ul className="check-list bluebell-contributions">{project.myContributions.map((item) => <li key={item}>{item}</li>)}</ul>
             <div className="tags" aria-label="Labbit 기술 스택">{project.tags.map((tag) => <span key={tag}>{tag}</span>)}</div>

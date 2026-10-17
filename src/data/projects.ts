@@ -26,6 +26,11 @@ export type Project = {
   subtitle: string
   problem: string
   role: string
+  metadata: {
+    timeline: string
+    team: string
+    role?: string
+  }
   summary: string
   tags: string[]
   home: {
@@ -59,6 +64,11 @@ export const projects: Project[] = [
     slug: 'durian',
     order: '01',
     name: 'Team Durian',
+    metadata: {
+      timeline: '2026.07.15-08.18',
+      team: '최종 3명',
+      role: '팀원 · Kafka/KEDA·모니터링·복구 검증',
+    },
     subtitle: '수강신청 폭주 대응을 위한 대기열 오토스케일링 플랫폼',
     problem: '갑작스러운 수강신청 요청이 애플리케이션과 DB로 한꺼번에 전달되는 상황',
     role: 'Kubernetes·Redis/Kafka/KEDA 운영 / 모니터링 인수·재구성 / Terraform 복구 검증',
@@ -184,6 +194,10 @@ export const projects: Project[] = [
     slug: 'bluebell',
     order: '02',
     name: 'Bluebell',
+    metadata: {
+      timeline: '교육 프로젝트 2026.06.11-07.14',
+      team: '최종 5명',
+    },
     subtitle: 'AWS Web/WAS + Local DB 하이브리드 3-Tier 인프라',
     problem: '수작업 복구와 서버 재구성 시 설정 편차, 복구 완료 판단 기준 부족',
     role: '팀장 / Web–WAS 구축 / AWS·복구 통합 검증',
@@ -311,6 +325,11 @@ export const projects: Project[] = [
     slug: 'onereport',
     order: '03',
     name: 'OneReport',
+    metadata: {
+      timeline: '2026.08.19-08.21 해커톤',
+      team: '역할표 8명 · Backend 공동 2명',
+      role: 'Backend 공동 / 도메인·DB·기관 배정·API 계약·규칙 기반 분석',
+    },
     subtitle: '복합사고 다기관 공동대응 운영 플랫폼',
     problem: '기관별 배정·상태·이력이 분리되면 전체 대응 상황을 파악하기 어려운 문제',
     role: 'Backend / 도메인·DB·기관 배정·API 계약·규칙 기반 분석',
@@ -407,6 +426,10 @@ export const projects: Project[] = [
     slug: 'labbit',
     order: '04',
     name: 'Labbit',
+    metadata: {
+      timeline: '개발 착수안 2026.09.17 · 수록 PR 10.07-10.15 · 검증 기준 2026.10.16',
+      team: '9/17 착수안 팀 구성표 8명(개발 4 / 운영 4)',
+    },
     status: 'IN PROGRESS · 2026-10-16',
     subtitle: 'OpenStack 기반 가상 실습 플랫폼',
     problem: '여러 VM을 사용하는 실습환경의 상태·권한·오류를 브라우저 화면에서 안전하게 표현해야 하는 문제',
