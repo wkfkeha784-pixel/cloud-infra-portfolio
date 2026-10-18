@@ -72,12 +72,12 @@ for (const width of [1440, 768, 390, 320]) {
     const validation = page.locator('#validation')
     await expect(validation).toBeFocused()
     const stages = validation.locator('.labbit-gates > li')
-    await expect(stages).toHaveCount(3)
-    await expect(stages.locator('.labbit-gate-state')).toHaveText(['검증 완료', '검증 완료', '후속 통합 검증'])
+    await expect(stages).toHaveCount(2)
+    await expect(stages.locator('.labbit-gate-state')).toHaveText(['검증 완료', '검증 완료'])
     await expect(stages.nth(0)).toContainText('PR #59 merged · Vitest 109')
     await expect(stages.nth(1)).toContainText('Auth/Class는 당시 실제 Backend Browser 단계까지 검증했습니다.')
-    await expect(stages.nth(2)).toContainText('Actual OpenStack VM E2E · Pending')
-    await expect(stages.nth(2)).toContainText('실제 OpenStack VM의 PTY/SFTP는 후속 통합 검증 대상입니다.')
+    await expect(validation).not.toContainText('Actual OpenStack VM E2E · Pending')
+    await expect(validation).not.toContainText('실제 OpenStack VM')
     await expect.poll(() => validation.locator('h2').evaluate(element => {
       const top = element.getBoundingClientRect().top
       const headerBottom = document.querySelector('.site-header').getBoundingClientRect().bottom

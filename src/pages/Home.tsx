@@ -14,14 +14,8 @@ export default function Home() {
           <div>
             <span className="eyebrow">신입 클라우드 인프라 엔지니어</span>
             <h1>박희철</h1>
-            <p className="hero-lead">
-              AWS Web–WAS를 구축하고,
-              <br />{' '}
-              통신 장애를 분석하고 복구 상태를 확인했습니다.
-            </p>
             <p className="hero-support">
-              KT Cloud 교육·팀 프로젝트에서 AWS·OpenStack·Kubernetes의 서비스 연결과 확장,
-              장애·설정 변경 이후 복구 상태를 검증했습니다.
+              프로젝트별 담당 업무와 구현·검증 기록을 정리했습니다.
             </p>
             <div className="hero-actions">
               <a className="button" href="#projects">프로젝트 보기</a>

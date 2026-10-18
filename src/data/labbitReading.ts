@@ -8,7 +8,7 @@ export const labbitReading = {
     { id: 'session', number: '04', label: '세션·권한·변경 요청', title: '세션·권한 변경과 안전한 사용자 동작' },
     { id: 'http', number: '05', label: 'Mock·HTTP 경계', title: '개발 Mock과 Production HTTP의 경계' },
     { id: 'prototype', number: '06', label: '시제품·화면 캡처', title: '팀 검토를 위한 시제품과 화면 캡처' },
-    { id: 'validation', number: '07', label: '단계별 검증 범위', title: '확인한 단계와 남은 통합 검증' },
+    { id: 'validation', number: '07', label: '후속 구현·연동 기록', title: '후속 Frontend 구현과 Backend 연동 기록' },
     { id: 'evidence', number: '08', label: '원본 자료·배운 점', title: '원본 자료와 구현에서 배운 점' },
   ],
   highlights: [

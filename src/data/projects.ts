@@ -271,8 +271,6 @@ export const projects: Project[] = [
         image: '/evidence/bluebell/web-was-target-healthy.svg',
         imageAlt: 'Bluebell Web 및 WAS Target Group이 각각 2 healthy, 0 unhealthy인 검증 화면',
         imageCaption: 'Web / WAS Target Group · 2 healthy · 0 unhealthy',
-        note:
-          '개인 기여는 Web–WAS 구축과 AWS·통합 검증 범위입니다. Ansible·Swarm 자동화 전체를 개인 구현으로 표현하지 않습니다.',
       },
       {
         title: 'ASG Replacement → Service / Target Group 정상화',
@@ -290,8 +288,6 @@ export const projects: Project[] = [
         image: '/evidence/bluebell/replacement-target-healthy.svg',
         imageAlt: 'Bluebell Replacement 인스턴스가 Target Group에서 healthy로 확인된 화면',
         imageCaption: 'Replacement instance → Target Group healthy',
-        note:
-          'Recovery 자동화 자체는 팀 구현입니다. 개인 포인트는 각 담당 영역을 연결해 복구 완료 상태를 통합 검증한 부분입니다.',
       },
       {
         title: 'Monitoring Restored · Replacement 관측 연속성',
@@ -309,8 +305,6 @@ export const projects: Project[] = [
         image: '/evidence/bluebell/monitoring-restored.svg',
         imageAlt: 'Bluebell Replacement 노드가 Grafana Node Exporter 대시보드에 다시 관측되는 화면',
         imageCaption: 'Replacement node · Grafana monitoring continuity',
-        note:
-          'Monitoring 구축·프로비저닝은 팀 담당 영역이며, 이 카드는 Project Result로 구분합니다.',
       },
     ],
     learned:
@@ -377,7 +371,7 @@ export const projects: Project[] = [
           'PR 시점 Backend 전체 테스트 41 passed · OpenAPI 생성 PASS',
         ],
         note:
-          '41 passed는 PR #9 검증 시점의 Snapshot입니다. 다른 PR의 테스트 수와 합산하지 않습니다.',
+          'PR #9 검증 시점 · 41 passed.',
       },
       {
         title: 'PR #14 · Timeline Contract',
@@ -393,7 +387,7 @@ export const projects: Project[] = [
           'PR 시점 Backend 전체 테스트 49 passed · OpenAPI 생성 PASS',
         ],
         note:
-          '49 passed는 PR #14 시점의 독립 검증값이며 PR #9 / #27과 합산하지 않습니다.',
+          'PR #14 검증 시점 · 49 passed.',
       },
       {
         title: 'PR #27 · Rule-based Analysis',
@@ -409,7 +403,7 @@ export const projects: Project[] = [
           'PR 시점 Backend 65 passed · Frontend 분석 흐름 3 passed · production build PASS',
         ],
         note:
-          'LLM / AI 분석이 아니라 Rule-based Analysis입니다. 테스트 수치는 이 PR의 검증 Snapshot으로만 사용합니다.',
+          'PR #27 · Rule 기반 분석의 당시 검사 결과.',
       },
     ],
     learned: 'Domain·DB·API 상태가 실제 Incident 운영 흐름과 일치하도록 구현하고 검증했습니다.',
@@ -541,7 +535,7 @@ export const projects: Project[] = [
         href: 'https://github.com/ktcloud4-SL/labbit-app/pull/28',
         linkLabel: 'PR #28 원본 보기',
         note:
-          '69/69과 capture 17/17은 PR 본문에 기록된 당시 UI HEAD Snapshot입니다. 프로젝트 전체 완료나 merge commit 재측정 수치로 확대하지 않습니다.',
+          'PR #28 당시 UI HEAD Snapshot · Vitest 69/69 · capture 17/17.',
       },
       {
         title: 'PR #93 · LabSpec Owner-only / 403·404 안전 UX',

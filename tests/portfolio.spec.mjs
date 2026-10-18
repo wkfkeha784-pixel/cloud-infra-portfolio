@@ -106,7 +106,7 @@ test('onereport: PR evidence cards preserve validation snapshots and hide privat
 
   await expect(cards.nth(0).getByText('PR 시점 Backend 전체 테스트 41 passed · OpenAPI 생성 PASS')).toBeVisible()
   await expect(cards.nth(1).getByText('Timeline REST → { items, total } Contract 정합')).toBeVisible()
-  await expect(cards.nth(2).getByText('LLM / AI 분석이 아니라 Rule-based Analysis입니다.')).toBeVisible()
+  await expect(cards.nth(2).getByText('PR #27 · Rule 기반 분석의 당시 검사 결과.')).toBeVisible()
   await expect(page.locator('a[href*="github.com/ktcloud4-SL/hackathon"]')).toHaveCount(0)
   await expect(page.getByText(/OneReport 팀 저장소는 비공개/)).toBeVisible()
 
@@ -126,10 +126,10 @@ test('labbit: evidence cards keep ongoing state, contract boundary, and PR snaps
   await expect(cards.nth(1).getByText('Mutation 401 → Login 복귀 · stale me 인증 Cache 폐기')).toBeVisible()
   await expect(cards.nth(2).getByText('Production Build는 설정과 무관하게 HTTP Consumer 사용')).toBeVisible()
   await expect(cards.nth(3).getByText('PR 기록의 기존 UI HEAD: capture 17 / 17')).toBeVisible()
-  await expect(cards.nth(3).getByText(/프로젝트 전체 완료나 merge commit 재측정 수치로 확대하지 않습니다/)).toBeVisible()
+  await expect(cards.nth(3).getByText('PR #28 당시 UI HEAD Snapshot · Vitest 69/69 · capture 17/17.')).toBeVisible()
 
   await expect(page.getByText(/개인 FE PR #62·#93·#98·#97 main 병합/)).toBeVisible()
-  await expect(page.getByText('실제 OpenStack VM의 PTY/SFTP는 후속 통합 검증 대상입니다.')).toBeVisible()
+  await expect(page.locator('#validation')).not.toContainText('실제 OpenStack VM')
 
   await expect(cards.nth(0).getByText('MY', { exact: true })).toBeVisible()
   await expect(cards.nth(0).getByText('검증 범위: Frontend 코드·API 계약·PR 검사.')).toBeVisible()

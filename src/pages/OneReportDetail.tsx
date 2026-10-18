@@ -115,7 +115,7 @@ export default function OneReportDetail({ project }: { project: Project }) {
             <div className="bluebell-closing">
               <div><h3>구현한 처리 흐름</h3><p>규칙 기반 분석·기관 배정·상태 변경·Timeline을 AWS PoC에서 연결했습니다. 기관 대응 화면은 PoC 데이터로 동작합니다.</p></div>
               <div><h3>구현에서 배운 점</h3><p>{project.learned}</p></div>
-              <div><h3>공개 검증 근거</h3><p>{project.boundaryNotes?.[4]}</p><p>PR별 검증 기록과 2026-08-21 사업 제안서를 기준으로 정리했습니다.</p></div>
+              <div><h3>Backend 구현 기록</h3><p>PR별 검증 기록과 2026-08-21 사업 제안서를 기준으로 정리했습니다.</p></div>
             </div>
           </ReadingSection>
         </div>
