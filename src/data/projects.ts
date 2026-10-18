@@ -270,7 +270,7 @@ export const projects: Project[] = [
         ],
         image: '/evidence/bluebell/web-was-target-healthy.svg',
         imageAlt: 'Bluebell Web 및 WAS Target Group이 각각 2 healthy, 0 unhealthy인 검증 화면',
-        imageCaption: 'Web / WAS Target Group · 2 healthy · 0 unhealthy',
+        imageCaption: 'Web·WAS Target Group · 정상 2 / 비정상 0',
       },
       {
         title: 'ASG Replacement → Service / Target Group 정상화',
@@ -287,7 +287,7 @@ export const projects: Project[] = [
         ],
         image: '/evidence/bluebell/replacement-target-healthy.svg',
         imageAlt: 'Bluebell Replacement 인스턴스가 Target Group에서 healthy로 확인된 화면',
-        imageCaption: 'Replacement instance → Target Group healthy',
+        imageCaption: '교체된 인스턴스의 Target Group 정상 상태',
       },
       {
         title: 'Monitoring Restored · Replacement 관측 연속성',
@@ -304,7 +304,7 @@ export const projects: Project[] = [
         ],
         image: '/evidence/bluebell/monitoring-restored.svg',
         imageAlt: 'Bluebell Replacement 노드가 Grafana Node Exporter 대시보드에 다시 관측되는 화면',
-        imageCaption: 'Replacement node · Grafana monitoring continuity',
+        imageCaption: '교체된 노드의 Grafana 모니터링 화면',
       },
     ],
     learned:
