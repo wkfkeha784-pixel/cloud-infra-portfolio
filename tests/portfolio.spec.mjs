@@ -108,7 +108,7 @@ test('onereport: PR evidence cards preserve validation snapshots and hide privat
   await expect(cards.nth(1).getByText('Timeline REST → { items, total } Contract 정합')).toBeVisible()
   await expect(cards.nth(2).getByText('PR #27 · Rule 기반 분석의 당시 검사 결과.')).toBeVisible()
   await expect(page.locator('a[href*="github.com/ktcloud4-SL/hackathon"]')).toHaveCount(0)
-  await expect(page.getByText(/OneReport 팀 저장소는 비공개/)).toBeVisible()
+  await expect(page.getByRole('heading', { name: 'Backend 구현 기록', exact: true })).toBeVisible()
 
   await expect(cards.nth(0).getByText('MY', { exact: true })).toBeVisible()
   await expect(cards.nth(1).getByText('MY', { exact: true })).toBeVisible()
