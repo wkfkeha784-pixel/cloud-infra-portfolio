@@ -84,7 +84,7 @@ export const projects: Project[] = [
         { scope: 'PROJECT', text: '8/10 외부 Ops VM HTTP 300/300 수락 · Consumer 1→4→1 (당시 팀 시험 기록)' },
         { scope: 'PROJECT', text: '8/13 worker-03 단일 VM 재생성·재가입 (팀 실행 기록)' },
       ],
-      note: '300건은 비동기 HTTP 요청 수락 기준(전체 DB Commit 아님) · 최종 Node는 Ready,SchedulingDisabled',
+      note: '8/10 팀 시험 · 비동기 HTTP 요청 수락 / 8/13 단일 VM 복구 · Ready,SchedulingDisabled',
       linkLabel: '운영 문제와 검증 과정 보기',
     },
     architecture: [
@@ -136,9 +136,9 @@ export const projects: Project[] = [
         title: '8/10 팀 시험 · 외부 HTTP 부하 → Redis / Kafka → KEDA 1→4→1',
         scope: 'PROJECT',
         validatedAt: '2026-08-10',
-        source: '0810_05 외부 HTTP 부하 KEDA 최종 E2E',
+        source: '0807_04 KEDA Kafka Lag 설계(선택 이유) · 0810_05 외부 HTTP 부하 KEDA 최종 E2E(팀 시험)',
         summary:
-          '당시 팀 시험에서 Kubernetes 외부 Ops VM의 요청 수락과 Kafka Lag·Consumer 확장·축소 경로를 기록했습니다. 개인 기여는 KEDA 구성·관측·진단과 구분합니다.',
+          'Consumer의 미처리 메시지량을 확장 기준으로 보기 위해 Kafka Lag를 사용했습니다. 8/10 팀 시험에서는 Kubernetes 외부 Ops VM의 요청 수락과 Consumer 확장·축소 경로를 기록했습니다. 개인 기여는 KEDA 구성·관측·진단입니다.',
         facts: [
           '300 / 300 HTTP 200 · Concurrency 50',
           'HPA External Metric 약 60 / 5 → Consumer 1 → 4',
@@ -146,7 +146,7 @@ export const projects: Project[] = [
           'Lag 해소 후 4 → 1 Scale-in · Kafka Broker Running',
         ],
         note:
-          'HTTP 200은 요청 수락 증거이며 300건 전체 DB Commit 완료로 확대 해석하지 않습니다. 573.68 req/s도 짧은 Demo 전송 처리량 Snapshot입니다.',
+          'HTTP 200은 비동기 요청 수락 기준입니다. 573.68 req/s는 짧은 Demo Script에서 측정한 전송 처리량입니다.',
       },
       {
         title: '공식 Kafka E2E · 최소권한 Cutover 검증',
@@ -162,7 +162,7 @@ export const projects: Project[] = [
           'POST_CUTOVER_E2E_SUCCESS',
         ],
         note:
-          '이 8/6 Snapshot의 공식 Producer 경로에는 Redis 호출이 없었습니다. Redis 포함 최종 흐름과 시점을 섞지 않습니다.',
+          '8/6 공식 Producer 경로는 Kafka로 직접 발행했습니다. Redis를 포함한 최종 요청 흐름은 8/10 기록에 정리했습니다.',
       },
       {
         title: 'Observability · Final Runtime Health Snapshot',
@@ -178,7 +178,7 @@ export const projects: Project[] = [
           'Final Health PASS 43 / WARN 0 / FAIL 0',
         ],
         note:
-          'Project-level 최종 결과입니다. 개인 기여는 Monitoring 인수·재구성과 KEDA 운영 범위로 구분합니다.',
+          '팀 최종 실행 기록입니다. 개인 담당은 Monitoring 인수·재구성과 KEDA 운영입니다.',
       },
     ],
     learned: '개별 기술보다 전체 운영 흐름이 연결되는지 검증하는 것이 중요했습니다.',
@@ -259,7 +259,7 @@ export const projects: Project[] = [
         title: 'Web–WAS 통합 검증 · Target Group Healthy',
         scope: 'MY',
         validatedAt: '2026-07-14',
-        source: 'Bluebell final presentation p.9',
+        source: '2026-07-02 팀 회의록 §5-3(도입 결정) · 역할분담 §4.2(개인 담당) · Bluebell final presentation p.9(구현·검증)',
         summary:
           'Web–WAS 구축 담당 범위에서 Public ALB부터 Internal WAS LB까지 요청 흐름과 서비스·Target Group 정상 상태를 통합 검증했습니다.',
         facts: [
@@ -270,9 +270,7 @@ export const projects: Project[] = [
         ],
         image: '/evidence/bluebell/web-was-target-healthy.svg',
         imageAlt: 'Bluebell Web 및 WAS Target Group이 각각 2 healthy, 0 unhealthy인 검증 화면',
-        imageCaption: 'Web / WAS Target Group · 2 healthy · 0 unhealthy',
-        note:
-          '개인 기여는 Web–WAS 구축과 AWS·통합 검증 범위입니다. Ansible·Swarm 자동화 전체를 개인 구현으로 표현하지 않습니다.',
+        imageCaption: 'Web·WAS Target Group · 정상 2 / 비정상 0',
       },
       {
         title: 'ASG Replacement → Service / Target Group 정상화',
@@ -289,9 +287,7 @@ export const projects: Project[] = [
         ],
         image: '/evidence/bluebell/replacement-target-healthy.svg',
         imageAlt: 'Bluebell Replacement 인스턴스가 Target Group에서 healthy로 확인된 화면',
-        imageCaption: 'Replacement instance → Target Group healthy',
-        note:
-          'Recovery 자동화 자체는 팀 구현입니다. 개인 포인트는 각 담당 영역을 연결해 복구 완료 상태를 통합 검증한 부분입니다.',
+        imageCaption: '교체된 인스턴스의 Target Group 정상 상태',
       },
       {
         title: 'Monitoring Restored · Replacement 관측 연속성',
@@ -308,9 +304,7 @@ export const projects: Project[] = [
         ],
         image: '/evidence/bluebell/monitoring-restored.svg',
         imageAlt: 'Bluebell Replacement 노드가 Grafana Node Exporter 대시보드에 다시 관측되는 화면',
-        imageCaption: 'Replacement node · Grafana monitoring continuity',
-        note:
-          'Monitoring 구축·프로비저닝은 팀 담당 영역이며, 이 카드는 Project Result로 구분합니다.',
+        imageCaption: '교체된 노드의 Grafana 모니터링 화면',
       },
     ],
     learned:
@@ -377,7 +371,7 @@ export const projects: Project[] = [
           'PR 시점 Backend 전체 테스트 41 passed · OpenAPI 생성 PASS',
         ],
         note:
-          '41 passed는 PR #9 검증 시점의 Snapshot입니다. 다른 PR의 테스트 수와 합산하지 않습니다.',
+          'PR #9 검증 시점 · 41 passed.',
       },
       {
         title: 'PR #14 · Timeline Contract',
@@ -393,7 +387,7 @@ export const projects: Project[] = [
           'PR 시점 Backend 전체 테스트 49 passed · OpenAPI 생성 PASS',
         ],
         note:
-          '49 passed는 PR #14 시점의 독립 검증값이며 PR #9 / #27과 합산하지 않습니다.',
+          'PR #14 검증 시점 · 49 passed.',
       },
       {
         title: 'PR #27 · Rule-based Analysis',
@@ -409,7 +403,7 @@ export const projects: Project[] = [
           'PR 시점 Backend 65 passed · Frontend 분석 흐름 3 passed · production build PASS',
         ],
         note:
-          'LLM / AI 분석이 아니라 Rule-based Analysis입니다. 테스트 수치는 이 PR의 검증 Snapshot으로만 사용합니다.',
+          'PR #27 · Rule 기반 분석의 당시 검사 결과.',
       },
     ],
     learned: 'Domain·DB·API 상태가 실제 Incident 운영 흐름과 일치하도록 구현하고 검증했습니다.',
@@ -444,9 +438,8 @@ export const projects: Project[] = [
       results: [
         { scope: 'MY', text: 'PR #62 Terminal·File 소비자 UI main 병합 · 세션/파일 안전 처리' },
         { scope: 'MY', text: 'PR #93·#98·#97 LabSpec 권한·빈 상태·Mapping UI 병합 · 각 HEAD Checks 8/8' },
-        { scope: 'PROJECT', text: 'Connector #103 인메모리 루프백 하네스 병합(실 VM 종단 E2E 아님)' },
       ],
-      note: '개인 FE 병합·CI와 팀 Connector 루프백은 별개 · 실 OpenStack VM PTY/SFTP 전체 E2E는 미검증',
+      note: 'Frontend 코드·API 계약·PR 검사 · 2026-10-16 기준',
       linkLabel: 'Workspace 구현과 통합 과정 보기',
     },
     architecture: ['Team SSOT', 'React SPA', 'HTTP / WS Consumer', 'Auth / Permission / Error UX', 'Regression Test', 'Browser Acceptance'],
@@ -488,7 +481,7 @@ export const projects: Project[] = [
         href: 'https://github.com/ktcloud4-SL/labbit-app/pull/62',
         linkLabel: 'PR #62 구현·검증 보기',
         note:
-          '코드·CI 검증 완료. 실제 OpenStack VM PTY/SFTP E2E는 후속 통합 검증 범위입니다.',
+          '검증 범위: Frontend 코드·API 계약·PR 검사.',
       },
       {
         title: 'PR #23 · Session / Mutation Safety',
@@ -542,7 +535,7 @@ export const projects: Project[] = [
         href: 'https://github.com/ktcloud4-SL/labbit-app/pull/28',
         linkLabel: 'PR #28 원본 보기',
         note:
-          '69/69과 capture 17/17은 PR 본문에 기록된 당시 UI HEAD Snapshot입니다. 프로젝트 전체 완료나 merge commit 재측정 수치로 확대하지 않습니다.',
+          'PR #28 당시 UI HEAD Snapshot · Vitest 69/69 · capture 17/17.',
       },
       {
         title: 'PR #93 · LabSpec Owner-only / 403·404 안전 UX',
@@ -553,7 +546,7 @@ export const projects: Project[] = [
         facts: ['Owner-only LabSpec 목록', '403/404 오류·접근 UX 분리', 'PR HEAD Checks 8/8 success'],
         href: 'https://github.com/ktcloud4-SL/labbit-app/pull/93',
         linkLabel: 'PR #93 원본',
-        note: '코드 병합/CI 근거이며 실 VM E2E 완료 증거가 아닙니다.',
+        note: 'LabSpec 소유자 필터와 403/404 화면 처리를 코드·PR 검사로 확인했습니다.',
       },
       {
         title: 'PR #98 · 빈 LabSpec Provision 실행 차단',
@@ -564,7 +557,7 @@ export const projects: Project[] = [
         facts: ['Empty State 표시', 'Provision 실행 차단', 'PR HEAD Checks 8/8 success'],
         href: 'https://github.com/ktcloud4-SL/labbit-app/pull/98',
         linkLabel: 'PR #98 원본',
-        note: '코드/PR 시점 검증이며 실제 프로비저닝 성공 증거가 아닙니다.',
+        note: '빈 목록 안내와 실행 차단을 코드·PR 검사로 확인했습니다.',
       },
       {
         title: 'PR #97 · Mapping 후보 API·선택 UI',
@@ -575,7 +568,7 @@ export const projects: Project[] = [
         facts: ['GET /api/v1/lab-specs/mapping-options', 'Provider/Image/Size 선택 UI', 'PR HEAD Checks 8/8 success'],
         href: 'https://github.com/ktcloud4-SL/labbit-app/pull/97',
         linkLabel: 'PR #97 원본',
-        note: '팀 Connector #103은 인메모리 루프백으로, 실제 OpenStack VM E2E와 별개입니다.',
+        note: 'Mapping 후보 조회·선택 UI를 API 계약과 PR 검사로 확인했습니다.',
       },
     ],
     learned: 'Server authorization을 최종 권한 경계로 두고 Frontend에서는 계약을 소비하는 역할에 집중했습니다.',
@@ -588,8 +581,8 @@ export const projects: Project[] = [
     boundaryNotes: [
       '프로젝트는 IN PROGRESS이며 표시된 개인 PR 병합·검사 시점은 2026-10-16 기준입니다.',
       'Auth/Class는 당시 실제 Backend Browser 단계까지 검증했습니다.',
-      'Terminal·File은 PR #62로 main에 통합했습니다. 실제 OpenStack VM PTY/SFTP E2E는 후속 통합 검증 범위입니다.',
-      '팀 Connector PR #95/#101/#103은 개인 FE 구현이 아니며 #103은 인메모리 루프백입니다. 실제 VM 전체 E2E 및 Preview/Live/AWS 전 구간은 완료로 주장하지 않습니다.',
+      '실제 OpenStack VM의 PTY/SFTP는 후속 통합 검증 대상입니다.',
+      'Browser → SaaS → Connector → 실제 OpenStack VM 경로',
     ],
   },
 ]
@@ -631,7 +624,7 @@ export const durianReading = {
     },
     request: {
       title: '접근·인증 설정을 복구하고 실제 DB 반영까지 재검증했습니다.',
-      problem: '공식 요청 경로를 복구하기 위해 네트워크 접근부터 Kafka 인증·권한까지 순서대로 확인해야 했습니다.',
+      problem: '초기 Kafka 연결 시간초과를 해소하자 TLS 신뢰 오류(PKIX)가 드러났습니다. 한 설정의 수정만으로 끝나지 않아 통신·신뢰·인증·권한을 나누어 점검했습니다.',
       action: 'NetworkPolicy → TLS Trust → SCRAM → Topic / Group ACL 순으로 복구하고, 최소권한 Cutover 후 Mainpage의 실제 요청으로 MariaDB 반영을 확인했습니다.',
       condition: '이 8/6 Snapshot의 공식 Producer 경로에는 Redis 호출이 없었습니다.',
     },

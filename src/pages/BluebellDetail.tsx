@@ -104,7 +104,6 @@ export default function BluebellDetail({ project }: { project: Project }) {
             <div className="bluebell-team-scope">
               <div className="bluebell-subheading"><Badge tone="project">PROJECT</Badge><h3>함께 연결한 팀 구현</h3></div>
               <ul>{project.projectResults?.map((item) => <li key={item}>{item}</li>)}</ul>
-              <p>{project.boundaryNotes?.[1]}</p>
             </div>
             <div className="tags" aria-label="Bluebell 기술 스택">{project.tags.map((tag) => <span key={tag}>{tag}</span>)}</div>
           </ReadingSection>

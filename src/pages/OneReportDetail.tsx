@@ -107,15 +107,15 @@ export default function OneReportDetail({ project }: { project: Project }) {
 
           <ReadingSection section={boundary}>
             <p className="bluebell-intro">{project.projectResults?.[1]}</p>
-            <div className="onereport-scope-table"><table>
+            <details className="bluebell-case-source"><summary>구현한 PoC와 제안 내용 비교</summary><div className="onereport-scope-table"><table>
               <caption>구현한 PoC와 사업 제안의 비교</caption>
               <thead><tr><th scope="col">영역</th><th scope="col">실제 구현·검증</th><th scope="col">제안·확장 구상</th></tr></thead>
               <tbody>{onereportReading.scopeRows.map((row) => <tr key={row.label}><th scope="row">{row.label}</th><td>{row.implemented}</td><td>{row.proposed}</td></tr>)}</tbody>
-            </table></div>
+            </table></div></details>
             <div className="bluebell-closing">
-              <div><h3>공공기관 연계 범위</h3><p>{project.boundaryNotes?.[1]}</p></div>
+              <div><h3>구현한 처리 흐름</h3><p>규칙 기반 분석·기관 배정·상태 변경·Timeline을 AWS PoC에서 연결했습니다. 기관 대응 화면은 PoC 데이터로 동작합니다.</p></div>
               <div><h3>구현에서 배운 점</h3><p>{project.learned}</p></div>
-              <div><h3>공개 검증 근거</h3><p>{project.boundaryNotes?.[4]}</p><p>위 사례의 PR별 검증 기록과 2026-08-21 사업 제안서를 통해 구현과 제안의 시점을 구분했습니다.</p></div>
+              <div><h3>Backend 구현 기록</h3><p>PR별 검증 기록과 2026-08-21 사업 제안서를 기준으로 정리했습니다.</p></div>
             </div>
           </ReadingSection>
         </div>

@@ -102,12 +102,11 @@ export default function LabbitDetail({ project }: { project: Project }) {
                 </li>
               ))}
             </ul>
-            <p className="bluebell-case-condition">#93·#98·#97은 PR HEAD Checks 각 8/8 success이며, 이것이 실제 OpenStack VM 전체 E2E 성공을 의미하지는 않습니다.</p>
-            <div className="bluebell-subheading"><Badge tone="project">PROJECT</Badge><h3>팀 통합 기준의 확인 기록</h3></div>
+            <p className="bluebell-case-condition">#93·#98·#97의 PR HEAD Checks는 각각 8/8 success입니다. 검증 범위는 Frontend 코드·API 계약·PR 검사입니다.</p>
+            <div className="bluebell-subheading"><Badge tone="project">PROJECT</Badge><h3>코드와 Backend 연동 기록</h3></div>
             <ol className="labbit-gates">
-              <li><span className="labbit-gate-state">검증 완료</span><h3>코드·계약·CI</h3><p className="labbit-gate-label">{project.validation?.[0]}</p><p>{project.projectResults?.[0]}</p><p>{project.projectResults?.[2]}</p><p className="labbit-gate-note">PR별 검증 시점의 기록이며 테스트 수치를 합산하지 않습니다.</p></li>
+              <li><span className="labbit-gate-state">검증 완료</span><h3>코드·계약·CI</h3><p className="labbit-gate-label">{project.validation?.[0]}</p><p>{project.projectResults?.[0]}</p><p>{project.projectResults?.[2]}</p><p className="labbit-gate-note">각 PR의 병합·검사 시점은 위 원본 링크에서 확인할 수 있습니다.</p></li>
               <li><span className="labbit-gate-state">검증 완료</span><h3>실제 Backend Browser</h3><p className="labbit-gate-label">{project.validation?.[1]}</p><p>{project.projectResults?.[1]}</p><p>{project.boundaryNotes?.[1]}</p></li>
-              <li><span className="labbit-gate-state"><Badge tone="open">OPEN</Badge> 후속 통합 검증</span><h3>실제 OpenStack VM</h3><p className="labbit-gate-label">{project.validation?.[2]}</p><p>{project.boundaryNotes?.[2]}</p><p>{project.boundaryNotes?.[3]}</p></li>
             </ol>
           </ReadingSection>
           <ReadingSection section={evidence}>

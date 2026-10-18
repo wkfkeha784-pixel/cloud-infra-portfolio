@@ -106,9 +106,9 @@ test('onereport: PR evidence cards preserve validation snapshots and hide privat
 
   await expect(cards.nth(0).getByText('PR 시점 Backend 전체 테스트 41 passed · OpenAPI 생성 PASS')).toBeVisible()
   await expect(cards.nth(1).getByText('Timeline REST → { items, total } Contract 정합')).toBeVisible()
-  await expect(cards.nth(2).getByText('LLM / AI 분석이 아니라 Rule-based Analysis입니다.')).toBeVisible()
+  await expect(cards.nth(2).getByText('PR #27 · Rule 기반 분석의 당시 검사 결과.')).toBeVisible()
   await expect(page.locator('a[href*="github.com/ktcloud4-SL/hackathon"]')).toHaveCount(0)
-  await expect(page.getByText(/OneReport 팀 저장소는 비공개/)).toBeVisible()
+  await expect(page.getByRole('heading', { name: 'Backend 구현 기록', exact: true })).toBeVisible()
 
   await expect(cards.nth(0).getByText('MY', { exact: true })).toBeVisible()
   await expect(cards.nth(1).getByText('MY', { exact: true })).toBeVisible()
@@ -126,13 +126,13 @@ test('labbit: evidence cards keep ongoing state, contract boundary, and PR snaps
   await expect(cards.nth(1).getByText('Mutation 401 → Login 복귀 · stale me 인증 Cache 폐기')).toBeVisible()
   await expect(cards.nth(2).getByText('Production Build는 설정과 무관하게 HTTP Consumer 사용')).toBeVisible()
   await expect(cards.nth(3).getByText('PR 기록의 기존 UI HEAD: capture 17 / 17')).toBeVisible()
-  await expect(cards.nth(3).getByText(/프로젝트 전체 완료나 merge commit 재측정 수치로 확대하지 않습니다/)).toBeVisible()
+  await expect(cards.nth(3).getByText('PR #28 당시 UI HEAD Snapshot · Vitest 69/69 · capture 17/17.')).toBeVisible()
 
   await expect(page.getByText(/개인 FE PR #62·#93·#98·#97 main 병합/)).toBeVisible()
-  await expect(page.getByText(/Terminal·File은 PR #62로 main에 통합했습니다/)).toBeVisible()
+  await expect(page.locator('#validation')).not.toContainText('실제 OpenStack VM')
 
   await expect(cards.nth(0).getByText('MY', { exact: true })).toBeVisible()
-  await expect(cards.nth(0).getByText(/실제 OpenStack VM PTY\/SFTP E2E는 후속 통합 검증/)).toBeVisible()
+  await expect(cards.nth(0).getByText('검증 범위: Frontend 코드·API 계약·PR 검사.')).toBeVisible()
 
   for (const href of [
     'https://github.com/ktcloud4-SL/labbit-app/pull/62',
@@ -280,7 +280,7 @@ test('home: project summaries keep result scope visible and open the matching ca
   await expect(additional.getByRole('article')).toHaveCount(2)
 
   const durian = featured.getByRole('article').filter({ hasText: 'Team Durian' })
-  await expect(durian.getByText(/300건은 비동기 HTTP 요청 수락 기준/)).toBeVisible()
+  await expect(durian.getByText(/8\/10 팀 시험 · 비동기 HTTP 요청 수락/)).toBeVisible()
   const bluebell = featured.getByRole('article').filter({ hasText: 'Bluebell' })
   await expect(bluebell.getByText(/복구 자동화는 팀 구현/)).toBeVisible()
   const onereport = additional.getByRole('article').filter({ hasText: 'OneReport' })
@@ -288,7 +288,7 @@ test('home: project summaries keep result scope visible and open the matching ca
   await expect(onereport.getByText(/규칙 기반 분석 · 실제 공공기관 연계 없음/)).toBeVisible()
   const labbit = additional.getByRole('article').filter({ hasText: 'Labbit' })
   await expect(labbit.getByText(/IN PROGRESS/)).toBeVisible()
-  await expect(labbit.getByText(/실 OpenStack VM PTY\/SFTP 전체 E2E는 미검증/)).toBeVisible()
+  await expect(labbit.getByText('Frontend 코드·API 계약·PR 검사 · 2026-10-16 기준')).toBeVisible()
 
   for (const [slug, name] of [['durian', 'Team Durian'], ['bluebell', 'Bluebell'], ['onereport', 'OneReport'], ['labbit', 'Labbit']]) {
     const card = page.getByRole('article').filter({ hasText: name })

@@ -8,13 +8,13 @@ export const labbitReading = {
     { id: 'session', number: '04', label: '세션·권한·변경 요청', title: '세션·권한 변경과 안전한 사용자 동작' },
     { id: 'http', number: '05', label: 'Mock·HTTP 경계', title: '개발 Mock과 Production HTTP의 경계' },
     { id: 'prototype', number: '06', label: '시제품·화면 캡처', title: '팀 검토를 위한 시제품과 화면 캡처' },
-    { id: 'validation', number: '07', label: '단계별 검증 범위', title: '확인한 단계와 남은 통합 검증' },
+    { id: 'validation', number: '07', label: '후속 구현·연동 기록', title: '후속 Frontend 구현과 Backend 연동 기록' },
     { id: 'evidence', number: '08', label: '원본 자료·배운 점', title: '원본 자료와 구현에서 배운 점' },
   ],
   highlights: [
     { result: 'PR #62 main 병합', context: '터미널·파일 API 연동 · 2026-10-07' },
     { result: 'LabSpec 권한·선택 UI 병합', context: '#93·#98·#97 main 병합 · 각 PR HEAD Checks 8/8' },
-    { result: '인증·수업 화면 연동 검증', context: '실제 Backend 흐름 · VM PTY/SFTP E2E는 후속' },
+    { result: '인증·수업 화면 연동 검증', context: '실제 Backend의 인증·수업 화면 확인' },
   ],
   cases: [
     {
