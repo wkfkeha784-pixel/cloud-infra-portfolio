@@ -1,6 +1,6 @@
 // Reading metadata; canonical snapshots, dates and claim boundaries stay intact.
 export const labbitReading = {
-  headline: '브라우저 실습 화면의 터미널·파일 기능을 구현하고 main에 통합했습니다.',
+  headline: '실습 화면의 Terminal·File·Live 연동과 사용자 상태 보호를 구현했습니다.',
   sections: [
     { id: 'overview', number: '01', label: '프로젝트·담당 역할', title: '프로젝트와 담당 역할' },
     { id: 'flow', number: '02', label: 'API 연동·검증 흐름', title: '팀 API 계약에 맞춘 연동과 브라우저 검증' },
@@ -12,9 +12,9 @@ export const labbitReading = {
     { id: 'evidence', number: '08', label: '원본 자료·배운 점', title: '원본 자료와 구현에서 배운 점' },
   ],
   highlights: [
-    { result: 'PR #62 main 병합', context: '터미널·파일 API 연동 · 2026-10-07' },
-    { result: 'LabSpec 권한·선택 UI 병합', context: '#93·#98·#97 main 병합 · 각 PR HEAD Checks 8/8' },
-    { result: '인증·수업 화면 연동 검증', context: '실제 Backend의 인증·수업 화면 확인' },
+    { result: 'Terminal·File 구현', context: '개인 PR #62 병합 · 세션·ETag 충돌 보호' },
+    { result: 'Live·파일 접근 경계', context: '개인 PR #135/#136 병합 · 코드·CI 검증' },
+    { result: '사용자 Flow 안정화', context: '개인 PR #143 병합 · 실제 VM E2E 별도' },
   ],
   cases: [
     {
