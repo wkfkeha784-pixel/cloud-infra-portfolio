@@ -1,3 +1,4 @@
+import ProjectQuickRead from '../components/ProjectQuickRead'
 import EvidenceGuide from '../components/EvidenceGuide'
 import type { ReactNode } from 'react'
 import { Link } from 'react-router-dom'
@@ -83,6 +84,8 @@ export default function DurianDetail({ project }: { project: Project }) {
           <EvidenceGuide slug={project.slug} />
         </div>
       </section>
+
+      <ProjectQuickRead project={project} />
 
       <div className="container durian-layout">
         <aside className="durian-toc">
