@@ -82,7 +82,7 @@ test('bluebell: recovery validation evidence exposes images, scope, and completi
   await expect(cards).toHaveCount(3)
   await expect(cards.locator('img')).toHaveCount(3)
 
-  await expect(page.getByText('AWS Web/WAS + Local DB 하이브리드 3-Tier 인프라', { exact: true })).toBeVisible()
+  await expect(page.locator('.bluebell-subtitle').getByText('AWS Web/WAS + Local DB 하이브리드 3-Tier 인프라', { exact: true })).toBeVisible()
   await expect(page.getByText('환경 경계: AWS Web/WAS/Bastion/Monitoring · Local(On-Premise) HAProxy/MariaDB · 운영 지원: Ansible/Swarm/Recovery', { exact: true })).toBeVisible()
   await expect(page.getByText('Web / WAS Target Group 2 healthy · 0 unhealthy')).toBeVisible()
   await expect(page.getByText('Target Group healthy · / · /api/health · /api/server 200')).toBeVisible()
@@ -118,7 +118,7 @@ test('onereport: PR evidence cards preserve validation snapshots and hide privat
 test('labbit: evidence cards keep ongoing state, contract boundary, and PR snapshots visible', async ({ page }) => {
   await page.goto('/projects/labbit', { waitUntil: 'networkidle' })
 
-  await expect(page.getByText('IN PROGRESS · 2026-10-16', { exact: true })).toBeVisible()
+  await expect(page.getByText('IN PROGRESS · 2026-10-21', { exact: true })).toBeVisible()
 
   const cards = page.locator('.evidence-snapshot-card')
   await expect(cards).toHaveCount(4)
@@ -128,7 +128,7 @@ test('labbit: evidence cards keep ongoing state, contract boundary, and PR snaps
   await expect(cards.nth(3).getByText('PR 기록의 기존 UI HEAD: capture 17 / 17')).toBeVisible()
   await expect(cards.nth(3).getByText('PR #28 당시 UI HEAD Snapshot · Vitest 69/69 · capture 17/17.')).toBeVisible()
 
-  await expect(page.getByText(/개인 FE PR #62·#93·#98·#97 main 병합/)).toBeVisible()
+  await expect(page.locator('#validation')).toContainText('권한/Generation 변경 후 이전 파일 캐시 차단')
   await expect(page.locator('#validation')).not.toContainText('실제 OpenStack VM')
 
   await expect(cards.nth(0).getByText('MY', { exact: true })).toBeVisible()
@@ -146,8 +146,9 @@ test('labbit: evidence cards keep ongoing state, contract boundary, and PR snaps
   await expect(cards.nth(1).getByText('MY', { exact: true })).toBeVisible()
   await expect(cards.nth(2).getByText('MY', { exact: true })).toBeVisible()
   await expect(cards.nth(3).getByText('MY', { exact: true })).toBeVisible()
-  await expect(page.getByRole('list', { name: '개인 Frontend 후속 PR 세 건' }).getByRole('link')).toHaveCount(3)
-  await expect(page.locator('#validation')).toContainText('PR HEAD Checks 각 8/8 success')
+  await page.locator('#validation details').locator('summary').click()
+  await expect(page.getByRole('list', { name: '10월 14~15일 개인 FE PR' }).getByRole('link')).toHaveCount(3)
+  await expect(page.locator('#validation')).toContainText('PR HEAD Checks 8/8 성공')
 })
 
 test('home: four case-study cards and contact links are present', async ({ page }) => {
@@ -254,7 +255,7 @@ test('v2.10 sync: home and project claim boundaries expose the refreshed evidenc
   const projects = page.getByRole('region', { name: '운영과 복구를 검증한 대표 프로젝트' })
   await expect(projects.getByText(/모니터링 인수/)).toBeVisible()
   await expect(projects.getByText('Terraform', { exact: true })).toBeVisible()
-  await expect(page.getByRole('region', { name: '서비스 구현과 팀 시스템 통합 경험' }).getByText(/HTTP·WebSocket API 연동/)).toBeVisible()
+  await expect(page.getByRole('region', { name: '서비스 구현과 팀 시스템 통합 경험' }).getByText(/Terminal·File·Live·권한·충돌 보호/)).toBeVisible()
 
   await page.goto('/projects/durian', { waitUntil: 'networkidle' })
   await expect(page.getByText('Terraform worker-03 Drift 분석·복구 검증 참여', { exact: true })).toBeVisible()
@@ -288,7 +289,7 @@ test('home: project summaries keep result scope visible and open the matching ca
   await expect(onereport.getByText(/규칙 기반 분석 · 실제 공공기관 연계 없음/)).toBeVisible()
   const labbit = additional.getByRole('article').filter({ hasText: 'Labbit' })
   await expect(labbit.getByText(/IN PROGRESS/)).toBeVisible()
-  await expect(labbit.getByText('Frontend 코드·API 계약·PR 검사 · 2026-10-16 기준')).toBeVisible()
+  await expect(labbit.getByText('2026-10-21까지 코드·CI 병합 검증 · 실제 VM/Live/ADMIN Acceptance 별도')).toBeVisible()
 
   for (const [slug, name] of [['durian', 'Team Durian'], ['bluebell', 'Bluebell'], ['onereport', 'OneReport'], ['labbit', 'Labbit']]) {
     const card = page.getByRole('article').filter({ hasText: name })
