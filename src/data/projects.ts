@@ -74,7 +74,7 @@ export const projects: Project[] = [
     role: 'Kubernetes·Redis/Kafka/KEDA 운영 / 모니터링 인수·재구성 / Terraform 복구 검증',
     summary:
       '대기열로 진입을 제어하고 Kafka 비동기 처리와 KEDA 자동 확장을 연결한 프로젝트입니다. Kubernetes·Redis·Kafka·KEDA 운영, 모니터링 인수·재구성과 복구 검증을 담당했습니다.',
-    tags: ['OpenStack', 'Kubernetes', 'Kafka', 'Redis', 'KEDA', 'Terraform', 'Prometheus', 'Grafana'],
+    tags: ['OpenStack', 'Kubernetes', 'Kafka', 'KEDA', 'Terraform', 'Redis', 'Prometheus', 'Grafana'],
     home: {
       group: 'featured',
       headline: '외부 부하에 따른 Consumer 확장·축소와 worker-03 재가입 검증',
