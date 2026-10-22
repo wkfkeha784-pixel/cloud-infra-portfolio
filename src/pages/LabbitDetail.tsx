@@ -95,17 +95,26 @@ export default function LabbitDetail({ project }: { project: Project }) {
 
           <ReadingSection section={validation}>
             <p className="bluebell-intro">{project.boundaryNotes?.[0]}</p>
-            <div className="bluebell-subheading"><Badge>MY</Badge><h3>10월 14~15일 개인 Frontend 후속 병합</h3></div>
-            <ul className="check-list" aria-label="개인 Frontend 후속 PR 세 건">
-              {project.evidenceSnapshots?.slice(4).map((item) => (
-                <li key={item.href}>
-                  <strong>{item.title}</strong> · {item.summary}{' '}
-                  {item.href && <a href={item.href} target="_blank" rel="noreferrer">{item.linkLabel ?? 'PR 원본'} ↗</a>}
-                  <span> · {item.source}</span>
-                </li>
-              ))}
+            <div className="bluebell-subheading"><Badge>MY</Badge><h3>10월 20~21일 개인 Frontend 대표 기여</h3></div>
+            <ul className="check-list" aria-label="최근 개인 FE 병합 대표 4건">
+              <li>ADMIN Installer 승인 URL 연동 · <a href="https://github.com/ktcloud4-SL/labbit-app/pull/133" target="_blank" rel="noreferrer">PR #133 ↗</a></li>
+              <li>학생 Live 읽기 전용 WSS 및 HTTP 5xx 경계 · <a href="https://github.com/ktcloud4-SL/labbit-app/pull/135" target="_blank" rel="noreferrer">PR #135 ↗</a></li>
+              <li>권한/Generation 변경 후 이전 파일 캐시 차단 · <a href="https://github.com/ktcloud4-SL/labbit-app/pull/136" target="_blank" rel="noreferrer">PR #136 ↗</a></li>
+              <li>Provision·LabSpec·Operation·Reset/Cleanup 회귀 · <a href="https://github.com/ktcloud4-SL/labbit-app/pull/143" target="_blank" rel="noreferrer">PR #143 ↗</a></li>
             </ul>
-            <p className="bluebell-case-condition">#93·#98·#97의 PR HEAD Checks는 각각 8/8 success입니다. 검증 범위는 Frontend 코드·API 계약·PR 검사입니다.</p>
+            <p className="bluebell-case-condition">위 네 PR은 개인 작성·main 병합이 확인된 코드 변경입니다. 실제 READY Workspace·Live fan-out·ADMIN 적용 브라우저 검증은 완료로 표시하지 않습니다.</p>
+            <details className="bluebell-case-source">
+              <summary>이전 LabSpec 권한·빈 상태·Mapping UI 구현 근거 보기</summary>
+              <ul className="check-list" aria-label="10월 14~15일 개인 FE PR">
+                {project.evidenceSnapshots?.slice(4).map((item) => (
+                  <li key={item.href}>
+                    <strong>{item.title}</strong> · {item.summary}{' '}
+                    {item.href && <a href={item.href} target="_blank" rel="noreferrer">{item.linkLabel ?? 'PR 원본'} ↗</a>}
+                  </li>
+                ))}
+              </ul>
+              <p>#93·#98·#97은 각각 PR HEAD Checks 8/8 성공(당시 코드·계약 검사)입니다.</p>
+            </details>
             <div className="bluebell-subheading"><Badge tone="project">PROJECT</Badge><h3>코드와 Backend 연동 기록</h3></div>
             <ol className="labbit-gates">
               <li><span className="labbit-gate-state">검증 완료</span><h3>코드·계약·CI</h3><p className="labbit-gate-label">{project.validation?.[0]}</p><p>{project.projectResults?.[0]}</p><p>{project.projectResults?.[2]}</p><p className="labbit-gate-note">각 PR의 병합·검사 시점은 위 원본 링크에서 확인할 수 있습니다.</p></li>
