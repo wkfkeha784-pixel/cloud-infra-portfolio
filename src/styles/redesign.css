@@ -72,3 +72,17 @@
   .project-quick-grid { grid-template-columns: 1fr; gap: 9px; }
   .project-quick-item { padding: 14px 16px; }
 }
+
+
+/* At 320px, long PR/technology labels must not expand the validation list's
+   intrinsic grid track beyond the available content width. */
+.labbit-detail #validation .check-list {
+  grid-template-columns: minmax(0, 1fr);
+  min-width: 0;
+}
+.labbit-detail #validation .check-list li,
+.labbit-detail #validation .check-list a {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  word-break: normal;
+}
