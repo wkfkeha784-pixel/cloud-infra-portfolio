@@ -82,7 +82,7 @@ test('bluebell: recovery validation evidence exposes images, scope, and completi
   await expect(cards).toHaveCount(3)
   await expect(cards.locator('img')).toHaveCount(3)
 
-  await expect(page.locator('.bluebell-subtitle').getByText('AWS Web/WAS + Local DB 하이브리드 3-Tier 인프라', { exact: true })).toBeVisible()
+  await expect(page.locator('.bluebell-subtitle')).toHaveText('AWS Web/WAS + Local DB 하이브리드 3-Tier 인프라')
   await expect(page.getByText('환경 경계: AWS Web/WAS/Bastion/Monitoring · Local(On-Premise) HAProxy/MariaDB · 운영 지원: Ansible/Swarm/Recovery', { exact: true })).toBeVisible()
   await expect(page.getByText('Web / WAS Target Group 2 healthy · 0 unhealthy')).toBeVisible()
   await expect(page.getByText('Target Group healthy · / · /api/health · /api/server 200')).toBeVisible()
