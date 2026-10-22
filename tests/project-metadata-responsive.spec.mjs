@@ -5,7 +5,7 @@ const projects = [
   { slug: 'durian', timeline: '2026.07.15-08.18', team: '최종 3명', role: '팀원' },
   { slug: 'bluebell', timeline: '교육 프로젝트 2026.06.11-07.14', team: '최종 5명', role: '팀장' },
   { slug: 'onereport', timeline: '2026.08.19-08.21 해커톤', team: '역할표 8명 · Backend 공동 2명', role: 'Backend 공동' },
-  { slug: 'labbit', timeline: '개발 착수안 2026.09.17 · 수록 PR 10.07-10.15 · 검증 기준 2026.10.16', team: '9/17 착수안 팀 구성표 8명(개발 4 / 운영 4)', role: 'Frontend' },
+  { slug: 'labbit', timeline: '개발 착수 2026.09.17 · 대표 개인 PR 10.07–10.21 · 코드 검증 기준 2026.10.21', team: '9/17 착수안 팀 구성표 8명(개발 4 / 운영 4)', role: 'Frontend' },
 ]
 
 for (const width of [1440, 768, 390, 320]) {
