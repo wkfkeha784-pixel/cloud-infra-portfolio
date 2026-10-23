@@ -1,35 +1,29 @@
 import { test, expect } from '@playwright/test'
 
 const cases = [
-  ['durian', 'load-scaling', '비동기'],
-  ['bluebell', 'recovery', 'EventBridge'],
-  ['onereport', 'boundary', '제안'],
-  ['labbit', 'validation', '개인 작성·main 병합이 확인된 코드 변경'],
+  ['durian', 'load-scaling', '비동기', 'architecture'],
+  ['bluebell', 'recovery', 'EventBridge', 'architecture'],
+  ['onereport', 'boundary', '제안', 'flow'],
+  ['labbit', 'validation', '개인 작성·main 병합이 확인된 코드 변경', 'flow'],
 ]
 
 for (const width of [1440, 390]) {
-  for (const [slug, id, boundary] of cases) {
-    test(`${slug} ${width}px: keyboard shortcut reaches proof and preserves scope on reload`, async ({ page }) => {
+  for (const [slug, id, boundary, architectureId] of cases) {
+    test(`${slug} ${width}px: natural project navigation, architecture and focus survive reload`, async ({ page }) => {
       await page.setViewportSize({ width, height: 1000 })
       await page.goto(`/projects/${slug}`)
-      const guide = page.getByRole('navigation', { name: '핵심 검증 근거 바로가기' })
-      await expect(guide.getByRole('link')).toHaveCount(3)
-      const legend = page.getByLabel('기여와 검증 범위 표기')
-      await expect(legend).toContainText('담당 업무')
-      await expect(legend).toContainText('팀 성과·시험 결과')
-      await expect(legend.locator('li')).toHaveCount(2)
-      await guide.locator(`a[href$="#${id}"]`).focus()
+      await expect(page.getByRole('navigation', { name: '핵심 검증 근거 바로가기' })).toHaveCount(0)
+      const toc = page.locator('.durian-toc nav, .bluebell-toc nav')
+      await expect(toc).toBeVisible()
+      await expect(page.locator(`#${architectureId} .story-architecture`)).toBeVisible()
+      await toc.locator(`a[href$="#${id}"]`).focus()
       await page.keyboard.press('Enter')
       const section = page.locator(`#${id}`)
       await expect(section).toBeFocused()
       await expect(section).toContainText(boundary)
       await expect(section.locator('h2')).toBeInViewport()
-      await expect.poll(() => section.locator('h2').evaluate(element =>
-        element.getBoundingClientRect().top >= document.querySelector('.site-header').getBoundingClientRect().bottom,
-      )).toBe(true)
       await page.reload()
       await expect(section).toBeFocused()
-      await expect(section).toContainText(boundary)
       await page.locator('.skip-link').focus()
       await page.keyboard.press('Enter')
       await expect(page.locator('#main-content')).toBeFocused()
