@@ -50,12 +50,12 @@ test('durian: validation evidence snapshots expose dated proof and scope', async
   // G28: the three top-line figures belong to team trials, not MY alone.
   const hero = page.locator('.durian-hero')
   const teamHighlights = hero.locator('[aria-label="팀 시험·실행의 핵심 결과"]')
-  await expect(hero.locator('.durian-subheading').first()).toContainText('PROJECT')
+  await expect(hero).toContainText('프로젝트에서 확인한 핵심 결과')
   await expect(teamHighlights).toContainText('Consumer 1→4→1')
   await expect(teamHighlights).toContainText('HTTP 300/300 수락')
   await expect(teamHighlights).toContainText('worker-03 재생성·재가입')
-  await expect(hero.locator('.durian-subheading').last()).toContainText('MY')
-  await expect(hero.locator('.durian-subheading').last()).toContainText('Terraform Drift 분석·복구 결과 검증에 참여')
+  await expect(hero).toContainText('모니터링 인수')
+  await expect(hero).toContainText('노드 복구 검증에 참여')
   await expect(hero.locator('[aria-label="개인 기여·검증의 핵심 결과"]')).toHaveCount(0)
 
   const cases = page.locator('#load-scaling .durian-case, #request-recovery .durian-case, #evidence .durian-case')
@@ -65,13 +65,11 @@ test('durian: validation evidence snapshots expose dated proof and scope', async
   await expect(page.getByText('POST_CUTOVER_E2E_SUCCESS')).toBeVisible()
   await expect(page.getByText('Final Health PASS 43 / WARN 0 / FAIL 0')).toBeVisible()
 
-  await expect(cases.nth(0).getByText('PROJECT', { exact: true })).toBeVisible()
-  await expect(cases.nth(1).getByText('MY', { exact: true })).toBeVisible()
-  await expect(cases.nth(2).getByText('PROJECT', { exact: true })).toBeVisible()
+  await expect(page.locator('#architecture .story-architecture-node')).toHaveCount(7)
   for (const item of await cases.all()) {
     await expect(item.locator('time')).toHaveCount(1)
-    await item.locator('summary').click()
-    await expect(item.locator('.durian-source-name')).toBeVisible()
+    await expect(item.locator('details')).toHaveCount(0)
+    await expect(item.locator('.durian-case-result')).toBeVisible()
   }
 })
 
@@ -83,7 +81,7 @@ test('bluebell: recovery validation evidence exposes images, scope, and completi
   await expect(cards.locator('img')).toHaveCount(3)
 
   await expect(page.locator('.bluebell-subtitle')).toHaveText('AWS Web/WAS + Local DB 하이브리드 3-Tier 인프라')
-  await expect(page.getByText('환경 경계: AWS Web/WAS/Bastion/Monitoring · Local(On-Premise) HAProxy/MariaDB · 운영 지원: Ansible/Swarm/Recovery', { exact: true })).toBeVisible()
+  await expect(page.locator('#architecture')).toContainText('Local · On-Premise')
   await expect(page.getByText('Web / WAS Target Group 2 healthy · 0 unhealthy')).toBeVisible()
   await expect(page.getByText('Target Group healthy · / · /api/health · /api/server 200')).toBeVisible()
   await expect(cards.nth(2).getByText('Grafana 관측 대상 갱신', { exact: true })).toBeVisible()
@@ -93,9 +91,8 @@ test('bluebell: recovery validation evidence exposes images, scope, and completi
   )
   expect(evidenceImagesLoaded).toBe(true)
 
-  await expect(cards.nth(0).getByText('MY', { exact: true })).toBeVisible()
-  await expect(cards.nth(1).getByText('PROJECT', { exact: true })).toBeVisible()
-  await expect(cards.nth(2).getByText('PROJECT', { exact: true })).toBeVisible()
+  await expect(cards.locator('.story-photo-caption')).toHaveCount(3)
+  await expect(cards.locator('details')).toHaveCount(0)
 })
 
 test('onereport: PR evidence cards preserve validation snapshots and hide private-source links', async ({ page }) => {
@@ -108,11 +105,9 @@ test('onereport: PR evidence cards preserve validation snapshots and hide privat
   await expect(cards.nth(1).getByText('Timeline REST → { items, total } Contract 정합')).toBeVisible()
   await expect(cards.nth(2).getByText('PR #27 · Rule 기반 분석의 당시 검사 결과.')).toBeVisible()
   await expect(page.locator('a[href*="github.com/ktcloud4-SL/hackathon"]')).toHaveCount(0)
-  await expect(page.getByRole('heading', { name: 'Backend 구현 기록', exact: true })).toBeVisible()
+  await expect(page.getByRole('heading', { name: '구현 범위와 확장 구상', exact: true })).toBeVisible()
 
-  await expect(cards.nth(0).getByText('MY', { exact: true })).toBeVisible()
-  await expect(cards.nth(1).getByText('MY', { exact: true })).toBeVisible()
-  await expect(cards.nth(2).getByText('MY', { exact: true })).toBeVisible()
+  await expect(cards.locator('details')).toHaveCount(0)
 })
 
 test('labbit: evidence cards keep ongoing state, contract boundary, and PR snapshots visible', async ({ page }) => {
@@ -131,7 +126,7 @@ test('labbit: evidence cards keep ongoing state, contract boundary, and PR snaps
   await expect(page.locator('#validation')).toContainText('권한/Generation 변경 후 이전 파일 캐시 차단')
   await expect(page.locator('#validation')).not.toContainText('실제 OpenStack VM')
 
-  await expect(cards.nth(0).getByText('MY', { exact: true })).toBeVisible()
+  await expect(cards.nth(0).locator('details')).toHaveCount(0)
   await expect(cards.nth(0).getByText('검증 범위: Frontend 코드·API 계약·PR 검사.')).toBeVisible()
 
   for (const href of [
@@ -143,12 +138,9 @@ test('labbit: evidence cards keep ongoing state, contract boundary, and PR snaps
     await expect(cards.locator(`a[href="${href}"]`)).toHaveCount(1)
   }
 
-  await expect(cards.nth(1).getByText('MY', { exact: true })).toBeVisible()
-  await expect(cards.nth(2).getByText('MY', { exact: true })).toBeVisible()
-  await expect(cards.nth(3).getByText('MY', { exact: true })).toBeVisible()
-  await page.locator('#validation details').locator('summary').click()
-  await expect(page.getByRole('list', { name: '10월 14~15일 개인 FE PR' }).getByRole('link')).toHaveCount(3)
-  await expect(page.locator('#validation')).toContainText('PR HEAD Checks 8/8 성공')
+  await expect(cards.locator('.story-link')).toHaveCount(4)
+  await expect(page.locator('#validation details')).toHaveCount(0)
+  await expect(page.locator('#validation .story-inline-reference a')).toHaveCount(3)
 })
 
 test('home: four case-study cards and contact links are present', async ({ page }) => {
@@ -285,7 +277,7 @@ test('home: project summaries keep result scope visible and open the matching ca
   const bluebell = featured.getByRole('article').filter({ hasText: 'Bluebell' })
   await expect(bluebell.getByText(/복구 자동화는 팀 구현/)).toBeVisible()
   const onereport = additional.getByRole('article').filter({ hasText: 'OneReport' })
-  await expect(onereport.getByText('PROJECT', { exact: true })).toBeVisible()
+  await expect(onereport.getByText('AWS PoC Smoke FINAL: PASS')).toBeVisible()
   await expect(onereport.getByText(/규칙 기반 분석 · 실제 공공기관 연계 없음/)).toBeVisible()
   const labbit = additional.getByRole('article').filter({ hasText: 'Labbit' })
   await expect(labbit.getByText(/IN PROGRESS/)).toBeVisible()
