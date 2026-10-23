@@ -133,3 +133,9 @@
 /* Home achievements read as prose after retiring MY/PROJECT tags. */
 .project-card .project-results li { grid-template-columns: minmax(0, 1fr); }
 .project-card .project-results li > span { display: block; min-width: 0; overflow-wrap: anywhere; }
+
+/* Architecture: distinguish cross-environment flow from independent channels. */
+.story-architecture-block { min-width: 0; }
+.story-architecture-connection { margin: -1px 0 14px; padding: 8px 12px; color: #27747d; font-size: .85rem; font-weight: 600; line-height: 1.65; text-align: center; }
+.story-architecture-nodes-parallel > .story-architecture-node:not(:last-child)::after { display: none; }
+.story-architecture-nodes-parallel > .story-architecture-node { border-top: 3px solid #16818a; }

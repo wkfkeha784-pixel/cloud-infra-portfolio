@@ -55,7 +55,7 @@ test('durian: validation evidence snapshots expose dated proof and scope', async
   await expect(teamHighlights).toContainText('HTTP 300/300 수락')
   await expect(teamHighlights).toContainText('worker-03 재생성·재가입')
   await expect(hero).toContainText('모니터링 인수')
-  await expect(hero).toContainText('노드 복구 검증에 참여')
+  await expect(hero).toContainText('모니터링 인수·재구성과 복구 검증을 담당했습니다')
   await expect(hero.locator('[aria-label="개인 기여·검증의 핵심 결과"]')).toHaveCount(0)
 
   const cases = page.locator('#load-scaling .durian-case, #request-recovery .durian-case, #evidence .durian-case')

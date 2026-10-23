@@ -58,7 +58,6 @@ export default function LabbitDetail({ project }: { project: Project }) {
           <div className="bluebell-highlights" aria-label="Labbit 핵심 성과">{labbitReading.highlights.map((item) => (
             <div key={item.result}><strong>{item.result}</strong><span>{item.context}</span></div>
           ))}</div>
-          <p className="story-hero-caption">팀이 구축한 가상 실습 플랫폼에서 <strong>Terminal·File·Live 사용 흐름</strong>을 구현하고, 세션·권한 변경에도 화면과 데이터가 안전하게 동작하도록 개선했습니다.</p>
         </div>
       </section>
 

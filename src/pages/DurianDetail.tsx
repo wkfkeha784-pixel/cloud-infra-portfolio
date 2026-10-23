@@ -69,7 +69,6 @@ export default function DurianDetail({ project }: { project: Project }) {
               </div>
             ))}
           </div>
-          <p className="story-hero-caption">Kubernetes·Kafka/KEDA 운영, 모니터링 인수와 노드 복구 검증에 참여했습니다.</p>
           <p className="story-hero-caption">수강신청 폭주 상황을 <strong>대기열·비동기 처리·자동 확장</strong>으로 해결하고, 장애 복구와 관측까지 함께 검증했습니다.</p>
         </div>
       </section>
