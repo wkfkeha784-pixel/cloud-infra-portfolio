@@ -53,7 +53,6 @@ export default function OneReportDetail({ project }: { project: Project }) {
           <div className="bluebell-highlights" aria-label="OneReport 핵심 성과">{onereportReading.highlights.map((item) => (
             <div key={item.result}><strong>{item.result}</strong><span>{item.context}</span></div>
           ))}</div>
-          <p className="story-hero-caption">신고 접수부터 기관 배정·처리 상태·Timeline까지 연결한 <strong>AWS 기반 해커톤 PoC</strong>입니다. 도메인·API·DB 흐름을 함께 구현하고 검증했습니다.</p>
         </div>
       </section>
 
