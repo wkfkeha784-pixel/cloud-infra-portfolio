@@ -45,22 +45,13 @@ for (const width of [1440, 768, 390, 320]) {
     await expect(page.getByRole('region', { name: 'Kafka 요청 경로 복구' }).getByText(/이 8\/6 Snapshot의 공식 Producer 경로에는 Redis 호출이 없었습니다/)).toBeVisible()
     expect(await page.locator('body').innerText()).not.toContain('QueuePilot')
 
-    // Essential proof stays visible while only the longer records are collapsed.
+    // No empty source accordions: key results and architecture are directly readable.
+    await expect(page.locator('.durian-case-source')).toHaveCount(0)
+    await expect(page.locator('#architecture .story-architecture')).toBeVisible()
     for (const id of ['load-scaling', 'request-recovery', 'scheduling', 'worker-recovery', 'evidence']) {
       const section = page.locator(`#${id}`)
-      const details = section.locator('details')
-      const summary = details.locator('summary')
-      await expect(details).not.toHaveAttribute('open')
       await expect(section.locator('.durian-case-result')).toBeVisible()
-      await summary.focus()
-      await page.keyboard.press('Enter')
-      await expect(details).toHaveAttribute('open', '')
-      await expect(details.locator('.durian-source-name')).toBeVisible()
       expect(await page.evaluate(() => document.documentElement.scrollWidth - innerWidth)).toBeLessThanOrEqual(2)
-      await page.keyboard.press('Space')
-      await expect(details).not.toHaveAttribute('open')
-      await expect(section.locator('.durian-case-result')).toBeVisible()
-      // Isolate tall case captures from the fixed header; navigation above uses the real header.
       await section.screenshot({ path: `artifacts/screenshots/durian-${width}-${id}.png`, style: '.site-header { visibility: hidden; }' })
     }
     await page.locator('#architecture').screenshot({ path: `artifacts/screenshots/durian-${width}-architecture.png` })
