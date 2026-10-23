@@ -87,24 +87,6 @@ for (const width of [1440, 768, 390, 320]) {
       return top >= headerBottom && top <= headerBottom + 100
     })).toBe(true)
     await page.screenshot({ path: `artifacts/screenshots/labbit-${width}-validation.png` })
-    if (width === 320) {
-      const oversized = await page.evaluate(() => Array.from(document.querySelectorAll('#main-content *'))
-        .map((el) => {
-          const rect = el.getBoundingClientRect()
-          return {
-            tag: el.tagName.toLowerCase(),
-            className: typeof el.className === 'string' ? el.className.slice(0, 75) : '',
-            text: el.textContent?.trim().slice(0, 65),
-            left: Math.round(rect.left),
-            right: Math.round(rect.right),
-            scrollWidth: el.scrollWidth,
-            clientWidth: el.clientWidth,
-          }
-        })
-        .filter(({ right }) => right > innerWidth + 2)
-        .slice(0, 25))
-      console.log('LABBIT_320_OVERFLOW_ELEMENTS ' + JSON.stringify(oversized))
-    }
     expect(await page.evaluate(() => document.documentElement.scrollWidth - innerWidth)).toBeLessThanOrEqual(2)
 
     // G28: after scrolling away, reactivating the very same hash must
