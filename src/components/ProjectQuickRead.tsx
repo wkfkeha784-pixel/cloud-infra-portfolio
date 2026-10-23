@@ -5,8 +5,8 @@ export default function ProjectQuickRead({ project }: { project: Project }) {
   const summary = [
     { title: '프로젝트 소개', description: project.subtitle },
     { title: '사용 기술', description: project.tags.slice(0, 5).join(' · ') },
-    { title: '주요 내용', description: project.home.headline },
-    { title: '내 역할·기여도', description: project.home.role },
+    { title: '프로젝트에서 구현', description: project.home.headline },
+    { title: '주요 참여', description: project.role },
   ]
 
   return (
@@ -24,7 +24,7 @@ export default function ProjectQuickRead({ project }: { project: Project }) {
             </div>
           ))}
         </dl>
-        <p className="project-quick-guide">대표 결과와 상세 검증 자료는 아래에서 확인할 수 있습니다.</p>
+        <p className="project-quick-guide">팀이 함께 구현한 서비스와 주요 작업을 소개합니다. 아래에서 아키텍처와 대표 사례를 볼 수 있습니다.</p>
       </div>
     </section>
   )
