@@ -86,3 +86,14 @@
   overflow-wrap: anywhere;
   word-break: normal;
 }
+
+/* 320px: long operation names in the Labbit overview must wrap within the
+   one-column contribution list, rather than sizing its track to min-content. */
+.labbit-detail #overview .bluebell-contributions {
+  grid-template-columns: minmax(0, 1fr);
+  min-width: 0;
+}
+.labbit-detail #overview .bluebell-contributions > li {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
