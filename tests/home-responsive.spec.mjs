@@ -17,7 +17,7 @@ for (const width of [1440, 768, 390, 320]) {
     await expect(page.getByRole('region', { name: '연락처' })).toBeVisible()
     // Result text should be readable without extra MY/PROJECT tags.
     const projectResults = page.locator('.project-card .project-results li')
-    await expect(projectResults).toHaveCount(8)
+    await expect(projectResults).toHaveCount(9)
     await expect(page.locator('.project-card .project-result-scope')).toHaveCount(0)
     for (const result of await projectResults.all()) {
       await expect(result).toBeVisible()
