@@ -97,3 +97,35 @@
   min-width: 0;
   overflow-wrap: anywhere;
 }
+
+
+/* A readable service diagram instead of a numbered tech inventory. */
+.story-architecture { margin: 8px 0 0; }
+.story-architecture-intro { margin: 0 0 25px; font-size: 1.04rem; line-height: 1.8; color: #3c5063; word-break: keep-all; }
+.story-architecture-lane { border: 1px solid #cfdfe2; border-radius: 13px; padding: 21px; background: #f8fbfc; margin-bottom: 14px; min-width: 0; }
+.story-architecture-lane > h3 { margin: 0 0 17px; color: #165a62; font-size: .88rem; letter-spacing: .01em; }
+.story-architecture-nodes { display: flex; align-items: stretch; padding: 0; margin: 0; gap: 15px; list-style: none; min-width: 0; }
+.story-architecture-node { flex: 1 1 0; min-width: 0; position: relative; display: flex; flex-direction: column; justify-content: center; gap: 7px; border: 1px solid #d7e5e8; border-radius: 9px; background: #fff; padding: 17px 11px; text-align: center; line-height: 1.5; overflow-wrap: anywhere; }
+.story-architecture-node strong { color: #142f42; font-size: .92rem; }
+.story-architecture-node span { color: #5b7080; font-size: .76rem; }
+.story-architecture-node:not(:last-child)::after { content: '→'; position: absolute; right: -14px; top: calc(50% - 12px); width: 12px; font-size: 1.05rem; color: #11818a; z-index: 1; font-weight: 700; }
+.story-architecture-support { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 10px; margin: 16px 0 8px; }
+.story-architecture-support p { margin: 0; padding: 14px 16px; border-left: 3px solid #12858b; background: #eaf5f4; color: #285563; font-size: .83rem; line-height: 1.65; overflow-wrap: anywhere; }
+.story-architecture figcaption { margin-top: 13px; color: #627282; font-size: .8rem; line-height: 1.75; word-break: keep-all; }
+.story-inline-reference { margin: 12px 0 0; font-size: .83rem; line-height: 1.65; color: #566c77; }
+.story-inline-reference a, .story-link { color: #087a83; text-decoration: underline; text-underline-offset: 3px; font-weight: 700; overflow-wrap: anywhere; }
+.story-inline-reference a:hover, .story-link:hover { color: #12515e; }
+.story-photo-caption { font-size: .82rem; color: #617585; line-height: 1.6; margin-top: 9px; }
+.story-hero-caption { margin-top: 18px; font-size: .9rem; color: #536675; line-height: 1.7; }
+.story-hero-caption strong { color: #22495b; }
+@media (max-width: 760px) {
+  .story-architecture-lane { padding: 15px; }
+  .story-architecture-nodes { flex-wrap: wrap; gap: 13px; }
+  .story-architecture-node { flex: 1 1 calc(50% - 13px); min-width: 0; padding: 15px 9px; }
+  .story-architecture-node:not(:last-child)::after { display: none; }
+  .story-architecture-support { grid-template-columns: 1fr; }
+}
+@media (max-width: 380px) {
+  .story-architecture-node strong { font-size: .83rem; }
+  .story-architecture-node span { font-size: .71rem; }
+}
