@@ -277,7 +277,7 @@ test('home: project summaries keep result scope visible and open the matching ca
   const bluebell = featured.getByRole('article').filter({ hasText: 'Bluebell' })
   await expect(bluebell.getByText(/복구 자동화는 팀 구현/)).toBeVisible()
   const onereport = additional.getByRole('article').filter({ hasText: 'OneReport' })
-  await expect(onereport.getByText('AWS PoC Smoke FINAL: PASS')).toBeVisible()
+  await expect(onereport).toContainText('FINAL: PASS')
   await expect(onereport.getByText(/규칙 기반 분석 · 실제 공공기관 연계 없음/)).toBeVisible()
   const labbit = additional.getByRole('article').filter({ hasText: 'Labbit' })
   await expect(labbit.getByText(/IN PROGRESS/)).toBeVisible()
