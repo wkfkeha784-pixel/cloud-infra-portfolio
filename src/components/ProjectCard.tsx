@@ -15,11 +15,9 @@ export default function ProjectCard({ project }: { project: Project }) {
         </div>
         <h3 id={titleId}>{home.headline}</h3>
         <p className="project-subtitle">{project.subtitle}</p>
-        {featured && (
-          <div className="tags" aria-label={`${project.name} 기술 스택`}>
-            {project.tags.map((tag) => <span key={tag}>{tag}</span>)}
-          </div>
-        )}
+        <div className="tags" aria-label={`${project.name} 핵심 기술`}>
+          {project.tags.slice(0, 5).map((tag) => <span key={tag}>{tag}</span>)}
+        </div>
       </div>
 
       <div className="project-details">

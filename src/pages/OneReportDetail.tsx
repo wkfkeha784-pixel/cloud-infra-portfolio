@@ -1,3 +1,4 @@
+import ProjectQuickRead from '../components/ProjectQuickRead'
 import EvidenceGuide from '../components/EvidenceGuide'
 import type { ReactNode } from 'react'
 import { Link } from 'react-router-dom'
@@ -56,6 +57,8 @@ export default function OneReportDetail({ project }: { project: Project }) {
           <EvidenceGuide slug={project.slug} />
         </div>
       </section>
+
+      <ProjectQuickRead project={project} />
 
       <div className="container bluebell-layout">
         <aside className="bluebell-toc"><nav aria-label="OneReport 사례 목차"><h2>읽을 내용</h2><ol>{onereportReading.sections.map((section) => (

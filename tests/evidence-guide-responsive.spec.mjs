@@ -4,7 +4,7 @@ const cases = [
   ['durian', 'load-scaling', '비동기'],
   ['bluebell', 'recovery', 'EventBridge'],
   ['onereport', 'boundary', '제안'],
-  ['labbit', 'validation', 'Frontend 코드·API 계약·PR 검사'],
+  ['labbit', 'validation', '개인 작성·main 병합이 확인된 코드 변경'],
 ]
 
 for (const width of [1440, 390]) {
