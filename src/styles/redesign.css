@@ -139,3 +139,46 @@
 .story-architecture-connection { margin: -1px 0 14px; padding: 8px 12px; color: #27747d; font-size: .85rem; font-weight: 600; line-height: 1.65; text-align: center; }
 .story-architecture-nodes-parallel > .story-architecture-node:not(:last-child)::after { display: none; }
 .story-architecture-nodes-parallel > .story-architecture-node { border-top: 3px solid #16818a; }
+
+/* Actual video screenshots stay visible in the reading flow; no source accordion. */
+.project-video-figure {
+  margin: 28px 0 8px;
+  padding: 14px 14px 10px;
+  border: 1px solid #d7e4e9;
+  border-radius: 12px;
+  background: #f7fafb;
+  max-width: 980px;
+  min-width: 0;
+}
+.project-video-figure img {
+  display: block;
+  width: 100%;
+  max-height: 680px;
+  height: auto;
+  object-fit: contain;
+  border-radius: 6px;
+  background: #fff;
+}
+.project-video-figure figcaption {
+  margin: 11px 3px 2px;
+  color: #526979;
+  font-size: .84rem;
+  line-height: 1.7;
+  word-break: keep-all;
+}
+.project-video-figure-compact img { max-height: 280px; }
+.bluebell-evidence-figure img[src$="/bluebell-target-healthy.webp"] {
+  max-width: 100%;
+  width: 100%;
+  max-height: none;
+  object-fit: contain;
+}
+.bluebell-evidence-figure img[src$="/bluebell-monitoring.webp"] {
+  max-width: 920px;
+  max-height: 660px;
+  object-fit: contain;
+}
+@media (max-width: 760px) {
+  .project-video-figure { margin-top: 20px; padding: 8px 8px 10px; border-radius: 9px; }
+  .project-video-figure figcaption { font-size: .78rem; }
+}
