@@ -129,3 +129,7 @@
   .story-architecture-node strong { font-size: .83rem; }
   .story-architecture-node span { font-size: .71rem; }
 }
+
+/* Home achievements read as prose after retiring MY/PROJECT tags. */
+.project-card .project-results li { grid-template-columns: minmax(0, 1fr); }
+.project-card .project-results li > span { display: block; min-width: 0; overflow-wrap: anywhere; }
