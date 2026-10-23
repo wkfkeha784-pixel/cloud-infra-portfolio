@@ -1,5 +1,6 @@
 import ProjectQuickRead from '../components/ProjectQuickRead'
 import ProjectArchitecture from '../components/ProjectArchitecture'
+import VideoStill from '../components/VideoStill'
 import type { ReactNode } from 'react'
 import { Link } from 'react-router-dom'
 import ProjectMetadata from '../components/ProjectMetadata'
@@ -107,7 +108,11 @@ export default function DurianDetail({ project }: { project: Project }) {
           <CaseSection section={architecture}>
             <div className="durian-subheading"><h3>서비스 아키텍처</h3></div>
             <ProjectArchitecture project={project} />
-            
+            <VideoStill
+              src="/evidence/video/durian-service.webp"
+              alt="Durian 수강신청 웹서비스에서 학생 입장 완료와 강좌 목록이 표시된 실제 화면"
+              caption="시연 당시 수강신청 화면. 학생 입장과 강좌 조회·신청 기능을 구현했습니다."
+            />
           </CaseSection>
 
           <CaseSection section={loadScaling}>
@@ -171,6 +176,11 @@ export default function DurianDetail({ project }: { project: Project }) {
             <div className="durian-subheading"><h3>모니터링과 Runtime 정합성 검증</h3></div>
             <p className="durian-intro">{durianReading.cases.operations.personal}</p>
             {healthSnapshot && <RuntimeEvidence item={healthSnapshot} />}
+            <VideoStill
+              src="/evidence/video/durian-monitoring.webp"
+              alt="Durian Kafka 및 KEDA 관측을 위해 사용한 Grafana 대시보드의 실제 시연 화면"
+              caption="시연 당시 Grafana 대시보드. Consumer 1→4→1은 이 화면이 아닌 별도 팀 부하 시험 기록 기준입니다."
+            />
             <div className="durian-closing">
               {project.learned && <div><h3>운영에서 배운 점</h3><p>{project.learned}</p></div>}
               <div><h3>다음 검증 과제</h3><p>{durianReading.cases.operations.followup}</p></div>

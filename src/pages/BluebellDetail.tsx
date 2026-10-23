@@ -1,5 +1,6 @@
 import ProjectQuickRead from '../components/ProjectQuickRead'
 import ProjectArchitecture from '../components/ProjectArchitecture'
+import VideoStill from '../components/VideoStill'
 import type { ReactNode } from 'react'
 import { Link } from 'react-router-dom'
 import ProjectMetadata from '../components/ProjectMetadata'
@@ -107,6 +108,11 @@ export default function BluebellDetail({ project }: { project: Project }) {
           <ReadingSection section={architecture}>
             <div className="bluebell-subheading"><h3>서비스 아키텍처</h3></div>
             <ProjectArchitecture project={project} />
+            <VideoStill
+              src="/evidence/video/bluebell-service.webp"
+              alt="Bluebell Web WAS DB 하이브리드 3-Tier 구조에서 작동하는 방명록 서비스 실제 시연 화면"
+              caption="팀이 구현한 방명록 서비스. Web·WAS를 거쳐 MariaDB에 저장되는 흐름을 확인했습니다."
+            />
           </ReadingSection>
 
           <ReadingSection section={webWas}>
