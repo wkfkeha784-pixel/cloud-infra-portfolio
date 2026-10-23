@@ -75,6 +75,7 @@ export default function LabbitDetail({ project }: { project: Project }) {
             <div className="bluebell-subheading"><h3>프로젝트에서 맡은 일</h3></div>
             <ul className="check-list bluebell-contributions">{project.myContributions.map((item) => <li key={item}>{item}</li>)}</ul>
             <div className="tags" aria-label="Labbit 기술 스택">{project.tags.map((tag) => <span key={tag}>{tag}</span>)}</div>
+            <p className="story-inline-reference">협업 저장소: <a href="https://github.com/ktcloud4-SL/labbit-app" target="_blank" rel="noreferrer">Labbit App 코드 보기 ↗</a></p>
           </ReadingSection>
           <ReadingSection section={flow}>
             <div className="bluebell-subheading"><h3>플랫폼 아키텍처</h3></div>
