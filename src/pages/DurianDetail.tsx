@@ -1,8 +1,7 @@
 import ProjectQuickRead from '../components/ProjectQuickRead'
-import EvidenceGuide from '../components/EvidenceGuide'
+import ProjectArchitecture from '../components/ProjectArchitecture'
 import type { ReactNode } from 'react'
 import { Link } from 'react-router-dom'
-import Badge from '../components/Badge'
 import ProjectMetadata from '../components/ProjectMetadata'
 import { durianReading, type EvidenceSnapshot, type Project } from '../data/projects'
 
@@ -24,8 +23,7 @@ function CaseLead({ title, scope, date }: { title: string; scope: 'MY' | 'PROJEC
   return (
     <div className="durian-case-lead">
       <div className="durian-case-meta">
-        <Badge tone={scope === 'MY' ? 'my' : 'project'}>{scope}</Badge>
-        <span>{scope === 'MY' ? '개인 수행·검증' : '팀 결과·대응'}{date && <> · <time dateTime={date}>{date}</time></>}</span>
+        <span>{scope === 'MY' ? '구현·연동 검증' : '프로젝트 시험·대응'}{date && <> · <time dateTime={date}>{date}</time></>}</span>
       </div>
       <h3>{title}</h3>
     </div>
@@ -46,15 +44,6 @@ function CaseResult({ facts, condition }: { facts: string[]; condition?: string 
   )
 }
 
-function CaseSource({ source, summary = '검증 기록·출처', children }: { source: string; summary?: string; children?: ReactNode }) {
-  return (
-    <details className="durian-case-source">
-      <summary>{summary}</summary>
-      <div><p className="durian-source-name">{source}</p>{children}</div>
-    </details>
-  )
-}
-
 export default function DurianDetail({ project }: { project: Project }) {
   const [overview, architecture, loadScaling, requestRecovery, scheduling, workerRecovery, evidence] = durianReading.sections
   const [loadSnapshot, requestSnapshot, healthSnapshot] = project.evidenceSnapshots ?? []
@@ -71,7 +60,7 @@ export default function DurianDetail({ project }: { project: Project }) {
           </h1>
           <p className="durian-subtitle">{project.subtitle}</p>
           <p className="project-detail-summary">{project.summary}</p>
-          <div className="durian-subheading"><Badge tone="project">PROJECT</Badge><h2 className="durian-results-title">팀 시험·실행에서 확인한 핵심 결과</h2></div>
+          <div className="durian-subheading"><h2 className="durian-results-title">프로젝트에서 확인한 핵심 결과</h2></div>
           <div className="durian-highlights" aria-label="팀 시험·실행의 핵심 결과">
             {durianReading.highlights.map((item) => (
               <div key={item.result}>
@@ -80,8 +69,8 @@ export default function DurianDetail({ project }: { project: Project }) {
               </div>
             ))}
           </div>
-          <p className="durian-subheading"><Badge>MY</Badge><span>Kafka/KEDA 설정·관측, 모니터링 인수 및 Terraform Drift 분석·복구 결과 검증에 참여했습니다.</span></p>
-          <EvidenceGuide slug={project.slug} />
+          <p className="story-hero-caption">Kubernetes·Kafka/KEDA 운영, 모니터링 인수와 노드 복구 검증에 참여했습니다.</p>
+          <p className="story-hero-caption">수강신청 폭주 상황을 <strong>대기열·비동기 처리·자동 확장</strong>으로 해결하고, 장애 복구와 관측까지 함께 검증했습니다.</p>
         </div>
       </section>
 
@@ -107,7 +96,7 @@ export default function DurianDetail({ project }: { project: Project }) {
           <CaseSection section={overview}>
             <p className="durian-intro">{project.problem}</p>
             <ProjectMetadata project={project} />
-            <div className="durian-subheading"><Badge>MY</Badge><h3>개인 담당 범위</h3></div>
+            <div className="durian-subheading"><h3>프로젝트에서 맡은 일</h3></div>
             <ul className="check-list durian-contributions">
               {project.myContributions.map((item) => <li key={item}>{item}</li>)}
             </ul>
@@ -117,27 +106,9 @@ export default function DurianDetail({ project }: { project: Project }) {
           </CaseSection>
 
           <CaseSection section={architecture}>
-            <div className="durian-subheading"><Badge tone="project">PROJECT</Badge><h3>서비스 요청 경로</h3></div>
-            <figure className="durian-architecture">
-              {[{ title: '요청 제어', start: 0, end: 4 }, { title: '비동기 처리', start: 4, end: 8 }].map((group) => (
-                <div className="durian-architecture-stage" key={group.title}>
-                  <h4>{group.title}</h4>
-                  <ol start={group.start + 1}>
-                    {project.architecture.slice(group.start, group.end).map((item, index) => (
-                      <li key={item}><span aria-hidden="true">{group.start + index + 1}</span>{item}</li>
-                    ))}
-                  </ol>
-                </div>
-              ))}
-              <figcaption>위의 요청 제어에서 아래의 메시지 발행·처리로 이어지는 팀 서비스 구조입니다. 개인 담당은 Redis·Kafka/KEDA와 Kubernetes 운영·복구입니다.</figcaption>
-            </figure>
-            <dl className="durian-signals">
-              <div><dt>확장 신호</dt><dd>Kafka Lag → KEDA/HPA → Consumer Scaling</dd></div>
-              <div><dt>관측</dt><dd>Prometheus → Grafana</dd></div>
-            </dl>
-            <CaseSource source="Durian 최종 발표자료 · 서비스 아키텍처·결과 요약" summary="팀 구현 범위 보기">
-              <ul>{project.projectResults?.map((item) => <li key={item}>{item}</li>)}</ul>
-            </CaseSource>
+            <div className="durian-subheading"><h3>서비스 아키텍처</h3></div>
+            <ProjectArchitecture project={project} />
+            
           </CaseSection>
 
           <CaseSection section={loadScaling}>
@@ -152,9 +123,7 @@ export default function DurianDetail({ project }: { project: Project }) {
                   </ol>}
                 </CaseCopy>
                 <CaseResult facts={loadSnapshot.facts} condition={durianReading.cases.load.condition} />
-                <CaseSource source={loadSnapshot.source} summary="시험 조건·측정 기록·출처">
-                  <p>{durianReading.cases.load.measurement}</p>
-                </CaseSource>
+                
               </article>
             )}
           </CaseSection>
@@ -167,7 +136,7 @@ export default function DurianDetail({ project }: { project: Project }) {
                 <CaseCopy label="조치"><p>{durianReading.cases.request.action}</p></CaseCopy>
                 <CaseCopy label="당시 요청 경로"><p className="durian-historical-path">{requestSnapshot.facts[0]}</p></CaseCopy>
                 <CaseResult facts={requestSnapshot.facts.slice(1)} condition={durianReading.cases.request.condition} />
-                <CaseSource source={requestSnapshot.source}><p>{requestSnapshot.title}</p></CaseSource>
+                
               </article>
             )}
           </CaseSection>
@@ -181,7 +150,7 @@ export default function DurianDetail({ project }: { project: Project }) {
                 ))}
                 <CaseResult facts={project.troubleshooting.rows.filter((row) => row.label === 'Result').map((row) => row.value)} condition={durianReading.cases.scheduling.condition} />
                 {project.troubleshooting.note && <p className="durian-lesson">{project.troubleshooting.note}</p>}
-                <CaseSource source={durianReading.cases.scheduling.source}><p>{project.troubleshooting.title}</p></CaseSource>
+                
               </article>
             )}
           </CaseSection>
@@ -194,13 +163,13 @@ export default function DurianDetail({ project }: { project: Project }) {
               ))}
               <CaseResult facts={[durianReading.workerRecovery.facts[2].value]} condition={durianReading.workerRecovery.note} />
               <p className="durian-lesson">{durianReading.cases.worker.lesson}</p>
-              <p className="durian-lesson"><Badge>MY</Badge> 팀 복구 시험에서 Terraform 구성 변경과 장애 분석, 노드 재가입 결과 검증에 참여했습니다.</p>
-              <CaseSource source={durianReading.workerRecovery.source} />
+              <p className="durian-lesson">Terraform 구성 변경과 장애 분석, 노드 재가입 결과를 팀과 함께 검증했습니다.</p>
+              
             </article>
           </CaseSection>
 
           <CaseSection section={evidence}>
-            <div className="durian-subheading"><Badge>MY</Badge><h3>모니터링 인수와 Runtime 정합성 검증</h3></div>
+            <div className="durian-subheading"><h3>모니터링과 Runtime 정합성 검증</h3></div>
             <p className="durian-intro">{durianReading.cases.operations.personal}</p>
             {healthSnapshot && <RuntimeEvidence item={healthSnapshot} />}
             <div className="durian-closing">
@@ -221,7 +190,7 @@ function RuntimeEvidence({ item }: { item: EvidenceSnapshot }) {
       <CaseLead title="관측 스택과 팀 최종 Health 상태를 함께 확인했습니다." scope={item.scope} date={item.validatedAt} />
       <p className="durian-intro">{item.summary}</p>
       <CaseResult facts={item.facts} />
-      <CaseSource source={item.source}><p>{item.title}</p></CaseSource>
+      
     </article>
   )
 }

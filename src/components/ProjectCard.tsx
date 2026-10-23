@@ -26,11 +26,11 @@ export default function ProjectCard({ project }: { project: Project }) {
           <dd>{home.role}</dd>
         </dl>
         <div className="project-results">
-          <h4>확인한 결과</h4>
+          <h4>프로젝트 주요 결과</h4>
           <ul>
             {home.results.map((result) => (
               <li key={result.text}>
-                <span className="project-result-scope" aria-label={result.scope === 'MY' ? '개인 기여·검증' : '팀·프로젝트 결과'}>{result.scope}</span>
+
                 <span>{result.text}</span>
               </li>
             ))}

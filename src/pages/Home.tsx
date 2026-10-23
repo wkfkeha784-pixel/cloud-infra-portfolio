@@ -1,4 +1,3 @@
-import { EvidenceLegend } from '../components/EvidenceGuide'
 import { Link } from 'react-router-dom'
 import ProjectCard from '../components/ProjectCard'
 import { projects } from '../data/projects'
@@ -15,7 +14,7 @@ export default function Home() {
             <span className="eyebrow">신입 클라우드 인프라 엔지니어</span>
             <h1>박희철</h1>
             <p className="hero-support">
-              프로젝트별 담당 업무와 구현·검증 기록을 정리했습니다.
+              팀과 함께 만든 클라우드 시스템의 구조와 문제 해결 경험을 소개합니다.
             </p>
             <div className="hero-actions">
               <a className="button" href="#projects">프로젝트 보기</a>
@@ -64,9 +63,8 @@ export default function Home() {
           <div className="section-heading">
             <span className="eyebrow">SELECTED PROJECTS</span>
             <h2 id="projects-title">운영과 복구를 검증한 대표 프로젝트</h2>
-            <p>담당 역할과 확인한 결과를 중심으로 정리했습니다.</p>
+            <p>서비스 구성과 실제 운영·복구 경험을 중심으로 소개합니다.</p>
           </div>
-          <EvidenceLegend />
           <div className="featured-project-list">
             {featuredProjects.map((project) => (
               <ProjectCard project={project} key={project.slug} />

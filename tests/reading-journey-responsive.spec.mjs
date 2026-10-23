@@ -24,19 +24,12 @@ for (const width of [1440, 768, 390, 320]) {
     const load = page.locator('#load-scaling')
     await expect(load).toBeFocused()
     await expect(load.getByText(/HTTP 200은 비동기 요청 수락 기준/)).toBeVisible()
-    await page.keyboard.press('Tab')
-    const summary = load.locator('summary')
-    await expect(summary).toBeFocused()
-    expect(await summary.evaluate((element) => {
-      const style = getComputedStyle(element)
-      return style.outlineStyle !== 'none' && parseFloat(style.outlineWidth) >= 2
-    })).toBe(true)
-    await page.keyboard.press('Enter')
-    await expect(load.locator('.durian-source-name')).toBeVisible()
-    await expect(load.getByText(/573\.68 req\/s · 0\.523초/)).toBeVisible()
-    await page.keyboard.press('Space')
-    await expect(load.locator('details')).not.toHaveAttribute('open')
+    // Core result and architecture are directly visible; no source accordion is needed.
+    await expect(load.locator('details')).toHaveCount(0)
     await expect(load.locator('.durian-case-result')).toBeVisible()
+    await expect(page.locator('#architecture .story-architecture')).toBeVisible()
+    const measured = load.getByText(/HTTP 300\/300|300 \/ 300 HTTP 200/)
+    await expect(measured.first()).toBeVisible()
 
     await toc.locator('a[href$="#request-recovery"]').click()
     await expect(page.locator('#request-recovery')).toBeFocused()
