@@ -1,7 +1,7 @@
 import type { Project } from '../data/projects'
 
-type ArchitectureLane = { environment: string; nodes: { title: string; detail: string }[] }
-type ArchitectureView = { introduction: string; lanes: ArchitectureLane[]; supporting: string[]; caveat?: string }
+type ArchitectureLane = { environment: string; nodes: { title: string; detail: string }[]; layout?: 'flow' | 'parallel' }
+type ArchitectureView = { introduction: string; lanes: ArchitectureLane[]; supporting: string[]; caveat?: string; laneConnection?: string }
 
 const views: Record<string, ArchitectureView> = {
   durian: {
@@ -19,7 +19,8 @@ const views: Record<string, ArchitectureView> = {
         { title: 'MariaDB', detail: '신청 데이터' },
       ] },
     ],
-    supporting: ['Kafka Lag → KEDA/HPA → Consumer 자동 확장', 'Prometheus / Grafana로 서비스·리소스 관측'],
+    supporting: ['Kafka Lag를 기준으로 KEDA가 Consumer 수 조절', 'Prometheus·Grafana로 서비스 상태 확인'],
+    laneConnection: 'Kafka로 전달된 요청을 Consumer가 비동기로 처리',
     caveat: '8/10 팀 시험의 HTTP 300/300은 비동기 요청 수락 기준이며, DB 300건 저장을 뜻하지 않습니다.',
   },
   bluebell: {
@@ -36,7 +37,8 @@ const views: Record<string, ArchitectureView> = {
         { title: 'MariaDB', detail: '데이터 저장' },
       ] },
     ],
-    supporting: ['Ansible / Docker Swarm으로 구성·배포', 'ASG 교체 후 Target Group · HTTP · Monitoring 확인'],
+    supporting: ['Ansible·Docker Swarm으로 구성·배포', 'ASG 교체 후 Target Group·HTTP·모니터링 확인'],
+    laneConnection: 'AWS의 API 서버에서 온프레미스 DB로 연결',
     caveat: '최종 복구 시험은 EventBridge 자동 트리거가 아닌 통제 실행으로 검증했습니다.',
   },
   onereport: {
@@ -48,7 +50,7 @@ const views: Record<string, ArchitectureView> = {
         { title: 'FastAPI', detail: '신고·사건·기관 API' },
         { title: 'RDS / S3', detail: '데이터·첨부 저장' },
       ] },
-      { environment: '업무 흐름', nodes: [
+      { environment: '신고 처리 절차 · 서비스 기능', nodes: [
         { title: 'Report', detail: '신고 접수' },
         { title: '규칙 분석', detail: '유형·위험도 추천' },
         { title: '기관 Routing', detail: '사건 배정' },
@@ -61,19 +63,19 @@ const views: Record<string, ArchitectureView> = {
   labbit: {
     introduction: '브라우저에서 실습 환경을 신청하고, Terminal·파일·Live 화면으로 학습하는 가상 실습 플랫폼입니다.',
     lanes: [
-      { environment: '사용자 화면 · Frontend', nodes: [
+      { environment: '브라우저에서 사용하는 기능 · 병렬 경로', layout: 'parallel', nodes: [
         { title: 'React 웹', detail: '수업·실습 관리 화면' },
         { title: 'HTTP API', detail: '인증·수업·Workspace' },
         { title: 'Terminal / File', detail: '세션·편집·저장' },
         { title: 'Live WSS', detail: '학생 읽기 전용 출력' },
       ] },
-      { environment: '팀 서비스 · 연동 대상', nodes: [
+      { environment: '실습환경 구성 · 연결 대상', layout: 'parallel', nodes: [
         { title: 'Backend', detail: '권한·실습 상태 확인' },
         { title: 'Workspace', detail: 'Provision / Reset / Cleanup' },
         { title: 'OpenStack 실습 VM', detail: 'Terminal·파일 실습 대상' },
       ] },
     ],
-    supporting: ['React / TypeScript · API 계약 기반 연동', '권한 만료·파일 충돌·상태 변경 시 사용자 데이터 보호'],
+    supporting: ['HTTP API로 수업·실습 상태 조회', 'Terminal·File·Live는 각각 필요한 HTTP/WSS 경로로 통신'],
     caveat: 'Frontend PR·자동 검증과 실제 VM/Live/ADMIN 브라우저 E2E는 별개입니다.',
   },
 }
@@ -85,10 +87,11 @@ export default function ProjectArchitecture({ project }: { project: Project }) {
   return (
     <figure className="story-architecture" aria-label={`${project.name} 서비스 아키텍처`}>
       <p className="story-architecture-intro">{view.introduction}</p>
-      {view.lanes.map((lane) => (
-        <div className="story-architecture-lane" key={lane.environment}>
+      {view.lanes.map((lane, index) => (
+        <div className="story-architecture-block" key={lane.environment}>
+        <div className="story-architecture-lane">
           <h3>{lane.environment}</h3>
-          <ol className="story-architecture-nodes">
+          <ol className={`story-architecture-nodes${lane.layout === 'parallel' ? ' story-architecture-nodes-parallel' : ''}`}>
             {lane.nodes.map((node) => (
               <li key={node.title} className="story-architecture-node">
                 <strong>{node.title}</strong>
@@ -96,6 +99,8 @@ export default function ProjectArchitecture({ project }: { project: Project }) {
               </li>
             ))}
           </ol>
+        </div>
+        {view.laneConnection && index === 0 && <p className="story-architecture-connection" aria-label="두 환경 간 연결">↓ {view.laneConnection}</p>}
         </div>
       ))}
       <div className="story-architecture-support">
