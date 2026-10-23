@@ -77,7 +77,6 @@ export default function BluebellDetail({ project }: { project: Project }) {
               </div>
             ))}
           </div>
-          <p className="story-hero-caption">AWS Web·WAS와 온프레미스 DB를 잇는 서비스를 팀장으로서 통합하고, 인스턴스 교체 후 <strong>HTTP 응답과 모니터링 복원</strong>까지 확인했습니다.</p>
         </div>
       </section>
 
