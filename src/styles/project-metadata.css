@@ -31,3 +31,8 @@
   .project-metadata { gap: 16px; }
   .project-metadata > div { grid-template-columns: 1fr; gap: 4px; }
 }
+
+/* Keep role heading clear of the wrapped metadata rows on narrow screens. */
+@media (max-width: 560px) {
+  #overview .project-metadata { margin-bottom: 44px; }
+}
