@@ -23,7 +23,7 @@ export const bluebellReading = {
     recovery: {
       title: '새 노드 생성부터 서비스 재편입과 HTTP 응답까지 복구 상태를 확인했습니다.',
       problem: 'EC2 교체 이후에도 Swarm 가입·label, 서비스 배치와 Target Group 편입이 이어져야 요청을 다시 처리할 수 있었습니다.',
-      action: '팀 복구 경로를 통제 실행하고 신규 노드의 Inventory → Ansible·Exporter → Swarm Join·Label → Target Group·HTTP 상태를 연결해 검증했습니다.',
+      action: '7/13 최종 시험에서는 EventBridge 규칙 2개를 끄고 복구 경로를 통제 실행했습니다. 신규 노드의 Inventory → Ansible·Exporter → Swarm Join·Label → Target Group·HTTP 상태를 연결해 검증했습니다.',
       trigger: 'EC2 상태 이벤트 → EventBridge → SSM → Bastion 복구 스크립트',
     },
     monitoring: {

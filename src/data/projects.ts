@@ -81,8 +81,8 @@ export const projects: Project[] = [
       role: 'Kubernetes·Redis/Kafka/KEDA 운영 / 모니터링 인수 / worker-03 복구 검증',
       results: [
         { scope: 'MY', text: 'Kafka/KEDA 설정·모니터링 운영과 worker-03 복구 검증 참여' },
-        { scope: 'PROJECT', text: '8/10 외부 Ops VM HTTP 300/300 수락 · Consumer 1→4→1 (당시 팀 시험 기록)' },
-        { scope: 'PROJECT', text: '8/13 worker-03 단일 VM 재생성·재가입 (팀 실행 기록)' },
+        { scope: 'PROJECT', text: '8/10 외부 Ops VM HTTP 300/300 수락 · Consumer 1→4→1' },
+        { scope: 'PROJECT', text: '8/13 worker-03 단일 VM 재생성·재가입' },
       ],
       note: '8/10 팀 시험 · 비동기 HTTP 요청 수락 / 8/13 단일 VM 복구 · Ready,SchedulingDisabled',
       linkLabel: '운영 문제와 검증 과정 보기',
@@ -138,9 +138,9 @@ export const projects: Project[] = [
         validatedAt: '2026-08-10',
         source: '0807_04 KEDA Kafka Lag 설계(선택 이유) · 0810_05 외부 HTTP 부하 KEDA 최종 E2E(팀 시험)',
         summary:
-          'Consumer의 미처리 메시지량을 확장 기준으로 보기 위해 Kafka Lag를 사용했습니다. 8/10 팀 시험에서는 Kubernetes 외부 Ops VM의 요청 수락과 Consumer 확장·축소 경로를 기록했습니다. 개인 기여는 KEDA 구성·관측·진단입니다.',
+          'Consumer의 미처리 메시지량에 따라 확장하도록 Kafka Lag를 기준으로 삼았습니다. KEDA 구성·관측·진단을 맡아, 8/10 외부 Ops VM의 요청 수락부터 Consumer 확장·축소까지 팀과 함께 검증했습니다.',
         facts: [
-          '300 / 300 HTTP 200 · Concurrency 50',
+          '300 / 300 HTTP 200 · 비동기 요청 수락 · Concurrency 50',
           'HPA External Metric 약 60 / 5 → Consumer 1 → 4',
           'Worker-01 2개 · Worker-02 2개로 분산',
           'Lag 해소 후 4 → 1 Scale-in · Kafka Broker Running',
@@ -181,7 +181,7 @@ export const projects: Project[] = [
           '팀 최종 실행 기록입니다. 개인 담당은 Monitoring 인수·재구성과 KEDA 운영입니다.',
       },
     ],
-    learned: '개별 기술보다 전체 운영 흐름이 연결되는지 검증하는 것이 중요했습니다.',
+    learned: 'Kafka 연결 오류는 통신·인증·권한으로 나누어 점검하고, Consumer 확장 뒤에는 Pod 배치와 Worker 메모리까지 확인했습니다.',
     limitations: 'HTTP 300/300은 비동기 요청 수락 Evidence이며 DB 300건 Commit을 의미하지 않습니다. Terraform 범위는 worker-03 단일 Compute Instance이고 반복 시험 기반 P95/SLI/SLO는 후속 과제입니다.',
     evidence: [],
     boundaryNotes: [
@@ -304,7 +304,7 @@ export const projects: Project[] = [
         ],
         image: '/evidence/video/bluebell-monitoring.webp',
         imageAlt: 'Bluebell Web 노드의 CPU·메모리·네트워크 지표가 표시된 실제 Grafana 대시보드',
-        imageCaption: '시연 당시 Web 노드 Grafana 화면 · 교체 후 재편입 검증은 별도 팀 기록 기준',
+        imageCaption: '시연 당시 Web 노드 Grafana 대시보드',
       },
     ],
     learned:
@@ -429,7 +429,7 @@ export const projects: Project[] = [
     problem: '여러 VM을 사용하는 실습환경의 상태·권한·오류를 브라우저 화면에서 안전하게 표현해야 하는 문제',
     role: 'Frontend / 디자인 / Terminal·File·Live 연동 및 오류·권한 보호',
     summary:
-      'OpenStack 실습 플랫폼의 Frontend를 맡아 Terminal·File, Live 읽기 전용 연동과 권한·상태 변경 시 사용자 데이터 보호를 구현했습니다. 코드·CI 병합 검증과 실제 운영환경 검증은 구분합니다.',
+      'OpenStack 실습 플랫폼의 Frontend를 맡아 Terminal·File, Live 읽기 전용 연동과 권한·상태 변경 시 사용자 데이터 보호를 구현했습니다.',
     tags: ['React', 'TypeScript', 'TanStack Query', 'OpenAPI', 'WebSocket', 'Vitest', 'CI'],
     home: {
       group: 'additional',
@@ -450,11 +450,11 @@ export const projects: Project[] = [
       '강사 Live / 학생 읽기 전용 WSS 연동과 5xx 복원력 (#135)',
       '권한·Generation 변경 뒤 stale Workspace File 숨김 (#136)',
       'Provision·LabSpec·Operation·Reset/Cleanup 사용자 Flow 회귀 (#143)',
-      'ADMIN Installer 승인 URL 연동 (#133, 실환경 Acceptance 별도)',
+      'ADMIN Installer 승인 URL 연동 (#133)',
     ],
     projectResults: [
       'Terminal·File / LabSpec / Live / 사용자 Flow 관련 개인 FE PR 병합',
-      '인증·수업 화면의 실제 Backend Browser 검증(당시 기록)',
+      '인증·수업 화면을 실제 Backend에 연결해 브라우저에서 검증했습니다.',
       'PR #133/#135/#136/#143 코드·CI 검증 및 main 병합(10/20–21)',
     ],
     validation: ['Contract / Unit / CI', 'Actual Backend Browser', 'Actual OpenStack VM E2E · Pending'],
@@ -616,22 +616,19 @@ export const durianReading = {
   },
   cases: {
     load: {
-      title: '8/10 팀 시험에서 외부 요청 수락과 Consumer 1→4→1이 기록됐습니다.',
+      title: '외부 HTTP 요청 300건 수락과 Consumer 1→4→1을 확인했습니다.',
       problem: 'Pod 상태만으로는 외부 수강신청 요청이 Kafka에 쌓이고 Consumer 확장으로 이어지는지 판단하기 어려웠습니다.',
-      condition: 'HTTP 200은 비동기 요청 수락 기준입니다. DB 300건 전체 Commit 완료를 측정한 시험은 아닙니다.',
       measurement: '약 573.68 req/s · 0.523초는 짧은 Demo Script의 전송 처리량 Snapshot입니다. 지속 처리량이나 P95를 측정한 값은 아닙니다.',
     },
     request: {
       title: '접근·인증 설정을 복구하고 실제 DB 반영까지 재검증했습니다.',
       problem: '초기 Kafka 연결 시간초과를 해소하자 TLS 신뢰 오류(PKIX)가 드러났습니다. 한 설정의 수정만으로 끝나지 않아 통신·신뢰·인증·권한을 나누어 점검했습니다.',
       action: 'NetworkPolicy → TLS Trust → SCRAM → Topic / Group ACL 순으로 복구하고, 최소권한 Cutover 후 Mainpage의 실제 요청으로 MariaDB 반영을 확인했습니다.',
-      condition: '이 8/6 Snapshot의 공식 Producer 경로에는 Redis 호출이 없었습니다.',
     },
     scheduling: {
       title: '확장된 Consumer가 실행되지 않는 원인과 배치를 조정했습니다.',
       labels: { Symptom: '증상', Cause: '원인', Action: '팀 조치', Result: '기록된 결과' } as Record<string, string>,
       source: 'Durian 최종 발표자료 · 트러블슈팅',
-      condition: '배치 조정은 팀 대응 사례입니다. 8/10 외부 부하 시험에서 확인한 Worker 2+2 분산은 별도 시험 결과입니다.',
     },
     worker: {
       title: '팀의 worker-03 단일 VM 재생성·재가입 결과를 검증했습니다.',

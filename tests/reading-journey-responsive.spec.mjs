@@ -23,7 +23,7 @@ for (const width of [1440, 768, 390, 320]) {
     await page.keyboard.press('Enter')
     const load = page.locator('#load-scaling')
     await expect(load).toBeFocused()
-    await expect(load.getByText(/HTTP 200은 비동기 요청 수락 기준/)).toBeVisible()
+    await expect(load.getByText('300 / 300 HTTP 200 · 비동기 요청 수락 · Concurrency 50')).toBeVisible()
     // Core result and architecture are directly visible; no source accordion is needed.
     await expect(load.locator('details')).toHaveCount(0)
     await expect(load.locator('.durian-case-result')).toBeVisible()
@@ -33,7 +33,7 @@ for (const width of [1440, 768, 390, 320]) {
 
     await toc.locator('a[href$="#request-recovery"]').click()
     await expect(page.locator('#request-recovery')).toBeFocused()
-    await expect(page.locator('#request-recovery').getByText(/Producer 경로에는 Redis 호출이 없었습니다/)).toBeVisible()
+    await expect(page.locator('#request-recovery').getByText('POST_CUTOVER_E2E_SUCCESS')).toBeVisible()
     await page.goBack()
     await expect(page).toHaveURL(/#load-scaling$/)
     await expect(load).toBeFocused()

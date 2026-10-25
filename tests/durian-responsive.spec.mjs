@@ -42,7 +42,7 @@ for (const width of [1440, 768, 390, 320]) {
       return rect.top >= document.querySelector('.site-header').getBoundingClientRect().bottom && rect.bottom <= innerHeight
     })).toBe(true)
     await expect(page.getByRole('region', { name: 'Terraform Worker 복구' }).getByText('Ready,SchedulingDisabled', { exact: true })).toBeVisible()
-    await expect(page.getByRole('region', { name: 'Kafka 요청 경로 복구' }).getByText(/이 8\/6 Snapshot의 공식 Producer 경로에는 Redis 호출이 없었습니다/)).toBeVisible()
+    await expect(page.getByRole('region', { name: 'Kafka 요청 경로 복구' }).getByText('Mainpage → Kong → Producer → Kafka → Consumer → MariaDB')).toBeVisible()
     expect(await page.locator('body').innerText()).not.toContain('QueuePilot')
 
     // No empty source accordions: key results and architecture are directly readable.

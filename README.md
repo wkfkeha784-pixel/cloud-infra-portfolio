@@ -8,25 +8,18 @@ AWS·Kubernetes 프로젝트에서 맡은 일과 운영·복구 검증 결과를
 
 | 프로젝트 | 담당한 일과 검증 범위 |
 |---|---|
-| [**Team Durian**](https://cloud-infra-portfolio.vercel.app/projects/durian) | 개인: Kafka/KEDA 설정·관측·복구 검증 참여 / 팀 시험: HTTP 300/300 수락·Consumer 1→4→1·worker-03 단일 VM 재가입 |
+| [**Team Durian**](https://cloud-infra-portfolio.vercel.app/projects/durian) | Kafka/KEDA 설정·모니터링·복구 검증 / HTTP 300/300 요청 수락·Consumer 1→4→1·Worker VM 재가입 |
 | [**Bluebell**](https://cloud-infra-portfolio.vercel.app/projects/bluebell) | 팀장, AWS Web–WAS 구축과 인스턴스 교체 후 서비스 정상화 검증 |
 | [**OneReport**](https://cloud-infra-portfolio.vercel.app/projects/onereport) | Backend 도메인·DB·라우팅·API 계약과 규칙 기반 분석 |
-| [**Labbit**](https://cloud-infra-portfolio.vercel.app/projects/labbit) | 개인 Frontend: Terminal·파일 PR #62, LabSpec 권한·빈 상태·Mapping UI PR #93/#98/#97 병합 및 PR HEAD CI 검증 |
+| [**Labbit**](https://cloud-infra-portfolio.vercel.app/projects/labbit) | Frontend: Terminal·File·학생 Live WSS 연동, 파일 권한·캐시 보호, Provision·Reset/Cleanup 사용자 흐름 안정화 |
 
-상세 페이지에는 서비스 구성, 해결한 문제, 개인 기여와 팀 결과를 정리했습니다. 결과를 확인한 조건과 아직 검증하지 않은 범위도 함께 표시합니다.
-
-- **Durian:** HTTP 300/300 및 KEDA 1→4→1은 8/10 당시 **팀 시험 기록**입니다. 개인 KEDA·Kafka 설정/관측 기여와 구분하며, HTTP 요청 수락은 DB 저장 300건 완료를 의미하지 않습니다. worker-03 재생성은 8/13 단일 VM 팀 시험이며 최종 Ready,SchedulingDisabled입니다.
-- **Bluebell:** 최종 E2E는 EventBridge 규칙 2개를 비활성화한 통제 실행입니다. 자동 실행 설계와 구분합니다.
-- **OneReport:** 규칙 기반 분석을 구현했습니다. PR #30 당시 health 502와 배포 정상화 후 8/21 AWS PoC 환경의 Smoke Test PASS는 서로 다른 시점의 결과입니다.
-- **Labbit:** 본인 FE PR #62·#93·#98·#97이 병합됐고 #93/#98/#97은 각각 PR HEAD Checks 8/8 success입니다. 팀 Connector #103은 인메모리 루프백 하네스이며, 실제 OpenStack VM 전체 PTY/SFTP E2E는 아직 확인되지 않았습니다.
+상세 페이지에서 서비스 아키텍처, 담당한 일, 문제를 해결한 과정과 결과를 볼 수 있습니다. Labbit은 PR #133·#135·#136·#143의 ADMIN URL 연동, Live·파일 보호, 사용자 흐름 안정화 작업까지 정리했습니다.
 
 팀 프로젝트의 공개 코드·PR은 각 상세 페이지에서 연결합니다. 비공개 저장소는 공개 가능한 검증 자료로 소개합니다.
 
 ## 웹 구현
 
 React · TypeScript · Vite · React Router로 구성했습니다. Playwright와 GitHub Actions로 브라우저 동작을 검사하고 Vercel에 배포합니다.
-
-이 목록은 포트폴리오 사이트의 구현 기술입니다. 프로젝트별 담당 기술과 역할은 위 상세 페이지에서 확인할 수 있습니다.
 
 ## 로컬 실행
 

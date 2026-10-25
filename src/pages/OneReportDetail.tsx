@@ -29,7 +29,6 @@ function ImplementationCase({ item, title, problem }: { item: EvidenceSnapshot; 
       <div className="bluebell-case-result">
         <h4>구현 결과와 검증</h4>
         <ul>{item.facts.map((fact) => <li key={fact}>{fact}</li>)}</ul>
-        {item.note && <p className="bluebell-case-condition">{item.note}</p>}
       </div>
 
     </article>
@@ -86,7 +85,6 @@ export default function OneReportDetail({ project }: { project: Project }) {
               <div className="bluebell-case-meta"><span>AWS PoC 배포 검증 · <time dateTime="2026-08-21">2026-08-21</time></span></div>
               <h3>AWS PoC 배포 정상화 이후 신고·기관 대응 흐름을 Smoke로 확인했습니다.</h3>
               <div className="bluebell-case-copy"><h4>함께 완성한 검증 흐름</h4><p>신고부터 기관 상태·Timeline까지 확인할 수 있도록 Demo Smoke Test를 작성·확장하고 팀의 AWS PoC 배포 점검에 연결했습니다.</p></div>
-              <div className="onereport-smoke-condition"><h4>검증 시점과 결과</h4><p>{project.boundaryNotes?.[2]}</p></div>
               <div className="bluebell-case-copy"><h4>AWS PoC 구성</h4><p>{project.projectResults?.[0]}</p></div>
               {project.validation && <div className="bluebell-validation">
                 <h4>AWS PoC Smoke 확인 순서</h4>
@@ -99,7 +97,6 @@ export default function OneReportDetail({ project }: { project: Project }) {
           </ReadingSection>
 
           <ReadingSection section={boundary}>
-            <p className="bluebell-intro">{project.projectResults?.[1]}</p>
             <div className="onereport-scope-table"><h3>구현 범위와 확장 구상</h3><table>
               <caption>구현한 PoC와 사업 제안의 비교</caption>
               <thead><tr><th scope="col">영역</th><th scope="col">실제 구현·검증</th><th scope="col">제안·확장 구상</th></tr></thead>

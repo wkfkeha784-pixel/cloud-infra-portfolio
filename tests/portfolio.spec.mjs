@@ -61,7 +61,7 @@ test('durian: validation evidence snapshots expose dated proof and scope', async
   const cases = page.locator('#load-scaling .durian-case, #request-recovery .durian-case, #evidence .durian-case')
   await expect(cases).toHaveCount(3)
 
-  await expect(page.getByText('300 / 300 HTTP 200 · Concurrency 50')).toBeVisible()
+  await expect(page.getByText('300 / 300 HTTP 200 · 비동기 요청 수락 · Concurrency 50')).toBeVisible()
   await expect(page.getByText('POST_CUTOVER_E2E_SUCCESS')).toBeVisible()
   await expect(page.getByText('Final Health PASS 43 / WARN 0 / FAIL 0')).toBeVisible()
 
@@ -91,7 +91,7 @@ test('bluebell: recovery validation evidence exposes images, scope, and completi
   )
   expect(evidenceImagesLoaded).toBe(true)
 
-  await expect(cards.locator('.story-photo-caption')).toHaveCount(3)
+  await expect(cards.locator('figcaption')).toHaveCount(3)
   await expect(cards.locator('details')).toHaveCount(0)
 })
 
@@ -103,7 +103,7 @@ test('onereport: PR evidence cards preserve validation snapshots and hide privat
 
   await expect(cards.nth(0).getByText('PR 시점 Backend 전체 테스트 41 passed · OpenAPI 생성 PASS')).toBeVisible()
   await expect(cards.nth(1).getByText('Timeline REST → { items, total } Contract 정합')).toBeVisible()
-  await expect(cards.nth(2).getByText('PR #27 · Rule 기반 분석의 당시 검사 결과.')).toBeVisible()
+  await expect(cards.nth(2).getByText('PR 시점 Backend 65 passed · Frontend 분석 흐름 3 passed · production build PASS')).toBeVisible()
   await expect(page.locator('a[href*="github.com/ktcloud4-SL/hackathon"]')).toHaveCount(0)
   await expect(page.getByRole('heading', { name: '구현 범위와 확장 구상', exact: true })).toBeVisible()
 
@@ -121,13 +121,13 @@ test('labbit: evidence cards keep ongoing state, contract boundary, and PR snaps
   await expect(cards.nth(1).getByText('Mutation 401 → Login 복귀 · stale me 인증 Cache 폐기')).toBeVisible()
   await expect(cards.nth(2).getByText('Production Build는 설정과 무관하게 HTTP Consumer 사용')).toBeVisible()
   await expect(cards.nth(3).getByText('PR 기록의 기존 UI HEAD: capture 17 / 17')).toBeVisible()
-  await expect(cards.nth(3).getByText('PR #28 당시 UI HEAD Snapshot · Vitest 69/69 · capture 17/17.')).toBeVisible()
+  await expect(cards.nth(3).getByText('PR 기록의 기존 UI HEAD: typecheck · lint · build PASS · Vitest 69 / 69')).toBeVisible()
 
   await expect(page.locator('#validation')).toContainText('권한/Generation 변경 후 이전 파일 캐시 차단')
   await expect(page.locator('#validation')).not.toContainText('실제 OpenStack VM')
 
   await expect(cards.nth(0).locator('details')).toHaveCount(0)
-  await expect(cards.nth(0).getByText('검증 범위: Frontend 코드·API 계약·PR 검사.')).toBeVisible()
+  await expect(cards.nth(0).getByText('2026-10-07 main 병합 · 최종 PR HEAD Web/Contracts/Go/CodeQL 검사 PASS')).toBeVisible()
 
   for (const href of [
     'https://github.com/ktcloud4-SL/labbit-app/pull/62',
@@ -242,7 +242,7 @@ test('home: introduction leads to both featured cases and the projects section',
 })
 
 
-test('v2.10 sync: home and project claim boundaries expose the refreshed evidence', async ({ page }) => {
+test('project results: roles, recovery conditions and PoC outcomes remain readable', async ({ page }) => {
   await page.goto('/', { waitUntil: 'networkidle' })
   const projects = page.getByRole('region', { name: '운영과 복구를 검증한 대표 프로젝트' })
   await expect(projects.getByText(/모니터링 인수/)).toBeVisible()
@@ -252,20 +252,21 @@ test('v2.10 sync: home and project claim boundaries expose the refreshed evidenc
   await page.goto('/projects/durian', { waitUntil: 'networkidle' })
   await expect(page.getByText('Terraform worker-03 Drift 분석·복구 검증 참여', { exact: true })).toBeVisible()
   const recovery = page.locator('#worker-recovery')
-  await expect(recovery.getByText(/worker-03 단일 Compute Instance 복구 PoC/)).toBeVisible()
+  await expect(recovery.getByText('worker-03 실제 VM 삭제 · Terraform State에는 존재')).toBeVisible()
   await expect(recovery.getByText('Ready,SchedulingDisabled', { exact: true })).toBeVisible()
 
   await page.goto('/projects/bluebell', { waitUntil: 'networkidle' })
-  await expect(page.getByText(/Recovery Trigger는 EventBridge → SSM 구조로 설계했지만 최종 7\/13 E2E에서는 EventBridge Rule 2개를 DISABLED/)).toBeVisible()
-  await expect(page.getByText(/EventBridge Rule 2개를 DISABLED/)).toBeVisible()
+  await expect(page.getByText(/7\/13 최종 시험에서는 EventBridge 규칙 2개를 끄고 복구 경로를 통제 실행/)).toBeVisible()
+  await expect(page.getByText('EC2 상태 이벤트 → EventBridge → SSM → Bastion 복구 스크립트')).toBeVisible()
 
   await page.goto('/projects/onereport', { waitUntil: 'networkidle' })
-  await expect(page.getByText(/PR #30 시점 실서버 \/api\/health는 502/)).toBeVisible()
-  await expect(page.getByText(/8\/21 AWS PoC 환경 Domain Smoke에서 FINAL: PASS/)).toBeVisible()
+  await expect(page.locator('#smoke time')).toHaveAttribute('datetime', '2026-08-21')
+  await expect(page.locator('#smoke .bluebell-validation')).toContainText('FINAL: PASS')
+  await expect(page.locator('#boundary table')).toContainText('112·119 및 민간 협력체의 실제 시스템 연계')
 })
 
 
-test('home: project summaries keep result scope visible and open the matching case', async ({ page }) => {
+test('home: project summaries show results and open the matching case', async ({ page }) => {
   await page.goto('/', { waitUntil: 'networkidle' })
   const featured = page.getByRole('region', { name: '운영과 복구를 검증한 대표 프로젝트' })
   const additional = page.getByRole('region', { name: '서비스 구현과 팀 시스템 통합 경험' })
@@ -273,15 +274,15 @@ test('home: project summaries keep result scope visible and open the matching ca
   await expect(additional.getByRole('article')).toHaveCount(2)
 
   const durian = featured.getByRole('article').filter({ hasText: 'Team Durian' })
-  await expect(durian.getByText(/8\/10 팀 시험 · 비동기 HTTP 요청 수락/)).toBeVisible()
+  await expect(durian.getByText(/8\/10 외부 Ops VM HTTP 300\/300 수락/)).toBeVisible()
   const bluebell = featured.getByRole('article').filter({ hasText: 'Bluebell' })
-  await expect(bluebell.getByText(/복구 자동화는 팀 구현/)).toBeVisible()
+  await expect(bluebell.getByText('인스턴스 교체 후 서비스·Target Group·HTTP 응답 정상화 확인')).toBeVisible()
   const onereport = additional.getByRole('article').filter({ hasText: 'OneReport' })
   await expect(onereport).toContainText('FINAL: PASS')
-  await expect(onereport.getByText(/규칙 기반 분석 · 실제 공공기관 연계 없음/)).toBeVisible()
+  await expect(onereport).toContainText('규칙 기반 분석')
   const labbit = additional.getByRole('article').filter({ hasText: 'Labbit' })
   await expect(labbit.getByText(/IN PROGRESS/)).toBeVisible()
-  await expect(labbit.getByText('2026-10-21까지 코드·CI 병합 검증 · 실제 VM/Live/ADMIN Acceptance 별도')).toBeVisible()
+  await expect(labbit.getByText(/파일 권한 경계 #136 \/ 사용자 Flow 안정화 #143/)).toBeVisible()
 
   for (const [slug, name] of [['durian', 'Team Durian'], ['bluebell', 'Bluebell'], ['onereport', 'OneReport'], ['labbit', 'Labbit']]) {
     const card = page.getByRole('article').filter({ hasText: name })

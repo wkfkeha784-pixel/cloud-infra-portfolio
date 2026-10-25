@@ -44,7 +44,6 @@ function EvidenceCase({ item, title, problem, action, children }: {
       <div className="bluebell-case-result">
         <h4>확인한 결과</h4>
         <ul>{item.facts.map((fact) => <li key={fact}>{fact}</li>)}</ul>
-        {item.note && <p className="bluebell-case-condition">{item.note}</p>}
       </div>
       {item.image && (
         <figure className="evidence-snapshot-figure bluebell-evidence-figure">
@@ -52,7 +51,6 @@ function EvidenceCase({ item, title, problem, action, children }: {
           {item.imageCaption && <figcaption>{item.imageCaption}</figcaption>}
         </figure>
       )}
-      <p className="story-photo-caption">발표 당시 실제 검증 화면 · {item.validatedAt}</p>
     </article>
   )
 }
@@ -122,11 +120,7 @@ export default function BluebellDetail({ project }: { project: Project }) {
           <ReadingSection section={recovery}>
             {recoverySnapshot && (
               <EvidenceCase item={recoverySnapshot} {...bluebellReading.cases.recovery}>
-                <div className="bluebell-recovery-condition">
-                  <h4>복구 설계와 최종 시험 조건</h4>
-                  <p className="bluebell-trigger">{bluebellReading.cases.recovery.trigger}</p>
-                  <p>{project.boundaryNotes?.[0]}</p>
-                </div>
+                <CaseCopy label="복구 이벤트 경로"><p>{bluebellReading.cases.recovery.trigger}</p></CaseCopy>
                 {project.validation && <div className="bluebell-validation">
                   <h4>복구부터 운영 마감까지 확인한 순서</h4>
                   <ol>{[{ label: '노드 교체', start: 0, end: 2 }, { label: '운영 편입', start: 2, end: 5 }, { label: '서비스·관측 확인', start: 5, end: 8 }, { label: '마감', start: 8, end: 9 }].map((group) => (

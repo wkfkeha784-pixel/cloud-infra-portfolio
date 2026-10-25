@@ -33,7 +33,6 @@ function ImplementationCase({ item, title, problem, workspace = false }: { item:
           ))}
           <p className="labbit-merge-result">{item.facts[4]}</p>
         </> : <ul>{item.facts.map((fact) => <li key={fact}>{fact}</li>)}</ul>}
-        {item.note && <p className="bluebell-case-condition">{item.note}</p>}
       </div>
       
       {item.href && <a className="story-link" href={item.href} target="_blank" rel="noreferrer">관련 구현 코드 ↗</a>}
@@ -87,7 +86,6 @@ export default function LabbitDetail({ project }: { project: Project }) {
           })}
 
           <ReadingSection section={validation}>
-            <p className="bluebell-intro">{project.boundaryNotes?.[0]}</p>
             <div className="bluebell-subheading"><h3>10월 주요 구현·안정화 작업</h3></div>
             <ul className="check-list" aria-label="최근 개인 FE 병합 대표 4건">
               <li>ADMIN Installer 승인 URL 연동 · <a href="https://github.com/ktcloud4-SL/labbit-app/pull/133" target="_blank" rel="noreferrer">PR #133 ↗</a></li>
@@ -95,7 +93,6 @@ export default function LabbitDetail({ project }: { project: Project }) {
               <li>권한/Generation 변경 후 이전 파일 캐시 차단 · <a href="https://github.com/ktcloud4-SL/labbit-app/pull/136" target="_blank" rel="noreferrer">PR #136 ↗</a></li>
               <li>Provision·LabSpec·Operation·Reset/Cleanup 회귀 · <a href="https://github.com/ktcloud4-SL/labbit-app/pull/143" target="_blank" rel="noreferrer">PR #143 ↗</a></li>
             </ul>
-            <p className="bluebell-case-condition">위 네 PR은 개인 작성·main 병합이 확인된 코드 변경입니다. 실제 READY Workspace·Live fan-out·ADMIN 적용 브라우저 검증은 완료로 표시하지 않습니다.</p>
             <p className="story-inline-reference">
               이전 LabSpec 권한·빈 상태·Mapping UI도 함께 개선했습니다:
               {' '}<a href="https://github.com/ktcloud4-SL/labbit-app/pull/93" target="_blank" rel="noreferrer">권한 UI</a>
@@ -104,8 +101,8 @@ export default function LabbitDetail({ project }: { project: Project }) {
             </p>
             <div className="bluebell-subheading"><h3>코드와 Backend 연동 상태</h3></div>
             <ol className="labbit-gates">
-              <li><span className="labbit-gate-state">검증 완료</span><h3>코드·계약·CI</h3><p className="labbit-gate-label">{project.validation?.[0]}</p><p>{project.projectResults?.[0]}</p><p>{project.projectResults?.[2]}</p><p className="labbit-gate-note">각 PR의 병합·검사 시점은 위 원본 링크에서 확인할 수 있습니다.</p></li>
-              <li><span className="labbit-gate-state">검증 완료</span><h3>실제 Backend Browser</h3><p className="labbit-gate-label">{project.validation?.[1]}</p><p>{project.projectResults?.[1]}</p><p>{project.boundaryNotes?.[1]}</p></li>
+              <li><span className="labbit-gate-state">검증 완료</span><h3>코드·계약·CI</h3><p className="labbit-gate-label">{project.validation?.[0]}</p><p>{project.projectResults?.[0]}</p><p>{project.projectResults?.[2]}</p></li>
+              <li><span className="labbit-gate-state">검증 완료</span><h3>인증·수업 Backend 연동</h3><p className="labbit-gate-label">{project.validation?.[1]}</p><p>{project.projectResults?.[1]}</p></li>
             </ol>
           </ReadingSection>
           <ReadingSection section={evidence}>

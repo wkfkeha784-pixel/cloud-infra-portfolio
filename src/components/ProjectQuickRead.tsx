@@ -24,7 +24,6 @@ export default function ProjectQuickRead({ project }: { project: Project }) {
             </div>
           ))}
         </dl>
-        <p className="project-quick-guide">팀이 함께 구현한 서비스와 주요 작업을 소개합니다. 아래에서 아키텍처와 대표 사례를 볼 수 있습니다.</p>
       </div>
     </section>
   )

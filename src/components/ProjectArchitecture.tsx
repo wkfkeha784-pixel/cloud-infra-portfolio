@@ -1,7 +1,7 @@
 import type { Project } from '../data/projects'
 
 type ArchitectureLane = { environment: string; nodes: { title: string; detail: string }[]; layout?: 'flow' | 'parallel' }
-type ArchitectureView = { introduction: string; lanes: ArchitectureLane[]; supporting: string[]; caveat?: string; laneConnection?: string }
+type ArchitectureView = { introduction: string; lanes: ArchitectureLane[]; supporting: string[]; laneConnection?: string }
 
 const views: Record<string, ArchitectureView> = {
   durian: {
@@ -21,7 +21,6 @@ const views: Record<string, ArchitectureView> = {
     ],
     supporting: ['Kafka Lag를 기준으로 KEDA가 Consumer 수 조절', 'Prometheus·Grafana로 서비스 상태 확인'],
     laneConnection: 'Kafka로 전달된 요청을 Consumer가 비동기로 처리',
-    caveat: '8/10 팀 시험의 HTTP 300/300은 비동기 요청 수락 기준이며, DB 300건 저장을 뜻하지 않습니다.',
   },
   bluebell: {
     introduction: 'AWS에서 Web·WAS를 처리하고, 내부 연결을 통해 온프레미스 DB로 이어지는 3-Tier 구조입니다.',
@@ -39,7 +38,6 @@ const views: Record<string, ArchitectureView> = {
     ],
     supporting: ['Ansible·Docker Swarm으로 구성·배포', 'ASG 교체 후 Target Group·HTTP·모니터링 확인'],
     laneConnection: 'AWS의 API 서버에서 온프레미스 DB로 연결',
-    caveat: '최종 복구 시험은 EventBridge 자동 트리거가 아닌 통제 실행으로 검증했습니다.',
   },
   onereport: {
     introduction: '신고부터 기관 배정·처리 이력까지 연결한 서비스입니다. 아래는 해커톤에서 구현한 AWS PoC 기준입니다.',
@@ -58,7 +56,6 @@ const views: Record<string, ArchitectureView> = {
       ] },
     ],
     supporting: ['PostgreSQL 기반 상태 관리', 'Timeline REST · SSE로 진행 상태 전달'],
-    caveat: '규칙 기반 분석 PoC이며 실제 112·119 연동이나 LLM 기반 분석은 구현 범위에 포함되지 않습니다.',
   },
   labbit: {
     introduction: '브라우저에서 실습 환경을 신청하고, Terminal·파일·Live 화면으로 학습하는 가상 실습 플랫폼입니다.',
@@ -76,7 +73,6 @@ const views: Record<string, ArchitectureView> = {
       ] },
     ],
     supporting: ['HTTP API로 수업·실습 상태 조회', 'Terminal·File·Live는 각각 필요한 HTTP/WSS 경로로 통신'],
-    caveat: 'Frontend PR·자동 검증과 실제 VM/Live/ADMIN 브라우저 E2E는 별개입니다.',
   },
 }
 
@@ -106,7 +102,6 @@ export default function ProjectArchitecture({ project }: { project: Project }) {
       <div className="story-architecture-support">
         {view.supporting.map((item) => <p key={item}>{item}</p>)}
       </div>
-      {view.caveat && <figcaption>{view.caveat}</figcaption>}
     </figure>
   )
 }

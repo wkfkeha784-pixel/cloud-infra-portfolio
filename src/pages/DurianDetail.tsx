@@ -35,12 +35,11 @@ function CaseCopy({ label, children }: { label: string; children: ReactNode }) {
   return <div className="durian-case-copy"><h4>{label}</h4>{children}</div>
 }
 
-function CaseResult({ facts, condition }: { facts: string[]; condition?: string }) {
+function CaseResult({ facts }: { facts: string[] }) {
   return (
     <div className="durian-case-result">
       <h4>확인한 결과</h4>
       <ul>{facts.map((fact) => <li key={fact}>{/^[A-Z]+(?:_[A-Z0-9]+)+$/.test(fact) ? <code>{fact}</code> : fact}</li>)}</ul>
-      {condition && <p className="durian-case-condition">{condition}</p>}
     </div>
   )
 }
@@ -126,7 +125,7 @@ export default function DurianDetail({ project }: { project: Project }) {
                     {[0, 2, 4].map((start) => <li key={start}>{project.validation?.slice(start, start + 2).join(' → ')}</li>)}
                   </ol>}
                 </CaseCopy>
-                <CaseResult facts={loadSnapshot.facts} condition={durianReading.cases.load.condition} />
+                <CaseResult facts={loadSnapshot.facts} />
                 
               </article>
             )}
@@ -139,7 +138,7 @@ export default function DurianDetail({ project }: { project: Project }) {
                 <CaseCopy label="복구할 문제"><p>{durianReading.cases.request.problem}</p></CaseCopy>
                 <CaseCopy label="조치"><p>{durianReading.cases.request.action}</p></CaseCopy>
                 <CaseCopy label="당시 요청 경로"><p className="durian-historical-path">{requestSnapshot.facts[0]}</p></CaseCopy>
-                <CaseResult facts={requestSnapshot.facts.slice(1)} condition={durianReading.cases.request.condition} />
+                <CaseResult facts={requestSnapshot.facts.slice(1)} />
                 
               </article>
             )}
@@ -152,7 +151,7 @@ export default function DurianDetail({ project }: { project: Project }) {
                 {project.troubleshooting.rows.filter((row) => row.label !== 'Result').map((row) => (
                   <CaseCopy key={row.label} label={durianReading.cases.scheduling.labels[row.label] ?? row.label}><p>{row.value}</p></CaseCopy>
                 ))}
-                <CaseResult facts={project.troubleshooting.rows.filter((row) => row.label === 'Result').map((row) => row.value)} condition={durianReading.cases.scheduling.condition} />
+                <CaseResult facts={project.troubleshooting.rows.filter((row) => row.label === 'Result').map((row) => row.value)} />
                 {project.troubleshooting.note && <p className="durian-lesson">{project.troubleshooting.note}</p>}
                 
               </article>
@@ -165,8 +164,7 @@ export default function DurianDetail({ project }: { project: Project }) {
               {durianReading.workerRecovery.facts.slice(0, 2).map((fact) => (
                 <CaseCopy key={fact.label} label={fact.label}><p>{fact.value}</p></CaseCopy>
               ))}
-              <CaseResult facts={[durianReading.workerRecovery.facts[2].value]} condition={durianReading.workerRecovery.note} />
-              <p className="durian-lesson">{durianReading.cases.worker.lesson}</p>
+              <CaseResult facts={[durianReading.workerRecovery.facts[2].value]} />
               <p className="durian-lesson">Terraform 구성 변경과 장애 분석, 노드 재가입 결과를 팀과 함께 검증했습니다.</p>
               
             </article>
@@ -179,7 +177,7 @@ export default function DurianDetail({ project }: { project: Project }) {
             <VideoStill
               src="/evidence/video/durian-monitoring.webp"
               alt="Durian Kafka 및 KEDA 관측을 위해 사용한 Grafana 대시보드의 실제 시연 화면"
-              caption="시연 당시 Grafana 대시보드. Consumer 1→4→1은 이 화면이 아닌 별도 팀 부하 시험 기록 기준입니다."
+              caption="시연 당시 Grafana 대시보드."
             />
             <div className="durian-closing">
               {project.learned && <div><h3>운영에서 배운 점</h3><p>{project.learned}</p></div>}
