@@ -29,7 +29,6 @@ export default function Home() {
 
           <nav className="hero-projects" aria-labelledby="hero-projects-title">
             <h2 id="hero-projects-title">먼저 볼 프로젝트</h2>
-            <p className="hero-projects-intro">관심 있는 운영 경험부터 살펴보세요.</p>
             <ol className="hero-project-list">
               <li>
                 <Link to="/projects/durian" className="hero-project-link">
@@ -63,7 +62,6 @@ export default function Home() {
           <div className="section-heading">
             <span className="eyebrow">SELECTED PROJECTS</span>
             <h2 id="projects-title">운영과 복구를 검증한 대표 프로젝트</h2>
-            <p>서비스 구성과 실제 운영·복구 경험을 중심으로 소개합니다.</p>
           </div>
           <div className="featured-project-list">
             {featuredProjects.map((project) => (
@@ -78,7 +76,6 @@ export default function Home() {
           <div className="section-heading compact">
             <span className="eyebrow">MORE PROJECTS</span>
             <h2 id="additional-projects-title">서비스 구현과 팀 시스템 통합 경험</h2>
-            <p>Backend 구현부터 Frontend 계약 연동까지, 담당한 구현과 통합 경험입니다.</p>
           </div>
           <div className="additional-project-list">
             {additionalProjects.map((project) => (
@@ -148,7 +145,6 @@ export default function Home() {
             <a href="https://github.com/wkfkeha784-pixel" target="_blank" rel="noreferrer">
               <span>GitHub</span><strong>wkfkeha784-pixel ↗</strong>
             </a>
-            <span className="contact-note">회사 제출용 PDF Portfolio는 지원 과정에서 제공합니다.</span>
           </div>
         </div>
       </section>

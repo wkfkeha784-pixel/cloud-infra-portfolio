@@ -5,8 +5,8 @@ export default function ProjectQuickRead({ project }: { project: Project }) {
   const summary = [
     { title: '프로젝트 소개', description: project.subtitle },
     { title: '사용 기술', description: project.tags.slice(0, 5).join(' · ') },
-    { title: '프로젝트에서 구현', description: project.home.headline },
-    { title: '주요 참여', description: project.role },
+    { title: '주요 결과', description: project.home.headline },
+    { title: '담당 역할', description: project.role },
   ]
 
   return (
