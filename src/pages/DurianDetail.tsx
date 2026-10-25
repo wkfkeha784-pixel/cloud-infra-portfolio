@@ -126,7 +126,7 @@ export default function DurianDetail({ project }: { project: Project }) {
                     {[0, 2, 4].map((start) => <li key={start}>{project.validation?.slice(start, start + 2).join(' → ')}</li>)}
                   </ol>}
                 </CaseCopy>
-                <CaseResult facts={loadSnapshot.facts} condition={durianReading.cases.load.condition} />
+                <CaseResult facts={loadSnapshot.facts} />
                 
               </article>
             )}
@@ -139,7 +139,7 @@ export default function DurianDetail({ project }: { project: Project }) {
                 <CaseCopy label="복구할 문제"><p>{durianReading.cases.request.problem}</p></CaseCopy>
                 <CaseCopy label="조치"><p>{durianReading.cases.request.action}</p></CaseCopy>
                 <CaseCopy label="당시 요청 경로"><p className="durian-historical-path">{requestSnapshot.facts[0]}</p></CaseCopy>
-                <CaseResult facts={requestSnapshot.facts.slice(1)} condition={durianReading.cases.request.condition} />
+                <CaseResult facts={requestSnapshot.facts.slice(1)} />
                 
               </article>
             )}
@@ -152,7 +152,7 @@ export default function DurianDetail({ project }: { project: Project }) {
                 {project.troubleshooting.rows.filter((row) => row.label !== 'Result').map((row) => (
                   <CaseCopy key={row.label} label={durianReading.cases.scheduling.labels[row.label] ?? row.label}><p>{row.value}</p></CaseCopy>
                 ))}
-                <CaseResult facts={project.troubleshooting.rows.filter((row) => row.label === 'Result').map((row) => row.value)} condition={durianReading.cases.scheduling.condition} />
+                <CaseResult facts={project.troubleshooting.rows.filter((row) => row.label === 'Result').map((row) => row.value)} />
                 {project.troubleshooting.note && <p className="durian-lesson">{project.troubleshooting.note}</p>}
                 
               </article>
@@ -179,7 +179,7 @@ export default function DurianDetail({ project }: { project: Project }) {
             <VideoStill
               src="/evidence/video/durian-monitoring.webp"
               alt="Durian Kafka 및 KEDA 관측을 위해 사용한 Grafana 대시보드의 실제 시연 화면"
-              caption="시연 당시 Grafana 대시보드. Consumer 1→4→1은 이 화면이 아닌 별도 팀 부하 시험 기록 기준입니다."
+              caption="시연 당시 Grafana 대시보드."
             />
             <div className="durian-closing">
               {project.learned && <div><h3>운영에서 배운 점</h3><p>{project.learned}</p></div>}

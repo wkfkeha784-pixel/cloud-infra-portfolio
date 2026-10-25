@@ -140,7 +140,7 @@ export const projects: Project[] = [
         summary:
           'Consumer의 미처리 메시지량을 확장 기준으로 보기 위해 Kafka Lag를 사용했습니다. 8/10 팀 시험에서는 Kubernetes 외부 Ops VM의 요청 수락과 Consumer 확장·축소 경로를 기록했습니다. 개인 기여는 KEDA 구성·관측·진단입니다.',
         facts: [
-          '300 / 300 HTTP 200 · Concurrency 50',
+          '300 / 300 HTTP 200 · 비동기 요청 수락 · Concurrency 50',
           'HPA External Metric 약 60 / 5 → Consumer 1 → 4',
           'Worker-01 2개 · Worker-02 2개로 분산',
           'Lag 해소 후 4 → 1 Scale-in · Kafka Broker Running',
@@ -618,20 +618,17 @@ export const durianReading = {
     load: {
       title: '8/10 팀 시험에서 외부 요청 수락과 Consumer 1→4→1이 기록됐습니다.',
       problem: 'Pod 상태만으로는 외부 수강신청 요청이 Kafka에 쌓이고 Consumer 확장으로 이어지는지 판단하기 어려웠습니다.',
-      condition: 'HTTP 200은 비동기 요청 수락 기준입니다. DB 300건 전체 Commit 완료를 측정한 시험은 아닙니다.',
       measurement: '약 573.68 req/s · 0.523초는 짧은 Demo Script의 전송 처리량 Snapshot입니다. 지속 처리량이나 P95를 측정한 값은 아닙니다.',
     },
     request: {
       title: '접근·인증 설정을 복구하고 실제 DB 반영까지 재검증했습니다.',
       problem: '초기 Kafka 연결 시간초과를 해소하자 TLS 신뢰 오류(PKIX)가 드러났습니다. 한 설정의 수정만으로 끝나지 않아 통신·신뢰·인증·권한을 나누어 점검했습니다.',
       action: 'NetworkPolicy → TLS Trust → SCRAM → Topic / Group ACL 순으로 복구하고, 최소권한 Cutover 후 Mainpage의 실제 요청으로 MariaDB 반영을 확인했습니다.',
-      condition: '이 8/6 Snapshot의 공식 Producer 경로에는 Redis 호출이 없었습니다.',
     },
     scheduling: {
       title: '확장된 Consumer가 실행되지 않는 원인과 배치를 조정했습니다.',
       labels: { Symptom: '증상', Cause: '원인', Action: '팀 조치', Result: '기록된 결과' } as Record<string, string>,
       source: 'Durian 최종 발표자료 · 트러블슈팅',
-      condition: '배치 조정은 팀 대응 사례입니다. 8/10 외부 부하 시험에서 확인한 Worker 2+2 분산은 별도 시험 결과입니다.',
     },
     worker: {
       title: '팀의 worker-03 단일 VM 재생성·재가입 결과를 검증했습니다.',

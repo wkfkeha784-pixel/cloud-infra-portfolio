@@ -21,7 +21,6 @@ const views: Record<string, ArchitectureView> = {
     ],
     supporting: ['Kafka Lag를 기준으로 KEDA가 Consumer 수 조절', 'Prometheus·Grafana로 서비스 상태 확인'],
     laneConnection: 'Kafka로 전달된 요청을 Consumer가 비동기로 처리',
-    caveat: '8/10 팀 시험의 HTTP 300/300은 비동기 요청 수락 기준이며, DB 300건 저장을 뜻하지 않습니다.',
   },
   bluebell: {
     introduction: 'AWS에서 Web·WAS를 처리하고, 내부 연결을 통해 온프레미스 DB로 이어지는 3-Tier 구조입니다.',

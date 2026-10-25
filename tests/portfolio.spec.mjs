@@ -61,7 +61,7 @@ test('durian: validation evidence snapshots expose dated proof and scope', async
   const cases = page.locator('#load-scaling .durian-case, #request-recovery .durian-case, #evidence .durian-case')
   await expect(cases).toHaveCount(3)
 
-  await expect(page.getByText('300 / 300 HTTP 200 · Concurrency 50')).toBeVisible()
+  await expect(page.getByText('300 / 300 HTTP 200 · 비동기 요청 수락 · Concurrency 50')).toBeVisible()
   await expect(page.getByText('POST_CUTOVER_E2E_SUCCESS')).toBeVisible()
   await expect(page.getByText('Final Health PASS 43 / WARN 0 / FAIL 0')).toBeVisible()
 
