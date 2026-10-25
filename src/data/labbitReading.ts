@@ -14,7 +14,7 @@ export const labbitReading = {
   highlights: [
     { result: 'Terminal·File 구현', context: '개인 PR #62 병합 · 세션·ETag 충돌 보호' },
     { result: 'Live·파일 접근 경계', context: '개인 PR #135/#136 병합 · 코드·CI 검증' },
-    { result: '사용자 Flow 안정화', context: '개인 PR #143 병합 · 실제 VM E2E 별도' },
+    { result: '사용자 Flow 안정화', context: 'PR #143 병합 · Provision·Reset/Cleanup 회귀' },
   ],
   cases: [
     {

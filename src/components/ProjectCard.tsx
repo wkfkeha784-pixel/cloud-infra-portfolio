@@ -36,7 +36,6 @@ export default function ProjectCard({ project }: { project: Project }) {
             ))}
           </ul>
         </div>
-        <p className="project-note"><span>검증 범위</span>{home.note}</p>
         <Link className="text-link project-case-link" to={`/projects/${project.slug}`} aria-label={`${project.name} · ${home.linkLabel}`}>
           {home.linkLabel} <span aria-hidden="true">→</span>
         </Link>

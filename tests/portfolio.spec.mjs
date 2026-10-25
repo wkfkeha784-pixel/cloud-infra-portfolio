@@ -91,7 +91,7 @@ test('bluebell: recovery validation evidence exposes images, scope, and completi
   )
   expect(evidenceImagesLoaded).toBe(true)
 
-  await expect(cards.locator('.story-photo-caption')).toHaveCount(3)
+  await expect(cards.locator('figcaption')).toHaveCount(3)
   await expect(cards.locator('details')).toHaveCount(0)
 })
 
@@ -103,7 +103,7 @@ test('onereport: PR evidence cards preserve validation snapshots and hide privat
 
   await expect(cards.nth(0).getByText('PR 시점 Backend 전체 테스트 41 passed · OpenAPI 생성 PASS')).toBeVisible()
   await expect(cards.nth(1).getByText('Timeline REST → { items, total } Contract 정합')).toBeVisible()
-  await expect(cards.nth(2).getByText('PR #27 · Rule 기반 분석의 당시 검사 결과.')).toBeVisible()
+  await expect(cards.nth(2).getByText('PR 시점 Backend 65 passed · Frontend 분석 흐름 3 passed · production build PASS')).toBeVisible()
   await expect(page.locator('a[href*="github.com/ktcloud4-SL/hackathon"]')).toHaveCount(0)
   await expect(page.getByRole('heading', { name: '구현 범위와 확장 구상', exact: true })).toBeVisible()
 
@@ -121,13 +121,13 @@ test('labbit: evidence cards keep ongoing state, contract boundary, and PR snaps
   await expect(cards.nth(1).getByText('Mutation 401 → Login 복귀 · stale me 인증 Cache 폐기')).toBeVisible()
   await expect(cards.nth(2).getByText('Production Build는 설정과 무관하게 HTTP Consumer 사용')).toBeVisible()
   await expect(cards.nth(3).getByText('PR 기록의 기존 UI HEAD: capture 17 / 17')).toBeVisible()
-  await expect(cards.nth(3).getByText('PR #28 당시 UI HEAD Snapshot · Vitest 69/69 · capture 17/17.')).toBeVisible()
+  await expect(cards.nth(3).getByText('PR 기록의 기존 UI HEAD: typecheck · lint · build PASS · Vitest 69 / 69')).toBeVisible()
 
   await expect(page.locator('#validation')).toContainText('권한/Generation 변경 후 이전 파일 캐시 차단')
   await expect(page.locator('#validation')).not.toContainText('실제 OpenStack VM')
 
   await expect(cards.nth(0).locator('details')).toHaveCount(0)
-  await expect(cards.nth(0).getByText('검증 범위: Frontend 코드·API 계약·PR 검사.')).toBeVisible()
+  await expect(cards.nth(0).getByText('2026-10-07 main 병합 · 최종 PR HEAD Web/Contracts/Go/CodeQL 검사 PASS')).toBeVisible()
 
   for (const href of [
     'https://github.com/ktcloud4-SL/labbit-app/pull/62',

@@ -35,12 +35,11 @@ function CaseCopy({ label, children }: { label: string; children: ReactNode }) {
   return <div className="durian-case-copy"><h4>{label}</h4>{children}</div>
 }
 
-function CaseResult({ facts, condition }: { facts: string[]; condition?: string }) {
+function CaseResult({ facts }: { facts: string[] }) {
   return (
     <div className="durian-case-result">
       <h4>확인한 결과</h4>
       <ul>{facts.map((fact) => <li key={fact}>{/^[A-Z]+(?:_[A-Z0-9]+)+$/.test(fact) ? <code>{fact}</code> : fact}</li>)}</ul>
-      {condition && <p className="durian-case-condition">{condition}</p>}
     </div>
   )
 }
@@ -165,8 +164,7 @@ export default function DurianDetail({ project }: { project: Project }) {
               {durianReading.workerRecovery.facts.slice(0, 2).map((fact) => (
                 <CaseCopy key={fact.label} label={fact.label}><p>{fact.value}</p></CaseCopy>
               ))}
-              <CaseResult facts={[durianReading.workerRecovery.facts[2].value]} condition={durianReading.workerRecovery.note} />
-              <p className="durian-lesson">{durianReading.cases.worker.lesson}</p>
+              <CaseResult facts={[durianReading.workerRecovery.facts[2].value]} />
               <p className="durian-lesson">Terraform 구성 변경과 장애 분석, 노드 재가입 결과를 팀과 함께 검증했습니다.</p>
               
             </article>

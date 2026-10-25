@@ -4,7 +4,7 @@ const cases = [
   ['durian', 'load-scaling', '비동기', 'architecture'],
   ['bluebell', 'recovery', 'EventBridge', 'architecture'],
   ['onereport', 'boundary', '제안', 'flow'],
-  ['labbit', 'validation', '개인 작성·main 병합이 확인된 코드 변경', 'flow'],
+  ['labbit', 'validation', '권한/Generation 변경 후 이전 파일 캐시 차단', 'flow'],
 ]
 
 for (const width of [1440, 390]) {

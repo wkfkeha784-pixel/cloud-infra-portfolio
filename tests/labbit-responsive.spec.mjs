@@ -29,11 +29,11 @@ for (const width of [1440, 768, 390, 320]) {
     await expect(page.locator('#workspace .bluebell-case-result')).toContainText('ETag/If-Match · 412 충돌 보호')
     await expect(page.locator('#workspace .bluebell-case-result')).toContainText('저장 결과 불명확 시 자동 재저장 차단')
     await expect(page.locator('#workspace .bluebell-case-result')).toContainText('2026-10-07 main 병합')
-    await expect(page.locator('#session .bluebell-case-result')).toContainText('Server authorization이 최종 권한 경계')
+    await expect(page.locator('#session .bluebell-case-result')).toContainText('Mutation 403 → 요청 시점 권한 변경 안내')
     await expect(page.locator('#http .bluebell-case-result')).toContainText('Production Build는 설정과 무관하게 HTTP Consumer 사용')
     await expect(page.locator('#prototype .bluebell-case-result')).toContainText('Vitest 69 / 69')
     await expect(page.locator('#prototype .bluebell-case-result')).toContainText('capture 17 / 17')
-    await expect(page.locator('#prototype .bluebell-case-condition')).toContainText('당시 UI HEAD Snapshot')
+    await expect(page.locator('#prototype .bluebell-case-result')).toContainText('CodeQL 후속 HEAD')
 
     for (const id of ['overview', 'flow', 'workspace', 'session', 'http', 'prototype', 'validation', 'evidence']) {
       await toc.locator(`a[href$="#${id}"]`).click()
@@ -49,7 +49,7 @@ for (const width of [1440, 768, 390, 320]) {
     await expect(workspace).toBeFocused()
     await expect(workspace.locator('details')).toHaveCount(0)
     await expect(workspace.locator('.bluebell-case-result')).toBeVisible()
-    await expect(workspace.locator('.bluebell-case-condition')).toContainText('검증 범위: Frontend 코드·API 계약·PR 검사.')
+    await expect(workspace.locator('.labbit-merge-result')).toContainText('Web/Contracts/Go/CodeQL 검사 PASS')
     const original = workspace.getByRole('link', { name: '관련 구현 코드 ↗' })
     await original.focus()
     await expect(original).toBeFocused()
@@ -66,7 +66,8 @@ for (const width of [1440, 768, 390, 320]) {
     await expect(stages).toHaveCount(2)
     await expect(stages.locator('.labbit-gate-state')).toHaveText(['검증 완료', '검증 완료'])
     await expect(stages.nth(0)).toContainText('개인 FE PR 병합')
-    await expect(stages.nth(1)).toContainText('Auth/Class는 당시 실제 Backend Browser 단계까지 검증했습니다.')
+    await expect(stages.nth(1).locator('h3')).toHaveText('인증·수업 Backend 연동')
+    await expect(stages.nth(1)).toContainText('인증·수업 화면을 실제 Backend에 연결해 브라우저에서 검증했습니다.')
     await expect(validation).not.toContainText('Actual OpenStack VM E2E · Pending')
     await expect(validation).not.toContainText('실제 OpenStack VM')
     await expect.poll(() => validation.locator('h2').evaluate(element => {
