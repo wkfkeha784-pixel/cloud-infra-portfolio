@@ -113,7 +113,7 @@ test('onereport: PR evidence cards preserve validation snapshots and hide privat
 test('labbit: evidence cards keep ongoing state, contract boundary, and PR snapshots visible', async ({ page }) => {
   await page.goto('/projects/labbit', { waitUntil: 'networkidle' })
 
-  await expect(page.getByText('IN PROGRESS · 2026-10-21', { exact: true })).toBeVisible()
+  await expect(page.getByText('개발 진행 중', { exact: true })).toBeVisible()
 
   const cards = page.locator('.evidence-snapshot-card')
   await expect(cards).toHaveCount(4)
@@ -278,11 +278,11 @@ test('home: project summaries show results and open the matching case', async ({
   const bluebell = featured.getByRole('article').filter({ hasText: 'Bluebell' })
   await expect(bluebell.getByText('인스턴스 교체 후 서비스·Target Group·HTTP 응답 정상화 확인')).toBeVisible()
   const onereport = additional.getByRole('article').filter({ hasText: 'OneReport' })
-  await expect(onereport).toContainText('FINAL: PASS')
+  await expect(onereport).toContainText('Smoke 검증 통과')
   await expect(onereport).toContainText('규칙 기반 분석')
   const labbit = additional.getByRole('article').filter({ hasText: 'Labbit' })
-  await expect(labbit.getByText(/IN PROGRESS/)).toBeVisible()
-  await expect(labbit.getByText(/파일 권한 경계 #136 \/ 사용자 Flow 안정화 #143/)).toBeVisible()
+  await expect(labbit.getByText('개발 진행 중', { exact: true })).toBeVisible()
+  await expect(labbit.getByText(/권한 변경 후 이전 파일 차단/)).toBeVisible()
 
   for (const [slug, name] of [['durian', 'Team Durian'], ['bluebell', 'Bluebell'], ['onereport', 'OneReport'], ['labbit', 'Labbit']]) {
     const card = page.getByRole('article').filter({ hasText: name })

@@ -9,12 +9,12 @@ export const labbitReading = {
     { id: 'http', number: '05', label: 'Mock·HTTP 경계', title: '개발 Mock과 Production HTTP의 경계' },
     { id: 'prototype', number: '06', label: '시제품·화면 캡처', title: '팀 검토를 위한 시제품과 화면 캡처' },
     { id: 'validation', number: '07', label: '후속 구현·연동 기록', title: '후속 Frontend 구현과 Backend 연동 기록' },
-    { id: 'evidence', number: '08', label: '원본 자료·배운 점', title: '원본 자료와 구현에서 배운 점' },
+    { id: 'evidence', number: '08', label: '구현에서 배운 점', title: '구현에서 배운 점' },
   ],
   highlights: [
-    { result: 'Terminal·File 구현', context: '개인 PR #62 병합 · 세션·ETag 충돌 보호' },
-    { result: 'Live·파일 접근 경계', context: '개인 PR #135/#136 병합 · 코드·CI 검증' },
-    { result: '사용자 Flow 안정화', context: 'PR #143 병합 · Provision·Reset/Cleanup 회귀' },
+    { result: 'Terminal·File 구현', context: '세션 재연결 · ETag 기반 파일 충돌 보호' },
+    { result: 'Live·파일 접근 보호', context: '서버 오류 시 연결 유지 · 권한 변경 시 이전 파일 차단' },
+    { result: '사용자 흐름 안정화', context: 'Provision·Reset/Cleanup 흐름 개선 · 회귀 검사' },
   ],
   cases: [
     {

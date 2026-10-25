@@ -157,7 +157,7 @@ export const projects: Project[] = [
           'Mainpage의 실제 요청 경로에서 NetworkPolicy → TLS Trust → SCRAM → Topic / Group ACL을 순서대로 복구하고 MariaDB 반영까지 재검증했습니다.',
         facts: [
           'Mainpage → Kong → Producer → Kafka → Consumer → MariaDB',
-          'HTTP 200 · Enrollment 2 → 3 · New Enrollment ID 44',
+          'HTTP 200 · 신청 데이터 2 → 3건 · 신규 신청 ID 44',
           'Consumer Ready=true · Restart=0 · Error=false',
           'POST_CUTOVER_E2E_SUCCESS',
         ],
@@ -335,8 +335,8 @@ export const projects: Project[] = [
       headline: '신고·기관 배정·상태 흐름을 연결하는 Backend 구현',
       role: 'Backend / 도메인·DB·기관 배정·API 계약·규칙 기반 분석',
       results: [
-        { scope: 'MY', text: '핵심 Backend PR #9/#14/#27/#30 · 도메인·계약·분석·Smoke Test' },
-        { scope: 'PROJECT', text: '팀 AWS PoC 배포 후 Smoke · FINAL: PASS' },
+        { scope: 'MY', text: '신고·기관 배정·처리 이력과 규칙 기반 분석 구현' },
+        { scope: 'PROJECT', text: 'AWS PoC에서 신고부터 기관 대응까지 Smoke 검증 통과' },
       ],
       note: '규칙 기반 분석 · 실제 공공기관 연계 없음',
       linkLabel: 'Backend 구현과 AWS PoC 검증 보기',
@@ -424,7 +424,7 @@ export const projects: Project[] = [
       timeline: '개발 착수 2026.09.17 · 대표 개인 PR 10.07–10.21 · 코드 검증 기준 2026.10.21',
       team: '9/17 착수안 팀 구성표 8명(개발 4 / 운영 4)',
     },
-    status: 'IN PROGRESS · 2026-10-21',
+    status: '개발 진행 중',
     subtitle: 'OpenStack 기반 가상 실습 플랫폼',
     problem: '여러 VM을 사용하는 실습환경의 상태·권한·오류를 브라우저 화면에서 안전하게 표현해야 하는 문제',
     role: 'Frontend / 디자인 / Terminal·File·Live 연동 및 오류·권한 보호',
@@ -433,11 +433,11 @@ export const projects: Project[] = [
     tags: ['React', 'TypeScript', 'TanStack Query', 'OpenAPI', 'WebSocket', 'Vitest', 'CI'],
     home: {
       group: 'additional',
-      headline: 'Terminal·File·Live 연동과 사용자 Flow 안정화',
+      headline: 'Terminal·File·Live 연동과 사용자 흐름 안정화',
       role: 'Frontend / Terminal·File·Live·권한·충돌 보호',
       results: [
-        { scope: 'MY', text: 'Terminal·File #62 / 학생 Live WSS #135 · 개인 FE PR 병합' },
-        { scope: 'MY', text: '파일 권한 경계 #136 / 사용자 Flow 안정화 #143 · 개인 FE PR 병합' },
+        { scope: 'MY', text: '터미널·파일 연동과 학생용 읽기 전용 Live 구현' },
+        { scope: 'MY', text: '권한 변경 후 이전 파일 차단 · Provision·Reset 흐름 안정화' },
       ],
       note: '2026-10-21까지 코드·CI 병합 검증 · 실제 VM/Live/ADMIN Acceptance 별도',
       linkLabel: 'Workspace 구현과 통합 과정 보기',
@@ -603,7 +603,7 @@ export const durianReading = {
     { id: 'request-recovery', number: '04', title: 'Kafka 요청 경로 복구', label: 'Kafka 경로 복구' },
     { id: 'scheduling', number: '05', title: 'Consumer Pending 대응', label: 'Pending 대응' },
     { id: 'worker-recovery', number: '06', title: 'Terraform Worker 복구', label: 'Terraform 복구' },
-    { id: 'evidence', number: '07', title: '운영 상태와 원본 자료', label: '운영 상태·자료' },
+    { id: 'evidence', number: '07', title: '모니터링과 운영 상태', label: '모니터링·운영 상태' },
   ],
   workerRecovery: {
     source: 'Portfolio Master v2.11 · p.6 Drift Recovery Evidence',

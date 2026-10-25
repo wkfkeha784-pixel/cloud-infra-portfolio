@@ -137,7 +137,7 @@ export default function BluebellDetail({ project }: { project: Project }) {
 
           <ReadingSection section={closing}>
             <div className="bluebell-closing">
-              <div><h3>Node Created ≠ Recovery Complete</h3><p>{project.learned}</p></div>
+              <div><h3>서비스와 관측까지 확인한 복구 기준</h3><p>{project.learned}</p></div>
               <div><h3>프로젝트에서 배운 점</h3><p>노드 생성, 서비스 편입, 요청 응답과 관측 복원을 한 흐름으로 확인하며 각 담당 영역의 완료 기준을 연결했습니다.</p></div>
               <div><h3>다음 검증 과제</h3><p>{bluebellReading.followup}</p></div>
               

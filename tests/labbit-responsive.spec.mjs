@@ -16,7 +16,7 @@ for (const width of [1440, 768, 390, 320]) {
     await expect(page).toHaveURL(/\/projects\/labbit$/)
     await expect(page.locator('main h1')).toBeFocused()
     await page.evaluate(() => document.fonts.ready)
-    await expect(page.getByText('IN PROGRESS · 2026-10-21', { exact: true })).toBeVisible()
+    await expect(page.getByText('개발 진행 중', { exact: true })).toBeVisible()
 
     const toc = page.getByRole('navigation', { name: 'Labbit 사례 목차' })
     await expect(toc.getByRole('link')).toHaveCount(8)
