@@ -1,6 +1,6 @@
 // Presentation metadata. The canonical project and evidence objects stay intact.
 export const bluebellReading = {
-  headline: 'AWS Web–WAS를 구축하고 인스턴스 교체 후 서비스 정상화를 검증했습니다.',
+  headline: '장애 복구·모니터링 웹 API 운영환경',
   sections: [
     { id: 'overview', number: '01', label: '프로젝트·담당 역할', title: '프로젝트와 담당 역할' },
     { id: 'architecture', number: '02', label: '하이브리드 요청 구조', title: 'AWS와 Local DB를 연결한 요청 구조' },
