@@ -114,7 +114,7 @@ export default function LabbitDetail({ project }: { project: Project }) {
             </ul>
           </ReadingSection>
           <ReadingSection section={evidence}>
-            <div className="bluebell-closing"><div><h3>구현에서 배운 점</h3><p>{project.learned}</p></div></div>
+            <div className="bluebell-closing"><div><p>{project.learned}</p></div></div>
           </ReadingSection>
         </div>
       </div>
