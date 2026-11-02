@@ -80,7 +80,7 @@ test('bluebell: recovery validation evidence exposes images, scope, and completi
   await expect(cards).toHaveCount(3)
   await expect(cards.locator('img')).toHaveCount(3)
 
-  await expect(page.locator('.bluebell-subtitle')).toHaveText('AWS Web/WAS + Local DB 하이브리드 3-Tier 인프라')
+  await expect(page.locator('.bluebell-subtitle')).toHaveText('AWS Web/WAS와 Local DB를 연결한 하이브리드 3-Tier 구성')
   await expect(page.locator('#architecture')).toContainText('Local · On-Premise')
   await expect(page.getByText('Web / WAS Target Group 2 healthy · 0 unhealthy')).toBeVisible()
   await expect(page.getByText('Target Group healthy · / · /api/health · /api/server 200')).toBeVisible()
@@ -173,7 +173,7 @@ test('home: four case-study cards and contact links are present', async ({ page 
     '2020.03–2025.09',
     '2026.05.12–2026.12.03',
   ])
-  await expect(page.getByText('AWS Web/WAS + Local DB 하이브리드 3-Tier 인프라', { exact: true }).first()).toBeVisible()
+  await expect(page.getByText('AWS Web/WAS와 Local DB를 연결한 하이브리드 3-Tier 구성', { exact: true }).first()).toBeVisible()
 })
 
 test('evidence: only publicly accessible repository and PR links are exposed', async ({ page }) => {
@@ -247,7 +247,7 @@ test('project results: roles, recovery conditions and PoC outcomes remain readab
   const projects = page.getByRole('region', { name: '운영과 복구를 검증한 대표 프로젝트' })
   await expect(projects.getByText(/모니터링 인수/)).toBeVisible()
   await expect(projects.getByText('Terraform', { exact: true })).toBeVisible()
-  await expect(page.getByRole('region', { name: '서비스 구현과 팀 시스템 통합 경험' }).getByText(/Terminal·File·Live·권한·충돌 보호/)).toBeVisible()
+  await expect(page.getByRole('region', { name: '서비스 구현과 팀 시스템 통합 경험' }).getByText(/Frontend·API\/WSS·브라우저 검증 \/ Osaka DR 설계·검증 준비/)).toBeVisible()
 
   await page.goto('/projects/durian', { waitUntil: 'networkidle' })
   await expect(page.getByText('Terraform worker-03 Drift 분석·복구 검증 참여', { exact: true })).toBeVisible()
