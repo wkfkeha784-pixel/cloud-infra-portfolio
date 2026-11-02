@@ -591,7 +591,7 @@ export const projectBySlug = Object.fromEntries(projects.map((project) => [proje
 
 
 export const durianReading = {
-  headline: '외부 부하에 따른 Consumer 확장·축소와 Kubernetes 운영 복구를 검증했습니다.',
+  headline: '수강신청 폭주 대응 대기열 서비스',
   highlights: [
     { result: 'Consumer 1→4→1', context: '외부 부하에 따른 확장 · Lag 해소 후 축소' },
     { result: 'HTTP 300/300 수락', context: '동시 요청 50 · 2026-08-10 · 비동기 요청 수락' },
