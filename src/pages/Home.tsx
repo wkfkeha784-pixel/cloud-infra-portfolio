@@ -35,8 +35,8 @@ export default function Home() {
                   <span className="hero-project-number" aria-hidden="true">01</span>
                   <span className="hero-project-copy">
                     <span className="hero-project-name">Team Durian</span>
-                    <strong>부하에 따른 확장과 Worker 재가입</strong>
-                    <span className="hero-project-description">Consumer 1→4→1 · worker-03 재생성·재가입</span>
+                    <strong>수강신청 폭주 대응 대기열 서비스</strong>
+                    <span className="hero-project-description">Kafka·KEDA 확장 검증 · 단일 Worker 복구</span>
                   </span>
                   <span className="hero-project-arrow" aria-hidden="true">↗</span>
                 </Link>
@@ -46,8 +46,8 @@ export default function Home() {
                   <span className="hero-project-number" aria-hidden="true">02</span>
                   <span className="hero-project-copy">
                     <span className="hero-project-name">Bluebell</span>
-                    <strong>서비스 연결과 장애 이후 정상화</strong>
-                    <span className="hero-project-description">Web–WAS 구축 · 인스턴스 교체 후 복구 검증</span>
+                    <strong>장애 복구·모니터링 웹 API 운영환경</strong>
+                    <span className="hero-project-description">AWS Web–WAS · 교체 후 서비스 응답 검증</span>
                   </span>
                   <span className="hero-project-arrow" aria-hidden="true">↗</span>
                 </Link>
