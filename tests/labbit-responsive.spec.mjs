@@ -21,6 +21,8 @@ for (const width of [1440, 768, 390, 320]) {
     const toc = page.getByRole('navigation', { name: 'Labbit 사례 목차' })
     await expect(toc.getByRole('link')).toHaveCount(9)
     await expect(toc.getByRole('link', { name: /Osaka DR 설계·준비/ })).toBeVisible()
+    await expect(page.locator('#evidence h2')).toHaveText('구현에서 배운 점')
+    await expect(page.locator('#evidence h3')).toHaveCount(0)
     await expect(page.locator('#dr').getByText(/실제 리전 전환·복구 시험/)).toBeVisible()
     await expect(page.locator('.labbit-case')).toHaveCount(4)
     await expect(page.locator('.labbit-case')).toHaveCount(4)
