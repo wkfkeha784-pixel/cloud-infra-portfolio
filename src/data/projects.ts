@@ -69,7 +69,7 @@ export const projects: Project[] = [
       team: '최종 3명',
       role: '팀원 · Kafka/KEDA·모니터링·복구 검증',
     },
-    subtitle: '수강신청 폭주 대응 대기열 서비스',
+    subtitle: 'Kubernetes·Redis/Kafka·KEDA 기반 비동기 처리·자동 확장',
     problem: '갑작스러운 수강신청 요청이 애플리케이션과 DB로 한꺼번에 전달되는 상황',
     role: 'Kubernetes·Redis/Kafka/KEDA 운영 / 모니터링 인수·재구성 / Terraform 복구 검증',
     summary:
@@ -198,7 +198,7 @@ export const projects: Project[] = [
       timeline: '교육 프로젝트 2026.06.11-07.14',
       team: '최종 5명',
     },
-    subtitle: '장애 복구·모니터링 웹 API 운영환경',
+    subtitle: 'AWS Web/WAS와 Local DB를 연결한 하이브리드 3-Tier 구성',
     problem: '수작업 복구와 서버 재구성 시 설정 편차, 복구 완료 판단 기준 부족',
     role: '팀장 / Web–WAS 구축 / AWS·복구 통합 검증',
     summary:
@@ -324,7 +324,7 @@ export const projects: Project[] = [
       team: '역할표 8명 · Backend 공동 2명',
       role: 'Backend 공동 / 도메인·DB·기관 배정·API 계약·규칙 기반 분석',
     },
-    subtitle: '복합사고 다기관 공동대응 플랫폼 PoC',
+    subtitle: '신고·기관 배정·처리 이력 REST/SSE API · AWS PoC',
     problem: '기관별 배정·상태·이력이 분리되면 전체 대응 상황을 파악하기 어려운 문제',
     role: 'Backend / 도메인·DB·기관 배정·API 계약·규칙 기반 분석',
     summary:
@@ -425,7 +425,7 @@ export const projects: Project[] = [
       team: '9/17 착수안 팀 구성표 8명(개발 4 / 운영 4)',
     },
     status: '개발 진행 중',
-    subtitle: '클라우드 가상 실습실 플랫폼',
+    subtitle: 'OpenStack 실습환경 · Frontend/API 연동과 DR 설계 검토',
     problem: '여러 VM을 사용하는 실습환경의 상태·권한·오류를 브라우저 화면에서 안전하게 표현해야 하는 문제',
     role: 'Frontend·API/WSS 연동·브라우저 검증 / Osaka DR 사전설계·검증 준비',
     summary:
