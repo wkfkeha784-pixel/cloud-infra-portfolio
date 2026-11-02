@@ -13,7 +13,7 @@ for (const width of [1440, 768, 390, 320]) {
     await page.goto('/projects/durian', { waitUntil: 'networkidle' })
     await page.evaluate(() => document.fonts.ready)
     await expect(page.locator('h1')).toContainText('Team Durian')
-    await expect(page.locator('h1')).toContainText('Consumer 확장·축소와 Kubernetes 운영 복구')
+    await expect(page.locator('h1')).toContainText('수강신청 폭주 대응 대기열 서비스')
     expect(await page.evaluate(() => document.documentElement.scrollWidth - innerWidth)).toBeLessThanOrEqual(2)
 
     const toc = page.getByRole('navigation', { name: 'Durian 사례 목차' })
