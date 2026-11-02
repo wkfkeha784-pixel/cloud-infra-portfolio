@@ -1,6 +1,6 @@
 // Reading metadata; canonical snapshots, dates and claim boundaries stay intact.
 export const labbitReading = {
-  headline: '실습 화면의 Terminal·File·Live 연동과 사용자 상태 보호를 구현했습니다.',
+  headline: '클라우드 가상 실습실 플랫폼',
   sections: [
     { id: 'overview', number: '01', label: '프로젝트·담당 역할', title: '프로젝트와 담당 역할' },
     { id: 'flow', number: '02', label: 'API 연동·검증 흐름', title: '팀 API 계약에 맞춘 연동과 브라우저 검증' },
@@ -9,7 +9,8 @@ export const labbitReading = {
     { id: 'http', number: '05', label: 'Mock·HTTP 경계', title: '개발 Mock과 Production HTTP의 경계' },
     { id: 'prototype', number: '06', label: '시제품·화면 캡처', title: '팀 검토를 위한 시제품과 화면 캡처' },
     { id: 'validation', number: '07', label: '후속 구현·연동 기록', title: '후속 Frontend 구현과 Backend 연동 기록' },
-    { id: 'evidence', number: '08', label: '구현에서 배운 점', title: '구현에서 배운 점' },
+    { id: 'dr', number: '08', label: 'Osaka DR 설계·준비', title: '서울–오사카 DR 설계와 검증 준비' },
+    { id: 'evidence', number: '09', label: '구현에서 배운 점', title: '구현에서 배운 점' },
   ],
   highlights: [
     { result: 'Terminal·File 구현', context: '세션 재연결 · ETag 기반 파일 충돌 보호' },

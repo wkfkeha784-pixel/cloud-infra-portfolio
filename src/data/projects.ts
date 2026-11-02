@@ -69,7 +69,7 @@ export const projects: Project[] = [
       team: '최종 3명',
       role: '팀원 · Kafka/KEDA·모니터링·복구 검증',
     },
-    subtitle: '수강신청 폭주 대응을 위한 대기열 오토스케일링 플랫폼',
+    subtitle: 'Kubernetes·Redis/Kafka·KEDA 기반 비동기 처리·자동 확장',
     problem: '갑작스러운 수강신청 요청이 애플리케이션과 DB로 한꺼번에 전달되는 상황',
     role: 'Kubernetes·Redis/Kafka/KEDA 운영 / 모니터링 인수·재구성 / Terraform 복구 검증',
     summary:
@@ -77,7 +77,7 @@ export const projects: Project[] = [
     tags: ['OpenStack', 'Kubernetes', 'Kafka', 'KEDA', 'Terraform', 'Redis', 'Prometheus', 'Grafana'],
     home: {
       group: 'featured',
-      headline: '외부 부하에 따른 Consumer 확장·축소와 worker-03 재가입 검증',
+      headline: '수강신청 폭주 대응 대기열 서비스',
       role: 'Kubernetes·Redis/Kafka/KEDA 운영 / 모니터링 인수 / worker-03 복구 검증',
       results: [
         { scope: 'MY', text: 'Kafka/KEDA 설정·모니터링 운영과 worker-03 복구 검증 참여' },
@@ -198,15 +198,15 @@ export const projects: Project[] = [
       timeline: '교육 프로젝트 2026.06.11-07.14',
       team: '최종 5명',
     },
-    subtitle: 'AWS Web/WAS + Local DB 하이브리드 3-Tier 인프라',
+    subtitle: 'AWS Web/WAS와 Local DB를 연결한 하이브리드 3-Tier 구성',
     problem: '수작업 복구와 서버 재구성 시 설정 편차, 복구 완료 판단 기준 부족',
     role: '팀장 / Web–WAS 구축 / AWS·복구 통합 검증',
     summary:
-      'Web–WAS 계층을 구축하고 각 담당 영역을 Web → WAS → DB E2E 요청 흐름으로 연결해 통합 검증했습니다.',
+      'AWS Web–WAS와 Local DB를 연결해 웹 API 운영환경을 구성하고, 인스턴스 교체 후 요청 경로와 서비스 복구 상태를 검증했습니다.',
     tags: ['AWS', 'Ansible', 'Docker Swarm', 'Nginx', 'Prometheus', 'Grafana'],
     home: {
       group: 'featured',
-      headline: 'AWS Web–WAS 구축과 인스턴스 교체 후 서비스 정상화 검증',
+      headline: '장애 복구·모니터링 웹 API 운영환경',
       role: '팀장 / Web–WAS 구축 / AWS·복구 통합 검증',
       results: [
         { scope: 'MY', text: '인스턴스 교체 후 서비스·Target Group·HTTP 응답 정상화 확인' },
@@ -324,15 +324,15 @@ export const projects: Project[] = [
       team: '역할표 8명 · Backend 공동 2명',
       role: 'Backend 공동 / 도메인·DB·기관 배정·API 계약·규칙 기반 분석',
     },
-    subtitle: '복합사고 다기관 공동대응 운영 플랫폼',
+    subtitle: '신고·기관 배정·처리 이력 REST/SSE API · AWS PoC',
     problem: '기관별 배정·상태·이력이 분리되면 전체 대응 상황을 파악하기 어려운 문제',
     role: 'Backend / 도메인·DB·기관 배정·API 계약·규칙 기반 분석',
     summary:
-      'Report와 Incident를 중심으로 기관 배정, 상태 전이, Timeline을 연결하고 규칙 기반 분석과 Smoke Test를 구현했습니다.',
+      '복합사고 신고부터 기관 배정·공동대응·처리 이력까지 연결하는 서비스 PoC입니다. Report/Incident와 기관 배정, REST/SSE API 구현 및 Smoke 검증에 참여했습니다.',
     tags: ['FastAPI', 'PostgreSQL', 'AWS', 'S3', 'SSE'],
     home: {
       group: 'additional',
-      headline: '신고·기관 배정·상태 흐름을 연결하는 Backend 구현',
+      headline: '복합사고 다기관 공동대응 플랫폼 PoC',
       role: 'Backend / 도메인·DB·기관 배정·API 계약·규칙 기반 분석',
       results: [
         { scope: 'MY', text: '신고·기관 배정·처리 이력과 규칙 기반 분석 구현' },
@@ -421,25 +421,25 @@ export const projects: Project[] = [
     order: '04',
     name: 'Labbit',
     metadata: {
-      timeline: '개발 착수 2026.09.17 · 대표 개인 PR 10.07–10.21 · 코드 검증 기준 2026.10.21',
+      timeline: '2026.09.17 착수 · 2026.11 현재 진행 중(Frontend·DR)',
       team: '9/17 착수안 팀 구성표 8명(개발 4 / 운영 4)',
     },
     status: '개발 진행 중',
-    subtitle: 'OpenStack 기반 가상 실습 플랫폼',
+    subtitle: 'OpenStack 실습환경 · Frontend/API 연동과 DR 설계 검토',
     problem: '여러 VM을 사용하는 실습환경의 상태·권한·오류를 브라우저 화면에서 안전하게 표현해야 하는 문제',
-    role: 'Frontend / 디자인 / Terminal·File·Live 연동 및 오류·권한 보호',
+    role: 'Frontend·API/WSS 연동·브라우저 검증 / Osaka DR 사전설계·검증 준비',
     summary:
-      'OpenStack 실습 플랫폼의 Frontend를 맡아 Terminal·File, Live 읽기 전용 연동과 권한·상태 변경 시 사용자 데이터 보호를 구현했습니다.',
+      'OpenStack 기반 가상 실습실 플랫폼에서 Frontend·API/WSS 연동과 브라우저 검증을 맡았습니다. 현재 서울–오사카 DR 전환 절차와 안전 조건도 검토하고 있습니다.',
     tags: ['React', 'TypeScript', 'TanStack Query', 'OpenAPI', 'WebSocket', 'Vitest', 'CI'],
     home: {
       group: 'additional',
-      headline: 'Terminal·File·Live 연동과 사용자 흐름 안정화',
-      role: 'Frontend / Terminal·File·Live·권한·충돌 보호',
+      headline: '클라우드 가상 실습실 플랫폼',
+      role: 'Frontend·API/WSS·브라우저 검증 / Osaka DR 설계·검증 준비',
       results: [
         { scope: 'MY', text: '터미널·파일 연동과 학생용 읽기 전용 Live 구현' },
         { scope: 'MY', text: '권한 변경 후 이전 파일 차단 · Provision·Reset 흐름 안정화' },
       ],
-      note: '2026-10-21까지 코드·CI 병합 검증 · 실제 VM/Live/ADMIN Acceptance 별도',
+      note: 'Frontend 코드·브라우저 검증과 Osaka DR 설계·안전 조건 검토 · 실제 DR 전환·복구 시험 별도',
       linkLabel: 'Workspace 구현과 통합 과정 보기',
     },
     architecture: ['Team SSOT', 'React SPA', 'HTTP / WS Consumer', 'Auth / Permission / Error UX', 'Regression Test', 'Browser Acceptance'],
@@ -451,6 +451,7 @@ export const projects: Project[] = [
       '권한·Generation 변경 뒤 stale Workspace File 숨김 (#136)',
       'Provision·LabSpec·Operation·Reset/Cleanup 사용자 Flow 회귀 (#143)',
       'ADMIN Installer 승인 URL 연동 (#133)',
+      'Osaka DR Delivery·Failover/Failback 절차 설계 및 안전·중단 조건 검토(진행 중)',
     ],
     projectResults: [
       'Terminal·File / LabSpec / Live / 사용자 Flow 관련 개인 FE PR 병합',

@@ -1,6 +1,6 @@
 // Reading metadata only; PR snapshots and canonical project data stay intact.
 export const onereportReading = {
-  headline: '신고·기관 배정·처리 이력을 하나의 백엔드 흐름으로 구현했습니다.',
+  headline: '복합사고 다기관 공동대응 플랫폼 PoC',
   sections: [
     { id: 'overview', number: '01', label: '프로젝트·담당 역할', title: '프로젝트와 담당 역할' },
     { id: 'flow', number: '02', label: '신고부터 대응 이력까지', title: '신고부터 기관 대응과 처리 이력까지' },

@@ -41,7 +41,7 @@ function ImplementationCase({ item, title, problem, workspace = false }: { item:
 }
 
 export default function LabbitDetail({ project }: { project: Project }) {
-  const [overview, flow, workspace, session, http, prototype, validation, evidence] = labbitReading.sections
+  const [overview, flow, workspace, session, http, prototype, validation, dr, evidence] = labbitReading.sections
   const caseSections = [workspace, session, http, prototype]
 
   return (
@@ -49,7 +49,7 @@ export default function LabbitDetail({ project }: { project: Project }) {
       <section className="project-hero bluebell-hero">
         <div className="container">
           <Link className="back-link" to="/#projects">← Selected Projects</Link>
-          <div className="project-hero-meta"><span className="eyebrow">PROJECT {project.order} · FRONTEND & INTEGRATION</span>{project.status && <span className="status-badge">{project.status}</span>}</div>
+          <div className="project-hero-meta"><span className="eyebrow">PROJECT {project.order} · FRONTEND & DR DESIGN</span>{project.status && <span className="status-badge">{project.status}</span>}</div>
           <h1><span className="bluebell-project-name">{project.name}</span>{' '}<span className="bluebell-headline">{labbitReading.headline}</span></h1>
           <p className="bluebell-subtitle">{project.subtitle}</p>
           <p className="project-detail-summary">{project.summary}</p>
@@ -104,6 +104,14 @@ export default function LabbitDetail({ project }: { project: Project }) {
               <li><span className="labbit-gate-state">검증 완료</span><h3>코드·계약·CI</h3><p className="labbit-gate-label">{project.validation?.[0]}</p><p>{project.projectResults?.[0]}</p><p>{project.projectResults?.[2]}</p></li>
               <li><span className="labbit-gate-state">검증 완료</span><h3>인증·수업 Backend 연동</h3><p className="labbit-gate-label">{project.validation?.[1]}</p><p>{project.projectResults?.[1]}</p></li>
             </ol>
+          </ReadingSection>
+          <ReadingSection section={dr}>
+            <p className="bluebell-intro">클라우드 실습환경의 DR Delivery·복구 절차를 인수하고, 서울–오사카 전환 시 고려할 안전 조건과 확인 항목을 정리하고 있습니다.</p>
+            <ul className="check-list bluebell-contributions">
+              <li>Osaka DR Delivery 사전설계 및 관련 코드·실행 절차 검토</li>
+              <li>Failover·Failback 실행 순서와 중단 조건, 검증 증거 기준 검토</li>
+              <li>현재 진행 중인 설계·검증 준비이며 실제 리전 전환·복구 시험과 RTO/RPO 실측 완료를 의미하지 않습니다.</li>
+            </ul>
           </ReadingSection>
           <ReadingSection section={evidence}>
             <div className="bluebell-closing"><div><h3>구현에서 배운 점</h3><p>{project.learned}</p></div></div>

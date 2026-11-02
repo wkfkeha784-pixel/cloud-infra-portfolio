@@ -19,7 +19,9 @@ for (const width of [1440, 768, 390, 320]) {
     await expect(page.getByText('개발 진행 중', { exact: true })).toBeVisible()
 
     const toc = page.getByRole('navigation', { name: 'Labbit 사례 목차' })
-    await expect(toc.getByRole('link')).toHaveCount(8)
+    await expect(toc.getByRole('link')).toHaveCount(9)
+    await expect(toc.getByRole('link', { name: /Osaka DR 설계·준비/ })).toBeVisible()
+    await expect(page.locator('#dr').getByText(/실제 리전 전환·복구 시험/)).toBeVisible()
     await expect(page.locator('.labbit-case')).toHaveCount(4)
     await expect(page.locator('.labbit-case')).toHaveCount(4)
     await expect(page.locator('#validation details')).toHaveCount(0)
