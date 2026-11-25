@@ -125,6 +125,9 @@ test('labbit: evidence cards keep ongoing state, contract boundary, and PR snaps
 
   await expect(page.locator('#validation')).toContainText('권한/Generation 변경 후 이전 파일 캐시 차단')
   await expect(page.locator('#validation')).not.toContainText('실제 OpenStack VM')
+  await expect(page.locator('#dr')).toContainText('HTTP 503')
+  await expect(page.locator('#dr')).toContainText('코드 병합·회귀 테스트')
+  await expect(page.locator('#dr')).toContainText('공식 RTO/RPO 확정은 진행 중')
 
   await expect(cards.nth(0).locator('details')).toHaveCount(0)
   await expect(cards.nth(0).getByText('2026-10-07 main 병합 · 최종 PR HEAD Web/Contracts/Go/CodeQL 검사 PASS')).toBeVisible()
