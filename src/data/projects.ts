@@ -452,6 +452,7 @@ export const projects: Project[] = [
       'Provision·LabSpec·Operation·Reset/Cleanup 사용자 Flow 회귀 (#143)',
       'ADMIN Installer 승인 URL 연동 (#133)',
       'Osaka DR Delivery·Failover/Failback 절차 설계 및 안전·중단 조건 검토(진행 중)',
+      '운영 점검 503 안내 구분 및 반복 요청 방지 (#195)',
     ],
     projectResults: [
       'Terminal·File / LabSpec / Live / 사용자 Flow 관련 개인 FE PR 병합',
@@ -579,9 +580,9 @@ export const projects: Project[] = [
       { label: 'PR #143 · 사용자 Flow 회귀', href: 'https://github.com/ktcloud4-SL/labbit-app/pull/143' },
     ],
     boundaryNotes: [
-      '프로젝트는 IN PROGRESS이며 주요 개인 FE PR 병합·코드 검사 기준은 2026-10-21까지입니다.',
+      '프로젝트 진행 중 · 개인 FE 구현은 10월 주요 병합과 11/25 운영 점검 UX 병합까지 확인했습니다.',
       'Auth/Class는 당시 실제 Backend Browser 단계까지 검증했습니다.',
-      '실제 OpenStack VM PTY/SFTP·Live fan-out·ADMIN 적용 브라우저 검증은 완료 근거가 없어 별도 후속 대상입니다.',
+      '위 PR의 코드·CI 결과와 실제 VM/운영 환경에서 수행한 검증의 범위를 구분합니다. 전체 DR 검증과 공식 RTO/RPO는 미확정입니다.',
       'Browser → SaaS → Connector → 실제 OpenStack VM 경로',
     ],
   },

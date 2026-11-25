@@ -11,7 +11,7 @@ AWS·OpenStack·Kubernetes 기반 팀 프로젝트의 **서비스 구조, 담당
 | [**Durian — 수강신청 폭주 대응 대기열 서비스**](https://cloud-infra-portfolio.vercel.app/projects/durian) | OpenStack/Kubernetes·Redis/Kafka/KEDA 운영, Kafka 통신·인증·권한 장애 분석과 모니터링 인수. 팀 시험에서 **HTTP 300/300 비동기 요청 수락, Consumer 1→4→1** 확인. 단일 worker-03 복구 검증 참여 |
 | [**Bluebell — 장애 복구·모니터링 웹 API 운영환경**](https://cloud-infra-portfolio.vercel.app/projects/bluebell) | **5인 팀의 팀장**·AWS Web/WAS 구축 및 로드밸런서 연결. 인스턴스 교체 후 Target Group·HTTP 응답·관측 정상화 검증 |
 | [**OneReport — 복합사고 다기관 공동대응 플랫폼 PoC**](https://cloud-infra-portfolio.vercel.app/projects/onereport) | Backend **공동 구현**. Report/Incident 모델, 기관 배정, Timeline REST/SSE와 AWS PoC Smoke Test |
-| [**Labbit — 클라우드 가상 실습실 플랫폼**](https://cloud-infra-portfolio.vercel.app/projects/labbit) | Frontend/UI·UX 및 API/WSS·Terminal/File/Live 브라우저 검증. 인증·권한·파일 충돌·오류 상태 점검, **서울–오사카 DR 절차·중단 조건 사전검토 진행 중** |
+| [**Labbit — 클라우드 가상 실습실 플랫폼**](https://cloud-infra-portfolio.vercel.app/projects/labbit) | Frontend/UI·UX 및 API/WSS·Terminal/File/Live 브라우저 검증. 인증·권한·파일 충돌·오류 상태 점검, **서울–오사카 DR 절차 검토 및 운영 점검 503 UX 개선**(전체 DR 검증 진행 중) |
 
 웹 상세 페이지에서 각 서비스의 아키텍처, 구현·운영 과정, 검증 결과를 확인할 수 있습니다. Labbit의 공개 코드와 관련 PR도 상세 페이지에서 연결합니다.
 

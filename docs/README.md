@@ -4,9 +4,11 @@
 
 [포트폴리오](https://cloud-infra-portfolio.vercel.app/)에는 프로젝트별 역할과 검증 결과를, [저장소 README](../README.md)에는 실행 방법과 소스 구성을 정리했습니다. 이 폴더에는 변경 이유와 확인 결과를 남깁니다.
 
-## 현재 상태 · 2026-10-23
+## 현재 상태 · 2026-11-25 검토 기준
 
-웹 포트폴리오는 PR #31까지 `main` 병합했고, [운영 사이트](https://cloud-infra-portfolio.vercel.app/)는 해당 커밋(`6eb2924`)으로 Vercel Production READY를 확인했습니다. 병합 전 Web CI와 Browser QA 66/66은 통과했습니다. **이는 운영 배포 후 수동 브라우저 확인과는 별개입니다.**
+11/02 PR #37 이후 앱 코드는 변경되지 않았으며, 문서 변경을 포함한 기존 main `157acd3`의 [Web CI](https://github.com/wkfkeha784-pixel/cloud-infra-portfolio/actions/runs/41415307334)와 [Browser QA](https://github.com/wkfkeha784-pixel/cloud-infra-portfolio/actions/runs/41415307338)(72/72)를 확인했습니다. 이번 변경의 새 CI·배포 결과는 별도로 확인해야 합니다. 10/23 PR #31 및 66/66 기록은 이전 시점입니다.
+
+Labbit 공개 PR [#158](https://github.com/ktcloud4-SL/labbit-app/pull/158), [#195](https://github.com/ktcloud4-SL/labbit-app/pull/195)의 병합 근거로 파일 상태 접근성과 운영 점검 503 UX를 보완합니다. 전체 DR 실증·공식 RTO/RPO 완료를 주장하지 않으며, 내부 운영 자료나 보안 상세는 공개하지 않습니다. 운영 배포의 현재 SHA 및 실제 화면은 별도 검증 대상으로 유지합니다.
 
 구성은 팀 프로젝트 소개, 주요 기술과 역할, 서비스 아키텍처, 대표 사례를 중심으로 정리했습니다. 실제 링크 없는 출처 펼치기와 반복적인 MY/PROJECT 배지 표기는 줄였습니다.
 

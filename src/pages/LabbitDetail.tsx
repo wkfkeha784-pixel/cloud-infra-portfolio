@@ -86,12 +86,13 @@ export default function LabbitDetail({ project }: { project: Project }) {
           })}
 
           <ReadingSection section={validation}>
-            <div className="bluebell-subheading"><h3>10월 주요 구현·안정화 작업</h3></div>
-            <ul className="check-list" aria-label="최근 개인 FE 병합 대표 4건">
+            <div className="bluebell-subheading"><h3>주요 구현·안정화 작업</h3></div>
+            <ul className="check-list" aria-label="개인 FE 주요 구현">
               <li>ADMIN Installer 승인 URL 연동 · <a href="https://github.com/ktcloud4-SL/labbit-app/pull/133" target="_blank" rel="noreferrer">PR #133 ↗</a></li>
               <li>학생 Live 읽기 전용 WSS 및 HTTP 5xx 경계 · <a href="https://github.com/ktcloud4-SL/labbit-app/pull/135" target="_blank" rel="noreferrer">PR #135 ↗</a></li>
               <li>권한/Generation 변경 후 이전 파일 캐시 차단 · <a href="https://github.com/ktcloud4-SL/labbit-app/pull/136" target="_blank" rel="noreferrer">PR #136 ↗</a></li>
               <li>Provision·LabSpec·Operation·Reset/Cleanup 회귀 · <a href="https://github.com/ktcloud4-SL/labbit-app/pull/143" target="_blank" rel="noreferrer">PR #143 ↗</a></li>
+              <li>파일 저장 상태 접근성 개선 · <a href="https://github.com/ktcloud4-SL/labbit-app/pull/158" target="_blank" rel="noreferrer">PR #158 ↗</a></li>
             </ul>
             <p className="story-inline-reference">
               이전 LabSpec 권한·빈 상태·Mapping UI도 함께 개선했습니다:
@@ -110,7 +111,8 @@ export default function LabbitDetail({ project }: { project: Project }) {
             <ul className="check-list bluebell-contributions">
               <li>Osaka DR Delivery 사전설계 및 관련 코드·실행 절차 검토</li>
               <li>Failover·Failback 실행 순서와 중단 조건, 검증 증거 기준 검토</li>
-              <li>현재 진행 중인 설계·검증 준비이며 실제 리전 전환·복구 시험과 RTO/RPO 실측 완료를 의미하지 않습니다.</li>
+              <li>운영 점검 중 발생하는 HTTP 503을 일반 연결 장애와 구분하고 실습 생성·초기화·정리의 반복 요청을 방지했습니다. <a href="https://github.com/ktcloud4-SL/labbit-app/pull/195" target="_blank" rel="noreferrer">PR #195 ↗</a></li>
+              <li>이 변경은 코드 병합·회귀 테스트로 확인했습니다. 실제 리전 전환·복구 시험의 전체 검증과 공식 RTO/RPO 확정은 진행 중입니다.</li>
             </ul>
           </ReadingSection>
           <ReadingSection section={evidence}>
